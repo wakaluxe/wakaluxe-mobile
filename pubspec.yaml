@@ -17,7 +17,7 @@ dependencies:
   flutter_hicons: ^0.0.1
   flutter_localizations:
     sdk: flutter
-  flutter_native_splash: ^2.2.18
+  flutter_native_splash: ^2.2.19
   get_it: ^7.2.0
   google_fonts: ^4.0.3
   hydrated_bloc: ^9.1.0
