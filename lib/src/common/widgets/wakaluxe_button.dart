@@ -43,8 +43,7 @@ class WakaluxeButton extends StatelessWidget {
             if (icon != null) ...[
               8.hGap,
               Icon(icon),
-            ] else
-              const SizedBox.shrink(),
+            ] 
           ],
         ),
       ),

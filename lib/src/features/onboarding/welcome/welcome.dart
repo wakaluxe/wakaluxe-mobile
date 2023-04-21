@@ -9,7 +9,7 @@ import 'package:wakaluxe/src/extensions/num.dart';
 
 import 'package:wakaluxe/src/features/onboarding/thememode/cubit/theme_cubit.dart';
 
-@RoutePage()
+@RoutePage(name: 'welcome')
 class Welcome extends StatelessWidget {
   const Welcome({super.key});
 

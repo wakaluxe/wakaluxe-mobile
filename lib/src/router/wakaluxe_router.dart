@@ -16,7 +16,6 @@ class WakaluxeRouter extends $WakaluxeRouter {
   final List<AutoRoute> routes = [
     AutoRoute(
       page: Welcome.page,
-      initial: true,
       path: '/welcome',
     ),
     AutoRoute(
@@ -27,5 +26,6 @@ class WakaluxeRouter extends $WakaluxeRouter {
       page: ChooseTheme.page,
       path: '/choose-theme',
     ),
+    AutoRoute(page: Home.page, initial: true, path: '/home')
   ];
 }
