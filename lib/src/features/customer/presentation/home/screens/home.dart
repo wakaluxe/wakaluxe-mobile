@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wakaluxe/data/dummy.dart';
 import 'package:wakaluxe/src/common/common.dart';
+import 'package:wakaluxe/src/common/widgets/custom_tile.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
-
 import 'package:wakaluxe/src/features/customer/presentation/home/bloc/home_bloc.dart';
 
 // List<Map<String, dynamic>> data = []
@@ -124,13 +124,12 @@ class Home extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Suggested Rides', style: context.bodyLg),
+                10.vGap,
                 ...data.map(
                   (e) => BlocBuilder<HomeBloc, HomeState>(
                     builder: (context, state) {
-                      return ListTile(
-                        contentPadding: EdgeInsets.zero,
-                        leading: const Icon(Icons.directions_car),
-                        selected: state.selectedIndex == data.indexOf(e),
+                      // will build custom list tile
+                      return CustomTile(
                         onTap: () {
                           context.read<HomeBloc>().add(
                                 SelectedRideEvent(
@@ -138,14 +137,10 @@ class Home extends StatelessWidget {
                                 ),
                               );
                         },
-                        title: Text(
-                          e['name'].toString(),
-                          style: context.bodyMd,
-                        ),
-                        subtitle: Text(
-                          e['type'].toString(),
-                          style: context.bodySm,
-                        ),
+                        data: e,
+                        leading: const Icon(Icons.directions_car),
+                        title: e['name'].toString(),
+                        subtitle: e['type'].toString(),
                         trailing: Column(
                           children: [
                             8.vGap,
@@ -160,6 +155,7 @@ class Home extends StatelessWidget {
                             ),
                           ],
                         ),
+                        isSelected: state.selectedIndex == data.indexOf(e),
                       );
                     },
                   ),
@@ -167,26 +163,44 @@ class Home extends StatelessWidget {
                 Column(
                   children: [
                     8.vGap,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        WakaluxeButtonMedium(
-                          text: 'E-payment',
-                          action: () {},
-                          width: 0.42,
-                          color: context.scheme.background,
-                          textColor: context.scheme.onBackground,
-                          isOutline: true,
-                        ),
-                        WakaluxeButtonMedium(
-                          width: 0.42,
-                          text: 'Cash',
-                          action: () {},
-                          color: context.scheme.background,
-                          textColor: context.scheme.onBackground,
-                          isOutline: true,
-                        ),
-                      ],
+                    BlocBuilder<HomeBloc, HomeState>(
+                      builder: (context, state) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            WakaluxeButtonMedium(
+                              text: 'E-payment',
+                              action: () {
+                                context.read<HomeBloc>().add(
+                                      SelectPaymentTypeEvent(
+                                        selectedPaymentType: 0,
+                                      ),
+                                    );
+                              },
+                              width: 0.42,
+                              color: context.scheme.background,
+                              textColor: context.scheme.onBackground,
+                              isOutline: true,
+                              isSelected: state.selectedPaymentType == 0,
+                            ),
+                            WakaluxeButtonMedium(
+                              width: 0.42,
+                              text: 'Cash',
+                              action: () {
+                                context.read<HomeBloc>().add(
+                                      SelectPaymentTypeEvent(
+                                        selectedPaymentType: 1,
+                                      ),
+                                    );
+                              },
+                              color: context.scheme.background,
+                              textColor: context.scheme.onBackground,
+                              isOutline: true,
+                              isSelected: state.selectedPaymentType == 1,
+                            ),
+                          ],
+                        );
+                      },
                     ),
                   ],
                 ),

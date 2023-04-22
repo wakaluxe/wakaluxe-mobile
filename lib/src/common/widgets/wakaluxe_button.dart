@@ -14,6 +14,7 @@ class WakaluxeButton extends StatelessWidget {
     this.icon,
     this.textColor,
     this.isOutline = false,
+    this.isSelected = false,
   });
   final IconData? icon;
   final String text;
@@ -22,6 +23,7 @@ class WakaluxeButton extends StatelessWidget {
   final double width;
   final Color? textColor;
   final bool isOutline;
+  final bool isSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +35,12 @@ class WakaluxeButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(Constants.borderRadius),
-          border: isOutline
+          border: (isOutline || isSelected)
               ? Border.all(
-                  color: context.scheme.onBackground.withOpacity(0.5),
-                  width: 0.5,
+                  color: !isSelected
+                      ? context.scheme.onBackground.withOpacity(0.5)
+                      : context.scheme.tertiary,
+                  width: 0.8,
                 )
               : null,
         ),
@@ -72,6 +76,7 @@ class WakaluxeButtonMedium extends StatelessWidget {
     this.icon,
     this.textColor,
     this.isOutline = false,
+    this.isSelected = false,
   });
   final IconData? icon;
   final String text;
@@ -80,6 +85,7 @@ class WakaluxeButtonMedium extends StatelessWidget {
   final double width;
   final Color? textColor;
   final bool isOutline;
+  final bool isSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -91,6 +97,7 @@ class WakaluxeButtonMedium extends StatelessWidget {
       icon: icon,
       textColor: textColor,
       isOutline: isOutline,
+      isSelected: isSelected,
     );
   }
 }

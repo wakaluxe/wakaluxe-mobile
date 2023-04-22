@@ -7,3 +7,8 @@ class SelectedRideEvent extends HomeEvent {
   SelectedRideEvent({required this.selectedIndex});
   final int selectedIndex;
 }
+
+class SelectPaymentTypeEvent extends HomeEvent {
+  SelectPaymentTypeEvent({required this.selectedPaymentType});
+  final int selectedPaymentType;
+}

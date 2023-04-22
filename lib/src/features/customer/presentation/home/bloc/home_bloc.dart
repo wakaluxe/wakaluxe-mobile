@@ -8,7 +8,20 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeInitial()) {
     on<HomeEvent>((event, emit) {});
     on<SelectedRideEvent>((event, emit) {
-      emit(SelectRideState(event.selectedIndex));
+      emit(
+        SelectRideState(
+          selectedIndex: event.selectedIndex,
+          selectedPaymentType: state.selectedPaymentType,
+        ),
+      );
+    });
+    on<SelectPaymentTypeEvent>((event, emit) {
+      emit(
+        SelectPaymentTypeState(
+          selectedIndex: state.selectedIndex,
+          selectedPaymentType: event.selectedPaymentType,
+        ),
+      );
     });
   }
 }
