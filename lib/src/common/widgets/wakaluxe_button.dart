@@ -13,6 +13,7 @@ class WakaluxeButton extends StatelessWidget {
     this.width = .9,
     this.icon,
     this.textColor,
+    this.isOutline = false,
   });
   final IconData? icon;
   final String text;
@@ -20,6 +21,7 @@ class WakaluxeButton extends StatelessWidget {
   final Color color;
   final double width;
   final Color? textColor;
+  final bool isOutline;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,12 @@ class WakaluxeButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(Constants.borderRadius),
+          border: isOutline
+              ? Border.all(
+                  color: context.scheme.onBackground.withOpacity(0.5),
+                  width: 0.5,
+                )
+              : null,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -63,6 +71,7 @@ class WakaluxeButtonMedium extends StatelessWidget {
     this.width = .35,
     this.icon,
     this.textColor,
+    this.isOutline = false,
   });
   final IconData? icon;
   final String text;
@@ -70,6 +79,7 @@ class WakaluxeButtonMedium extends StatelessWidget {
   final Color color;
   final double width;
   final Color? textColor;
+  final bool isOutline;
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +90,7 @@ class WakaluxeButtonMedium extends StatelessWidget {
       width: width,
       icon: icon,
       textColor: textColor,
+      isOutline: isOutline,
     );
   }
 }

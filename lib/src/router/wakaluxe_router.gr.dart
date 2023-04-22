@@ -9,7 +9,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i5;
-import 'package:wakaluxe/src/features/customer/home.dart' as _i4;
+import 'package:wakaluxe/src/features/customer/presentation/home/screens/home.dart'
+    as _i4;
 import 'package:wakaluxe/src/features/onboarding/language/choose_language.dart'
     as _i2;
 import 'package:wakaluxe/src/features/onboarding/thememode/choose_theme.dart'
