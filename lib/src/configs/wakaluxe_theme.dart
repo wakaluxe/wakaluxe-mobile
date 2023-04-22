@@ -5,7 +5,7 @@ import 'package:material_color_utilities/material_color_utilities.dart';
 @immutable
 class WakaluxeTheme extends ThemeExtension<WakaluxeTheme> {
   const WakaluxeTheme({
-    this.primaryColor = const Color(0xFF356859),
+    this.primaryColor = const Color(0xFFFBE521),
     this.tertiaryColor = const Color(0xFFFF5722),
     this.neutralColor = const Color(0xFFFFFBE6),
   });
@@ -17,7 +17,7 @@ class WakaluxeTheme extends ThemeExtension<WakaluxeTheme> {
   Scheme _scheme() {
     final base = CorePalette.of(primaryColor.value);
     final primary = base.primary;
-    final tertiary = CorePalette.of(tertiaryColor.value).primary;
+    final tertiary = CorePalette.of(tertiaryColor.value).tertiary;
     final neutral = CorePalette.of(neutralColor.value).neutral;
     return Scheme(
       primary: primary.get(40),
@@ -148,7 +148,7 @@ const lightColorScheme = ColorScheme(
   onSecondary: Color(0xFFFFFFFF),
   secondaryContainer: Color(0xFFFFDBD1),
   onSecondaryContainer: Color(0xFF3B0900),
-  tertiary: Color(0xFF006B56),
+  tertiary: Color(0xffFBE521),
   onTertiary: Color(0xFFFFFFFF),
   tertiaryContainer: Color(0xFF7EF8D5),
   onTertiaryContainer: Color(0xFF002018),
