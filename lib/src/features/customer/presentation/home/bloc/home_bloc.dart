@@ -12,6 +12,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         SelectRideState(
           selectedIndex: event.selectedIndex,
           selectedPaymentType: state.selectedPaymentType,
+          selectedPaymentMethod: state.selectedPaymentMethod,
         ),
       );
     });
@@ -20,6 +21,16 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         SelectPaymentTypeState(
           selectedIndex: state.selectedIndex,
           selectedPaymentType: event.selectedPaymentType,
+          selectedPaymentMethod: state.selectedPaymentMethod,
+        ),
+      );
+    });
+    on<SelectPaymentMethodEvent>((event, emit) {
+      emit(
+        SelectPaymentMethodState(
+          selectedIndex: state.selectedIndex,
+          selectedPaymentType: state.selectedPaymentType,
+          selectedPaymentMethod: event.selectedPaymentMethod,
         ),
       );
     });

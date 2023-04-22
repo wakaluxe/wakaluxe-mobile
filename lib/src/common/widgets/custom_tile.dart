@@ -5,18 +5,17 @@ class CustomTile extends StatelessWidget {
   const CustomTile({
     required this.isSelected,
     required this.onTap,
-    required this.data,
+  
     required this.title,
-    required this.subtitle,
+    this.subtitle,
     this.trailing,
     this.leading,
     super.key,
   });
   final bool isSelected;
   final VoidCallback onTap;
-  final Map<String, dynamic> data;
   final String title;
-  final String subtitle;
+  final String? subtitle;
   final Widget? trailing;
   final Widget? leading;
   @override
@@ -37,10 +36,12 @@ class CustomTile extends StatelessWidget {
             title,
             style: context.bodyMd,
           ),
-          subtitle: Text(
-            subtitle,
-            style: context.bodySm,
-          ),
+          subtitle: subtitle != null
+              ? Text(
+                  subtitle!,
+                  style: context.bodySm,
+                )
+              : null,
           trailing: trailing,
         ),
       ),

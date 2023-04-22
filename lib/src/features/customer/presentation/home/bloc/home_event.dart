@@ -12,3 +12,8 @@ class SelectPaymentTypeEvent extends HomeEvent {
   SelectPaymentTypeEvent({required this.selectedPaymentType});
   final int selectedPaymentType;
 }
+
+class SelectPaymentMethodEvent extends HomeEvent {
+  SelectPaymentMethodEvent({required this.selectedPaymentMethod});
+  final int selectedPaymentMethod;
+}
