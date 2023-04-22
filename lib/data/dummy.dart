@@ -30,3 +30,5 @@ List<Map<String, dynamic>> suggestedRides = [
     'type': 'comfortable'
   },
 ];
+
+List<String> images = [];
