@@ -219,4 +219,56 @@ class BottomSheets {
       ),
     );
   }
+
+  static Future<void> showConfirmDialog(BuildContext context) async {
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // TODO(Bless): add image
+              Text(
+                'Booking Successful',
+                style: context.titleLg,
+              ),
+              15.vGap,
+              Text(
+                'Your booking has been confirmed.Driver will pickup you in 2mins.',
+                style: context.bodySm,
+                textAlign: TextAlign.center,
+              ),
+              24.vGap,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  WakaluxeButtonMedium(
+                    text: 'Cancel',
+                    action: () {
+                      //Todo: navigate to history page
+                      Navigator.pop(context);
+                    },
+                    color: context.scheme.background,
+                    width: 0.3,
+                    textColor: context.scheme.error,
+                  ),
+                  WakaluxeButtonMedium(
+                    text: 'Done',
+                    action: () {
+                      //Todo: navigate to history page
+                      Navigator.pop(context);
+                    },
+                    color: context.scheme.tertiary,
+                    width: 0.3,
+                    textColor: context.scheme.onTertiary,
+                  ),
+                ],
+              )
+            ],
+          ),
+        );
+      },
+    );
+  }
 }

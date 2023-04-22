@@ -6,7 +6,11 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeInitial()) {
-    on<HomeEvent>((event, emit) {});
+    on<HomeInitialEvent>((event, emit) {
+      emit(
+        HomeInitial(),
+      );
+    });
     on<SelectedRideEvent>((event, emit) {
       emit(
         SelectRideState(

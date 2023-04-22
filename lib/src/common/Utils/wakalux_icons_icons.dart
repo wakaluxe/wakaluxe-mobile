@@ -63,4 +63,18 @@ class WakaluxIcons {
   static const IconData text = IconData(0xe822, fontFamily: _kFontFam);
   static const IconData ticket = IconData(0xe823, fontFamily: _kFontFam);
   static const IconData wallet = IconData(0xe824, fontFamily: _kFontFam);
+  static const IconData map_arrow_down =
+      IconData(0xe825, fontFamily: _kFontFam);
+  static const IconData map_point = IconData(0xe826, fontFamily: _kFontFam);
+  static const IconData people_nearby = IconData(0xe827, fontFamily: _kFontFam);
+  static const IconData time_circle = IconData(0xe828, fontFamily: _kFontFam);
+  static const IconData facebook = IconData(0xe829, fontFamily: _kFontFam);
+  static const IconData default_marker_component =
+      IconData(0xe82a, fontFamily: _kFontFam);
+  static const IconData google = IconData(0xe82b, fontFamily: _kFontFam);
+  static const IconData gps_fixed = IconData(0xe82c, fontFamily: _kFontFam);
+  static const IconData group_21 = IconData(0xe82d, fontFamily: _kFontFam);
+  static const IconData mastercard = IconData(0xe82e, fontFamily: _kFontFam);
+  static const IconData left_3 = IconData(0xe830, fontFamily: _kFontFam);
+  static const IconData menu_hotdog = IconData(0xe831, fontFamily: _kFontFam);
 }

@@ -2,11 +2,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wakaluxe/data/dummy.dart';
+import 'package:wakaluxe/src/common/Utils/wakalux_icons_icons.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/bloc/home_bloc.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/screens/buttom_sheets.dart';
+
+import 'package:wakaluxe/src/features/customer/presentation/home/screens/driver_card.dart';
 
 // List<Map<String, dynamic>> data = []
 
@@ -77,7 +80,7 @@ class Home extends StatelessWidget {
                         flex: 4,
                         child: LocationWidget(
                           leading: Icon(
-                            Icons.location_on,
+                            WakaluxIcons.location,
                             color: context.scheme.error,
                           ),
                           trainling: Icon(
@@ -132,118 +135,38 @@ class Home extends StatelessWidget {
             ),
             BlocBuilder<HomeBloc, HomeState>(
               builder: (context, state) {
+                final data = getDriverData();
                 return state.showDrivers
                     ? Positioned(
                         bottom: 0,
                         left: 0,
                         right: 0,
                         child: SizedBox(
-                          height: 200,
+                          height: context.height * 0.34,
                           width: context.width,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            itemCount: 5,
+                            itemCount: data.length,
                             itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                ),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: context.scheme.background,
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  width: context.width * 0.9,
-                                  margin: const EdgeInsets.only(left: 10),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 10,
-                                    ),
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            const Expanded(
-                                              child: ProfileImage(
-                                                imageUrl:
-                                                    'https://placeimg.com/640/480/any',
-                                              ),
-                                            ),
-                                            5.hGap,
-                                            Expanded(
-                                              flex: 3,
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    'Ayuko Peters',
-                                                    style: context.titleLgBold,
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Icon(
-                                                        Icons.star,
-                                                        color: context
-                                                            .scheme.secondary,
-                                                        size: 20,
-                                                      ),
-                                                      5.hGap,
-                                                      Text(
-                                                        '4.0',
-                                                        style: context.bodySm,
-                                                      ),
-                                                    ],
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                            5.hGap,
-                                            Expanded(
-                                              flex: 2,
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceEvenly,
-                                                children: [
-                                                  CircleAvatar(
-                                                    radius: 25,
-                                                    backgroundColor: context
-                                                        .scheme
-                                                        .tertiaryContainer,
-                                                    child: Icon(
-                                                      Icons.chat,
-                                                      color: context
-                                                          .scheme.onBackground,
-                                                    ),
-                                                  ),
-                                                  5.hGap,
-                                                  CircleAvatar(
-                                                    radius: 25,
-                                                    backgroundColor: context
-                                                        .scheme
-                                                        .secondaryContainer,
-                                                    child: Icon(
-                                                      Icons.phone_outlined,
-                                                      color: context
-                                                          .scheme.onBackground,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        5.vGap,
-                                        Divider(
-                                          color: context.scheme.onBackground,
-                                          // .withOpacity(0.6),
-                                          thickness: 0.4,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
+                              final driver = data[index];
+                              return DriverCard(
+                                action: () {
+                                  context
+                                      .read<HomeBloc>()
+                                      .add(HomeInitialEvent());
+                                  // show dialof to confirm ride
+                                  BottomSheets.showConfirmDialog(context);
+                                },
+                                distance:
+                                    double.parse(driver['distance'].toString())
+                                        .toStringAsFixed(2),
+                                driverImage: driver['driverImage'] as String,
+                                driverName: driver['driverName'] as String,
+                                imageLiknks: images,
+                                price: driver['price'] as String,
+                                rating: 4.0,
+                                recommended: 30,
+                                time: '5',
                               );
                             },
                           ),

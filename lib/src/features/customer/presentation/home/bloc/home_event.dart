@@ -3,6 +3,7 @@ part of 'home_bloc.dart';
 @immutable
 abstract class HomeEvent {}
 
+class HomeInitialEvent extends HomeEvent {}
 class SelectedRideEvent extends HomeEvent {
   SelectedRideEvent({required this.selectedIndex});
   final int selectedIndex;
@@ -26,4 +27,9 @@ class SelectDriverEvent extends HomeEvent {
 class ShowDriversEvent extends HomeEvent {
   ShowDriversEvent({required this.showDrivers});
   final bool showDrivers;
+}
+
+class ShowSuccessBookEvent extends HomeEvent {
+  ShowSuccessBookEvent({required this.showSuccessBook});
+  final bool showSuccessBook;
 }
