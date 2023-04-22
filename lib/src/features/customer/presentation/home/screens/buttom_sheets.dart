@@ -162,6 +162,7 @@ class BottomSheets {
                       'Select Payment',
                       style: context.bodyLg,
                     ),
+                    10.vGap,
                     CustomTile(
                       isSelected: state.selectedPaymentMethod == 0,
                       onTap: () {
@@ -198,6 +199,17 @@ class BottomSheets {
                       title: 'Card Payment',
                       leading: const Icon(Icons.phone_android),
                     ),
+                    25.vGap,
+                    WakaluxeButton(
+                      text: 'Apply',
+                      action: () {
+                        Navigator.pop(context);
+                        context.read<HomeBloc>().add(
+                              SelectDriverEvent(selectDriver: true),
+                            );
+                      },
+                    ),
+                    10.vGap,
                   ],
                 );
               },

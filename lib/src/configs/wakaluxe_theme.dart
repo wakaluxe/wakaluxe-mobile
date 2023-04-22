@@ -52,7 +52,7 @@ class WakaluxeTheme extends ThemeExtension<WakaluxeTheme> {
     );
   }
 
-  ThemeData _base(final ColorScheme colorScheme) {
+  ThemeData _base(ColorScheme colorScheme) {
     final primaryTextTheme = GoogleFonts.poppinsTextTheme();
     final secondaryTextTheme = GoogleFonts.montserratTextTheme();
     final textTheme = primaryTextTheme.copyWith(

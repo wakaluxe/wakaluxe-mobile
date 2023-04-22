@@ -17,3 +17,13 @@ class SelectPaymentMethodEvent extends HomeEvent {
   SelectPaymentMethodEvent({required this.selectedPaymentMethod});
   final int selectedPaymentMethod;
 }
+
+class SelectDriverEvent extends HomeEvent {
+  SelectDriverEvent({required this.selectDriver});
+  final bool selectDriver;
+}
+
+class ShowDriversEvent extends HomeEvent {
+  ShowDriversEvent({required this.showDrivers});
+  final bool showDrivers;
+}

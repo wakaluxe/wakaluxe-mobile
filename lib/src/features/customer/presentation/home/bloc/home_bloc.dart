@@ -13,6 +13,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           selectedIndex: event.selectedIndex,
           selectedPaymentType: state.selectedPaymentType,
           selectedPaymentMethod: state.selectedPaymentMethod,
+          selectDriver: state.selectDriver,
+          showDrivers: state.showDrivers,
         ),
       );
     });
@@ -22,6 +24,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           selectedIndex: state.selectedIndex,
           selectedPaymentType: event.selectedPaymentType,
           selectedPaymentMethod: state.selectedPaymentMethod,
+          selectDriver: state.selectDriver,
+          showDrivers: state.showDrivers,
         ),
       );
     });
@@ -31,6 +35,31 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           selectedIndex: state.selectedIndex,
           selectedPaymentType: state.selectedPaymentType,
           selectedPaymentMethod: event.selectedPaymentMethod,
+          selectDriver: state.selectDriver,
+          showDrivers: state.showDrivers,
+        ),
+      );
+    });
+    on<SelectDriverEvent>((event, emit) {
+      emit(
+        SelectDriverState(
+          selectedIndex: state.selectedIndex,
+          selectedPaymentType: state.selectedPaymentType,
+          selectedPaymentMethod: state.selectedPaymentMethod,
+          selectDriver: event.selectDriver,
+          showDrivers: state.showDrivers,
+        ),
+      );
+    });
+
+    on<ShowDriversEvent>((event, emit) {
+      emit(
+        ShowDriverState(
+          selectedIndex: state.selectedIndex,
+          selectedPaymentType: state.selectedPaymentType,
+          selectedPaymentMethod: state.selectedPaymentMethod,
+          selectDriver: state.selectDriver,
+          showDrivers: event.showDrivers,
         ),
       );
     });

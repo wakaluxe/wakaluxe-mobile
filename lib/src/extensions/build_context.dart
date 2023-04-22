@@ -24,7 +24,29 @@ extension WakaluxeBuildContextExtension on BuildContext {
         //fontWeight: FontWeight.w600,
         color: scheme.onBackground,
       );
+  TextStyle get titleLgBold => typography.titleLarge!.copyWith(
+        fontWeight: FontWeight.w600,
+        color: scheme.onBackground,
+        fontSize: 18,
+      );
+  TextStyle get titleMd => typography.titleMedium!.copyWith(
+        //fontWeight: FontWeight.w600,
+        color: scheme.onBackground,
+      );
+  TextStyle get titleSm => typography.titleSmall!.copyWith(
+        //fontWeight: FontWeight.w600,
+        color: scheme.onBackground,
+      );
+
   TextStyle get displayLg => typography.displayLarge!.copyWith(
+        //fontWeight: FontWeight.w600,
+        color: scheme.onBackground,
+      );
+  TextStyle get displayMd => typography.displayMedium!.copyWith(
+        //fontWeight: FontWeight.w600,
+        color: scheme.onBackground,
+      );
+  TextStyle get displaySm => typography.displaySmall!.copyWith(
         //fontWeight: FontWeight.w600,
         color: scheme.onBackground,
       );
