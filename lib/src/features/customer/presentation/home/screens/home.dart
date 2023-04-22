@@ -25,8 +25,8 @@ class Home extends StatelessWidget {
                   Expanded(
                     child: Container(
                       padding: const EdgeInsets.symmetric(
-                        vertical: 15,
-                        horizontal: 10,
+                        vertical: 10,
+                        horizontal: 8,
                       ),
                       decoration: BoxDecoration(
                         color: context.scheme.background,

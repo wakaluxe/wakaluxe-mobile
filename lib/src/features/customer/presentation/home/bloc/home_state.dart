@@ -1,6 +1,15 @@
 part of 'home_bloc.dart';
 
-@immutable
-abstract class HomeState {}
+class HomeState {
+  HomeState({required this.selectedIndex});
 
-class HomeInitial extends HomeState {}
+  final int selectedIndex;
+}
+
+class HomeInitial extends HomeState {
+  HomeInitial() : super(selectedIndex: -1);
+}
+
+class SelectRideState extends HomeState {
+  SelectRideState(int selectedValue) : super(selectedIndex: selectedValue);
+}
