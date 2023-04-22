@@ -1,9 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wakaluxe/data/dummy.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
+
+import 'package:wakaluxe/src/features/customer/presentation/home/bloc/home_bloc.dart';
 
 // List<Map<String, dynamic>> data = []
 
@@ -122,31 +125,43 @@ class Home extends StatelessWidget {
               children: [
                 Text('Suggested Rides', style: context.bodyLg),
                 ...data.map(
-                  (e) => ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    leading: const Icon(Icons.directions_car),
-                    title: Text(
-                      e['name'].toString(),
-                      style: context.bodyMd,
-                    ),
-                    subtitle: Text(
-                      e['type'].toString(),
-                      style: context.bodySm,
-                    ),
-                    trailing: Column(
-                      children: [
-                        8.vGap,
-                        Text(
-                          e['price'].toString(),
+                  (e) => BlocBuilder<HomeBloc, HomeState>(
+                    builder: (context, state) {
+                      return ListTile(
+                        contentPadding: EdgeInsets.zero,
+                        leading: const Icon(Icons.directions_car),
+                        selected: state.selectedIndex == data.indexOf(e),
+                        onTap: () {
+                          context.read<HomeBloc>().add(
+                                SelectedRideEvent(
+                                  selectedIndex: data.indexOf(e),
+                                ),
+                              );
+                        },
+                        title: Text(
+                          e['name'].toString(),
                           style: context.bodyMd,
                         ),
-                        3.vGap,
-                        Text(
-                          e['availableTime'].toString(),
+                        subtitle: Text(
+                          e['type'].toString(),
                           style: context.bodySm,
                         ),
-                      ],
-                    ),
+                        trailing: Column(
+                          children: [
+                            8.vGap,
+                            Text(
+                              e['price'].toString(),
+                              style: context.bodyMd,
+                            ),
+                            3.vGap,
+                            Text(
+                              e['availableTime'].toString(),
+                              style: context.bodySm,
+                            ),
+                          ],
+                        ),
+                      );
+                    },
                   ),
                 ),
                 Column(
