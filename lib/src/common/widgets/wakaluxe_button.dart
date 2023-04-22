@@ -12,12 +12,14 @@ class WakaluxeButton extends StatelessWidget {
     super.key,
     this.width = .9,
     this.icon,
+    this.textColor,
   });
   final IconData? icon;
   final String text;
   final VoidCallback? action;
   final Color color;
   final double width;
+  final Color? textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -36,14 +38,15 @@ class WakaluxeButton extends StatelessWidget {
             Text(
               text,
               style: context.bodyLg.copyWith(
-                color: context.scheme.onPrimary,
+                color:
+                    (textColor == null) ? context.scheme.onPrimary : textColor,
                 fontWeight: FontWeight.bold,
               ),
             ),
             if (icon != null) ...[
               8.hGap,
               Icon(icon),
-            ] 
+            ]
           ],
         ),
       ),
@@ -59,12 +62,14 @@ class WakaluxeButtonMedium extends StatelessWidget {
     super.key,
     this.width = .35,
     this.icon,
+    this.textColor,
   });
   final IconData? icon;
   final String text;
   final VoidCallback? action;
   final Color color;
   final double width;
+  final Color? textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +79,7 @@ class WakaluxeButtonMedium extends StatelessWidget {
       color: color,
       width: width,
       icon: icon,
+      textColor: textColor,
     );
   }
 }
