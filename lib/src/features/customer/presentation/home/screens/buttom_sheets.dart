@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wakaluxe/src/common/common.dart';
-import 'package:wakaluxe/src/common/widgets/custom_tile.dart';
+import 'package:wakaluxe/src/common/widgets/wakaluxe_tile.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
-import 'package:wakaluxe/src/features/customer/presentation/home/bloc/home_bloc.dart';
 
-class BottomSheets {
+import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc.dart';
+
+class WakaluxeBottomSheets {
   static Future<void> showSuggestedRidesModalSheet(
     BuildContext context, {
     required List<Map<String, dynamic>> data,
@@ -33,7 +34,7 @@ class BottomSheets {
                   (e) => BlocBuilder<HomeBloc, HomeState>(
                     builder: (context, state) {
                       // will build custom list tile
-                      return CustomTile(
+                      return WakaluxTile(
                         onTap: () {
                           context.read<HomeBloc>().add(
                                 SelectedRideEvent(
@@ -163,7 +164,7 @@ class BottomSheets {
                       style: context.bodyLg,
                     ),
                     10.vGap,
-                    CustomTile(
+                    WakaluxTile(
                       isSelected: state.selectedPaymentMethod == 0,
                       onTap: () {
                         context.read<HomeBloc>().add(
@@ -175,7 +176,7 @@ class BottomSheets {
                       title: 'MTN Mobile Money ',
                       leading: const Icon(Icons.phone_android),
                     ),
-                    CustomTile(
+                    WakaluxTile(
                       isSelected: state.selectedPaymentMethod == 1,
                       onTap: () {
                         context.read<HomeBloc>().add(
@@ -187,7 +188,7 @@ class BottomSheets {
                       title: 'Orange Money',
                       leading: const Icon(Icons.phone_android),
                     ),
-                    CustomTile(
+                    WakaluxTile(
                       isSelected: state.selectedPaymentMethod == 2,
                       onTap: () {
                         context.read<HomeBloc>().add(

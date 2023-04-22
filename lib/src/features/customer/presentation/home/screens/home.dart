@@ -6,9 +6,8 @@ import 'package:wakaluxe/src/common/Utils/wakalux_icons_icons.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
-import 'package:wakaluxe/src/features/customer/presentation/home/bloc/home_bloc.dart';
+import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/screens/buttom_sheets.dart';
-
 import 'package:wakaluxe/src/features/customer/presentation/home/screens/driver_card.dart';
 
 // List<Map<String, dynamic>> data = []
@@ -89,7 +88,7 @@ class Home extends StatelessWidget {
                           ),
                           message: 'Destination Coordimates',
                           onTap: () {
-                            BottomSheets.showSuggestedRidesModalSheet(
+                            WakaluxeBottomSheets.showSuggestedRidesModalSheet(
                               context,
                               data: suggestedRides,
                             );
@@ -148,14 +147,16 @@ class Home extends StatelessWidget {
                             scrollDirection: Axis.horizontal,
                             itemCount: data.length,
                             itemBuilder: (context, index) {
+                              //dummy data to be removed
                               final driver = data[index];
                               return DriverCard(
                                 action: () {
-                                  context
-                                      .read<HomeBloc>()
-                                      .add(HomeInitialEvent());
-                                  // show dialof to confirm ride
-                                  BottomSheets.showConfirmDialog(context);
+                                  context.read<HomeBloc>().add(
+                                        HomeInitialEvent(),
+                                      ); // show dialof to confirm ride
+                                  WakaluxeBottomSheets.showConfirmDialog(
+                                    context,
+                                  );
                                 },
                                 distance:
                                     double.parse(driver['distance'].toString())

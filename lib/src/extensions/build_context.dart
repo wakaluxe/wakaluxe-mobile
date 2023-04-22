@@ -91,12 +91,17 @@ extension WakaluxeBuildContextExtension on BuildContext {
   Orientation get orientation => mediaQuery.orientation;
   bool get isPortrait => orientation == Orientation.portrait;
   bool get isLandscape => orientation == Orientation.landscape;
-  void showSnackBar(String message, {Duration? duration}) {
+  void showSnackBar(
+    String message, {
+    Duration? duration,
+    Color? color,
+  }) {
     ScaffoldMessenger.of(this).showSnackBar(
       SnackBar(
         content: Text(message, style: bodyMd),
         behavior: SnackBarBehavior.floating,
         duration: duration ?? const Duration(seconds: 1),
+        backgroundColor: color ?? scheme.primary,
       ),
     );
   }
