@@ -6,30 +6,35 @@ List<Map<String, dynamic>> suggestedRides = [
     'price': '3000',
     'availableTime': '2 mins',
     'type': 'standard',
+    'image': 'assets/images/sedan.png'
   },
   {
     'name': 'SUV',
     'price': '3000',
     'availableTime': '2 mins',
     'type': 'Comfortable SUV',
+    'image': 'assets/images/suv.png'
   },
   {
     'name': 'Luxurious',
     'price': '3000',
     'availableTime': '10 mins',
     'type': 'Comfortable SUV',
+    'image': 'assets/images/luxurious.png'
   },
   {
     'name': 'Taxi 4 Seat',
     'price': '3000',
     'availableTime': '2 mins',
     'type': 'standard',
+    'image': 'assets/images/taxi_4.png'
   },
   {
     'name': 'Taxi 7 Seat',
     'price': '3000',
     'availableTime': '2 mins',
-    'type': 'comfortable'
+    'type': 'comfortable',
+    'image': 'assets/images/taxi_7.png'
   },
 ];
 

@@ -41,7 +41,11 @@ class WakaluxeBottomSheets {
                                 ),
                               );
                         },
-                        leading: const Icon(Icons.directions_car),
+                        leading: Image.asset(
+                          e['image'].toString(),
+                          height: 50,
+                          width: 50,
+                        ),
                         title: e['name'].toString(),
                         subtitle: e['type'].toString(),
                         trailing: Column(
@@ -119,11 +123,7 @@ class WakaluxeBottomSheets {
                       text: 'Book',
                       action: () {
                         Navigator.pop(context);
-                        if (state.selectedPaymentType == 0) {
-                          showPaymentBottomSheet(context);
-                        } else {
-                          // navigate to cash payment page
-                        }
+                        showPaymentBottomSheet(context);
                       },
                       color: context.scheme.tertiary,
                       textColor: context.scheme.onTertiary,
@@ -150,6 +150,7 @@ class WakaluxeBottomSheets {
         ),
       ),
       isScrollControlled: true,
+      isDismissible: false,
       builder: (_) => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         child: Wrap(
@@ -173,7 +174,11 @@ class WakaluxeBottomSheets {
                             );
                       },
                       title: 'MTN Mobile Money ',
-                      leading: const Icon(Icons.phone_android),
+                      leading: Image.asset(
+                        'assets/images/mtn_money.png',
+                        height: 50,
+                        width: 50,
+                      ),
                     ),
                     WakaluxTile(
                       isSelected: state.selectedPaymentMethod == 1,
@@ -185,7 +190,11 @@ class WakaluxeBottomSheets {
                             );
                       },
                       title: 'Orange Money',
-                      leading: const Icon(Icons.phone_android),
+                      leading: Image.asset(
+                        'assets/images/orange_money.png',
+                        height: 50,
+                        width: 50,
+                      ),
                     ),
                     WakaluxTile(
                       isSelected: state.selectedPaymentMethod == 2,
@@ -197,7 +206,11 @@ class WakaluxeBottomSheets {
                             );
                       },
                       title: 'Card Payment',
-                      leading: const Icon(Icons.phone_android),
+                      leading: Image.asset(
+                        'assets/images/middle.png',
+                        height: 50,
+                        width: 50,
+                      ),
                     ),
                     25.vGap,
                     WakaluxeButton(
