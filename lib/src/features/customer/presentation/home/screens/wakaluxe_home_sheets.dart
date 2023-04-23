@@ -308,79 +308,101 @@ class WakaluxeBottomSheets {
         ),
       ),
       isScrollControlled: true,
-      builder: (_) => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      builder: (_) => BlocBuilder<HomeBloc, HomeState>(
+        builder: (event, state) {
+          return Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Expanded(
-                  flex: 3,
-                  child: Text(
-                    'Please selected a reason for cancellation',
-                    style: context.titleMd.copyWith(fontSize: 17),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: Text(
+                        'Please selected a reason for cancellation',
+                        style: context.titleMd.copyWith(fontSize: 17),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: IconButton(
+                          onPressed: () => Navigator.pop(context),
+                          icon: Icon(
+                            Icons.close,
+                            color: context.scheme.onBackground,
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                CheckboxListTile(
+                  value: state.selectedReview == 0,
+                  onChanged: (value) {
+                    context.read<HomeBloc>().add(
+                          SelectedRideEvent(selectedIndex: 0),
+                        );
+                  },
+                  controlAffinity: ListTileControlAffinity.leading,
+                  title: Text(
+                    'Waiting for a long time ',
+                    style: context.bodyLg,
                   ),
                 ),
-                Expanded(
-                  flex: 2,
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: IconButton(
-                      onPressed: () => Navigator.pop(context),
-                      icon:
-                          Icon(Icons.close, color: context.scheme.onBackground),
-                    ),
+                CheckboxListTile(
+                  value: state.selectedReview == 2,
+                  onChanged: (value) {
+                    context.read<HomeBloc>().add(
+                          SelectedRideEvent(selectedIndex: 1),
+                        );
+                  },
+                  controlAffinity: ListTileControlAffinity.leading,
+                  title: Text(
+                    'Wrong Address',
+                    style: context.bodyLg,
                   ),
+                ),
+                CheckboxListTile(
+                  value: state.selectedReview == 2,
+                  controlAffinity: ListTileControlAffinity.leading,
+                  onChanged: (value) {
+                    context.read<HomeBloc>().add(
+                          SelectedRideEvent(selectedIndex: 2),
+                        );
+                  },
+                  title: Text(
+                    'Price too High',
+                    style: context.bodyLg,
+                  ),
+                ),
+                CheckboxListTile(
+                  value: state.selectedReview == 3,
+                  controlAffinity: ListTileControlAffinity.leading,
+                  onChanged: (value) {
+                    context.read<HomeBloc>().add(
+                          SelectedRideEvent(selectedIndex: 3),
+                        );
+                  },
+                  title: Text(
+                    'Others',
+                    style: context.bodyLg,
+                  ),
+                ),
+                40.vGap,
+                WakaluxeButton(
+                  text: 'Submit',
+                  action: action,
+                  color: context.scheme.onBackground.withOpacity(0.1),
+                  textColor: context.scheme.onBackground,
                 )
               ],
             ),
-            CheckboxListTile(
-              value: false,
-              onChanged: (value) {},
-              controlAffinity: ListTileControlAffinity.leading,
-              title: Text(
-                'Waiting for a long time ',
-                style: context.bodyLg,
-              ),
-            ),
-            CheckboxListTile(
-              value: false,
-              onChanged: (value) {},
-              controlAffinity: ListTileControlAffinity.leading,
-              title: Text(
-                'Wrong Address',
-                style: context.bodyLg,
-              ),
-            ),
-            CheckboxListTile(
-              value: false,
-              controlAffinity: ListTileControlAffinity.leading,
-              onChanged: (value) {},
-              title: Text(
-                'Price too High',
-                style: context.bodyLg,
-              ),
-            ),
-            CheckboxListTile(
-              value: false,
-              controlAffinity: ListTileControlAffinity.leading,
-              onChanged: (value) {},
-              title: Text(
-                'Others',
-                style: context.bodyLg,
-              ),
-            ),
-            40.vGap,
-            WakaluxeButton(
-              text: 'Submit',
-              action: action,
-              color: context.scheme.onBackground.withOpacity(0.1),
-              textColor: context.scheme.onBackground,
-            )
-          ],
-        ),
+          );
+        },
       ),
     );
   }

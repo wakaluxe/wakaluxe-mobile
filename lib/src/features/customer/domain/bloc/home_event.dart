@@ -4,6 +4,7 @@ part of 'home_bloc.dart';
 abstract class HomeEvent {}
 
 class HomeInitialEvent extends HomeEvent {}
+
 class SelectedRideEvent extends HomeEvent {
   SelectedRideEvent({required this.selectedIndex});
   final int selectedIndex;
@@ -36,5 +37,9 @@ class ShowSuccessBookEvent extends HomeEvent {
 
 class ShowBookingDetailsEvent extends HomeEvent {
   ShowBookingDetailsEvent();
+}
 
+class SelectReviewEvent extends HomeEvent {
+  SelectReviewEvent({required this.selectedReview});
+  final int selectedReview;
 }

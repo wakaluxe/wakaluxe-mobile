@@ -20,6 +20,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           selectDriver: state.selectDriver,
           showDrivers: state.showDrivers,
           showBookingDetails: state.showBookingDetails,
+          selectedReview: state.selectedReview,
         ),
       );
     });
@@ -32,6 +33,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           selectDriver: state.selectDriver,
           showDrivers: state.showDrivers,
           showBookingDetails: state.showBookingDetails,
+          selectedReview: state.selectedReview,
         ),
       );
     });
@@ -44,6 +46,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           selectDriver: state.selectDriver,
           showDrivers: state.showDrivers,
           showBookingDetails: state.showBookingDetails,
+          selectedReview: state.selectedReview,
         ),
       );
     });
@@ -56,6 +59,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           selectDriver: event.selectDriver,
           showDrivers: state.showDrivers,
           showBookingDetails: state.showBookingDetails,
+          selectedReview: state.selectedReview,
         ),
       );
     });
@@ -69,6 +73,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           selectDriver: state.selectDriver,
           showDrivers: event.showDrivers,
           showBookingDetails: state.showBookingDetails,
+          selectedReview: state.selectedReview,
         ),
       );
     });
@@ -77,6 +82,19 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       emit(
         HomeInitial().copyWith(
           showBookingDetails: true,
+        ),
+      );
+    });
+    on<SelectReviewEvent>((event, emit) {
+      emit(
+        SelectReviewState(
+          selectedIndex: state.selectedIndex,
+          selectedPaymentType: state.selectedPaymentType,
+          selectedPaymentMethod: state.selectedPaymentMethod,
+          selectDriver: state.selectDriver,
+          showDrivers: state.showDrivers,
+          showBookingDetails: state.showBookingDetails,
+          selectedReview: event.selectedReview,
         ),
       );
     });
