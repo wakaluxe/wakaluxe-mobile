@@ -19,6 +19,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           selectedPaymentMethod: state.selectedPaymentMethod,
           selectDriver: state.selectDriver,
           showDrivers: state.showDrivers,
+          showBookingDetails: state.showBookingDetails,
         ),
       );
     });
@@ -30,6 +31,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           selectedPaymentMethod: state.selectedPaymentMethod,
           selectDriver: state.selectDriver,
           showDrivers: state.showDrivers,
+          showBookingDetails: state.showBookingDetails,
         ),
       );
     });
@@ -41,6 +43,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           selectedPaymentMethod: event.selectedPaymentMethod,
           selectDriver: state.selectDriver,
           showDrivers: state.showDrivers,
+          showBookingDetails: state.showBookingDetails,
         ),
       );
     });
@@ -52,6 +55,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           selectedPaymentMethod: state.selectedPaymentMethod,
           selectDriver: event.selectDriver,
           showDrivers: state.showDrivers,
+          showBookingDetails: state.showBookingDetails,
         ),
       );
     });
@@ -64,6 +68,20 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           selectedPaymentMethod: state.selectedPaymentMethod,
           selectDriver: state.selectDriver,
           showDrivers: event.showDrivers,
+          showBookingDetails: state.showBookingDetails,
+        ),
+      );
+    });
+
+    on<ShowBookingDetailsEvent>((event, emit) {
+      emit(
+        ShowBookingDetailsState(
+          selectedIndex: state.selectedIndex,
+          selectedPaymentType: state.selectedPaymentType,
+          selectedPaymentMethod: state.selectedPaymentMethod,
+          selectDriver: state.selectDriver,
+          showDrivers: state.showDrivers,
+          showBookingDetails: event.showBookingDetails,
         ),
       );
     });

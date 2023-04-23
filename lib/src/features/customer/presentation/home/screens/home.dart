@@ -4,12 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wakaluxe/data/dummy.dart';
 import 'package:wakaluxe/src/common/Utils/wakalux_icons_icons.dart';
 import 'package:wakaluxe/src/common/common.dart';
+import 'package:wakaluxe/src/common/widgets/driver_card.dart';
 import 'package:wakaluxe/src/common/widgets/wakalux_card.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/screens/buttom_sheets.dart';
-import 'package:wakaluxe/src/common/widgets/driver_card.dart';
 
 // List<Map<String, dynamic>> data = []
 
@@ -130,7 +130,7 @@ class Home extends StatelessWidget {
                           ),
                         ),
                       )
-                    : const SizedBox.shrink();
+                    : 0.vGap;
               },
             ),
             BlocBuilder<HomeBloc, HomeState>(
@@ -151,24 +151,26 @@ class Home extends StatelessWidget {
                               //dummy data to be removed
                               final driver = data[index];
                               return WakaluxCard(
-                                child: WakaluxeDriverCard(
-                                action: () {
-                                  context.read<HomeBloc>().add(
-                                        HomeInitialEvent(),
-                                      ); // show dialof to confirm ride
-                                  WakaluxeBottomSheets.showConfirmDialog(
-                                    context,
-                                  );
+                                child: WakaluxeBookingDetails(
+                                  action: () {
+                                    context.read<HomeBloc>().add(
+                                          ShowBookingDetailsEvent(
+                                            showBookingDetails: true,
+                                          ),
+                                        ); // show dialof to confirm ride
+                                    WakaluxeBottomSheets.showConfirmDialog(
+                                      context,
+                                    );
                                   },
-                                driverImage: driver['driverImage'] as String,
+                                  driverImage: driver['driverImage'] as String,
                                   driverName: driver['driverName'] as String,
-                                rating: 4.0,
-                                recommended: 30,
+                                  rating: 4.0,
+                                  recommended: 30,
                                   distance: double.parse(
                                     driver['distance'].toString(),
                                   ).toStringAsFixed(2),
                                   price: driver['price'] as String,
-                                time: '5',
+                                  time: '5',
                                   imageLiknks: images,
                                 ),
                               );
@@ -176,7 +178,23 @@ class Home extends StatelessWidget {
                           ),
                         ),
                       )
-                    : const SizedBox.shrink();
+                    : 0.vGap;
+              },
+            ),
+            BlocBuilder<HomeBloc, HomeState>(
+              builder: (context, state) {
+                return state.showBookingDetails
+                    ? Positioned(
+                        bottom: 20,
+                        left: 0,
+                        right: 0,
+                        child: WakaluxCard(
+                          child: Column(
+                            children: const [],
+                          ),
+                        ),
+                      )
+                    : 0.vGap;
               },
             ),
           ],

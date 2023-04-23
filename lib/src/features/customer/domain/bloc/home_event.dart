@@ -33,3 +33,8 @@ class ShowSuccessBookEvent extends HomeEvent {
   ShowSuccessBookEvent({required this.showSuccessBook});
   final bool showSuccessBook;
 }
+
+class ShowBookingDetailsEvent extends HomeEvent {
+  ShowBookingDetailsEvent({required this.showBookingDetails});
+  final bool showBookingDetails;
+}
