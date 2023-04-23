@@ -4,14 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wakaluxe/data/dummy.dart';
 import 'package:wakaluxe/src/common/Utils/wakalux_icons_icons.dart';
 import 'package:wakaluxe/src/common/common.dart';
-import 'package:wakaluxe/src/common/widgets/driver_card.dart';
-import 'package:wakaluxe/src/common/widgets/wakalux_card.dart';
-import 'package:wakaluxe/src/common/widgets/wakaluxe_dotted_line.dart';
-import 'package:wakaluxe/src/common/widgets/wakaluxe_driver.dart';
+import 'package:wakaluxe/src/common/widgets/wakaluxe_driver_card.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc.dart';
-import 'package:wakaluxe/src/features/customer/presentation/home/screens/buttom_sheets.dart';
+import 'package:wakaluxe/src/features/customer/presentation/home/screens/wakaluxe_home_sheets.dart';
 
 // List<Map<String, dynamic>> data = []
 
@@ -51,7 +48,7 @@ class Home extends StatelessWidget {
                       8.hGap,
                       Expanded(
                         flex: 4,
-                        child: LocationWidget(
+                        child: WakaluxeLocationWidget(
                           leading: Icon(
                             Icons.person,
                             color: context.scheme.primary,
@@ -68,7 +65,7 @@ class Home extends StatelessWidget {
                       ),
                       8.hGap,
                       const Expanded(
-                        child: ProfileImage(
+                        child: WakaluxeProfileImage(
                           imageUrl: 'https://placeimg.com/640/480/any',
                         ),
                       ),
@@ -80,7 +77,7 @@ class Home extends StatelessWidget {
                       Expanded(child: 30.hGap),
                       Expanded(
                         flex: 4,
-                        child: LocationWidget(
+                        child: WakaluxeLocationWidget(
                           leading: Icon(
                             WakaluxIcons.location,
                             color: context.scheme.error,
@@ -184,12 +181,32 @@ class Home extends StatelessWidget {
             BlocBuilder<HomeBloc, HomeState>(
               builder: (context, state) {
                 return state.showBookingDetails
-                    ? const Positioned(
+                    ? Positioned(
                         bottom: 20,
                         left: 0,
                         right: 0,
                         child: WakaluxCard(
-                          child: WakaluxeCancleRide(),
+                          child: WakaluxeCancleRide(
+                            driverImage: 'https://placeimg.com/640/480/nature',
+                            driverName: 'Ayuko Peters',
+                            dropOffLocation: 'Avenue des banques',
+                            paymentAmount: '500',
+                            paymentMethod: 'MTN Mobile Money',
+                            pickUpLocation: 'Dispensaire Messasi',
+                            rating: 4.0,
+                            timeLeft: 5,
+                            action: () {
+                              context.read<HomeBloc>().add(
+                                    HomeInitialEvent(),
+                                  );
+                              WakaluxeBottomSheets.showRemarkSheet(
+                                context,
+                                () {
+                                  Navigator.pop(context);
+                                },
+                              );
+                            },
+                          ),
                         ),
                       )
                     : 0.vGap;

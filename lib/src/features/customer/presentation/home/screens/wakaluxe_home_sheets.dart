@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wakaluxe/src/common/common.dart';
-import 'package:wakaluxe/src/common/widgets/wakaluxe_tile.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 
@@ -281,6 +280,95 @@ class WakaluxeBottomSheets {
           ),
         );
       },
+    );
+  }
+
+  static Future<void> showRemarkSheet(
+    BuildContext context,
+    VoidCallback action,
+  ) async {
+    await showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(25),
+        ),
+      ),
+      isScrollControlled: true,
+      builder: (_) => Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: Text(
+                    'Please selected a reason for cancellation',
+                    style: context.titleMd.copyWith(fontSize: 17),
+                  ),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon:
+                          Icon(Icons.close, color: context.scheme.onBackground),
+                    ),
+                  ),
+                )
+              ],
+            ),
+            CheckboxListTile(
+              value: false,
+              onChanged: (value) {},
+              controlAffinity: ListTileControlAffinity.leading,
+              title: Text(
+                'Waiting for a long time ',
+                style: context.bodyLg,
+              ),
+            ),
+            CheckboxListTile(
+              value: false,
+              onChanged: (value) {},
+              controlAffinity: ListTileControlAffinity.leading,
+              title: Text(
+                'Wrong Address',
+                style: context.bodyLg,
+              ),
+            ),
+            CheckboxListTile(
+              value: false,
+              controlAffinity: ListTileControlAffinity.leading,
+              onChanged: (value) {},
+              title: Text(
+                'Price too High',
+                style: context.bodyLg,
+              ),
+            ),
+            CheckboxListTile(
+              value: false,
+              controlAffinity: ListTileControlAffinity.leading,
+              onChanged: (value) {},
+              title: Text(
+                'Others',
+                style: context.bodyLg,
+              ),
+            ),
+            40.vGap,
+            WakaluxeButton(
+              text: 'Submit',
+              action: action,
+              color: context.scheme.onBackground.withOpacity(0.1),
+              textColor: context.scheme.onBackground,
+            )
+          ],
+        ),
+      ),
     );
   }
 }

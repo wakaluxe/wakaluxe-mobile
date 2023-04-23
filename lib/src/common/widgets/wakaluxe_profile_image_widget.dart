@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 
-class ProfileImage extends StatelessWidget {
-  const ProfileImage({
+class WakaluxeProfileImage extends StatelessWidget {
+  const WakaluxeProfileImage({
     required this.imageUrl,
     super.key,
   });

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:wakaluxe/src/extensions/build_context.dart';
-import 'package:wakaluxe/src/extensions/num.dart';
-
 import 'package:wakaluxe/src/common/Utils/wakalux_icons_icons.dart';
 import 'package:wakaluxe/src/common/common.dart';
+import 'package:wakaluxe/src/extensions/build_context.dart';
+import 'package:wakaluxe/src/extensions/num.dart';
 
 class WakaluxeDriver extends StatelessWidget {
   const WakaluxeDriver({
@@ -22,7 +21,7 @@ class WakaluxeDriver extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: ProfileImage(
+          child: WakaluxeProfileImage(
             imageUrl: driverImage,
           ),
         ),

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 
-class LocationWidget extends StatelessWidget {
-  const LocationWidget({
+class WakaluxeLocationWidget extends StatelessWidget {
+  const WakaluxeLocationWidget({
     required this.leading,
     required this.trainling,
     required this.message,

@@ -1,15 +1,33 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:wakaluxe/src/common/Utils/wakalux_icons_icons.dart';
 import 'package:wakaluxe/src/common/common.dart';
-import 'package:wakaluxe/src/common/widgets/wakaluxe_dotted_line.dart';
-import 'package:wakaluxe/src/common/widgets/wakaluxe_driver.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 
 class WakaluxeCancleRide extends StatelessWidget {
   const WakaluxeCancleRide({
+    required this.timeLeft,
+    required this.driverName,
+    required this.driverImage,
+    required this.rating,
+    required this.pickUpLocation,
+    required this.dropOffLocation,
+    required this.paymentMethod,
+    required this.paymentAmount,
+    required this.action,
     super.key,
   });
+  final num timeLeft;
+  final String driverName;
+  final String driverImage;
+  final num rating;
+  final String pickUpLocation;
+  final String dropOffLocation;
+  final String paymentMethod;
+  final String paymentAmount;
+  final VoidCallback action;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +41,7 @@ class WakaluxeCancleRide extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Ariving in 2 mins',
+                'Ariving in $timeLeft mins',
                 style: context.bodyLgBold,
               ),
               Text(
@@ -39,10 +57,10 @@ class WakaluxeCancleRide extends StatelessWidget {
             thickness: 0.4,
           ),
           10.vGap,
-          const WakaluxeDriver(
-            driverImage: 'https://placeimg.com/640/480/any',
-            driverName: 'Ayuko Peters',
-            rating: 2.0,
+          WakaluxeDriver(
+            driverImage: driverImage,
+            driverName: driverName,
+            rating: rating,
           ),
           10.vGap,
           Divider(
@@ -70,7 +88,7 @@ class WakaluxeCancleRide extends StatelessWidget {
                         style: context.bodyLgBold,
                       ),
                       Text(
-                        'Messasi Zouatoupsi',
+                        pickUpLocation,
                         style: context.bodySm,
                       ),
                     ],
@@ -104,7 +122,7 @@ class WakaluxeCancleRide extends StatelessWidget {
                         style: context.bodyLgBold,
                       ),
                       Text(
-                        'Round point Nlonkak',
+                        dropOffLocation,
                         style: context.bodySm,
                       ),
                     ],
@@ -136,12 +154,12 @@ class WakaluxeCancleRide extends StatelessWidget {
               ),
               10.hGap,
               Text(
-                'MTN Mobile Money',
+                paymentMethod,
                 style: context.bodyMdBold,
               ),
               const Spacer(),
               Text(
-                '500XAF',
+                '$paymentAmount XAF',
                 style: context.bodyMdBold,
               )
             ],
@@ -151,7 +169,7 @@ class WakaluxeCancleRide extends StatelessWidget {
             text: 'Cancel Ride',
             color: context.scheme.errorContainer,
             textColor: context.scheme.error,
-            action: () {},
+            action: action,
           )
         ],
       ),
