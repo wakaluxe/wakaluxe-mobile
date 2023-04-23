@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'home_bloc.dart';
 
 class HomeState {
@@ -15,6 +16,25 @@ class HomeState {
   final bool selectDriver;
   final bool showDrivers;
   final bool showBookingDetails;
+
+  HomeState copyWith({
+    int? selectedIndex,
+    int? selectedPaymentType,
+    int? selectedPaymentMethod,
+    bool? selectDriver,
+    bool? showDrivers,
+    bool? showBookingDetails,
+  }) {
+    return HomeState(
+      selectedIndex: selectedIndex ?? this.selectedIndex,
+      selectedPaymentType: selectedPaymentType ?? this.selectedPaymentType,
+      selectedPaymentMethod:
+          selectedPaymentMethod ?? this.selectedPaymentMethod,
+      selectDriver: selectDriver ?? this.selectDriver,
+      showDrivers: showDrivers ?? this.showDrivers,
+      showBookingDetails: showBookingDetails ?? this.showBookingDetails,
+    );
+  }
 }
 
 class HomeInitial extends HomeState {

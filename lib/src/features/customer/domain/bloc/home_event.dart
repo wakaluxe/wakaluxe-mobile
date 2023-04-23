@@ -35,6 +35,6 @@ class ShowSuccessBookEvent extends HomeEvent {
 }
 
 class ShowBookingDetailsEvent extends HomeEvent {
-  ShowBookingDetailsEvent({required this.showBookingDetails});
-  final bool showBookingDetails;
+  ShowBookingDetailsEvent();
+
 }

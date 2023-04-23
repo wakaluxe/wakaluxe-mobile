@@ -6,6 +6,8 @@ import 'package:wakaluxe/src/common/Utils/wakalux_icons_icons.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/common/widgets/driver_card.dart';
 import 'package:wakaluxe/src/common/widgets/wakalux_card.dart';
+import 'package:wakaluxe/src/common/widgets/wakaluxe_dotted_line.dart';
+import 'package:wakaluxe/src/common/widgets/wakaluxe_driver.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc.dart';
@@ -154,9 +156,7 @@ class Home extends StatelessWidget {
                                 child: WakaluxeBookingDetails(
                                   action: () {
                                     context.read<HomeBloc>().add(
-                                          ShowBookingDetailsEvent(
-                                            showBookingDetails: true,
-                                          ),
+                                          HomeInitialEvent(),
                                         ); // show dialof to confirm ride
                                     WakaluxeBottomSheets.showConfirmDialog(
                                       context,
@@ -184,14 +184,12 @@ class Home extends StatelessWidget {
             BlocBuilder<HomeBloc, HomeState>(
               builder: (context, state) {
                 return state.showBookingDetails
-                    ? Positioned(
+                    ? const Positioned(
                         bottom: 20,
                         left: 0,
                         right: 0,
                         child: WakaluxCard(
-                          child: Column(
-                            children: const [],
-                          ),
+                          child: WakaluxeCancleRide(),
                         ),
                       )
                     : 0.vGap;

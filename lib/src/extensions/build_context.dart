@@ -58,9 +58,16 @@ extension WakaluxeBuildContextExtension on BuildContext {
         //fontWeight: FontWeight.w600,
         color: scheme.onBackground,
       );
+
+  TextStyle get bodyMdBold => bodyMd.copyWith(
+        fontWeight: FontWeight.w600,
+      );
   TextStyle get bodyLg => typography.bodyLarge!.copyWith(
         //fontWeight: FontWeight.w600,
         color: scheme.onBackground,
+      );
+  TextStyle get bodyLgBold => bodyLg.copyWith(
+        fontWeight: FontWeight.w600,
       );
 
   /// Get the [ColorScheme] of the current [Theme].

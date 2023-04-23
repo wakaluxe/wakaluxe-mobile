@@ -75,13 +75,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
     on<ShowBookingDetailsEvent>((event, emit) {
       emit(
-        ShowBookingDetailsState(
-          selectedIndex: state.selectedIndex,
-          selectedPaymentType: state.selectedPaymentType,
-          selectedPaymentMethod: state.selectedPaymentMethod,
-          selectDriver: state.selectDriver,
-          showDrivers: state.showDrivers,
-          showBookingDetails: event.showBookingDetails,
+        HomeInitial().copyWith(
+          showBookingDetails: true,
         ),
       );
     });

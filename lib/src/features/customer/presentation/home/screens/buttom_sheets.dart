@@ -229,14 +229,13 @@ class WakaluxeBottomSheets {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // TODO(Bless): add image
               Text(
                 'Booking Successful',
                 style: context.titleLg,
               ),
               15.vGap,
               Text(
-                'Your booking has been confirmed.Driver will pickup you in 2mins.',
+                'Your booking has been confirmed.Driver will pickup you in 2mi',
                 style: context.bodySm,
                 textAlign: TextAlign.center,
               ),
@@ -244,25 +243,37 @@ class WakaluxeBottomSheets {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  WakaluxeButtonMedium(
-                    text: 'Cancel',
-                    action: () {
-                      //Todo: navigate to history page
-                      Navigator.pop(context);
+                  BlocBuilder<HomeBloc, HomeState>(
+                    builder: (event, state) {
+                      return WakaluxeButtonMedium(
+                        text: 'Cancel',
+                        action: () {
+                          Navigator.pop(context);
+                          context.read<HomeBloc>().add(
+                                ShowBookingDetailsEvent(),
+                              );
+                        },
+                        color: context.scheme.background,
+                        width: 0.3,
+                        textColor: context.scheme.error,
+                      );
                     },
-                    color: context.scheme.background,
-                    width: 0.3,
-                    textColor: context.scheme.error,
                   ),
-                  WakaluxeButtonMedium(
-                    text: 'Done',
-                    action: () {
-                      //Todo: navigate to history page
-                      Navigator.pop(context);
+                  BlocBuilder<HomeBloc, HomeState>(
+                    builder: (event, state) {
+                      return WakaluxeButtonMedium(
+                        text: 'Done',
+                        action: () {
+                          Navigator.pop(context);
+                          context.read<HomeBloc>().add(
+                                ShowBookingDetailsEvent(),
+                              );
+                        },
+                        color: context.scheme.tertiary,
+                        width: 0.3,
+                        textColor: context.scheme.onTertiary,
+                      );
                     },
-                    color: context.scheme.tertiary,
-                    width: 0.3,
-                    textColor: context.scheme.onTertiary,
                   ),
                 ],
               )
