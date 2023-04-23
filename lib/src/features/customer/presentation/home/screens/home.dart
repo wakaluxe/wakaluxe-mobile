@@ -4,11 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wakaluxe/data/dummy.dart';
 import 'package:wakaluxe/src/common/Utils/wakalux_icons_icons.dart';
 import 'package:wakaluxe/src/common/common.dart';
+import 'package:wakaluxe/src/common/widgets/wakalux_card.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/screens/buttom_sheets.dart';
-import 'package:wakaluxe/src/features/customer/presentation/home/screens/driver_card.dart';
+import 'package:wakaluxe/src/common/widgets/driver_card.dart';
 
 // List<Map<String, dynamic>> data = []
 
@@ -107,7 +108,7 @@ class Home extends StatelessWidget {
               builder: (context, state) {
                 return state.selectDriver
                     ? Positioned(
-                        bottom: 0,
+                        bottom: 20,
                         left: 0,
                         right: 0,
                         child: Padding(
@@ -137,7 +138,7 @@ class Home extends StatelessWidget {
                 final data = getDriverData();
                 return state.showDrivers
                     ? Positioned(
-                        bottom: 0,
+                        bottom: 20,
                         left: 0,
                         right: 0,
                         child: SizedBox(
@@ -149,7 +150,8 @@ class Home extends StatelessWidget {
                             itemBuilder: (context, index) {
                               //dummy data to be removed
                               final driver = data[index];
-                              return DriverCard(
+                              return WakaluxCard(
+                                child: WakaluxeDriverCard(
                                 action: () {
                                   context.read<HomeBloc>().add(
                                         HomeInitialEvent(),
@@ -157,17 +159,18 @@ class Home extends StatelessWidget {
                                   WakaluxeBottomSheets.showConfirmDialog(
                                     context,
                                   );
-                                },
-                                distance:
-                                    double.parse(driver['distance'].toString())
-                                        .toStringAsFixed(2),
+                                  },
                                 driverImage: driver['driverImage'] as String,
-                                driverName: driver['driverName'] as String,
-                                imageLiknks: images,
-                                price: driver['price'] as String,
+                                  driverName: driver['driverName'] as String,
                                 rating: 4.0,
                                 recommended: 30,
+                                  distance: double.parse(
+                                    driver['distance'].toString(),
+                                  ).toStringAsFixed(2),
+                                  price: driver['price'] as String,
                                 time: '5',
+                                  imageLiknks: images,
+                                ),
                               );
                             },
                           ),
