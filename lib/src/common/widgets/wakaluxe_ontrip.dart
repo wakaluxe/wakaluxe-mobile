@@ -22,7 +22,7 @@ class WakaluxeOnTrip extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            'OnTrip',
+            'On Trip',
             style: context.bodyLgBold,
           ),
           5.vGap,

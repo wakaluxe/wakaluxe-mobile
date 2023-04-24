@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-import 'package:wakaluxe/src/common/Utils/wakalux_icons_icons.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
@@ -69,66 +68,9 @@ class WakaluxeCancleRide extends StatelessWidget {
           ),
           10.vGap,
           Text('Your Trip', style: context.bodyLgBold),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Icon(
-                    Icons.person,
-                    color: context.scheme.primary,
-                  ),
-                  10.hGap,
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Pickup Location',
-                        style: context.bodyLgBold,
-                      ),
-                      Text(
-                        pickUpLocation,
-                        style: context.bodySm,
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 14,
-                ),
-                child: CustomPaint(
-                  size: const Size(1, 50),
-                  painter: WakaluxeDottedLine(
-                    color: context.scheme.onBackground,
-                  ),
-                ),
-              ),
-              2.vGap,
-              Row(
-                children: [
-                  Icon(
-                    WakaluxIcons.location,
-                    color: context.scheme.error,
-                  ),
-                  10.hGap,
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Stop Location',
-                        style: context.bodyLgBold,
-                      ),
-                      Text(
-                        dropOffLocation,
-                        style: context.bodySm,
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ],
+          WakaluxeTripDetails(
+            pickUpLocation: pickUpLocation,
+            dropOffLocation: dropOffLocation,
           ),
           10.vGap,
           Divider(

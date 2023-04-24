@@ -326,7 +326,6 @@ class WakaluxeBottomSheets {
       isScrollControlled: true,
       builder: (_) => BlocBuilder<HomeBloc, HomeState>(
         builder: (event, state) {
-          print(state.selectedReview);
           return Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
             child: Column(
@@ -416,6 +415,45 @@ class WakaluxeBottomSheets {
                   color: context.scheme.onBackground.withOpacity(0.1),
                   textColor: context.scheme.onBackground,
                 )
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  static Future<void> showDiretionSheet(BuildContext context) async {
+    await showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(25),
+        ),
+      ),
+      isScrollControlled: true,
+      builder: (_) => BlocBuilder<HomeBloc, HomeState>(
+        builder: (event, state) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Your Trip Details',
+                  style: context.bodyMdBold,
+                ),
+                5.vGap,
+                Divider(
+                  color: context.scheme.onBackground.withOpacity(0.5),
+                  thickness: 0.5,
+                ),
+                5.vGap,
+                const WakaluxeTripDetails(
+                  pickUpLocation: 'Messasi Zouatoupsi',
+                  dropOffLocation: 'Rond Point Express',
+                ),
               ],
             ),
           );

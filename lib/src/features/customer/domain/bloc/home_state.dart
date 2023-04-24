@@ -12,6 +12,7 @@ class HomeState {
     required this.selectedReview,
     required this.onTrip,
     required this.getDirections,
+    required this.payfare,
   });
   final int selectedIndex;
   final int selectedPaymentType;
@@ -22,7 +23,7 @@ class HomeState {
   final int selectedReview;
   final bool onTrip;
   final bool getDirections;
-
+  final bool payfare;
 
   HomeState copyWith({
     int? selectedIndex,
@@ -34,6 +35,7 @@ class HomeState {
     int? selectedReview,
     bool? onTrip,
     bool? getDirections,
+    bool? payfare,
   }) {
     return HomeState(
       selectedIndex: selectedIndex ?? this.selectedIndex,
@@ -46,6 +48,7 @@ class HomeState {
       selectedReview: selectedReview ?? this.selectedReview,
       onTrip: onTrip ?? this.onTrip,
       getDirections: getDirections ?? this.getDirections,
+      payfare: payfare ?? this.payfare,
     );
   }
 }
@@ -62,6 +65,7 @@ class HomeInitial extends HomeState {
           selectedReview: -1,
           onTrip: false,
           getDirections: false,
+          payfare: false,
         );
 }
 
@@ -76,7 +80,7 @@ class SelectRideState extends HomeState {
     required super.selectedReview,
     required super.onTrip,
     required super.getDirections,
-    
+    required super.payfare,
   });
 }
 
@@ -91,6 +95,7 @@ class SelectPaymentTypeState extends HomeState {
     required super.selectedReview,
     required super.onTrip,
     required super.getDirections,
+    required super.payfare,
   });
 }
 
@@ -105,6 +110,7 @@ class SelectPaymentMethodState extends HomeState {
     required super.selectedReview,
     required super.onTrip,
     required super.getDirections,
+    required super.payfare,
   });
 }
 
@@ -119,6 +125,7 @@ class SelectDriverState extends HomeState {
     required super.selectedReview,
     required super.onTrip,
     required super.getDirections,
+    required super.payfare,
   });
 }
 
@@ -133,6 +140,7 @@ class ShowDriverState extends HomeState {
     required super.selectedReview,
     required super.onTrip,
     required super.getDirections,
+    required super.payfare,
   });
 }
 
@@ -147,6 +155,7 @@ class ShowBookingDetailsState extends HomeState {
     required super.selectedReview,
     required super.onTrip,
     required super.getDirections,
+    required super.payfare,
   });
 }
 
@@ -161,5 +170,6 @@ class SelectReviewState extends HomeState {
     required super.selectedReview,
     required super.onTrip,
     required super.getDirections,
+    required super.payfare,
   });
 }

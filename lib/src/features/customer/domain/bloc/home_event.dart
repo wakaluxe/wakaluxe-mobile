@@ -51,3 +51,7 @@ class OnTripEvent extends HomeEvent {
 class GetDirectionsEvent extends HomeEvent {
   GetDirectionsEvent();
 }
+
+class PayFareEvent extends HomeEvent {
+  PayFareEvent();
+}

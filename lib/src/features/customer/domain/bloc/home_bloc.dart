@@ -23,6 +23,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           selectedReview: state.selectedReview,
           onTrip: state.onTrip,
           getDirections: state.getDirections,
+          payfare: state.payfare,
         ),
       );
     });
@@ -38,6 +39,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           selectedReview: state.selectedReview,
           onTrip: state.onTrip,
           getDirections: state.getDirections,
+          payfare: state.payfare,
         ),
       );
     });
@@ -53,6 +55,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           selectedReview: state.selectedReview,
           onTrip: state.onTrip,
           getDirections: state.getDirections,
+          payfare: state.payfare,
         ),
       );
     });
@@ -68,6 +71,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           selectedReview: state.selectedReview,
           onTrip: state.onTrip,
           getDirections: state.getDirections,
+          payfare: state.payfare,
         ),
       );
     });
@@ -84,6 +88,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           selectedReview: state.selectedReview,
           onTrip: state.onTrip,
           getDirections: state.getDirections,
+          payfare: state.payfare,
         ),
       );
     });
@@ -107,23 +112,28 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           selectedReview: event.selectedReview,
           onTrip: state.onTrip,
           getDirections: state.getDirections,
+          payfare: state.payfare,
         ),
       );
     });
-    on<OnTripEvent>((event, emit) {
+    on<OnTripEvent>((event, emit) async {
       emit(
         HomeInitial().copyWith(
           onTrip: true,
         ), // delay the operation by 5 seconds
       );
-      // Future.delayed(const Duration(seconds: 3), () {
-      //   emit(
-      //     HomeInitial().copyWith(
-      //       onTrip: false,
-      //       getDirections: true,
-      //     ),
-      //   );
-      // });
+      await Future.delayed(const Duration(seconds: 5));
+      emit(
+        HomeInitial().copyWith(
+          getDirections: true,
+        ),
+      );
+      await Future.delayed(const Duration(seconds: 10));
+      emit(
+        HomeInitial().copyWith(
+          payfare: true,
+        ),
+      );
     });
   }
 }
