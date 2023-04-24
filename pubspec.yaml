@@ -18,13 +18,18 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_native_splash: ^2.2.18
+  flutter_screenutil: ^5.7.0
+  flutter_svg: ^2.0.5
   get_it: ^7.2.0
   google_fonts: ^4.0.3
   hydrated_bloc: ^8.0.0
   intl: ^0.17.0
+  introduction_screen: ^3.1.8
+  mask_text_input_formatter: ^2.4.0
   material_color_utilities: ^0.2.0
   palette_generator: ^0.3.3+2
   path_provider: ^2.0.13
+  pinput: ^2.2.31
   url_launcher: ^6.1.10
 
 dev_dependencies:
@@ -40,3 +45,17 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+
+  assets:
+    - assets/
+    - assets/Intro/
+    - assets/Images/
+    - assets/Icons/
+    - assets/Icons/auth/
+    - assets/Illustrations/
+    - assets/Icons/Hicon/Linear/
+
+flutter_native_splash:
+  background_image: "assets/Intro/splash.png"
+
+  android_12:

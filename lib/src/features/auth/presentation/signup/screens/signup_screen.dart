@@ -1,45 +1,53 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:wakaluxe/src/common/common.dart';
-import 'package:wakaluxe/src/common/widgets/wakalux_input_field.dart';
+
 import 'package:wakaluxe/src/configs/palette.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/auth/presentation/widgets/app_barred_scaffold.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+import '../../../../../common/widgets/wakalux_input_field.dart';
+
+class SignUp extends StatefulWidget {
+  const SignUp({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _LoginState extends State<Login> {
+class _SignUpState extends State<SignUp> {
+  late TextEditingController emailController;
+  late TextEditingController passwordController;
+  late TextEditingController confirmPasswordController;
+  @override
+  void initState() {
+    // TODO: implement initState
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+    confirmPasswordController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
-    @override
-    void initState() {
-      // TODO: implement initState
-      super.initState();
-    }
-
-    @override
-    void dispose() {
-      emailController.dispose();
-      passwordController.dispose();
-      super.dispose();
-    }
-
     return AppBarredScaffold(
       body: Column(
         children: [
           Text(
-            'Login to your Account',
+            'Create a new account',
             style: text.display3,
           ),
           31.vGap,
@@ -59,30 +67,20 @@ class _LoginState extends State<Login> {
             obscured: true,
           ),
           30.vGap,
-          Row(
-            children: [
-              Checkbox(value: false, onChanged: (val) {}),
-              15.hGap,
-              Text(
-                'Remember me',
-                style: text.body1,
-              ),
-              const Spacer(),
-              GestureDetector(
-                child: Text(
-                  'Forgot Password?',
-                  style: text.body1,
-                ),
-              )
-            ],
+          WakaluxInputField(
+            text: text,
+            hint: 'Confirm Password',
+            controller: confirmPasswordController,
+            icon: 'assets/Icons/auth/password.svg',
+            suffix: 'assets/Icons/auth/notVisible.svg',
+            obscured: true,
           ),
           60.vGap,
-          WakaluxeButton(
-            text: 'SIGN IN',
-            action: () => AutoRouter.of(context).pushNamed('/phone-number'),
+          const WakaluxeButton(
+            text: 'SIGN UP',
             textColor: Palette.black,
           ),
-          60.vGap,
+          45.vGap,
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -122,15 +120,15 @@ class _LoginState extends State<Login> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Don’t have an account?',
+                'Already have an account?',
                 style: text.body1,
               ),
               5.hGap,
               GestureDetector(
-                onTap: () => AutoRouter.of(context).pushNamed('/sign-up'),
+                onTap: () => AutoRouter.of(context).pushNamed('/login'),
                 child: Text(
-                  'Sign Up',
-                  style: text.body2,
+                  'Sign In',
+                  style: text.body2
                 ),
               ),
             ],
