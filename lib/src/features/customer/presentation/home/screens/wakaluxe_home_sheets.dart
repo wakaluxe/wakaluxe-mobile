@@ -263,7 +263,7 @@ class WakaluxeBottomSheets {
               ),
               15.vGap,
               Text(
-                'Your booking has been confirmed.Driver will pickup you in 2mi',
+                'Your booking has been confirmed.Driver will pickup you in 2mins',
                 style: context.bodySm,
                 textAlign: TextAlign.center,
               ),
@@ -294,7 +294,7 @@ class WakaluxeBottomSheets {
                         action: () {
                           Navigator.pop(context);
                           context.read<HomeBloc>().add(
-                                ShowBookingDetailsEvent(),
+                                OnTripEvent(),
                               );
                         },
                         color: context.scheme.tertiary,

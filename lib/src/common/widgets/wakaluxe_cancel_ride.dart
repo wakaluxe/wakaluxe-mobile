@@ -65,7 +65,6 @@ class WakaluxeCancleRide extends StatelessWidget {
           10.vGap,
           Divider(
             color: context.scheme.onBackground,
-            // .withOpacity(0.6),
             thickness: 0.4,
           ),
           10.vGap,

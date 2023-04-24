@@ -10,6 +10,8 @@ class HomeState {
     required this.showDrivers,
     required this.showBookingDetails,
     required this.selectedReview,
+    required this.onTrip,
+    required this.getDirections,
   });
   final int selectedIndex;
   final int selectedPaymentType;
@@ -18,6 +20,9 @@ class HomeState {
   final bool showDrivers;
   final bool showBookingDetails;
   final int selectedReview;
+  final bool onTrip;
+  final bool getDirections;
+
 
   HomeState copyWith({
     int? selectedIndex,
@@ -27,6 +32,8 @@ class HomeState {
     bool? showDrivers,
     bool? showBookingDetails,
     int? selectedReview,
+    bool? onTrip,
+    bool? getDirections,
   }) {
     return HomeState(
       selectedIndex: selectedIndex ?? this.selectedIndex,
@@ -37,6 +44,8 @@ class HomeState {
       showDrivers: showDrivers ?? this.showDrivers,
       showBookingDetails: showBookingDetails ?? this.showBookingDetails,
       selectedReview: selectedReview ?? this.selectedReview,
+      onTrip: onTrip ?? this.onTrip,
+      getDirections: getDirections ?? this.getDirections,
     );
   }
 }
@@ -51,6 +60,8 @@ class HomeInitial extends HomeState {
           showDrivers: false,
           showBookingDetails: false,
           selectedReview: -1,
+          onTrip: false,
+          getDirections: false,
         );
 }
 
@@ -63,6 +74,9 @@ class SelectRideState extends HomeState {
     required super.showDrivers,
     required super.showBookingDetails,
     required super.selectedReview,
+    required super.onTrip,
+    required super.getDirections,
+    
   });
 }
 
@@ -75,6 +89,8 @@ class SelectPaymentTypeState extends HomeState {
     required super.showDrivers,
     required super.showBookingDetails,
     required super.selectedReview,
+    required super.onTrip,
+    required super.getDirections,
   });
 }
 
@@ -87,6 +103,8 @@ class SelectPaymentMethodState extends HomeState {
     required super.showDrivers,
     required super.showBookingDetails,
     required super.selectedReview,
+    required super.onTrip,
+    required super.getDirections,
   });
 }
 
@@ -99,6 +117,8 @@ class SelectDriverState extends HomeState {
     required super.showDrivers,
     required super.showBookingDetails,
     required super.selectedReview,
+    required super.onTrip,
+    required super.getDirections,
   });
 }
 
@@ -111,6 +131,8 @@ class ShowDriverState extends HomeState {
     required super.showDrivers,
     required super.showBookingDetails,
     required super.selectedReview,
+    required super.onTrip,
+    required super.getDirections,
   });
 }
 
@@ -123,6 +145,8 @@ class ShowBookingDetailsState extends HomeState {
     required super.showDrivers,
     required super.showBookingDetails,
     required super.selectedReview,
+    required super.onTrip,
+    required super.getDirections,
   });
 }
 
@@ -135,5 +159,7 @@ class SelectReviewState extends HomeState {
     required super.showDrivers,
     required super.showBookingDetails,
     required super.selectedReview,
+    required super.onTrip,
+    required super.getDirections,
   });
 }

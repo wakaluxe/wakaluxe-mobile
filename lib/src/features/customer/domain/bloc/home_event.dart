@@ -43,3 +43,11 @@ class SelectReviewEvent extends HomeEvent {
   SelectReviewEvent({required this.selectedReview});
   final int selectedReview;
 }
+
+class OnTripEvent extends HomeEvent {
+  OnTripEvent();
+}
+
+class GetDirectionsEvent extends HomeEvent {
+  GetDirectionsEvent();
+}

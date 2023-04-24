@@ -21,6 +21,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           showDrivers: state.showDrivers,
           showBookingDetails: state.showBookingDetails,
           selectedReview: state.selectedReview,
+          onTrip: state.onTrip,
+          getDirections: state.getDirections,
         ),
       );
     });
@@ -34,6 +36,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           showDrivers: state.showDrivers,
           showBookingDetails: state.showBookingDetails,
           selectedReview: state.selectedReview,
+          onTrip: state.onTrip,
+          getDirections: state.getDirections,
         ),
       );
     });
@@ -47,6 +51,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           showDrivers: state.showDrivers,
           showBookingDetails: state.showBookingDetails,
           selectedReview: state.selectedReview,
+          onTrip: state.onTrip,
+          getDirections: state.getDirections,
         ),
       );
     });
@@ -60,6 +66,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           showDrivers: state.showDrivers,
           showBookingDetails: state.showBookingDetails,
           selectedReview: state.selectedReview,
+          onTrip: state.onTrip,
+          getDirections: state.getDirections,
         ),
       );
     });
@@ -74,6 +82,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           showDrivers: event.showDrivers,
           showBookingDetails: state.showBookingDetails,
           selectedReview: state.selectedReview,
+          onTrip: state.onTrip,
+          getDirections: state.getDirections,
         ),
       );
     });
@@ -95,8 +105,25 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           showDrivers: state.showDrivers,
           showBookingDetails: state.showBookingDetails,
           selectedReview: event.selectedReview,
+          onTrip: state.onTrip,
+          getDirections: state.getDirections,
         ),
       );
+    });
+    on<OnTripEvent>((event, emit) {
+      emit(
+        HomeInitial().copyWith(
+          onTrip: true,
+        ), // delay the operation by 5 seconds
+      );
+      // Future.delayed(const Duration(seconds: 3), () {
+      //   emit(
+      //     HomeInitial().copyWith(
+      //       onTrip: false,
+      //       getDirections: true,
+      //     ),
+      //   );
+      // });
     });
   }
 }

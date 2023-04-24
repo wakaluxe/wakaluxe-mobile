@@ -1,6 +1,8 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:wakaluxe/data/dummy.dart';
 import 'package:wakaluxe/src/common/Utils/wakalux_icons_icons.dart';
 import 'package:wakaluxe/src/common/common.dart';
@@ -212,6 +214,41 @@ class Home extends StatelessWidget {
                     : 0.vGap;
               },
             ),
+            BlocBuilder<HomeBloc, HomeState>(
+              builder: (context, state) {
+                return state.onTrip
+                    ? const Positioned(
+                        bottom: 20,
+                        left: 0,
+                        right: 0,
+                        child: WakaluxCard(
+                          child: WakaluxeOnTrip(
+                            driverImage: 'https://placeimg.com/640/480/nature',
+                            driverName: 'Ayuko Peters',
+                            rating: 4,
+                          ),
+                        ),
+                      )
+                    : 0.vGap;
+              },
+            ),
+            BlocBuilder<HomeBloc, HomeState>(
+              builder: (context, state) {
+                return Positioned(
+                  bottom: 20,
+                  left: 0,
+                  right: 0,
+                  child: state.getDirections
+                      ? WakaluxeButton(
+                          text: 'GetDirections',
+                          action: () {},
+                          color: context.scheme.tertiary,
+                          textColor: context.scheme.onTertiary,
+                        )
+                      : 0.vGap,
+                );
+              },
+            )
           ],
         ),
       ),

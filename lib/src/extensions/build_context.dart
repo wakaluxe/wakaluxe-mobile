@@ -112,4 +112,25 @@ extension WakaluxeBuildContextExtension on BuildContext {
       ),
     );
   }
+
+  void showSnackBarWithAction(
+    String message, {
+    required String actionLabel,
+    required VoidCallback onAction,
+    Duration? duration,
+    Color? color,
+  }) {
+    ScaffoldMessenger.of(this).showSnackBar(
+      SnackBar(
+        content: Text(message, style: bodyMd),
+        behavior: SnackBarBehavior.floating,
+        duration: duration ?? const Duration(seconds: 1),
+        backgroundColor: color ?? scheme.primary,
+        action: SnackBarAction(
+          label: actionLabel,
+          onPressed: onAction,
+        ),
+      ),
+    );
+  }
 }
