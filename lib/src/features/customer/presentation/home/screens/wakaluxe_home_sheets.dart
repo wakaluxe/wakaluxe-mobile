@@ -212,6 +212,22 @@ class WakaluxeBottomSheets {
                         width: 50,
                       ),
                     ),
+                    WakaluxTile(
+                      isSelected: state.selectedPaymentMethod == 2,
+                      onTap: () {
+                        context.read<HomeBloc>().add(
+                              SelectPaymentMethodEvent(
+                                selectedPaymentMethod: 2,
+                              ),
+                            );
+                      },
+                      title: 'Cash Payment',
+                      leading: Image.asset(
+                        'assets/images/middle.png',
+                        height: 50,
+                        width: 50,
+                      ),
+                    ),
                     25.vGap,
                     WakaluxeButton(
                       text: 'Apply',
@@ -310,6 +326,7 @@ class WakaluxeBottomSheets {
       isScrollControlled: true,
       builder: (_) => BlocBuilder<HomeBloc, HomeState>(
         builder: (event, state) {
+          print(state.selectedReview);
           return Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
             child: Column(
@@ -344,7 +361,7 @@ class WakaluxeBottomSheets {
                   value: state.selectedReview == 0,
                   onChanged: (value) {
                     context.read<HomeBloc>().add(
-                          SelectedRideEvent(selectedIndex: 0),
+                          SelectReviewEvent(selectedReview: 0),
                         );
                   },
                   controlAffinity: ListTileControlAffinity.leading,
@@ -354,10 +371,10 @@ class WakaluxeBottomSheets {
                   ),
                 ),
                 CheckboxListTile(
-                  value: state.selectedReview == 2,
+                  value: state.selectedReview == 1,
                   onChanged: (value) {
                     context.read<HomeBloc>().add(
-                          SelectedRideEvent(selectedIndex: 1),
+                          SelectReviewEvent(selectedReview: 1),
                         );
                   },
                   controlAffinity: ListTileControlAffinity.leading,
@@ -371,7 +388,7 @@ class WakaluxeBottomSheets {
                   controlAffinity: ListTileControlAffinity.leading,
                   onChanged: (value) {
                     context.read<HomeBloc>().add(
-                          SelectedRideEvent(selectedIndex: 2),
+                          SelectReviewEvent(selectedReview: 2),
                         );
                   },
                   title: Text(
@@ -384,7 +401,7 @@ class WakaluxeBottomSheets {
                   controlAffinity: ListTileControlAffinity.leading,
                   onChanged: (value) {
                     context.read<HomeBloc>().add(
-                          SelectedRideEvent(selectedIndex: 3),
+                          SelectReviewEvent(selectedReview: 3),
                         );
                   },
                   title: Text(
