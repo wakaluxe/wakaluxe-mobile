@@ -3,34 +3,5 @@
     "counterAppBarTitle": "Counter",
     "@counterAppBarTitle": {
         "description": "Text shown in the AppBar of the Counter Page"
-    },
-    "onBoarding1title":"Request a ride",
-    "@onBoarding1title":{
-        "description":"Text shown in the onboarding page 1"
-    },
-    "onBoarding1subtitle":"Request a ride and get picked up by a driver",
-    "@onBoarding1subtitle":{
-        "description":"Text shown in the onboarding page 1"
-    },
-    "onBoarding2title":"Confirm your driver",
-    "@onBoarding2title":{
-        "description":"Text shown in the onboarding page 2"
-    },
-    "onBoarding2subtitle":"Select from a wide network of Community  drivers near you and get a ride to destination.",
-    "@onBoarding2subtitle":{
-        "description":"Text shown in the onboarding page 2"
-    },
-    "onBoarding3title":"Track your driver",
-    "@onBoarding3title":{
-        "description":"Text shown in the onboarding page 3"
-    },
-    "onBoarding3subtitle":"Track your driver in real time and get notified when they arrive.",
-    "@onBoarding3subtitle":{
-        "description":"Text shown in the onboarding page 3"
-    },
-    "onBoarding3button":"Get Started",
-    "@onBoarding3button":{
-        "description":"Text shown in the onboarding page 3"
     }
-
 }
