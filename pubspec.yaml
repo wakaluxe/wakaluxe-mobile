@@ -36,6 +36,10 @@ dev_dependencies:
     sdk: flutter
   mocktail: ^0.3.0
   very_good_analysis: ^4.0.0
+flutter_assets:
+  assets_path: assets/
+  output_path: lib/src/gen/
+  filename: assets.dart
 
 flutter:
   uses-material-design: true

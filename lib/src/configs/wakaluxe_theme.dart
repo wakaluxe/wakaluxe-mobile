@@ -7,7 +7,7 @@ class WakaluxeTheme extends ThemeExtension<WakaluxeTheme> {
   const WakaluxeTheme({
     this.primaryColor = const Color(0xFF356859),
     this.tertiaryColor = const Color(0xFFFF5722),
-    this.neutralColor = const Color(0xFFFFFBE6),
+    this.neutralColor = const Color(0xFFFFFFFF),
   });
 
   final Color primaryColor;
@@ -55,6 +55,7 @@ class WakaluxeTheme extends ThemeExtension<WakaluxeTheme> {
   ThemeData _base(final ColorScheme colorScheme) {
     final primaryTextTheme = GoogleFonts.poppinsTextTheme();
     final secondaryTextTheme = GoogleFonts.montserratTextTheme();
+    final isLight = colorScheme.brightness == Brightness.light;
     final textTheme = primaryTextTheme.copyWith(
       displaySmall: secondaryTextTheme.displaySmall,
       displayMedium: secondaryTextTheme.displayMedium,
@@ -63,14 +64,17 @@ class WakaluxeTheme extends ThemeExtension<WakaluxeTheme> {
       headlineMedium: secondaryTextTheme.headlineMedium,
       headlineLarge: secondaryTextTheme.headlineLarge,
     );
-    final isLight = colorScheme.brightness == Brightness.light;
+
     return ThemeData(
       useMaterial3: true,
       extensions: [this],
       colorScheme: colorScheme,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       scaffoldBackgroundColor: isLight ? neutralColor : colorScheme.background,
-      textTheme: textTheme,
+      textTheme: textTheme.apply(
+        displayColor: isLight ? Colors.black : Colors.white,
+        bodyColor: isLight ? Colors.black : Colors.white,
+      ),
       tabBarTheme: TabBarTheme(
         labelColor: colorScheme.onSurface,
         unselectedLabelColor: colorScheme.onSurface,

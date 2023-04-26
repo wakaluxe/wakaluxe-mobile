@@ -151,12 +151,12 @@ class Typograpgy extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
+        const Text(
           'Wakaluxe Typography',
-          style: context.bodyLg.copyWith(
-            color: context.scheme.onBackground,
-            fontWeight: FontWeight.bold,
-          ),
+          // style: context.bodyLg.copyWith(
+          //   color: context.scheme.onBackground,
+          //   fontWeight: FontWeight.bold,
+          // ),
         ),
         12.vGap,
         Text(
