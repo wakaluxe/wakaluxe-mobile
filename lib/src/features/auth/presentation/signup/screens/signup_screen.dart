@@ -116,7 +116,7 @@ class _SignUpState extends State<SignUp> {
                 SvgPicture.asset('assets/Icons/google.svg'),
               ],
             ),
-            44.vGap,
+            33.vGap,
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

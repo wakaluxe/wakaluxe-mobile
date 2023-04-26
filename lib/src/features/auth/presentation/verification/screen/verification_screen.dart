@@ -1,12 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinput/pinput.dart';
 import 'package:wakaluxe/src/common/common.dart';
+import 'package:wakaluxe/src/configs/configs.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/auth/presentation/widgets/app_barred_scaffold.dart';
-
-import 'package:wakaluxe/src/configs/configs.dart';
 
 class Verification extends StatelessWidget {
   const Verification({super.key});
@@ -46,7 +45,7 @@ class Verification extends StatelessWidget {
           98.vGap,
           WakaluxeButton(
             text: 'Verify',
-            action: () {},
+            action: () => context.router.pushNamed('/subscriptions'),
             width: 0.4,
           ),
           24.vGap,

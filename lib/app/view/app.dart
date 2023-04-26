@@ -38,6 +38,7 @@ class _WakaluxeState extends State<Wakaluxe> {
               darkTheme: theme.toThemeData(
                 Brightness.dark,
               ),
+              debugShowCheckedModeBanner: false,
               routeInformationParser: router.defaultRouteParser(),
               routerDelegate: router.delegate(),
               supportedLocales: AppLocalizations.supportedLocales,

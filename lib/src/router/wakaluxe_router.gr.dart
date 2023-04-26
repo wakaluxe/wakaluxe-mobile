@@ -76,9 +76,16 @@ class AppRouter extends _i5.RootStackRouter {
       );
     },
     SubscriptionDetailRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<SubscriptionDetailRouteArgs>(
+          orElse: () =>
+              SubscriptionDetailRouteArgs(plan: pathParams.getString('plan')));
       return _i5.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i4.SubscriptionDetailPage(),
+        child: _i4.SubscriptionDetailPage(
+          key: args.key,
+          plan: args.plan,
+        ),
       );
     },
   };
@@ -125,7 +132,7 @@ class AppRouter extends _i5.RootStackRouter {
         ),
         _i5.RouteConfig(
           SubscriptionDetailRoute.name,
-          path: '/subscription-detail',
+          path: '/subscription-detail/:plan',
         ),
       ];
 }
@@ -228,12 +235,36 @@ class SubscriptionsRoute extends _i5.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.SubscriptionDetailPage]
-class SubscriptionDetailRoute extends _i5.PageRouteInfo<void> {
-  const SubscriptionDetailRoute()
-      : super(
+class SubscriptionDetailRoute
+    extends _i5.PageRouteInfo<SubscriptionDetailRouteArgs> {
+  SubscriptionDetailRoute({
+    _i6.Key? key,
+    required String plan,
+  }) : super(
           SubscriptionDetailRoute.name,
-          path: '/subscription-detail',
+          path: '/subscription-detail/:plan',
+          args: SubscriptionDetailRouteArgs(
+            key: key,
+            plan: plan,
+          ),
+          rawPathParams: {'plan': plan},
         );
 
   static const String name = 'SubscriptionDetailRoute';
+}
+
+class SubscriptionDetailRouteArgs {
+  const SubscriptionDetailRouteArgs({
+    this.key,
+    required this.plan,
+  });
+
+  final _i6.Key? key;
+
+  final String plan;
+
+  @override
+  String toString() {
+    return 'SubscriptionDetailRouteArgs{key: $key, plan: $plan}';
+  }
 }

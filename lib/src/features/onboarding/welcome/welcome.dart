@@ -84,13 +84,14 @@ class Welcome extends StatelessWidget {
       bodyWidget: SizedBox(
         width: 273.w,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               body,
               textAlign: TextAlign.center,
               style: text.body1,
             ),
-            if (end) 44.vGap,
+            if (end) 20.vGap,
             if (end)
               WakaluxeButton(
                 text: 'Get Started',

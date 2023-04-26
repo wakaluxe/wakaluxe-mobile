@@ -1,10 +1,8 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:wakaluxe/src/features/onboarding/onboarding.dart';
-
 import 'package:wakaluxe/src/features/auth/presentation/presentation.dart';
-import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/pages/subscriptions_page.dart';
-
+import 'package:wakaluxe/src/features/onboarding/onboarding.dart';
 import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/pages/subscription_detail_page.dart';
+import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/pages/subscriptions_page.dart';
 
 @AdaptiveAutoRouter(
   replaceInRouteName: 'Page,Route',
@@ -44,7 +42,7 @@ import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/prese
     ),
     AutoRoute(
       page: SubscriptionDetailPage,
-      path: '/subscription-detail',
+      path: '/subscription-detail/:plan',
     )
   ],
 )

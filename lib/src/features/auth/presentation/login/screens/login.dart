@@ -36,106 +36,108 @@ class _LoginState extends State<Login> {
     }
 
     return AppBarredScaffold(
-      body: Column(
-        children: [
-          Text(
-            'Login to your Account',
-            style: text.display3,
-          ),
-          31.vGap,
-          WakaluxInputField(
-            text: text,
-            hint: 'Email',
-            controller: emailController,
-            icon: 'assets/Icons/auth/email.svg',
-          ),
-          30.vGap,
-          WakaluxInputField(
-            text: text,
-            hint: 'Password',
-            controller: passwordController,
-            icon: 'assets/Icons/auth/password.svg',
-            suffix: 'assets/Icons/auth/visible.svg',
-            obscured: true,
-          ),
-          30.vGap,
-          Row(
-            children: [
-              Checkbox(value: false, onChanged: (val) {}),
-              15.hGap,
-              Text(
-                'Remember me',
-                style: text.body1,
-              ),
-              const Spacer(),
-              GestureDetector(
-                child: Text(
-                  'Forgot Password?',
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Text(
+              'Login to your Account',
+              style: text.display3,
+            ),
+            31.vGap,
+            WakaluxInputField(
+              text: text,
+              hint: 'Email',
+              controller: emailController,
+              icon: 'assets/Icons/auth/email.svg',
+            ),
+            30.vGap,
+            WakaluxInputField(
+              text: text,
+              hint: 'Password',
+              controller: passwordController,
+              icon: 'assets/Icons/auth/password.svg',
+              suffix: 'assets/Icons/auth/visible.svg',
+              obscured: true,
+            ),
+            30.vGap,
+            Row(
+              children: [
+                Checkbox(value: false, onChanged: (val) {}),
+                15.hGap,
+                Text(
+                  'Remember me',
                   style: text.body1,
                 ),
-              )
-            ],
-          ),
-          60.vGap,
-          WakaluxeButton(
-            text: 'SIGN IN',
-            action: () => AutoRouter.of(context).pushNamed('/phone-number'),
-            textColor: Palette.black,
-          ),
-          60.vGap,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: 68.w,
-                child: Divider(
-                  color: Palette.black.withOpacity(0.1),
-                  thickness: 2.r,
+                const Spacer(),
+                GestureDetector(
+                  child: Text(
+                    'Forgot Password?',
+                    style: text.body1,
+                  ),
+                )
+              ],
+            ),
+            50.vGap,
+            WakaluxeButton(
+              text: 'SIGN IN',
+              action: () => AutoRouter.of(context).pushNamed('/phone-number'),
+              textColor: Palette.black,
+            ),
+            60.vGap,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 68.w,
+                  child: Divider(
+                    color: Palette.black.withOpacity(0.1),
+                    thickness: 2.r,
+                  ),
                 ),
-              ),
-              10.hGap,
-              Text(
-                'Or Continue with',
-                style: text.body2,
-              ),
-              10.hGap,
-              SizedBox(
-                width: 68.w,
-                child: Divider(
-                  color: Palette.black.withOpacity(0.1),
-                  thickness: 2.r,
-                ),
-              ),
-            ],
-          ),
-          44.vGap,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SvgPicture.asset('assets/Icons/Facebook.svg'),
-              24.hGap,
-              SvgPicture.asset('assets/Icons/google.svg'),
-            ],
-          ),
-          44.vGap,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Don’t have an account?',
-                style: text.body1,
-              ),
-              5.hGap,
-              GestureDetector(
-                onTap: () => AutoRouter.of(context).pushNamed('/sign-up'),
-                child: Text(
-                  'Sign Up',
+                10.hGap,
+                Text(
+                  'Or Continue with',
                   style: text.body2,
                 ),
-              ),
-            ],
-          ),
-        ],
+                10.hGap,
+                SizedBox(
+                  width: 68.w,
+                  child: Divider(
+                    color: Palette.black.withOpacity(0.1),
+                    thickness: 2.r,
+                  ),
+                ),
+              ],
+            ),
+            36.vGap,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset('assets/Icons/Facebook.svg'),
+                24.hGap,
+                SvgPicture.asset('assets/Icons/google.svg'),
+              ],
+            ),
+            36.vGap,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Don’t have an account?',
+                  style: text.body1,
+                ),
+                5.hGap,
+                GestureDetector(
+                  onTap: () => AutoRouter.of(context).pushNamed('/sign-up'),
+                  child: Text(
+                    'Sign Up',
+                    style: text.body2,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
