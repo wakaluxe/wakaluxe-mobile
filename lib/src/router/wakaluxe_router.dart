@@ -6,12 +6,15 @@
 // )
 
 import 'package:auto_route/auto_route.dart';
+import 'package:wakaluxe/src/features/auth/presentation/presentation.dart';
+import 'package:wakaluxe/src/features/onboarding/onboarding.dart';
+import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/pages/subscription_detail_page.dart';
+import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/pages/subscriptions_page.dart';
 
 import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart';
 
 @AutoRouterConfig()
 class WakaluxeRouter extends $WakaluxeRouter {
-  @override
   @override
   final List<AutoRoute> routes = [
     AutoRoute(

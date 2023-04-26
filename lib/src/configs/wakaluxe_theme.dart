@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_color_utilities/material_color_utilities.dart';
+
+import 'package:wakaluxe/src/configs/configs.dart';
 
 @immutable
 class WakaluxeTheme extends ThemeExtension<WakaluxeTheme> {
@@ -205,3 +208,45 @@ const darkColorScheme = ColorScheme(
   outlineVariant: Color(0xFF44464F),
   scrim: Color(0xFF000000),
 );
+
+extension FigmaStyles on TextTheme {
+  TextStyle get display2 => GoogleFonts.poppins(
+        fontSize: 34.sp,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 0.15,
+        height: 1.5,
+        color: Palette.primaryTextColor,
+      );
+  TextStyle get body1 => GoogleFonts.poppins(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w400,
+        color: Palette.secondaryTextColor,
+      );
+  TextStyle get body2 => GoogleFonts.poppins(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w500,
+        color: Palette.black.withOpacity(0.87),
+      );
+  TextStyle get label => GoogleFonts.poppins(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w400,
+        color: Palette.black,
+      );
+  TextStyle get display3 => GoogleFonts.poppins(
+        fontSize: 34.sp,
+        fontWeight: FontWeight.w500,
+        color: Palette.black,
+      );
+
+  TextStyle get headline => GoogleFonts.poppins(
+        fontSize: 24.sp,
+        fontWeight: FontWeight.w500,
+        color: Palette.black,
+      );
+
+  TextStyle get title => GoogleFonts.poppins(
+        fontSize: 20.sp,
+        fontWeight: FontWeight.w500,
+        color: Palette.black,
+      );
+}

@@ -13,8 +13,6 @@ class WakaluxeButton extends StatelessWidget {
     this.width = .9,
     this.icon,
     this.textColor,
-    this.isOutline = false,
-    this.isSelected = false,
   });
   final IconData? icon;
   final String text;
@@ -22,8 +20,6 @@ class WakaluxeButton extends StatelessWidget {
   final Color color;
   final double width;
   final Color? textColor;
-  final bool isOutline;
-  final bool isSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -50,9 +46,8 @@ class WakaluxeButton extends StatelessWidget {
             Text(
               text,
               style: context.bodyLg.copyWith(
-                color:
-                    (textColor == null) ? context.scheme.onPrimary : textColor,
                 fontWeight: FontWeight.bold,
+                color: textColor ?? context.scheme.background,
               ),
             ),
             if (icon != null) ...[

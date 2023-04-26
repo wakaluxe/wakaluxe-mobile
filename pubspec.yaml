@@ -1,5 +1,5 @@
 name: wakaluxe
-description: moove with comfort and style.
+description: move with comfort and style.
 version: 1.0.0+1
 publish_to: none
 
@@ -11,6 +11,7 @@ dependencies:
   bloc: ^8.1.1
   collection: ^1.17.0
   dartz: ^0.10.1
+  equatable: ^2.0.5
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.2
@@ -19,13 +20,18 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_native_splash: ^2.2.18
+  flutter_screenutil: ^5.7.0
+  flutter_svg: ^2.0.5
   get_it: ^7.2.0
   google_fonts: ^4.0.3
-  hydrated_bloc: ^9.1.0
+  hydrated_bloc: ^8.0.0
   intl: ^0.17.0
+  introduction_screen: ^3.1.8
+  mask_text_input_formatter: ^2.4.0
   material_color_utilities: ^0.2.0
   palette_generator: ^0.3.3+2
   path_provider: ^2.0.13
+  pinput: ^2.2.31
   url_launcher: ^6.1.10
 
 dev_dependencies:
@@ -48,3 +54,13 @@ flutter:
     - family: WakaluxIcons
       fonts:
         - asset: fonts/WakaluxIcons.ttf
+    - assets/
+    - assets/intro/
+    - assets/images/
+    - assets/icons/
+    - assets/icons/auth/
+    - assets/illustrations/
+    - assets/icons/hicon/linear/
+
+flutter_native_splash:
+  background_image: "assets/intro/splash.png"

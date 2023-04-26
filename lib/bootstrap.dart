@@ -26,13 +26,14 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
 
-  Bloc.observer = const AppBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
-  HydratedBloc.storage = await HydratedStorage.build(
+  Bloc.observer = const AppBlocObserver();
+  final storage = await HydratedStorage.build(
     storageDirectory: await getTemporaryDirectory(),
   );
-  await runZonedGuarded(
+
+  await HydratedBlocOverrides.runZoned(
     () async => runApp(await builder()),
-    (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
+    storage: storage,
   );
 }
