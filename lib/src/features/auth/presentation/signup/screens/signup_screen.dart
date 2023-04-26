@@ -4,22 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:wakaluxe/src/common/common.dart';
-
+import 'package:wakaluxe/src/common/widgets/wakalux_input_field.dart';
 import 'package:wakaluxe/src/configs/palette.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/auth/presentation/widgets/app_barred_scaffold.dart';
 
-import 'package:wakaluxe/src/common/widgets/wakalux_input_field.dart';
-
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+class WakaluxeSignUp extends StatefulWidget {
+  const WakaluxeSignUp({super.key});
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<WakaluxeSignUp> createState() => _WakaluxeSignUpState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
   late TextEditingController emailController;
   late TextEditingController passwordController;
   late TextEditingController confirmPasswordController;

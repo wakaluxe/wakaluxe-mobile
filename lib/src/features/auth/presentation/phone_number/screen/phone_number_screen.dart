@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/common/widgets/wakalux_input_field.dart';
@@ -8,14 +7,14 @@ import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/auth/presentation/widgets/app_barred_scaffold.dart';
 
-class PhoneNumber extends StatefulWidget {
-  const PhoneNumber({super.key});
+class WakaluxePhoneNumber extends StatefulWidget {
+  const WakaluxePhoneNumber({super.key});
 
   @override
-  State<PhoneNumber> createState() => _PhoneNumberState();
+  State<WakaluxePhoneNumber> createState() => _WakaluxePhoneNumberState();
 }
 
-class _PhoneNumberState extends State<PhoneNumber> {
+class _WakaluxePhoneNumberState extends State<WakaluxePhoneNumber> {
   late TextEditingController phoneController;
 
   @override
@@ -59,10 +58,10 @@ class _PhoneNumberState extends State<PhoneNumber> {
             formatter: [phoneFormatter],
           ),
           86.vGap,
-           WakaluxeButton(
+          WakaluxeButton(
             text: 'Continue',
             width: 0.4,
-            action: ()=> AutoRouter.of(context).pushNamed('/verification'),
+            action: () => AutoRouter.of(context).pushNamed('/verification'),
           ),
         ],
       ),

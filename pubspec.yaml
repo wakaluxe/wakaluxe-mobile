@@ -49,14 +49,14 @@ flutter:
 
   assets:
     - assets/
-    - assets/Intro/
-    - assets/Images/
-    - assets/Icons/
-    - assets/Icons/auth/
-    - assets/Illustrations/
-    - assets/Icons/Hicon/Linear/
+    - assets/intro/
+    - assets/images/
+    - assets/icons/
+    - assets/icons/auth/
+    - assets/illustrations/
+    - assets/icons/hicon/linear/
 
 flutter_native_splash:
-  background_image: "assets/Intro/splash.png"
+  background_image: "assets/intro/splash.png"
 
   android_12:

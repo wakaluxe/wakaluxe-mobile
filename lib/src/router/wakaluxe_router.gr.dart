@@ -27,62 +27,62 @@ class AppRouter extends _i5.RootStackRouter {
 
   @override
   final Map<String, _i5.PageFactory> pagesMap = {
-    Welcome.name: (routeData) {
+    WakaluxeWelcome.name: (routeData) {
       return _i5.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i1.Welcome(),
+        child: const _i1.WakaluxeWelcome(),
       );
     },
-    ChooseLanguage.name: (routeData) {
+    WakaluxeChooseLanguage.name: (routeData) {
       return _i5.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i1.ChooseLanguage(),
+        child: const _i1.WakaluxeChooseLanguage(),
       );
     },
-    ChooseTheme.name: (routeData) {
+    WakaluxeChooseTheme.name: (routeData) {
       return _i5.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i1.ChooseTheme(),
+        child: const _i1.WakaluxeChooseTheme(),
       );
     },
-    Verification.name: (routeData) {
+    WakaluxeVerification.name: (routeData) {
       return _i5.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i2.Verification(),
+        child: const _i2.WakaluxeVerification(),
       );
     },
-    PhoneNumber.name: (routeData) {
+    WakaluxePhoneNumber.name: (routeData) {
       return _i5.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i2.PhoneNumber(),
+        child: const _i2.WakaluxePhoneNumber(),
       );
     },
-    Login.name: (routeData) {
+    WakaluxeLogin.name: (routeData) {
       return _i5.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i2.Login(),
+        child: const _i2.WakaluxeLogin(),
       );
     },
-    SignUp.name: (routeData) {
+    WakaluxeSignUp.name: (routeData) {
       return _i5.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i2.SignUp(),
+        child: const _i2.WakaluxeSignUp(),
       );
     },
-    SubscriptionsRoute.name: (routeData) {
+    WakaluxeSubscriptions.name: (routeData) {
       return _i5.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i3.SubscriptionsPage(),
+        child: const _i3.WakaluxeSubscriptions(),
       );
     },
-    SubscriptionDetailRoute.name: (routeData) {
+    WakaluxeSubscriptionDetail.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<SubscriptionDetailRouteArgs>(
-          orElse: () =>
-              SubscriptionDetailRouteArgs(plan: pathParams.getString('plan')));
+      final args = routeData.argsAs<WakaluxeSubscriptionDetailArgs>(
+          orElse: () => WakaluxeSubscriptionDetailArgs(
+              plan: pathParams.getString('plan')));
       return _i5.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i4.SubscriptionDetailPage(
+        child: _i4.WakaluxeSubscriptionDetail(
           key: args.key,
           plan: args.plan,
         ),
@@ -99,162 +99,162 @@ class AppRouter extends _i5.RootStackRouter {
           fullMatch: true,
         ),
         _i5.RouteConfig(
-          Welcome.name,
+          WakaluxeWelcome.name,
           path: '/welcome',
         ),
         _i5.RouteConfig(
-          ChooseLanguage.name,
+          WakaluxeChooseLanguage.name,
           path: '/choose-language',
         ),
         _i5.RouteConfig(
-          ChooseTheme.name,
+          WakaluxeChooseTheme.name,
           path: '/choose-theme',
         ),
         _i5.RouteConfig(
-          Verification.name,
+          WakaluxeVerification.name,
           path: '/verification',
         ),
         _i5.RouteConfig(
-          PhoneNumber.name,
+          WakaluxePhoneNumber.name,
           path: '/phone-number',
         ),
         _i5.RouteConfig(
-          Login.name,
+          WakaluxeLogin.name,
           path: '/login',
         ),
         _i5.RouteConfig(
-          SignUp.name,
+          WakaluxeSignUp.name,
           path: '/sign-up',
         ),
         _i5.RouteConfig(
-          SubscriptionsRoute.name,
+          WakaluxeSubscriptions.name,
           path: '/subscriptions',
         ),
         _i5.RouteConfig(
-          SubscriptionDetailRoute.name,
+          WakaluxeSubscriptionDetail.name,
           path: '/subscription-detail/:plan',
         ),
       ];
 }
 
 /// generated route for
-/// [_i1.Welcome]
-class Welcome extends _i5.PageRouteInfo<void> {
-  const Welcome()
+/// [_i1.WakaluxeWelcome]
+class WakaluxeWelcome extends _i5.PageRouteInfo<void> {
+  const WakaluxeWelcome()
       : super(
-          Welcome.name,
+          WakaluxeWelcome.name,
           path: '/welcome',
         );
 
-  static const String name = 'Welcome';
+  static const String name = 'WakaluxeWelcome';
 }
 
 /// generated route for
-/// [_i1.ChooseLanguage]
-class ChooseLanguage extends _i5.PageRouteInfo<void> {
-  const ChooseLanguage()
+/// [_i1.WakaluxeChooseLanguage]
+class WakaluxeChooseLanguage extends _i5.PageRouteInfo<void> {
+  const WakaluxeChooseLanguage()
       : super(
-          ChooseLanguage.name,
+          WakaluxeChooseLanguage.name,
           path: '/choose-language',
         );
 
-  static const String name = 'ChooseLanguage';
+  static const String name = 'WakaluxeChooseLanguage';
 }
 
 /// generated route for
-/// [_i1.ChooseTheme]
-class ChooseTheme extends _i5.PageRouteInfo<void> {
-  const ChooseTheme()
+/// [_i1.WakaluxeChooseTheme]
+class WakaluxeChooseTheme extends _i5.PageRouteInfo<void> {
+  const WakaluxeChooseTheme()
       : super(
-          ChooseTheme.name,
+          WakaluxeChooseTheme.name,
           path: '/choose-theme',
         );
 
-  static const String name = 'ChooseTheme';
+  static const String name = 'WakaluxeChooseTheme';
 }
 
 /// generated route for
-/// [_i2.Verification]
-class Verification extends _i5.PageRouteInfo<void> {
-  const Verification()
+/// [_i2.WakaluxeVerification]
+class WakaluxeVerification extends _i5.PageRouteInfo<void> {
+  const WakaluxeVerification()
       : super(
-          Verification.name,
+          WakaluxeVerification.name,
           path: '/verification',
         );
 
-  static const String name = 'Verification';
+  static const String name = 'WakaluxeVerification';
 }
 
 /// generated route for
-/// [_i2.PhoneNumber]
-class PhoneNumber extends _i5.PageRouteInfo<void> {
-  const PhoneNumber()
+/// [_i2.WakaluxePhoneNumber]
+class WakaluxePhoneNumber extends _i5.PageRouteInfo<void> {
+  const WakaluxePhoneNumber()
       : super(
-          PhoneNumber.name,
+          WakaluxePhoneNumber.name,
           path: '/phone-number',
         );
 
-  static const String name = 'PhoneNumber';
+  static const String name = 'WakaluxePhoneNumber';
 }
 
 /// generated route for
-/// [_i2.Login]
-class Login extends _i5.PageRouteInfo<void> {
-  const Login()
+/// [_i2.WakaluxeLogin]
+class WakaluxeLogin extends _i5.PageRouteInfo<void> {
+  const WakaluxeLogin()
       : super(
-          Login.name,
+          WakaluxeLogin.name,
           path: '/login',
         );
 
-  static const String name = 'Login';
+  static const String name = 'WakaluxeLogin';
 }
 
 /// generated route for
-/// [_i2.SignUp]
-class SignUp extends _i5.PageRouteInfo<void> {
-  const SignUp()
+/// [_i2.WakaluxeSignUp]
+class WakaluxeSignUp extends _i5.PageRouteInfo<void> {
+  const WakaluxeSignUp()
       : super(
-          SignUp.name,
+          WakaluxeSignUp.name,
           path: '/sign-up',
         );
 
-  static const String name = 'SignUp';
+  static const String name = 'WakaluxeSignUp';
 }
 
 /// generated route for
-/// [_i3.SubscriptionsPage]
-class SubscriptionsRoute extends _i5.PageRouteInfo<void> {
-  const SubscriptionsRoute()
+/// [_i3.WakaluxeSubscriptions]
+class WakaluxeSubscriptions extends _i5.PageRouteInfo<void> {
+  const WakaluxeSubscriptions()
       : super(
-          SubscriptionsRoute.name,
+          WakaluxeSubscriptions.name,
           path: '/subscriptions',
         );
 
-  static const String name = 'SubscriptionsRoute';
+  static const String name = 'WakaluxeSubscriptions';
 }
 
 /// generated route for
-/// [_i4.SubscriptionDetailPage]
-class SubscriptionDetailRoute
-    extends _i5.PageRouteInfo<SubscriptionDetailRouteArgs> {
-  SubscriptionDetailRoute({
+/// [_i4.WakaluxeSubscriptionDetail]
+class WakaluxeSubscriptionDetail
+    extends _i5.PageRouteInfo<WakaluxeSubscriptionDetailArgs> {
+  WakaluxeSubscriptionDetail({
     _i6.Key? key,
     required String plan,
   }) : super(
-          SubscriptionDetailRoute.name,
+          WakaluxeSubscriptionDetail.name,
           path: '/subscription-detail/:plan',
-          args: SubscriptionDetailRouteArgs(
+          args: WakaluxeSubscriptionDetailArgs(
             key: key,
             plan: plan,
           ),
           rawPathParams: {'plan': plan},
         );
 
-  static const String name = 'SubscriptionDetailRoute';
+  static const String name = 'WakaluxeSubscriptionDetail';
 }
 
-class SubscriptionDetailRouteArgs {
-  const SubscriptionDetailRouteArgs({
+class WakaluxeSubscriptionDetailArgs {
+  const WakaluxeSubscriptionDetailArgs({
     this.key,
     required this.plan,
   });
@@ -265,6 +265,6 @@ class SubscriptionDetailRouteArgs {
 
   @override
   String toString() {
-    return 'SubscriptionDetailRouteArgs{key: $key, plan: $plan}';
+    return 'WakaluxeSubscriptionDetailArgs{key: $key, plan: $plan}';
   }
 }

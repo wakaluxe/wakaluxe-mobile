@@ -9,8 +9,8 @@ import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/widgets/padded_body.dart';
 
-class SubscriptionsPage extends StatelessWidget {
-  const SubscriptionsPage({super.key});
+class WakaluxeSubscriptions extends StatelessWidget {
+  const WakaluxeSubscriptions({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +107,7 @@ class SubscriptionsCard extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  '${plan} Plan',
+                  '$plan Plan',
                   style: text.title,
                 )
               ],

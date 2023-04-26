@@ -8,40 +8,40 @@ import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/prese
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
     AutoRoute(
-      page: Welcome,
+      page: WakaluxeWelcome,
       initial: true,
       path: '/welcome',
     ),
     AutoRoute(
-      page: ChooseLanguage,
+      page: WakaluxeChooseLanguage,
       path: '/choose-language',
     ),
     AutoRoute(
-      page: ChooseTheme,
+      page: WakaluxeChooseTheme,
       path: '/choose-theme',
     ),
     AutoRoute(
-      page: Verification,
+      page: WakaluxeVerification,
       path: '/verification',
     ),
     AutoRoute(
-      page: PhoneNumber,
+      page: WakaluxePhoneNumber,
       path: '/phone-number',
     ),
     AutoRoute(
-      page: Login,
+      page: WakaluxeLogin,
       path: '/login',
     ),
     AutoRoute(
-      page: SignUp,
+      page: WakaluxeSignUp,
       path: '/sign-up',
     ),
     AutoRoute(
-      page: SubscriptionsPage,
+      page: WakaluxeSubscriptions,
       path: '/subscriptions',
     ),
     AutoRoute(
-      page: SubscriptionDetailPage,
+      page: WakaluxeSubscriptionDetail,
       path: '/subscription-detail/:plan',
     )
   ],

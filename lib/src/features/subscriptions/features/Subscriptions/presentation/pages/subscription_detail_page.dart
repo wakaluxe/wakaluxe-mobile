@@ -12,8 +12,8 @@ import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/prese
 import 'package:wakaluxe/src/configs/configs.dart';
 import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/widgets/subscriptions_amount.dart';
 
-class SubscriptionDetailPage extends StatelessWidget {
-  const SubscriptionDetailPage({
+class WakaluxeSubscriptionDetail extends StatelessWidget {
+  const WakaluxeSubscriptionDetail({
     super.key,
     @PathParam('plan') required this.plan,
   });
@@ -37,7 +37,10 @@ class SubscriptionDetailPage extends StatelessWidget {
               Text.rich(
                 TextSpan(
                   children: [
-                    TextSpan(text: '${subscription_amount(plan)}/', style: text.display3),
+                    TextSpan(
+                      text: '${subscription_amount(plan)}/',
+                      style: text.display3,
+                    ),
                     TextSpan(text: 'month', style: text.body2)
                   ],
                 ),
@@ -50,7 +53,6 @@ class SubscriptionDetailPage extends StatelessWidget {
               const Spacer(),
               const WakaluxeButton(
                 text: 'Subscribe',
-
               ),
             ],
           ),

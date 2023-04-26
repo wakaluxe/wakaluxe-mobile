@@ -9,14 +9,14 @@ import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/auth/presentation/widgets/app_barred_scaffold.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class WakaluxeLogin extends StatefulWidget {
+  const WakaluxeLogin({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<WakaluxeLogin> createState() => _WakaluxeLoginState();
 }
 
-class _LoginState extends State<Login> {
+class _WakaluxeLoginState extends State<WakaluxeLogin> {
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;

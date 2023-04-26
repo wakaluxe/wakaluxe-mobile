@@ -12,7 +12,7 @@ class WakaluxeButton extends StatelessWidget {
     super.key,
     this.width = .9,
     this.icon,
-    this.textColor ,
+    this.textColor,
   });
   final IconData? icon;
   final String text;
@@ -38,8 +38,8 @@ class WakaluxeButton extends StatelessWidget {
             Text(
               text,
               style: context.bodyLg.copyWith(
-                color: textColor ?? Palette.black,
                 fontWeight: FontWeight.bold,
+                color: textColor ?? context.scheme.background,
               ),
             ),
             if (icon != null) ...[

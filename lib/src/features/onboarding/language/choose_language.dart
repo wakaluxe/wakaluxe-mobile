@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ChooseLanguage extends StatelessWidget {
-  const ChooseLanguage({super.key});
+class WakaluxeChooseLanguage extends StatelessWidget {
+  const WakaluxeChooseLanguage({super.key});
 
   @override
   Widget build(BuildContext context) {

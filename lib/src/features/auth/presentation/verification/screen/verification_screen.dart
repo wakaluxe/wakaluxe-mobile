@@ -7,8 +7,8 @@ import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/auth/presentation/widgets/app_barred_scaffold.dart';
 
-class Verification extends StatelessWidget {
-  const Verification({super.key});
+class WakaluxeVerification extends StatelessWidget {
+  const WakaluxeVerification({super.key});
 
   @override
   Widget build(BuildContext context) {
