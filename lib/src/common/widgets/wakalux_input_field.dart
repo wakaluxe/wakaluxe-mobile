@@ -4,19 +4,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 
-import '../../configs/configs.dart';
+import 'package:wakaluxe/src/configs/configs.dart';
+import 'package:wakaluxe/src/extensions/build_context.dart';
 
 class WakaluxInputField extends StatelessWidget {
-  const WakaluxInputField(
-      {super.key,
-      required this.text,
-      required this.hint,
-      required this.controller,
-      required this.icon,
-      this.suffix,
-      this.validator,
-      this.obscured = false,
-      this.formatter});
+  const WakaluxInputField({
+    super.key,
+    required this.text,
+    required this.hint,
+    required this.controller,
+    required this.icon,
+    this.suffix,
+    this.validator,
+    this.obscured = false,
+    this.formatter,
+  });
 
   final TextTheme text;
   final String hint;
@@ -32,7 +34,7 @@ class WakaluxInputField extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 16.w),
       decoration: BoxDecoration(
-        color: Palette.black.withOpacity(0.05),
+        color: context.scheme.primaryContainer.withOpacity(0.05),
         borderRadius: BorderRadius.circular(20.r),
         border: Border.all(width: 2.r, color: Palette.black.withOpacity(0.1)),
       ),
@@ -43,7 +45,7 @@ class WakaluxInputField extends StatelessWidget {
             child: TextFormField(
               validator: validator,
               obscureText: obscured,
-              inputFormatters: formatter ,
+              inputFormatters: formatter,
               decoration: InputDecoration(
                 labelText: hint,
                 icon: SvgPicture.asset(
