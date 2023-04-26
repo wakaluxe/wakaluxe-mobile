@@ -5,7 +5,7 @@ import 'package:material_color_utilities/material_color_utilities.dart';
 @immutable
 class WakaluxeTheme extends ThemeExtension<WakaluxeTheme> {
   const WakaluxeTheme({
-    this.primaryColor = const Color(0xFF356859),
+    this.primaryColor = const Color(0xFFFBE521),
     this.tertiaryColor = const Color(0xFFFF5722),
     this.neutralColor = const Color(0xFFFFFBE6),
   });
@@ -17,7 +17,7 @@ class WakaluxeTheme extends ThemeExtension<WakaluxeTheme> {
   Scheme _scheme() {
     final base = CorePalette.of(primaryColor.value);
     final primary = base.primary;
-    final tertiary = CorePalette.of(tertiaryColor.value).primary;
+    final tertiary = CorePalette.of(tertiaryColor.value).tertiary;
     final neutral = CorePalette.of(neutralColor.value).neutral;
     return Scheme(
       primary: primary.get(40),
@@ -52,7 +52,7 @@ class WakaluxeTheme extends ThemeExtension<WakaluxeTheme> {
     );
   }
 
-  ThemeData _base(final ColorScheme colorScheme) {
+  ThemeData _base(ColorScheme colorScheme) {
     final primaryTextTheme = GoogleFonts.poppinsTextTheme();
     final secondaryTextTheme = GoogleFonts.montserratTextTheme();
     final textTheme = primaryTextTheme.copyWith(
@@ -148,8 +148,8 @@ const lightColorScheme = ColorScheme(
   onSecondary: Color(0xFFFFFFFF),
   secondaryContainer: Color(0xFFFFDBD1),
   onSecondaryContainer: Color(0xFF3B0900),
-  tertiary: Color(0xFF006B56),
-  onTertiary: Color(0xFFFFFFFF),
+  tertiary: Color(0xffFBE521),
+  onTertiary: Color(0xFF001F25),
   tertiaryContainer: Color(0xFF7EF8D5),
   onTertiaryContainer: Color(0xFF002018),
   error: Color(0xFFBA1A1A),
@@ -183,7 +183,7 @@ const darkColorScheme = ColorScheme(
   secondaryContainer: Color(0xFF862200),
   onSecondaryContainer: Color(0xFFFFDBD1),
   tertiary: Color(0xFF5FDBBA),
-  onTertiary: Color(0xFF00382C),
+  onTertiary: Color(0xFFFFFFFF),
   tertiaryContainer: Color(0xFF005140),
   onTertiaryContainer: Color(0xFF7EF8D5),
   error: Color(0xFFFFB4AB),

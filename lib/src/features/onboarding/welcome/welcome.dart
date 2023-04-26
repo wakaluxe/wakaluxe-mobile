@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +9,7 @@ import 'package:wakaluxe/src/extensions/num.dart';
 
 import 'package:wakaluxe/src/features/onboarding/thememode/cubit/theme_cubit.dart';
 
+@RoutePage(name: 'welcome')
 class Welcome extends StatelessWidget {
   const Welcome({super.key});
 

@@ -1,2 +1,11 @@
+export 'widgets/wakalux_card.dart';
 export 'widgets/wakaluxe_boxed_icon.dart';
 export 'widgets/wakaluxe_button.dart';
+export 'widgets/wakaluxe_cancel_ride.dart';
+export 'widgets/wakaluxe_dotted_line.dart';
+export 'widgets/wakaluxe_driver.dart';
+export 'widgets/wakaluxe_location_widget.dart';
+export 'widgets/wakaluxe_ontrip.dart';
+export 'widgets/wakaluxe_profile_image_widget.dart';
+export 'widgets/wakaluxe_tile.dart';
+export 'widgets/wakaluxe_trip_details.dart';

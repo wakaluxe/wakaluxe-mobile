@@ -7,7 +7,7 @@ environment:
   sdk: ">=2.19.0 <3.0.0"
 
 dependencies:
-  auto_route: ^5.0.4
+  auto_route: ^6.3.0
   bloc: ^8.1.1
   collection: ^1.17.0
   dartz: ^0.10.1
@@ -15,6 +15,7 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^8.1.2
   flutter_hicons: ^0.0.1
+  flutter_image_stack: ^0.0.6
   flutter_localizations:
     sdk: flutter
   flutter_native_splash: ^2.2.18
@@ -28,7 +29,7 @@ dependencies:
   url_launcher: ^6.1.10
 
 dev_dependencies:
-  auto_route_generator: ^5.0.3
+  auto_route_generator: ^6.2.0
   bloc_test: ^9.1.1
   build_runner: ^2.3.3
   fast_i18n: ^5.12.6
@@ -40,3 +41,10 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+
+  assets:
+    - assets/images/
+  fonts:
+    - family: WakaluxIcons
+      fonts:
+        - asset: fonts/WakaluxIcons.ttf
