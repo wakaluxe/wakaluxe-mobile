@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wakaluxe/l10n/l10n.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/features/onboarding/thememode/cubit/theme_cubit.dart';
-import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart';
+import 'package:wakaluxe/src/router/wakaluxe_router.dart';
 
 class Wakaluxe extends StatefulWidget {
   const Wakaluxe({super.key});
@@ -14,10 +14,10 @@ class Wakaluxe extends StatefulWidget {
 }
 
 class _WakaluxeState extends State<Wakaluxe> {
-  late AppRouter router;
+  late WakaluxeRouter router;
   @override
   void initState() {
-    router = AppRouter();
+    router = WakaluxeRouter();
     super.initState();
   }
 

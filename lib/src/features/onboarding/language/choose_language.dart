@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-class WakaluxeChooseLanguage extends StatelessWidget {
-  const WakaluxeChooseLanguage({super.key});
+@RoutePage(name: 'ChooseLanguage')
+class ChooseLanguage extends StatelessWidget {
+  const ChooseLanguage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hicons/flutter_hicons.dart';
@@ -11,8 +13,9 @@ import 'package:wakaluxe/src/features/auth/presentation/widgets/app_barred_scaff
 import 'package:wakaluxe/src/features/onboarding/thememode/cubit/theme_cubit.dart';
 import 'package:wakaluxe/src/features/onboarding/welcome/page_view_model.dart';
 
-class WakaluxeWelcome extends StatelessWidget {
-  const WakaluxeWelcome({super.key});
+@RoutePage(name: 'welcome')
+class Welcome extends StatelessWidget {
+  const Welcome({super.key});
 
   @override
   Widget build(BuildContext context) {

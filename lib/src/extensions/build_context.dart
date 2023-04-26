@@ -24,7 +24,29 @@ extension WakaluxeBuildContextExtension on BuildContext {
         //fontWeight: FontWeight.w600,
         color: scheme.onBackground,
       );
+  TextStyle get titleLgBold => typography.titleLarge!.copyWith(
+        fontWeight: FontWeight.w600,
+        color: scheme.onBackground,
+        fontSize: 18,
+      );
+  TextStyle get titleMd => typography.titleMedium!.copyWith(
+        //fontWeight: FontWeight.w600,
+        color: scheme.onBackground,
+      );
+  TextStyle get titleSm => typography.titleSmall!.copyWith(
+        //fontWeight: FontWeight.w600,
+        color: scheme.onBackground,
+      );
+
   TextStyle get displayLg => typography.displayLarge!.copyWith(
+        //fontWeight: FontWeight.w600,
+        color: scheme.onBackground,
+      );
+  TextStyle get displayMd => typography.displayMedium!.copyWith(
+        //fontWeight: FontWeight.w600,
+        color: scheme.onBackground,
+      );
+  TextStyle get displaySm => typography.displaySmall!.copyWith(
         //fontWeight: FontWeight.w600,
         color: scheme.onBackground,
       );
@@ -36,9 +58,16 @@ extension WakaluxeBuildContextExtension on BuildContext {
         //fontWeight: FontWeight.w600,
         color: scheme.onBackground,
       );
+
+  TextStyle get bodyMdBold => bodyMd.copyWith(
+        fontWeight: FontWeight.w600,
+      );
   TextStyle get bodyLg => typography.bodyLarge!.copyWith(
         //fontWeight: FontWeight.w600,
         color: scheme.onBackground,
+      );
+  TextStyle get bodyLgBold => bodyLg.copyWith(
+        fontWeight: FontWeight.w600,
       );
 
   /// Get the [ColorScheme] of the current [Theme].
@@ -69,4 +98,39 @@ extension WakaluxeBuildContextExtension on BuildContext {
   Orientation get orientation => mediaQuery.orientation;
   bool get isPortrait => orientation == Orientation.portrait;
   bool get isLandscape => orientation == Orientation.landscape;
+  void showSnackBar(
+    String message, {
+    Duration? duration,
+    Color? color,
+  }) {
+    ScaffoldMessenger.of(this).showSnackBar(
+      SnackBar(
+        content: Text(message, style: bodyMd),
+        behavior: SnackBarBehavior.floating,
+        duration: duration ?? const Duration(seconds: 1),
+        backgroundColor: color ?? scheme.primary,
+      ),
+    );
+  }
+
+  void showSnackBarWithAction(
+    String message, {
+    required String actionLabel,
+    required VoidCallback onAction,
+    Duration? duration,
+    Color? color,
+  }) {
+    ScaffoldMessenger.of(this).showSnackBar(
+      SnackBar(
+        content: Text(message, style: bodyMd),
+        behavior: SnackBarBehavior.floating,
+        duration: duration ?? const Duration(seconds: 1),
+        backgroundColor: color ?? scheme.primary,
+        action: SnackBarAction(
+          label: actionLabel,
+          onPressed: onAction,
+        ),
+      ),
+    );
+  }
 }

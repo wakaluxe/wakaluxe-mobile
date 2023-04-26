@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-class WakaluxeChooseTheme extends StatelessWidget {
-  const WakaluxeChooseTheme({super.key});
+@RoutePage()
+class ChooseTheme extends StatelessWidget {
+  const ChooseTheme({super.key});
 
   @override
   Widget build(BuildContext context) {
