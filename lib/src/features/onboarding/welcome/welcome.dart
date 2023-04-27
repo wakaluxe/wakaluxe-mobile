@@ -4,7 +4,6 @@ import 'package:flutter_hicons/flutter_hicons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:wakaluxe/src/common/common.dart';
-import 'package:wakaluxe/src/configs/palette.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/auth/presentation/widgets/app_barred_scaffold.dart';
@@ -27,7 +26,7 @@ class WakaluxeWelcome extends StatelessWidget {
             dotsDecorator: DotsDecorator(
               size: Size.square(16.r),
               activeSize: const Size(20, 10),
-              activeColor: Palette.primary,
+              activeColor: context.scheme.primary,
               color: Colors.black26,
               spacing: const EdgeInsets.symmetric(horizontal: 3),
               activeShape: RoundedRectangleBorder(

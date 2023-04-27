@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/common/widgets/wakalux_input_field.dart';
-import 'package:wakaluxe/src/configs/palette.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
+import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/auth/presentation/widgets/app_barred_scaffold.dart';
 
@@ -75,9 +75,9 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
               obscured: true,
             ),
             60.vGap,
-            const WakaluxeButton(
+            WakaluxeButton(
               text: 'SIGN UP',
-              textColor: Palette.black,
+              textColor: context.scheme.scrim,
             ),
             45.vGap,
             Row(
@@ -86,7 +86,7 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
                 SizedBox(
                   width: 68.w,
                   child: Divider(
-                    color: Palette.black.withOpacity(0.1),
+                    color: context.scheme.scrim.withOpacity(0.1),
                     thickness: 2.r,
                   ),
                 ),
@@ -99,7 +99,7 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
                 SizedBox(
                   width: 68.w,
                   child: Divider(
-                    color: Palette.black.withOpacity(0.1),
+                    color: context.scheme.scrim.withOpacity(0.1),
                     thickness: 2.r,
                   ),
                 ),

@@ -3,13 +3,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:intl/intl.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
+import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/widgets/padded_body.dart';
-
-import 'package:wakaluxe/src/configs/configs.dart';
 import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/widgets/subscriptions_amount.dart';
 
 class WakaluxeSubscriptionDetail extends StatelessWidget {
@@ -78,7 +76,7 @@ class BackButton extends StatelessWidget {
         child: ElevatedButton(
           onPressed: () => context.router.pop(),
           style: ElevatedButton.styleFrom(
-            foregroundColor: Palette.neutral,
+            foregroundColor: context.scheme.onPrimary,
             elevation: 10,
             minimumSize: const Size(45, 45),
             shape: RoundedRectangleBorder(

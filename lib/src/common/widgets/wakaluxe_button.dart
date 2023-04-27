@@ -8,7 +8,7 @@ class WakaluxeButton extends StatelessWidget {
   const WakaluxeButton({
     required this.text,
     this.action,
-    this.color = Palette.primary,
+    this.color ,
     super.key,
     this.width = .9,
     this.icon,
@@ -17,7 +17,7 @@ class WakaluxeButton extends StatelessWidget {
   final IconData? icon;
   final String text;
   final VoidCallback? action;
-  final Color color;
+  final Color? color;
   final double width;
   final Color? textColor;
 
@@ -58,7 +58,7 @@ class WakaluxeButtonMedium extends StatelessWidget {
   const WakaluxeButtonMedium({
     required this.text,
     this.action,
-    this.color = Palette.primary,
+    this.color ,
     super.key,
     this.width = .35,
     this.icon,
@@ -66,7 +66,7 @@ class WakaluxeButtonMedium extends StatelessWidget {
   final IconData? icon;
   final String text;
   final VoidCallback? action;
-  final Color color;
+  final Color? color;
   final double width;
 
   @override
@@ -74,7 +74,7 @@ class WakaluxeButtonMedium extends StatelessWidget {
     return WakaluxeButton(
       text: text,
       action: action,
-      color: color,
+      color: color?? context.scheme.primary,
       width: width,
       icon: icon,
     );

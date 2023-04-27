@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/common/widgets/wakalux_input_field.dart';
-import 'package:wakaluxe/src/configs/palette.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
+import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/auth/presentation/widgets/app_barred_scaffold.dart';
 
@@ -81,7 +81,7 @@ class _WakaluxeLoginState extends State<WakaluxeLogin> {
             WakaluxeButton(
               text: 'SIGN IN',
               action: () => AutoRouter.of(context).pushNamed('/phone-number'),
-              textColor: Palette.black,
+              textColor: context.scheme.scrim,
             ),
             60.vGap,
             Row(
@@ -90,7 +90,7 @@ class _WakaluxeLoginState extends State<WakaluxeLogin> {
                 SizedBox(
                   width: 68.w,
                   child: Divider(
-                    color: Palette.black.withOpacity(0.1),
+                    color: context.scheme.scrim.withOpacity(0.1),
                     thickness: 2.r,
                   ),
                 ),
@@ -103,7 +103,7 @@ class _WakaluxeLoginState extends State<WakaluxeLogin> {
                 SizedBox(
                   width: 68.w,
                   child: Divider(
-                    color: Palette.black.withOpacity(0.1),
+                    color: context.scheme.scrim.withOpacity(0.1),
                     thickness: 2.r,
                   ),
                 ),
