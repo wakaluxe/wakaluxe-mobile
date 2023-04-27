@@ -26,7 +26,7 @@ class WakaluxeWelcome extends StatelessWidget {
             dotsDecorator: DotsDecorator(
               size: Size.square(16.r),
               activeSize: const Size(20, 10),
-              activeColor: context.scheme.primary,
+              activeColor: context.scheme.tertiary,
               color: Colors.black26,
               spacing: const EdgeInsets.symmetric(horizontal: 3),
               activeShape: RoundedRectangleBorder(
@@ -88,7 +88,7 @@ class IconButtons extends StatelessWidget {
             ),
             WakaluxeBoxedIcon(
               icon: Hicons.gift_2,
-              color: context.scheme.primary,
+              color: context.scheme.tertiary,
             ),
             WakaluxeBoxedIcon(
               icon: Hicons.wallet,
@@ -138,7 +138,7 @@ class Buttons extends StatelessWidget {
         WakaluxeButton(
           text: 'With icon',
           icon: Hicons.send_2,
-          color: context.scheme.primary,
+          color: context.scheme.tertiary,
         ),
         12.vGap,
         Row(

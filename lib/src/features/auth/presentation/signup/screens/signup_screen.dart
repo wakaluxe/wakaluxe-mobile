@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/common/widgets/wakalux_input_field.dart';
+import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
@@ -54,15 +55,15 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
               text: text,
               hint: 'Email',
               controller: emailController,
-              icon: 'assets/icons/auth/email.svg',
+              icon: Constants.emailAsset,
             ),
             30.vGap,
             WakaluxInputField(
               text: text,
               hint: 'Password',
               controller: passwordController,
-              icon: 'assets/icons/auth/password.svg',
-              suffix: 'assets/icons/auth/visible.svg',
+              icon: Constants.passwordAsset,
+              suffix: Constants.visibleAsset,
               obscured: true,
             ),
             30.vGap,
@@ -70,8 +71,8 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
               text: text,
               hint: 'Confirm Password',
               controller: confirmPasswordController,
-              icon: 'assets/icons/auth/password.svg',
-              suffix: 'assets/icons/auth/notVisible.svg',
+              icon: Constants.passwordAsset,
+              suffix: Constants.notVisibleAsset,
               obscured: true,
             ),
             60.vGap,
@@ -109,9 +110,9 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SvgPicture.asset('assets/icons/Facebook.svg'),
+                SvgPicture.asset(Constants.facebookAsset),
                 24.hGap,
-                SvgPicture.asset('assets/icons/google.svg'),
+                SvgPicture.asset(Constants.googleAsset),
               ],
             ),
             33.vGap,

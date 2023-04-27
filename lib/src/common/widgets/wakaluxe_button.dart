@@ -74,7 +74,7 @@ class WakaluxeButtonMedium extends StatelessWidget {
     return WakaluxeButton(
       text: text,
       action: action,
-      color: color?? context.scheme.primary,
+      color: color?? context.scheme.tertiary,
       width: width,
       icon: icon,
     );
