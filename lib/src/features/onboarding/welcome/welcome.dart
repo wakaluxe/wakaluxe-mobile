@@ -39,14 +39,14 @@ class WakaluxeWelcome extends StatelessWidget {
                 title: 'Request a ride',
                 body:
                     'Request for a ride and get picked up by a near by driver.',
-                image: 'assets/Illustrations/onboard1.svg',
+                image: 'assets/illustrations/onboard1.svg',
               ),
               wakaluxPageViewModel(
                 text: text,
                 title: 'Confirm your driver',
                 body:
                     'Select from a wide network of Community drivers near you and get a rideto destination.',
-                image: 'assets/Illustrations/onboard2.svg',
+                image: 'assets/illustrations/onboard2.svg',
               ),
               wakaluxPageViewModel(
                 text: text,
@@ -55,7 +55,7 @@ class WakaluxeWelcome extends StatelessWidget {
                     'Get some progress updates on the selected driver who is to pick you up and also follow up your rides progress to your final destination.',
                 end: true,
                 context: context,
-                image: 'assets/Illustrations/onboard3.svg',
+                image: 'assets/illustrations/onboard3.svg',
               ),
             ],
             showNextButton: false,

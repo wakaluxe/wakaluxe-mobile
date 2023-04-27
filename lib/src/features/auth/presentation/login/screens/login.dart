@@ -48,14 +48,14 @@ class _WakaluxeLoginState extends State<WakaluxeLogin> {
               text: text,
               hint: 'Email',
               controller: emailController,
-              icon: 'assets/Icons/auth/email.svg',
+              icon: 'assets/icons/auth/email.svg',
             ),
             30.vGap,
             WakaluxInputField(
               text: text,
               hint: 'Password',
               controller: passwordController,
-              icon: 'assets/Icons/auth/password.svg',
+              icon: 'assets/icons/auth/password.svg',
               suffix: 'assets/Icons/auth/visible.svg',
               obscured: true,
             ),
@@ -113,9 +113,9 @@ class _WakaluxeLoginState extends State<WakaluxeLogin> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SvgPicture.asset('assets/Icons/Facebook.svg'),
+                SvgPicture.asset('assets/icons/Facebook.svg'),
                 24.hGap,
-                SvgPicture.asset('assets/Icons/google.svg'),
+                SvgPicture.asset('assets/icons/google.svg'),
               ],
             ),
             36.vGap,
