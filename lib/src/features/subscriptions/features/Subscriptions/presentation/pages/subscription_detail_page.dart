@@ -10,6 +10,8 @@ import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/widgets/padded_body.dart';
 import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/widgets/subscriptions_amount.dart';
 
+import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
+
 class WakaluxeSubscriptionDetail extends StatelessWidget {
   const WakaluxeSubscriptionDetail({
     super.key,
@@ -83,7 +85,7 @@ class BackButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
             ),
           ),
-          child: SvgPicture.asset('assets/Icons/back.svg'),
+          child: SvgPicture.asset(Constants.backAsset),
         ),
       ),
     );

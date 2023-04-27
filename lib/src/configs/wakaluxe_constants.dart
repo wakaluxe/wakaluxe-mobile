@@ -14,4 +14,5 @@ class Constants {
   static const String facebookAsset = 'assets/icons/Facebook.svg';
   static const String googleAsset = 'assets/icons/google.svg';
   static const String hashtagAsset = 'assets/icons/hicon/linear/Hashtag.svg';
+  static const String backAsset = 'assets/icons/back.svg';
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wakaluxe/src/configs/configs.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
@@ -8,7 +7,7 @@ class WakaluxeButton extends StatelessWidget {
   const WakaluxeButton({
     required this.text,
     this.action,
-    this.color ,
+    this.color,
     super.key,
     this.width = .9,
     this.icon,
@@ -29,7 +28,7 @@ class WakaluxeButton extends StatelessWidget {
         width: context.width * width,
         height: Constants.buttonHeight,
         decoration: BoxDecoration(
-          color: color,
+          color: color ?? context.scheme.tertiary,
           borderRadius: BorderRadius.circular(Constants.borderRadius),
         ),
         child: Row(
@@ -39,7 +38,7 @@ class WakaluxeButton extends StatelessWidget {
               text,
               style: context.bodyLg.copyWith(
                 fontWeight: FontWeight.bold,
-                color: textColor ?? context.scheme.background,
+                color: textColor ?? context.scheme.scrim,
               ),
             ),
             if (icon != null) ...[
@@ -58,7 +57,7 @@ class WakaluxeButtonMedium extends StatelessWidget {
   const WakaluxeButtonMedium({
     required this.text,
     this.action,
-    this.color ,
+    this.color,
     super.key,
     this.width = .35,
     this.icon,
@@ -74,7 +73,7 @@ class WakaluxeButtonMedium extends StatelessWidget {
     return WakaluxeButton(
       text: text,
       action: action,
-      color: color?? context.scheme.tertiary,
+      color: color ?? context.scheme.tertiary,
       width: width,
       icon: icon,
     );
