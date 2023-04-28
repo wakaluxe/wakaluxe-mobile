@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:wakaluxe/src/configs/configs.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
+import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/widgets/padded_body.dart';
 
@@ -24,7 +24,7 @@ class WakaluxeSubscriptions extends StatelessWidget {
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w500,
                 fontSize: 24.sp,
-                color: Palette.secondaryTextColor,
+                color: context.scheme.onSurfaceVariant,
               ),
             ),
           ),
@@ -91,11 +91,12 @@ class SubscriptionsCard extends StatelessWidget {
         width: 374.w,
         decoration: BoxDecoration(
           border: Border.all(
-            color:
-                isSelected ? Palette.primary : Palette.black.withOpacity(0.05),
+            color: isSelected
+                ? context.scheme.primary
+                : context.scheme.scrim.withOpacity(0.05),
             width: 2.w,
           ),
-          color: Palette.black.withOpacity(0.05),
+          color: context.scheme.scrim.withOpacity(0.05),
           borderRadius: BorderRadius.circular(20.r),
         ),
         padding: EdgeInsets.symmetric(

@@ -6,7 +6,6 @@ import 'package:flutter_hicons/flutter_hicons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:wakaluxe/src/common/common.dart';
-import 'package:wakaluxe/src/configs/palette.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/auth/presentation/widgets/app_barred_scaffold.dart';
@@ -30,7 +29,7 @@ class Welcome extends StatelessWidget {
             dotsDecorator: DotsDecorator(
               size: Size.square(16.r),
               activeSize: const Size(20, 10),
-              activeColor: Palette.primary,
+              activeColor: context.scheme.tertiary,
               color: Colors.black26,
               spacing: const EdgeInsets.symmetric(horizontal: 3),
               activeShape: RoundedRectangleBorder(
@@ -43,14 +42,14 @@ class Welcome extends StatelessWidget {
                 title: 'Request a ride',
                 body:
                     'Request for a ride and get picked up by a near by driver.',
-                image: 'assets/Illustrations/onboard1.svg',
+                image: 'assets/illustrations/onboard1.svg',
               ),
               wakaluxPageViewModel(
                 text: text,
                 title: 'Confirm your driver',
                 body:
                     'Select from a wide network of Community drivers near you and get a rideto destination.',
-                image: 'assets/Illustrations/onboard2.svg',
+                image: 'assets/illustrations/onboard2.svg',
               ),
               wakaluxPageViewModel(
                 text: text,
@@ -59,7 +58,7 @@ class Welcome extends StatelessWidget {
                     'Get some progress updates on the selected driver who is to pick you up and also follow up your rides progress to your final destination.',
                 end: true,
                 context: context,
-                image: 'assets/Illustrations/onboard3.svg',
+                image: 'assets/illustrations/onboard3.svg',
               ),
             ],
             showNextButton: false,
@@ -92,7 +91,7 @@ class IconButtons extends StatelessWidget {
             ),
             WakaluxeBoxedIcon(
               icon: Hicons.gift_2,
-              color: context.scheme.primary,
+              color: context.scheme.tertiary,
             ),
             WakaluxeBoxedIcon(
               icon: Hicons.wallet,
@@ -142,7 +141,7 @@ class Buttons extends StatelessWidget {
         WakaluxeButton(
           text: 'With icon',
           icon: Hicons.send_2,
-          color: context.scheme.primary,
+          color: context.scheme.tertiary,
         ),
         12.vGap,
         Row(

@@ -4,8 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/common/widgets/wakalux_input_field.dart';
-import 'package:wakaluxe/src/configs/palette.dart';
+import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
+import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/auth/presentation/widgets/app_barred_scaffold.dart';
 
@@ -48,15 +49,15 @@ class _WakaluxeLoginState extends State<WakaluxeLogin> {
               text: text,
               hint: 'Email',
               controller: emailController,
-              icon: 'assets/Icons/auth/email.svg',
+              icon: Constants.emailAsset,
             ),
             30.vGap,
             WakaluxInputField(
               text: text,
               hint: 'Password',
               controller: passwordController,
-              icon: 'assets/Icons/auth/password.svg',
-              suffix: 'assets/Icons/auth/visible.svg',
+              icon: Constants.passwordAsset,
+              suffix: Constants.visibleAsset,
               obscured: true,
             ),
             30.vGap,
@@ -81,7 +82,7 @@ class _WakaluxeLoginState extends State<WakaluxeLogin> {
             WakaluxeButton(
               text: 'SIGN IN',
               action: () => AutoRouter.of(context).pushNamed('/phone-number'),
-              textColor: Palette.black,
+              textColor: context.scheme.scrim,
             ),
             60.vGap,
             Row(
@@ -90,7 +91,7 @@ class _WakaluxeLoginState extends State<WakaluxeLogin> {
                 SizedBox(
                   width: 68.w,
                   child: Divider(
-                    color: Palette.black.withOpacity(0.1),
+                    color: context.scheme.scrim.withOpacity(0.1),
                     thickness: 2.r,
                   ),
                 ),
@@ -103,7 +104,7 @@ class _WakaluxeLoginState extends State<WakaluxeLogin> {
                 SizedBox(
                   width: 68.w,
                   child: Divider(
-                    color: Palette.black.withOpacity(0.1),
+                    color: context.scheme.scrim.withOpacity(0.1),
                     thickness: 2.r,
                   ),
                 ),
@@ -113,9 +114,9 @@ class _WakaluxeLoginState extends State<WakaluxeLogin> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SvgPicture.asset('assets/Icons/Facebook.svg'),
+                SvgPicture.asset(Constants.facebookAsset),
                 24.hGap,
-                SvgPicture.asset('assets/Icons/google.svg'),
+                SvgPicture.asset(Constants.googleAsset),
               ],
             ),
             36.vGap,
