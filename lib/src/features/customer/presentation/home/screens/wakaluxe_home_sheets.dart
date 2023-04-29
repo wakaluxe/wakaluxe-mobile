@@ -13,6 +13,8 @@ class WakaluxeBottomSheets {
   }) async {
     await showModalBottomSheet(
       context: context,
+      // TODO(mbohbless) remove the color, https://www.google.com
+      // backgroundColor: Colors.pink,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(25),
@@ -41,6 +43,7 @@ class WakaluxeBottomSheets {
                                 ),
                               );
                         },
+                        // todo will have to uncomment this
                         leading: Image.asset(
                           e['image'].toString(),
                           height: 50,

@@ -49,11 +49,6 @@ flutter:
   generate: true
 
   assets:
-    - assets/images/
-  fonts:
-    - family: WakaluxIcons
-      fonts:
-        - asset: fonts/WakaluxIcons.ttf
     - assets/
     - assets/intro/
     - assets/images/
@@ -61,6 +56,10 @@ flutter:
     - assets/icons/auth/
     - assets/illustrations/
     - assets/icons/hicon/linear/
+  fonts:
+    - family: WakaluxIcons
+      fonts:
+        - asset: fonts/WakaluxIcons.ttf
 
 flutter_native_splash:
   background_image: "assets/intro/splash.png"

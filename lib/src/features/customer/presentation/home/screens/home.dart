@@ -289,7 +289,7 @@ class Home extends StatelessWidget {
                                 HomeInitialEvent(),
                               );
                         },
-                        color: context.scheme.tertiary,
+                        color: context.scheme.error,
                         textColor: context.scheme.onTertiary,
                       ),
                     ),
