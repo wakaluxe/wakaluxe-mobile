@@ -4,18 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:wakaluxe/src/common/common.dart';
+import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/widgets/padded_body.dart';
 import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/widgets/subscriptions_amount.dart';
 
-import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
-
 class WakaluxeSubscriptionDetail extends StatelessWidget {
   const WakaluxeSubscriptionDetail({
-    super.key,
     @PathParam('plan') required this.plan,
+    super.key,
   });
 
   final String plan;
