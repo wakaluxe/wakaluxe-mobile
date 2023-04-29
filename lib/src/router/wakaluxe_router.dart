@@ -24,6 +24,16 @@ class WakaluxeRouter extends $WakaluxeRouter {
     AutoRoute(page: Login.page, path: '/login'),
     AutoRoute(page: Subscriptions.page, path: '/subscriptions'),
     AutoRoute(
-        page: SubscriptionDetail.page, path: '/subscription-detail/:plan'),
+      page: SubscriptionDetail.page,
+      path: '/subscription-detail/:plan',
+    ),
+    AutoRoute(
+      page: PaymentDetails.page,
+      path: '/payment-details',
+    ),
+    AutoRoute(
+      page: Rating.page,
+      path: '/rating',
+    ),
   ];
 }

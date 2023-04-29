@@ -3,8 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
-
-import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc.dart';
+import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc/home_bloc.dart';
 
 class WakaluxeBottomSheets {
   static Future<void> showSuggestedRidesModalSheet(
