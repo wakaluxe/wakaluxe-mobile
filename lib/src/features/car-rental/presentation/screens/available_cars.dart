@@ -40,11 +40,14 @@ class AvailableCars extends StatelessWidget {
                       height: index.isEven ? 270 : 250,
                       child: WakaluxCard(
                         width: context.width,
-                        child: const WakaluxeDealCard(
+                        child: WakaluxeDealCard(
                           tag: 'Daily',
                           imageUrl: 'assets/images/Luxurious.png',
                           name: 'Luxurius',
                           price: '150,000',
+                          onTap: () {
+                            context.router.pushNamed('/view-car');
+                          },
                         ),
                       ),
                     ),

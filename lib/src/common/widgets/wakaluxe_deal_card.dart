@@ -9,52 +9,57 @@ class WakaluxeDealCard extends StatelessWidget {
     required this.name,
     required this.price,
     super.key,
+    this.onTap,
   });
 
   final String tag;
   final String imageUrl;
   final String name;
   final String price;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 10, left: 10),
-      child: Column(
-        children: [
-          Align(
-            alignment: Alignment.centerRight,
-            child: Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
+    return GestureDetector(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.only(right: 10, left: 10),
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.centerRight,
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                ),
+                decoration: BoxDecoration(
+                  color: context.scheme.tertiary,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(tag),
               ),
-              decoration: BoxDecoration(
-                color: context.scheme.tertiary,
-                borderRadius: BorderRadius.circular(10),
+            ),
+            10.vGap,
+            Image.asset(
+              imageUrl,
+            ),
+            20.vGap,
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                name,
+                style: context.titleMd,
               ),
-              child: Text(tag),
             ),
-          ),
-          10.vGap,
-          Image.asset(
-            imageUrl,
-          ),
-          20.vGap,
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              name,
-              style: context.titleMd,
-            ),
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              '$price XAF',
-              style: context.titleMdBold,
-            ),
-          )
-        ],
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                '$price XAF',
+                style: context.titleMdBold,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

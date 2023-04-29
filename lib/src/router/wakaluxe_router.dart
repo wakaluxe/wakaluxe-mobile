@@ -43,5 +43,9 @@ class WakaluxeRouter extends $WakaluxeRouter {
       page: AvailableCar.page,
       path: '/available-cars',
     ),
+    AutoRoute(
+      page: ViewCar.page,
+      path: '/view-car',
+    ),
   ];
 }
