@@ -8,6 +8,7 @@ class WakaluxeCarRental extends StatelessWidget {
     required this.brand,
     required this.imageUrl,
     required this.garageClick,
+    this.showGarage = true,
     super.key,
     this.asset,
   });
@@ -16,6 +17,7 @@ class WakaluxeCarRental extends StatelessWidget {
   final String imageUrl;
   final bool? asset;
   final VoidCallback garageClick;
+  final bool showGarage;
 
   @override
   Widget build(BuildContext context) {
@@ -63,23 +65,24 @@ class WakaluxeCarRental extends StatelessWidget {
                       style: context.bodyLg.copyWith(fontSize: 18),
                     ),
                     const Spacer(),
-                    InkWell(
-                      onTap: garageClick,
-                      child: Row(
-                        children: [
-                          Text(
-                            'My Garage',
-                            style: context.bodyMdBold,
-                          ),
-                          5.hGap,
-                          Icon(
-                            Icons.arrow_forward_ios,
-                            color: context.scheme.onBackground,
-                            size: 15,
-                          ),
-                        ],
-                      ),
-                    )
+                    if (showGarage)
+                      InkWell(
+                        onTap: garageClick,
+                        child: Row(
+                          children: [
+                            Text(
+                              'My Garage',
+                              style: context.bodyMdBold,
+                            ),
+                            5.hGap,
+                            Icon(
+                              Icons.arrow_forward_ios,
+                              color: context.scheme.onBackground,
+                              size: 15,
+                            ),
+                          ],
+                        ),
+                      )
                   ],
                 )
               ],
