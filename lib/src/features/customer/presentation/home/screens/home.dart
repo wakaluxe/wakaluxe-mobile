@@ -9,7 +9,7 @@ import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/common/widgets/wakaluxe_driver_card.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
-import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc.dart';
+import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc/home_bloc.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/screens/wakaluxe_home_sheets.dart';
 
 // List<Map<String, dynamic>> data = []
@@ -284,11 +284,10 @@ class Home extends StatelessWidget {
                           context.showSnackBar(
                             'Will still to move to payment screen',
                           );
-                        
+                          context.router.pushNamed('/payment-details');
                           context.read<HomeBloc>().add(
                                 HomeInitialEvent(),
                               );
-                          
                         },
                         color: context.scheme.tertiary,
                         textColor: context.scheme.onTertiary,
