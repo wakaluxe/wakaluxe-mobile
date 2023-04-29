@@ -20,9 +20,9 @@ import 'package:wakaluxe/src/features/auth/presentation/verification/screen/veri
     as _i2;
 import 'package:wakaluxe/src/features/customer/presentation/home/screens/home.dart'
     as _i10;
-import 'package:wakaluxe/src/features/customer/presentation/home/screens/payment_details.dart'
+import 'package:wakaluxe/src/features/customer/presentation/payment_details/screens/payment_details.dart'
     as _i11;
-import 'package:wakaluxe/src/features/customer/presentation/home/screens/rating.dart'
+import 'package:wakaluxe/src/features/customer/presentation/rating/screens/rating.dart'
     as _i12;
 import 'package:wakaluxe/src/features/onboarding/language/choose_language.dart'
     as _i8;
