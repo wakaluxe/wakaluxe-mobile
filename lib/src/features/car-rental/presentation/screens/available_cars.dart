@@ -14,23 +14,41 @@ class AvailableCars extends StatelessWidget {
       appBar: AppBar(),
       body: Stack(
         children: [
-          MasonryGridView.builder(
-            shrinkWrap: true,
-            itemCount: 6,
-            gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-            ),
-            itemBuilder: (context, index) => SizedBox(
-              //if index is factor of 2 then show provide larger height container
-              height: index.isEven ? 270 : 250,
-              child: WakaluxCard(
-                width: context.width,
-                child: const WakaluxeDealCard(
-                  tag: 'Daily',
-                  imageUrl: 'assets/images/Luxurious.png',
-                  name: 'Luxurius',
-                  price: '150,000',
-                ),
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Text(
+                      'Available Cars',
+                      style: context.titleLgBold,
+                    ),
+                  ),
+                  MasonryGridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: 6,
+                    gridDelegate:
+                        const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                    ),
+                    itemBuilder: (context, index) => SizedBox(
+                      height: index.isEven ? 270 : 250,
+                      child: WakaluxCard(
+                        width: context.width,
+                        child: const WakaluxeDealCard(
+                          tag: 'Daily',
+                          imageUrl: 'assets/images/Luxurious.png',
+                          name: 'Luxurius',
+                          price: '150,000',
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           )
