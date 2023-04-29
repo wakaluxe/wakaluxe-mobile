@@ -28,7 +28,9 @@ class RentACar extends StatelessWidget {
                   
                   20.vGap,
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      context.router.pushNamed('/available-cars');
+                    },
                     child: Container(
                       margin: const EdgeInsets.symmetric(horizontal: 10),
                       padding: const EdgeInsets.symmetric(
