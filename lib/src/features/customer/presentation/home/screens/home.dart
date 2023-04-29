@@ -44,19 +44,24 @@ class Home extends StatelessWidget {
                       Row(
                         children: [
                           //  remove and replace with hamburger icon
-                          Expanded(
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 10,
-                                horizontal: 8,
-                              ),
-                              decoration: BoxDecoration(
-                                color: context.scheme.background,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Icon(
-                                Icons.menu,
-                                color: context.scheme.onBackground,
+                          GestureDetector(
+                            onTap: () {
+                              context.router.pushNamed('/rent-a-car');
+                            },
+                            child: Expanded(
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 10,
+                                  horizontal: 8,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: context.scheme.background,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Icon(
+                                  Icons.menu,
+                                  color: context.scheme.onBackground,
+                                ),
                               ),
                             ),
                           ),
