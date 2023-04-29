@@ -33,6 +33,10 @@ extension WakaluxeBuildContextExtension on BuildContext {
         //fontWeight: FontWeight.w600,
         color: scheme.onBackground,
       );
+  TextStyle get titleMdBold => typography.titleMedium!.copyWith(
+        fontWeight: FontWeight.bold,
+        color: scheme.onBackground,
+      );
   TextStyle get titleSm => typography.titleSmall!.copyWith(
         //fontWeight: FontWeight.w600,
         color: scheme.onBackground,

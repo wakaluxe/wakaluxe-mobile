@@ -3,6 +3,7 @@ export 'widgets/wakaluxe_boxed_icon.dart';
 export 'widgets/wakaluxe_button.dart';
 export 'widgets/wakaluxe_cancel_ride.dart';
 export 'widgets/wakaluxe_car_rental.dart';
+export 'widgets/wakaluxe_deal_card.dart';
 export 'widgets/wakaluxe_dotted_line.dart';
 export 'widgets/wakaluxe_driver.dart';
 export 'widgets/wakaluxe_location_widget.dart';
