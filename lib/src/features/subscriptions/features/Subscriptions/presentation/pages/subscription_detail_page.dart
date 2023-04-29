@@ -11,6 +11,9 @@ import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/widgets/padded_body.dart';
 import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/widgets/subscriptions_amount.dart';
 
+@RoutePage(
+  name: 'SubscriptionDetail',
+)
 class WakaluxeSubscriptionDetail extends StatelessWidget {
   const WakaluxeSubscriptionDetail({
     @PathParam('plan') required this.plan,

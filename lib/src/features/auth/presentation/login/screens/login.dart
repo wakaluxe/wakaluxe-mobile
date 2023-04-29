@@ -10,6 +10,9 @@ import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/auth/presentation/widgets/app_barred_scaffold.dart';
 
+@RoutePage(
+  name: 'Login',
+)
 class WakaluxeLogin extends StatefulWidget {
   const WakaluxeLogin({super.key});
 

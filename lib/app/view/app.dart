@@ -39,10 +39,10 @@ class _WakaluxeState extends State<Wakaluxe> {
                 Brightness.dark,
               ),
               debugShowCheckedModeBanner: false,
-                routerConfig: router.,
+              routerConfig: router.config(),
               supportedLocales: AppLocalizations.supportedLocales,
             );
-          }
+          },
         );
       },
     );

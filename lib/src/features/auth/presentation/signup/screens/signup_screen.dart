@@ -11,6 +11,9 @@ import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/auth/presentation/widgets/app_barred_scaffold.dart';
 
+@RoutePage(
+  name: 'SignUp',
+)
 class WakaluxeSignUp extends StatefulWidget {
   const WakaluxeSignUp({super.key});
 
@@ -24,7 +27,6 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
   late TextEditingController confirmPasswordController;
   @override
   void initState() {
-    // TODO: implement initState
     emailController = TextEditingController();
     passwordController = TextEditingController();
     confirmPasswordController = TextEditingController();

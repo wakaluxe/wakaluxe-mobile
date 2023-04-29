@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/common/widgets/wakalux_input_field.dart';
+import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/auth/presentation/widgets/app_barred_scaffold.dart';
 
-import '../../../../../configs/wakaluxe_constants.dart';
-
+@RoutePage(
+  name: 'PhoneNumber',
+)
 class WakaluxePhoneNumber extends StatefulWidget {
   const WakaluxePhoneNumber({super.key});
 

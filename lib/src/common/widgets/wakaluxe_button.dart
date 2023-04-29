@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wakaluxe/src/configs/configs.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
@@ -7,18 +8,22 @@ class WakaluxeButton extends StatelessWidget {
   const WakaluxeButton({
     required this.text,
     this.action,
-    this.color,
+    this.color = Palette.primary,
     super.key,
     this.width = .9,
     this.icon,
     this.textColor,
+    this.isOutline = false,
+    this.isSelected = false,
   });
   final IconData? icon;
   final String text;
   final VoidCallback? action;
-  final Color? color;
+  final Color color;
   final double width;
   final Color? textColor;
+  final bool isOutline;
+  final bool isSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +33,7 @@ class WakaluxeButton extends StatelessWidget {
         width: context.width * width,
         height: Constants.buttonHeight,
         decoration: BoxDecoration(
-          color: color ?? context.scheme.tertiary,
+          color: color,
           borderRadius: BorderRadius.circular(Constants.borderRadius),
           border: (isOutline || isSelected)
               ? Border.all(
@@ -45,8 +50,9 @@ class WakaluxeButton extends StatelessWidget {
             Text(
               text,
               style: context.bodyLg.copyWith(
+                color:
+                    (textColor == null) ? context.scheme.onPrimary : textColor,
                 fontWeight: FontWeight.bold,
-                color: textColor ?? context.scheme.scrim,
               ),
             ),
             if (icon != null) ...[
@@ -64,7 +70,7 @@ class WakaluxeButtonMedium extends StatelessWidget {
   const WakaluxeButtonMedium({
     required this.text,
     this.action,
-    this.color,
+    this.color = Palette.primary,
     super.key,
     this.width = .35,
     this.icon,
@@ -75,7 +81,7 @@ class WakaluxeButtonMedium extends StatelessWidget {
   final IconData? icon;
   final String text;
   final VoidCallback? action;
-  final Color? color;
+  final Color color;
   final double width;
   final Color? textColor;
   final bool isOutline;
@@ -86,7 +92,7 @@ class WakaluxeButtonMedium extends StatelessWidget {
     return WakaluxeButton(
       text: text,
       action: action,
-      color: color ?? context.scheme.tertiary,
+      color: color,
       width: width,
       icon: icon,
       textColor: textColor,
