@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
+import 'package:wakaluxe/src/extensions/num.dart';
 
 @RoutePage(name: 'AvailableCar')
 class AvailableCars extends StatelessWidget {
@@ -49,6 +50,38 @@ class AvailableCars extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            child: Container(
+              height: context.height * 0.06,
+              width: context.width,
+              decoration: BoxDecoration(
+                color: context.scheme.background,
+                border: Border(
+                  top: BorderSide(
+                    color: context.scheme.onBackground,
+                  ),
+                ),
+              ),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.sort,
+                      color: context.scheme.onBackground,
+                    ),
+                    10.hGap,
+                    Text(
+                      'Any',
+                      style: context.bodyMdBold,
+                    )
+                  ],
+                ),
               ),
             ),
           )
