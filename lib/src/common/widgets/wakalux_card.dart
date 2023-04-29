@@ -16,7 +16,7 @@ class WakaluxCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: width == null ? 10 : 5,
+        horizontal: width == null ? 10 : 2,
         vertical: 10,
       ),
       child: Container(
@@ -26,8 +26,8 @@ class WakaluxCard extends StatelessWidget {
           //add box shadow
           boxShadow: [
             BoxShadow(
-              color: context.scheme.onBackground.withOpacity(0.3),
-              spreadRadius: 2,
+              color: context.scheme.onBackground.withOpacity(0.2),
+              spreadRadius: 1,
               blurRadius: 5,
               offset: const Offset(
                 0,
