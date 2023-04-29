@@ -284,12 +284,13 @@ class Home extends StatelessWidget {
                           context.showSnackBar(
                             'Will still to move to payment screen',
                           );
-                          //for now will just reset
+                        
                           context.read<HomeBloc>().add(
                                 HomeInitialEvent(),
                               );
+                          
                         },
-                        color: context.scheme.error,
+                        color: context.scheme.tertiary,
                         textColor: context.scheme.onTertiary,
                       ),
                     ),
