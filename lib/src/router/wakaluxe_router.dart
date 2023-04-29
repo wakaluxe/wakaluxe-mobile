@@ -35,5 +35,9 @@ class WakaluxeRouter extends $WakaluxeRouter {
       page: Rating.page,
       path: '/rating',
     ),
+    AutoRoute(
+      page: RentACar.page,
+      path: '/rent-a-car',
+    ),
   ];
 }
