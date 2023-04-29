@@ -25,44 +25,48 @@ class RentACar extends StatelessWidget {
                     imageUrl: 'assets/images/Luxurious.png',
                     name: 'AMG',
                   ),
+                  
                   20.vGap,
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 10),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 10,
-                    ),
-                    decoration: BoxDecoration(
-                      color: context.scheme.tertiary,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Available Cars',
-                              style: context.displaySm.copyWith(
-                                fontSize: 23,
-                                fontWeight: FontWeight.bold,
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 10),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 10,
+                      ),
+                      decoration: BoxDecoration(
+                        color: context.scheme.tertiary,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Available Cars',
+                                style: context.displaySm.copyWith(
+                                  fontSize: 23,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                            Icon(
-                              Icons.arrow_forward,
-                              color: context.scheme.onBackground,
-                              size: 20,
-                            )
-                          ],
-                        ),
-                        10.vGap,
-                        Text(
-                          'Long tern, Short term',
-                          style: context.bodyLg,
-                        ),
-                        15.vGap,
-                      ],
+                              Icon(
+                                Icons.arrow_forward,
+                                color: context.scheme.onBackground,
+                                size: 20,
+                              )
+                            ],
+                          ),
+                          10.vGap,
+                          Text(
+                            'Long tern, Short term',
+                            style: context.bodyLg,
+                          ),
+                          15.vGap,
+                        ],
+                      ),
                     ),
                   ),
                   30.vGap,
@@ -130,6 +134,7 @@ class RentACar extends StatelessWidget {
                 ],
               ),
             ),
+           
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
@@ -168,4 +173,3 @@ class RentACar extends StatelessWidget {
     );
   }
 }
-

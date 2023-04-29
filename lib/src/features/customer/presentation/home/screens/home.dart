@@ -48,20 +48,18 @@ class Home extends StatelessWidget {
                             onTap: () {
                               context.router.pushNamed('/rent-a-car');
                             },
-                            child: Expanded(
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 10,
-                                  horizontal: 8,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: context.scheme.background,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Icon(
-                                  Icons.menu,
-                                  color: context.scheme.onBackground,
-                                ),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 10,
+                                horizontal: 8,
+                              ),
+                              decoration: BoxDecoration(
+                                color: context.scheme.background,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Icon(
+                                Icons.menu,
+                                color: context.scheme.onBackground,
                               ),
                             ),
                           ),
@@ -105,10 +103,8 @@ class Home extends StatelessWidget {
                             ),
                           ),
                           8.hGap,
-                          const Expanded(
-                            child: WakaluxeProfileImage(
-                              imageUrl: 'https://placeimg.com/640/480/any',
-                            ),
+                          const WakaluxeProfileImage(
+                            imageUrl: 'https://placeimg.com/640/480/any',
                           ),
                         ],
                       ),
