@@ -2,9 +2,12 @@ import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
+import 'package:wakaluxe/src/features/car-rental/domain/bloc/view_car_cubit.dart';
+import 'package:wakaluxe/src/features/car-rental/domain/bloc/view_car_state.dart';
 
 @RoutePage(name: 'ViewCar')
 class ViewCar extends StatelessWidget {
@@ -12,6 +15,7 @@ class ViewCar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = ViewCarCubit();
     return Scaffold(
       backgroundColor: context.scheme.background,
       body: SafeArea(
@@ -29,17 +33,27 @@ class ViewCar extends StatelessWidget {
                     showGarage: false,
                   ),
                   20.vGap,
-                  SizedBox(
-                    height: context.height * 0.1,
-                    child: ListView.builder(
-                      itemCount: 5,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) => const WakaluxeOptionCard(
-                        duration: '1 Year',
-                        price: '12,000,000',
-                        isSelected: true,
-                      ),
-                    ),
+                  BlocBuilder<ViewCarCubit, ViewCarState>(
+                    bloc: cubit,
+                    builder: (context, state) {
+                      return SizedBox(
+                        height: context.height * 0.1,
+                        child: ListView.builder(
+                          itemCount: 5,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) => GestureDetector(
+                            onTap: () {
+                              cubit.onCardClicked(index);
+                            },
+                            child: WakaluxeOptionCard(
+                              duration: '1 Year',
+                              price: '12,000,000',
+                              isSelected: state.selectedIndex == index,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                   ),
                   20.vGap,
                   Padding(
