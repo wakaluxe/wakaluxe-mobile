@@ -12,6 +12,7 @@ class AvailableCars extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: context.scheme.background,
       appBar: AppBar(),
       body: Stack(
         children: [

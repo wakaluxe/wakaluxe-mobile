@@ -37,7 +37,7 @@ class ViewCar extends StatelessWidget {
                     bloc: cubit,
                     builder: (context, state) {
                       return SizedBox(
-                        height: context.height * 0.1,
+                        height: context.height * 0.11,
                         child: ListView.builder(
                           itemCount: 5,
                           scrollDirection: Axis.horizontal,
