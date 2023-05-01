@@ -116,6 +116,9 @@ class ViewCar extends StatelessWidget {
                     child: WakaluxeButton(
                       text: 'Rent Car',
                       textColor: context.scheme.onTertiary,
+                      action: () {
+                        context.router.pushNamed('/my_garage');
+                      },
                     ),
                   ),
                   20.vGap,
