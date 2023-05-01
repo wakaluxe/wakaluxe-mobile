@@ -17,7 +17,16 @@ class MyGarage extends StatelessWidget {
       appBar: AppBar(),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            5.vGap,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Text(
+                'Hi, welcome to your Garage',
+                style: context.titleLgBold,
+              ),
+            ),
             ...data.map(
               (e) => WakaluxCard(
                 child: InkWell(
