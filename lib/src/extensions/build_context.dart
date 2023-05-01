@@ -70,6 +70,10 @@ extension WakaluxeBuildContextExtension on BuildContext {
         //fontWeight: FontWeight.w600,
         color: scheme.onBackground,
       );
+  TextStyle get bodyLgGray => typography.bodyLarge!.copyWith(
+        //fontWeight: FontWeight.w600,
+        color: scheme.onBackground.withOpacity(0.6),
+      );
   TextStyle get bodyLgBold => bodyLg.copyWith(
         fontWeight: FontWeight.w600,
       );

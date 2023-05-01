@@ -30,7 +30,9 @@ class MyGarage extends StatelessWidget {
             ...data.map(
               (e) => WakaluxCard(
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    context.router.pushNamed('/view_in_garage/testing');
+                  },
                   child: Column(
                     children: [
                       Text(
