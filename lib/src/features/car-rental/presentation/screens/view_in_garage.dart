@@ -107,61 +107,23 @@ class ViewInGarage extends StatelessWidget {
                     ),
                   ),
                   5.vGap,
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    width: context.width,
-                    height: context.height * .2,
-                    decoration: BoxDecoration(
-                      color: context.scheme.onBackground.withOpacity(.1),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    alignment: Alignment.center,
-                    child: const Text('Will place map here when provided'),
-                  ),
-                  30.vGap,
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: WakaluxeButton(
-                      text: 'Rent Car',
-                      textColor: context.scheme.onTertiary,
-                      action: () {
-                        context.router.pushNamed('/my_garage');
-                      },
+                  GestureDetector(
+                    onTap: () {
+                      context.router.pushNamed('/status_report/testname');
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      width: context.width,
+                      height: context.height * .2,
+                      decoration: BoxDecoration(
+                        color: context.scheme.onBackground.withOpacity(.1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      alignment: Alignment.center,
+                      child: const Text('Will place map here when provided'),
                     ),
                   ),
-                  20.vGap,
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Text(
-                      '6 Months',
-                      style: context.bodyMd,
-                    ),
-                  ),
-                  10.vGap,
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      children: [
-                        Text(
-                          '600,000 XAF',
-                          style: context.titleLg,
-                        ),
-                        5.hGap,
-                        Container(
-                          alignment: Alignment.bottomRight,
-                          child: Text(
-                            'Per month',
-                            style: context.bodyMd.copyWith(
-                              color:
-                                  context.scheme.onBackground.withOpacity(0.6),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  10.vGap
-                  // )
+                  5.vGap,
                 ],
               ),
             ),

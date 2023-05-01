@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:wakaluxe/src/common/Utils/wakalux_icons_icons.dart';
 import 'package:wakaluxe/src/common/common.dart';
+import 'package:wakaluxe/src/common/widgets/wakaluxe_text_area.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 
@@ -49,16 +50,9 @@ class Rating extends StatelessWidget {
               ),
               20.vGap,
               // create text area
-              SizedBox(
-                child: TextField(
-                  maxLines: 5,
-                  decoration: InputDecoration(
-                    hintText: 'Type a message here ...',
-                    hintStyle: context.bodyMd,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
+              const SizedBox(
+                child: WakaluxeTextArea(
+                  hintText: 'Enter test here...',
                 ),
               ),
               const Spacer(),

@@ -49,5 +49,10 @@ class WakaluxeRouter extends $WakaluxeRouter {
     ),
     AutoRoute(page: MyGarage.page, path: '/my_garage'),
     AutoRoute(page: ViewInGarage.page, path: '/view_in_garage/:carId'),
+    AutoRoute(page: StatusReport.page, path: '/status_report/:carId'),
+    AutoRoute(
+      page: MaintainanceReport.page,
+      path: '/maintainance_report/:carId',
+    ),
   ];
 }
