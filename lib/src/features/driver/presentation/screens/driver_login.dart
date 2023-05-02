@@ -1,7 +1,11 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
+import 'package:wakaluxe/src/features/driver/domain/cubit/driver_login_cubit.dart';
+import 'package:wakaluxe/src/features/driver/domain/cubit/driver_login_state.dart';
 
 @RoutePage(name: 'DriverLogin')
 class DriverLogin extends StatelessWidget {
@@ -9,88 +13,78 @@ class DriverLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller1 = TextEditingController();
-    final controller2 = TextEditingController();
-    final controller3 = TextEditingController();
+    //create driverloginCubit
+    final cubit = DriverLoginCubit(
+      driverIdNoController: TextEditingController(),
+      emailPhoneController: TextEditingController(),
+      pinController: TextEditingController(),
+    );
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            10.vGap,
-            Text(' Log in to your driver account', style: context.titleLgBold),
-            20.vGap,
-            WakaluxeFormField(
-              hint: 'Email/Phone Number',
-              controller: controller1,
-            ),
-            10.vGap,
-            WakaluxeFormField(
-              hint: 'Driver Id No',
-              controller: controller2,
-              prefixIcon: const Icon(Icons.ac_unit),
-            ),
-            10.vGap,
-            WakaluxeFormField(
-              hint: 'Enter Pin',
-              controller: controller3,
-              prefixIcon: const Icon(Icons.pin),
-              sufixIcon: GestureDetector(
-                onTap: () {},
-                child: const Icon(Icons.visibility),
-              ),
-            ),
-          ],
+        child: BlocBuilder<DriverLoginCubit, DriverLoginState>(
+          bloc: cubit,
+          builder: (context, state) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                10.vGap,
+                Text(
+                  ' Log in to your driver account',
+                  style: context.titleLgBold,
+                ),
+                20.vGap,
+                WakaluxeFormField(
+                  hint: 'Email/Phone Number',
+                  controller: cubit.emailPhoneController,
+                  onChanged: (value) {
+                    cubit.onEmailPhoneChanged(value: value);
+                  },
+                ),
+                10.vGap,
+                WakaluxeFormField(
+                  hint: 'Driver Id No',
+                  controller: cubit.driverIdNoController,
+                  prefixIcon: const Icon(Icons.ac_unit),
+                  onChanged: (value) {
+                    cubit.onDriverIdNoChanged(value: value);
+                  },
+                ),
+                10.vGap,
+                WakaluxeFormField(
+                  hint: 'Enter Pin',
+                  controller: cubit.pinController,
+                  prefixIcon: const Icon(Icons.pin),
+                  onChanged: (value) {
+                    cubit.onPinChanged(value: value);
+                  },
+                  keyboardType: TextInputType.number,
+                  isPassword: true,
+                  isObscured: state.isVisible,
+                  sufixIcon: GestureDetector(
+                    onTap: () {
+                      cubit.onVisibilityChanged(value: !state.isVisible);
+                    },
+                    child: Icon(
+                      state.isVisible ? Icons.visibility : Icons.visibility_off,
+                    ),
+                  ),
+                ),
+                const Spacer(),
+                WakaluxeButton(
+                  text: 'Login',
+                  color: context.scheme.tertiary,
+                  textColor: context.scheme.onTertiary,
+                ),
+                40.vGap
+              ],
+            );
+          },
         ),
       ),
     );
   }
 }
 
-class WakaluxeFormField extends StatelessWidget {
-  const WakaluxeFormField({
-    required this.hint,
-    super.key,
-    this.controller,
-    this.prefixIcon,
-    this.sufixIcon,
-    this.isObscured = false,
-  });
-  final TextEditingController? controller;
-  final String hint;
-  final Widget? prefixIcon;
-  final Widget? sufixIcon;
-  final bool isObscured;
 
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      obscureText: isObscured,
-      decoration: InputDecoration(
-        prefixIcon: prefixIcon,
-        suffixIcon: sufixIcon,
-        hintText: hint,
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 10,
-          vertical: 20,
-        ),
-        focusColor: context.scheme.onBackground,
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(
-            color: context.scheme.onBackground.withOpacity(0.4),
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(
-            color: context.scheme.onBackground.withOpacity(0.6),
-          ),
-        ),
-      ),
-    );
-  }
-}

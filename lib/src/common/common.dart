@@ -6,6 +6,7 @@ export 'widgets/wakaluxe_car_rental.dart';
 export 'widgets/wakaluxe_deal_card.dart';
 export 'widgets/wakaluxe_dotted_line.dart';
 export 'widgets/wakaluxe_driver.dart';
+export 'widgets/wakaluxe_form_field.dart';
 export 'widgets/wakaluxe_location_widget.dart';
 export 'widgets/wakaluxe_ontrip.dart';
 export 'widgets/wakaluxe_options_card.dart';
