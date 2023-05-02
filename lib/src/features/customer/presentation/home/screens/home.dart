@@ -103,7 +103,10 @@ class Home extends StatelessWidget {
                             ),
                           ),
                           8.hGap,
-                          const WakaluxeProfileImage(
+                          WakaluxeProfileImage(
+                            onTap: () {
+                              context.router.pushNamed('/driver_login');
+                            },
                             imageUrl: 'https://placeimg.com/640/480/any',
                           ),
                         ],

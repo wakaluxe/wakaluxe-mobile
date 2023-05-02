@@ -8,8 +8,8 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i21;
-import 'package:flutter/material.dart' as _i22;
+import 'package:auto_route/auto_route.dart' as _i22;
+import 'package:flutter/material.dart' as _i23;
 import 'package:wakaluxe/src/features/auth/presentation/login/screens/login.dart'
     as _i4;
 import 'package:wakaluxe/src/features/auth/presentation/phone_number/screen/phone_number_screen.dart'
@@ -40,6 +40,8 @@ import 'package:wakaluxe/src/features/customer/presentation/payment_details/scre
     as _i16;
 import 'package:wakaluxe/src/features/customer/presentation/rating/screens/rating.dart'
     as _i15;
+import 'package:wakaluxe/src/features/driver/presentation/screens/driver_login.dart'
+    as _i21;
 import 'package:wakaluxe/src/features/onboarding/language/choose_language.dart'
     as _i12;
 import 'package:wakaluxe/src/features/onboarding/thememode/choose_theme.dart'
@@ -50,31 +52,31 @@ import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/prese
 import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/pages/subscriptions_page.dart'
     as _i6;
 
-abstract class $WakaluxeRouter extends _i21.RootStackRouter {
+abstract class $WakaluxeRouter extends _i22.RootStackRouter {
   $WakaluxeRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i21.PageFactory> pagesMap = {
+  final Map<String, _i22.PageFactory> pagesMap = {
     SignUp.name: (routeData) {
-      return _i21.AutoRoutePage<dynamic>(
+      return _i22.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i1.WakaluxeSignUp(),
       );
     },
     Verification.name: (routeData) {
-      return _i21.AutoRoutePage<dynamic>(
+      return _i22.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i2.WakaluxeVerification(),
       );
     },
     PhoneNumber.name: (routeData) {
-      return _i21.AutoRoutePage<dynamic>(
+      return _i22.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i3.WakaluxePhoneNumber(),
       );
     },
     Login.name: (routeData) {
-      return _i21.AutoRoutePage<dynamic>(
+      return _i22.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i4.WakaluxeLogin(),
       );
@@ -84,7 +86,7 @@ abstract class $WakaluxeRouter extends _i21.RootStackRouter {
       final args = routeData.argsAs<SubscriptionDetailArgs>(
           orElse: () =>
               SubscriptionDetailArgs(plan: pathParams.getString('plan')));
-      return _i21.AutoRoutePage<dynamic>(
+      return _i22.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i5.WakaluxeSubscriptionDetail(
           plan: args.plan,
@@ -93,25 +95,25 @@ abstract class $WakaluxeRouter extends _i21.RootStackRouter {
       );
     },
     Subscriptions.name: (routeData) {
-      return _i21.AutoRoutePage<dynamic>(
+      return _i22.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i6.WakaluxeSubscriptions(),
       );
     },
     RentACar.name: (routeData) {
-      return _i21.AutoRoutePage<dynamic>(
+      return _i22.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i7.RentACar(),
       );
     },
     AvailableCar.name: (routeData) {
-      return _i21.AutoRoutePage<dynamic>(
+      return _i22.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i8.AvailableCars(),
       );
     },
     ViewCar.name: (routeData) {
-      return _i21.AutoRoutePage<dynamic>(
+      return _i22.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i9.ViewCar(),
       );
@@ -120,7 +122,7 @@ abstract class $WakaluxeRouter extends _i21.RootStackRouter {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<ViewInGarageArgs>(
           orElse: () => ViewInGarageArgs(car: pathParams.getString('carId')));
-      return _i21.AutoRoutePage<dynamic>(
+      return _i22.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i10.ViewInGarage(
           car: args.car,
@@ -129,43 +131,43 @@ abstract class $WakaluxeRouter extends _i21.RootStackRouter {
       );
     },
     ChooseTheme.name: (routeData) {
-      return _i21.AutoRoutePage<dynamic>(
+      return _i22.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i11.ChooseTheme(),
       );
     },
     ChooseLanguage.name: (routeData) {
-      return _i21.AutoRoutePage<dynamic>(
+      return _i22.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i12.ChooseLanguage(),
       );
     },
     Welcome.name: (routeData) {
-      return _i21.AutoRoutePage<dynamic>(
+      return _i22.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i13.Welcome(),
       );
     },
     Home.name: (routeData) {
-      return _i21.AutoRoutePage<dynamic>(
+      return _i22.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i14.Home(),
       );
     },
     Rating.name: (routeData) {
-      return _i21.AutoRoutePage<dynamic>(
+      return _i22.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i15.Rating(),
       );
     },
     PaymentDetails.name: (routeData) {
-      return _i21.AutoRoutePage<dynamic>(
+      return _i22.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i16.PaymentDetails(),
       );
     },
     MyGarage.name: (routeData) {
-      return _i21.AutoRoutePage<dynamic>(
+      return _i22.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i17.MyGarage(),
       );
@@ -174,7 +176,7 @@ abstract class $WakaluxeRouter extends _i21.RootStackRouter {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<StatusReportArgs>(
           orElse: () => StatusReportArgs(carId: pathParams.getString('carId')));
-      return _i21.AutoRoutePage<dynamic>(
+      return _i22.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i18.StatusReport(
           carId: args.carId,
@@ -187,7 +189,7 @@ abstract class $WakaluxeRouter extends _i21.RootStackRouter {
       final args = routeData.argsAs<MaintainanceReportArgs>(
           orElse: () =>
               MaintainanceReportArgs(carId: pathParams.getString('carId')));
-      return _i21.AutoRoutePage<dynamic>(
+      return _i22.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i19.MaintainanceReport(
           carId: args.carId,
@@ -200,7 +202,7 @@ abstract class $WakaluxeRouter extends _i21.RootStackRouter {
       final args = routeData.argsAs<DailyObjectivesArgs>(
           orElse: () =>
               DailyObjectivesArgs(carId: pathParams.getString('carId')));
-      return _i21.AutoRoutePage<dynamic>(
+      return _i22.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i20.DailyObjectives(
           carId: args.carId,
@@ -208,13 +210,19 @@ abstract class $WakaluxeRouter extends _i21.RootStackRouter {
         ),
       );
     },
+    DriverLogin.name: (routeData) {
+      return _i22.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i21.DriverLogin(),
+      );
+    },
   };
 }
 
 /// generated route for
 /// [_i1.WakaluxeSignUp]
-class SignUp extends _i21.PageRouteInfo<void> {
-  const SignUp({List<_i21.PageRouteInfo>? children})
+class SignUp extends _i22.PageRouteInfo<void> {
+  const SignUp({List<_i22.PageRouteInfo>? children})
       : super(
           SignUp.name,
           initialChildren: children,
@@ -222,13 +230,13 @@ class SignUp extends _i21.PageRouteInfo<void> {
 
   static const String name = 'SignUp';
 
-  static const _i21.PageInfo<void> page = _i21.PageInfo<void>(name);
+  static const _i22.PageInfo<void> page = _i22.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i2.WakaluxeVerification]
-class Verification extends _i21.PageRouteInfo<void> {
-  const Verification({List<_i21.PageRouteInfo>? children})
+class Verification extends _i22.PageRouteInfo<void> {
+  const Verification({List<_i22.PageRouteInfo>? children})
       : super(
           Verification.name,
           initialChildren: children,
@@ -236,13 +244,13 @@ class Verification extends _i21.PageRouteInfo<void> {
 
   static const String name = 'Verification';
 
-  static const _i21.PageInfo<void> page = _i21.PageInfo<void>(name);
+  static const _i22.PageInfo<void> page = _i22.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i3.WakaluxePhoneNumber]
-class PhoneNumber extends _i21.PageRouteInfo<void> {
-  const PhoneNumber({List<_i21.PageRouteInfo>? children})
+class PhoneNumber extends _i22.PageRouteInfo<void> {
+  const PhoneNumber({List<_i22.PageRouteInfo>? children})
       : super(
           PhoneNumber.name,
           initialChildren: children,
@@ -250,13 +258,13 @@ class PhoneNumber extends _i21.PageRouteInfo<void> {
 
   static const String name = 'PhoneNumber';
 
-  static const _i21.PageInfo<void> page = _i21.PageInfo<void>(name);
+  static const _i22.PageInfo<void> page = _i22.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i4.WakaluxeLogin]
-class Login extends _i21.PageRouteInfo<void> {
-  const Login({List<_i21.PageRouteInfo>? children})
+class Login extends _i22.PageRouteInfo<void> {
+  const Login({List<_i22.PageRouteInfo>? children})
       : super(
           Login.name,
           initialChildren: children,
@@ -264,16 +272,16 @@ class Login extends _i21.PageRouteInfo<void> {
 
   static const String name = 'Login';
 
-  static const _i21.PageInfo<void> page = _i21.PageInfo<void>(name);
+  static const _i22.PageInfo<void> page = _i22.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i5.WakaluxeSubscriptionDetail]
-class SubscriptionDetail extends _i21.PageRouteInfo<SubscriptionDetailArgs> {
+class SubscriptionDetail extends _i22.PageRouteInfo<SubscriptionDetailArgs> {
   SubscriptionDetail({
     required String plan,
-    _i22.Key? key,
-    List<_i21.PageRouteInfo>? children,
+    _i23.Key? key,
+    List<_i22.PageRouteInfo>? children,
   }) : super(
           SubscriptionDetail.name,
           args: SubscriptionDetailArgs(
@@ -286,8 +294,8 @@ class SubscriptionDetail extends _i21.PageRouteInfo<SubscriptionDetailArgs> {
 
   static const String name = 'SubscriptionDetail';
 
-  static const _i21.PageInfo<SubscriptionDetailArgs> page =
-      _i21.PageInfo<SubscriptionDetailArgs>(name);
+  static const _i22.PageInfo<SubscriptionDetailArgs> page =
+      _i22.PageInfo<SubscriptionDetailArgs>(name);
 }
 
 class SubscriptionDetailArgs {
@@ -298,7 +306,7 @@ class SubscriptionDetailArgs {
 
   final String plan;
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
   @override
   String toString() {
@@ -308,8 +316,8 @@ class SubscriptionDetailArgs {
 
 /// generated route for
 /// [_i6.WakaluxeSubscriptions]
-class Subscriptions extends _i21.PageRouteInfo<void> {
-  const Subscriptions({List<_i21.PageRouteInfo>? children})
+class Subscriptions extends _i22.PageRouteInfo<void> {
+  const Subscriptions({List<_i22.PageRouteInfo>? children})
       : super(
           Subscriptions.name,
           initialChildren: children,
@@ -317,13 +325,13 @@ class Subscriptions extends _i21.PageRouteInfo<void> {
 
   static const String name = 'Subscriptions';
 
-  static const _i21.PageInfo<void> page = _i21.PageInfo<void>(name);
+  static const _i22.PageInfo<void> page = _i22.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i7.RentACar]
-class RentACar extends _i21.PageRouteInfo<void> {
-  const RentACar({List<_i21.PageRouteInfo>? children})
+class RentACar extends _i22.PageRouteInfo<void> {
+  const RentACar({List<_i22.PageRouteInfo>? children})
       : super(
           RentACar.name,
           initialChildren: children,
@@ -331,13 +339,13 @@ class RentACar extends _i21.PageRouteInfo<void> {
 
   static const String name = 'RentACar';
 
-  static const _i21.PageInfo<void> page = _i21.PageInfo<void>(name);
+  static const _i22.PageInfo<void> page = _i22.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i8.AvailableCars]
-class AvailableCar extends _i21.PageRouteInfo<void> {
-  const AvailableCar({List<_i21.PageRouteInfo>? children})
+class AvailableCar extends _i22.PageRouteInfo<void> {
+  const AvailableCar({List<_i22.PageRouteInfo>? children})
       : super(
           AvailableCar.name,
           initialChildren: children,
@@ -345,13 +353,13 @@ class AvailableCar extends _i21.PageRouteInfo<void> {
 
   static const String name = 'AvailableCar';
 
-  static const _i21.PageInfo<void> page = _i21.PageInfo<void>(name);
+  static const _i22.PageInfo<void> page = _i22.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i9.ViewCar]
-class ViewCar extends _i21.PageRouteInfo<void> {
-  const ViewCar({List<_i21.PageRouteInfo>? children})
+class ViewCar extends _i22.PageRouteInfo<void> {
+  const ViewCar({List<_i22.PageRouteInfo>? children})
       : super(
           ViewCar.name,
           initialChildren: children,
@@ -359,16 +367,16 @@ class ViewCar extends _i21.PageRouteInfo<void> {
 
   static const String name = 'ViewCar';
 
-  static const _i21.PageInfo<void> page = _i21.PageInfo<void>(name);
+  static const _i22.PageInfo<void> page = _i22.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i10.ViewInGarage]
-class ViewInGarage extends _i21.PageRouteInfo<ViewInGarageArgs> {
+class ViewInGarage extends _i22.PageRouteInfo<ViewInGarageArgs> {
   ViewInGarage({
     required String car,
-    _i22.Key? key,
-    List<_i21.PageRouteInfo>? children,
+    _i23.Key? key,
+    List<_i22.PageRouteInfo>? children,
   }) : super(
           ViewInGarage.name,
           args: ViewInGarageArgs(
@@ -381,8 +389,8 @@ class ViewInGarage extends _i21.PageRouteInfo<ViewInGarageArgs> {
 
   static const String name = 'ViewInGarage';
 
-  static const _i21.PageInfo<ViewInGarageArgs> page =
-      _i21.PageInfo<ViewInGarageArgs>(name);
+  static const _i22.PageInfo<ViewInGarageArgs> page =
+      _i22.PageInfo<ViewInGarageArgs>(name);
 }
 
 class ViewInGarageArgs {
@@ -393,7 +401,7 @@ class ViewInGarageArgs {
 
   final String car;
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
   @override
   String toString() {
@@ -403,8 +411,8 @@ class ViewInGarageArgs {
 
 /// generated route for
 /// [_i11.ChooseTheme]
-class ChooseTheme extends _i21.PageRouteInfo<void> {
-  const ChooseTheme({List<_i21.PageRouteInfo>? children})
+class ChooseTheme extends _i22.PageRouteInfo<void> {
+  const ChooseTheme({List<_i22.PageRouteInfo>? children})
       : super(
           ChooseTheme.name,
           initialChildren: children,
@@ -412,13 +420,13 @@ class ChooseTheme extends _i21.PageRouteInfo<void> {
 
   static const String name = 'ChooseTheme';
 
-  static const _i21.PageInfo<void> page = _i21.PageInfo<void>(name);
+  static const _i22.PageInfo<void> page = _i22.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i12.ChooseLanguage]
-class ChooseLanguage extends _i21.PageRouteInfo<void> {
-  const ChooseLanguage({List<_i21.PageRouteInfo>? children})
+class ChooseLanguage extends _i22.PageRouteInfo<void> {
+  const ChooseLanguage({List<_i22.PageRouteInfo>? children})
       : super(
           ChooseLanguage.name,
           initialChildren: children,
@@ -426,13 +434,13 @@ class ChooseLanguage extends _i21.PageRouteInfo<void> {
 
   static const String name = 'ChooseLanguage';
 
-  static const _i21.PageInfo<void> page = _i21.PageInfo<void>(name);
+  static const _i22.PageInfo<void> page = _i22.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i13.Welcome]
-class Welcome extends _i21.PageRouteInfo<void> {
-  const Welcome({List<_i21.PageRouteInfo>? children})
+class Welcome extends _i22.PageRouteInfo<void> {
+  const Welcome({List<_i22.PageRouteInfo>? children})
       : super(
           Welcome.name,
           initialChildren: children,
@@ -440,13 +448,13 @@ class Welcome extends _i21.PageRouteInfo<void> {
 
   static const String name = 'Welcome';
 
-  static const _i21.PageInfo<void> page = _i21.PageInfo<void>(name);
+  static const _i22.PageInfo<void> page = _i22.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i14.Home]
-class Home extends _i21.PageRouteInfo<void> {
-  const Home({List<_i21.PageRouteInfo>? children})
+class Home extends _i22.PageRouteInfo<void> {
+  const Home({List<_i22.PageRouteInfo>? children})
       : super(
           Home.name,
           initialChildren: children,
@@ -454,13 +462,13 @@ class Home extends _i21.PageRouteInfo<void> {
 
   static const String name = 'Home';
 
-  static const _i21.PageInfo<void> page = _i21.PageInfo<void>(name);
+  static const _i22.PageInfo<void> page = _i22.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i15.Rating]
-class Rating extends _i21.PageRouteInfo<void> {
-  const Rating({List<_i21.PageRouteInfo>? children})
+class Rating extends _i22.PageRouteInfo<void> {
+  const Rating({List<_i22.PageRouteInfo>? children})
       : super(
           Rating.name,
           initialChildren: children,
@@ -468,13 +476,13 @@ class Rating extends _i21.PageRouteInfo<void> {
 
   static const String name = 'Rating';
 
-  static const _i21.PageInfo<void> page = _i21.PageInfo<void>(name);
+  static const _i22.PageInfo<void> page = _i22.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i16.PaymentDetails]
-class PaymentDetails extends _i21.PageRouteInfo<void> {
-  const PaymentDetails({List<_i21.PageRouteInfo>? children})
+class PaymentDetails extends _i22.PageRouteInfo<void> {
+  const PaymentDetails({List<_i22.PageRouteInfo>? children})
       : super(
           PaymentDetails.name,
           initialChildren: children,
@@ -482,13 +490,13 @@ class PaymentDetails extends _i21.PageRouteInfo<void> {
 
   static const String name = 'PaymentDetails';
 
-  static const _i21.PageInfo<void> page = _i21.PageInfo<void>(name);
+  static const _i22.PageInfo<void> page = _i22.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i17.MyGarage]
-class MyGarage extends _i21.PageRouteInfo<void> {
-  const MyGarage({List<_i21.PageRouteInfo>? children})
+class MyGarage extends _i22.PageRouteInfo<void> {
+  const MyGarage({List<_i22.PageRouteInfo>? children})
       : super(
           MyGarage.name,
           initialChildren: children,
@@ -496,16 +504,16 @@ class MyGarage extends _i21.PageRouteInfo<void> {
 
   static const String name = 'MyGarage';
 
-  static const _i21.PageInfo<void> page = _i21.PageInfo<void>(name);
+  static const _i22.PageInfo<void> page = _i22.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i18.StatusReport]
-class StatusReport extends _i21.PageRouteInfo<StatusReportArgs> {
+class StatusReport extends _i22.PageRouteInfo<StatusReportArgs> {
   StatusReport({
     required String carId,
-    _i22.Key? key,
-    List<_i21.PageRouteInfo>? children,
+    _i23.Key? key,
+    List<_i22.PageRouteInfo>? children,
   }) : super(
           StatusReport.name,
           args: StatusReportArgs(
@@ -518,8 +526,8 @@ class StatusReport extends _i21.PageRouteInfo<StatusReportArgs> {
 
   static const String name = 'StatusReport';
 
-  static const _i21.PageInfo<StatusReportArgs> page =
-      _i21.PageInfo<StatusReportArgs>(name);
+  static const _i22.PageInfo<StatusReportArgs> page =
+      _i22.PageInfo<StatusReportArgs>(name);
 }
 
 class StatusReportArgs {
@@ -530,7 +538,7 @@ class StatusReportArgs {
 
   final String carId;
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
   @override
   String toString() {
@@ -540,11 +548,11 @@ class StatusReportArgs {
 
 /// generated route for
 /// [_i19.MaintainanceReport]
-class MaintainanceReport extends _i21.PageRouteInfo<MaintainanceReportArgs> {
+class MaintainanceReport extends _i22.PageRouteInfo<MaintainanceReportArgs> {
   MaintainanceReport({
     required String carId,
-    _i22.Key? key,
-    List<_i21.PageRouteInfo>? children,
+    _i23.Key? key,
+    List<_i22.PageRouteInfo>? children,
   }) : super(
           MaintainanceReport.name,
           args: MaintainanceReportArgs(
@@ -557,8 +565,8 @@ class MaintainanceReport extends _i21.PageRouteInfo<MaintainanceReportArgs> {
 
   static const String name = 'MaintainanceReport';
 
-  static const _i21.PageInfo<MaintainanceReportArgs> page =
-      _i21.PageInfo<MaintainanceReportArgs>(name);
+  static const _i22.PageInfo<MaintainanceReportArgs> page =
+      _i22.PageInfo<MaintainanceReportArgs>(name);
 }
 
 class MaintainanceReportArgs {
@@ -569,7 +577,7 @@ class MaintainanceReportArgs {
 
   final String carId;
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
   @override
   String toString() {
@@ -579,11 +587,11 @@ class MaintainanceReportArgs {
 
 /// generated route for
 /// [_i20.DailyObjectives]
-class DailyObjectives extends _i21.PageRouteInfo<DailyObjectivesArgs> {
+class DailyObjectives extends _i22.PageRouteInfo<DailyObjectivesArgs> {
   DailyObjectives({
     required String carId,
-    _i22.Key? key,
-    List<_i21.PageRouteInfo>? children,
+    _i23.Key? key,
+    List<_i22.PageRouteInfo>? children,
   }) : super(
           DailyObjectives.name,
           args: DailyObjectivesArgs(
@@ -596,8 +604,8 @@ class DailyObjectives extends _i21.PageRouteInfo<DailyObjectivesArgs> {
 
   static const String name = 'DailyObjectives';
 
-  static const _i21.PageInfo<DailyObjectivesArgs> page =
-      _i21.PageInfo<DailyObjectivesArgs>(name);
+  static const _i22.PageInfo<DailyObjectivesArgs> page =
+      _i22.PageInfo<DailyObjectivesArgs>(name);
 }
 
 class DailyObjectivesArgs {
@@ -608,10 +616,24 @@ class DailyObjectivesArgs {
 
   final String carId;
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
   @override
   String toString() {
     return 'DailyObjectivesArgs{carId: $carId, key: $key}';
   }
+}
+
+/// generated route for
+/// [_i21.DriverLogin]
+class DriverLogin extends _i22.PageRouteInfo<void> {
+  const DriverLogin({List<_i22.PageRouteInfo>? children})
+      : super(
+          DriverLogin.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'DriverLogin';
+
+  static const _i22.PageInfo<void> page = _i22.PageInfo<void>(name);
 }
