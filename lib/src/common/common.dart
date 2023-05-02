@@ -12,5 +12,6 @@ export 'widgets/wakaluxe_ontrip.dart';
 export 'widgets/wakaluxe_options_card.dart';
 export 'widgets/wakaluxe_profile_image_widget.dart';
 export 'widgets/wakaluxe_property_card.dart';
+export 'widgets/wakaluxe_rounded_button.dart';
 export 'widgets/wakaluxe_tile.dart';
 export 'widgets/wakaluxe_trip_details.dart';

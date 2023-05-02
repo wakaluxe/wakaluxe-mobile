@@ -55,6 +55,7 @@ class WakaluxeRouter extends $WakaluxeRouter {
       path: '/maintainance_report/:carId',
     ),
     AutoRoute(page: DailyObjectives.page, path: '/daily_objectices/:carId'),
-    AutoRoute(page: DriverLogin.page, path: '/driver_login')
+    AutoRoute(page: DriverLogin.page, path: '/driver_login'),
+    AutoRoute(page: DriverHome.page, path: '/driver_home')
   ];
 }

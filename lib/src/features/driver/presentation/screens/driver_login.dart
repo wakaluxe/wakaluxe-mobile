@@ -1,4 +1,4 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wakaluxe/src/common/common.dart';
@@ -76,6 +76,9 @@ class DriverLogin extends StatelessWidget {
                   text: 'Login',
                   color: context.scheme.tertiary,
                   textColor: context.scheme.onTertiary,
+                  action: () {
+                    context.router.pushNamed('/driver_home');
+                  },
                 ),
                 40.vGap
               ],
@@ -86,5 +89,3 @@ class DriverLogin extends StatelessWidget {
     );
   }
 }
-
-
