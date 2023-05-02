@@ -4,8 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
-import 'package:wakaluxe/src/features/driver/domain/cubit/driver_home/cubit/driver_home_cubit.dart';
-import 'package:wakaluxe/src/features/driver/domain/cubit/driver_home/cubit/driver_home_state.dart';
+import 'package:wakaluxe/src/features/driver/domain/cubit/driver_home/driver_home_cubit.dart';
+import 'package:wakaluxe/src/features/driver/domain/cubit/driver_home/driver_home_state.dart';
+import 'package:wakaluxe/src/features/driver/presentation/screens/sheets/driver_home_sheets.dart';
 
 @RoutePage(name: 'DriverHome')
 class DriverHome extends StatelessWidget {
@@ -227,6 +228,25 @@ class DriverHome extends StatelessWidget {
                               text: 'Start',
                               color: context.scheme.tertiary,
                               textColor: context.scheme.onTertiary,
+                              action: () {
+                                cubit.changeAcceptRide();
+                                WakaluxeDriverButtomSheets.showPickUpPointSheet(
+                                  context,
+                                );
+                                Future.delayed(const Duration(seconds: 3), () {
+                                  Navigator.of(context).pop();
+                                  WakaluxeDriverButtomSheets
+                                      .showDriverDetailsSheet(
+                                    context,
+                                  ).then((value) {
+                                    WakaluxeDriverButtomSheets
+                                            .showTerminatedSheet(context)
+                                        .then((value) {
+                                      cubit.toogltInitial();
+                                    });
+                                  });
+                                });
+                              },
                             )
                           ],
                         ),

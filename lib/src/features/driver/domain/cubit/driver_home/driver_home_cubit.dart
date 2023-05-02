@@ -1,8 +1,12 @@
 import 'package:bloc/bloc.dart';
-import 'package:wakaluxe/src/features/driver/domain/cubit/driver_home/cubit/driver_home_state.dart';
+import 'package:wakaluxe/src/features/driver/domain/cubit/driver_home/driver_home_state.dart';
 
 class DriverHomeCubit extends Cubit<DriverHomeState> {
   DriverHomeCubit() : super(const DriverHomeInitial());
+
+  void toogltInitial() {
+    emit(const DriverHomeInitial());
+  }
 
   void toogleIsOnLine() {
     emit(
@@ -38,12 +42,21 @@ class DriverHomeCubit extends Cubit<DriverHomeState> {
     );
   }
 
-  void toogleStartRide() {
+  void changeAcceptRide() {
+    emit(
+      state.copyWith(
+        acceptRide: !state.acceptRide,
+      ),
+    );
+  }
+
+  Future<void> toogleStartRide() async {
     emit(
       state.copyWith(
         startRide: !state.startRide,
       ),
     );
+    await Future.delayed(const Duration(seconds: 2));
     emit(
       state.copyWith(
         completedTrip: !state.completedTrip,
