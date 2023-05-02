@@ -219,9 +219,11 @@ abstract class $WakaluxeRouter extends _i23.RootStackRouter {
       );
     },
     DriverHome.name: (routeData) {
+      final args = routeData.argsAs<DriverHomeArgs>(
+          orElse: () => const DriverHomeArgs());
       return _i23.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i22.DriverHome(),
+        child: _i22.DriverHome(key: args.key),
       );
     },
   };
@@ -648,14 +650,29 @@ class DriverLogin extends _i23.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i22.DriverHome]
-class DriverHome extends _i23.PageRouteInfo<void> {
-  const DriverHome({List<_i23.PageRouteInfo>? children})
-      : super(
+class DriverHome extends _i23.PageRouteInfo<DriverHomeArgs> {
+  DriverHome({
+    _i24.Key? key,
+    List<_i23.PageRouteInfo>? children,
+  }) : super(
           DriverHome.name,
+          args: DriverHomeArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'DriverHome';
 
-  static const _i23.PageInfo<void> page = _i23.PageInfo<void>(name);
+  static const _i23.PageInfo<DriverHomeArgs> page =
+      _i23.PageInfo<DriverHomeArgs>(name);
+}
+
+class DriverHomeArgs {
+  const DriverHomeArgs({this.key});
+
+  final _i24.Key? key;
+
+  @override
+  String toString() {
+    return 'DriverHomeArgs{key: $key}';
+  }
 }

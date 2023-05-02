@@ -14,7 +14,7 @@ class WakaluxeDriver extends StatelessWidget {
 
   final String driverImage;
   final String driverName;
-  final num rating;
+  final num? rating;
 
   @override
   Widget build(BuildContext context) {

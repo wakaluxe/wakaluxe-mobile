@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-
-import 'package:wakaluxe/src/features/driver/domain/cubit/driver_login_state.dart';
+import 'package:wakaluxe/src/features/driver/domain/cubit/driver_login/driver_login_state.dart';
 
 class DriverLoginCubit extends Cubit<DriverLoginState> {
   DriverLoginCubit({
@@ -45,5 +44,4 @@ class DriverLoginCubit extends Cubit<DriverLoginState> {
       ),
     );
   }
-  
 }

@@ -10,6 +10,7 @@ export 'widgets/wakaluxe_form_field.dart';
 export 'widgets/wakaluxe_location_widget.dart';
 export 'widgets/wakaluxe_ontrip.dart';
 export 'widgets/wakaluxe_options_card.dart';
+export 'widgets/wakaluxe_person.dart';
 export 'widgets/wakaluxe_profile_image_widget.dart';
 export 'widgets/wakaluxe_property_card.dart';
 export 'widgets/wakaluxe_rounded_button.dart';
