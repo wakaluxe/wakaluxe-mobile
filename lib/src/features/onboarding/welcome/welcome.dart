@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hicons/flutter_hicons.dart';
 import 'package:wakaluxe/src/common/common.dart';
+import 'package:wakaluxe/src/common/widgets/menu_drawer.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 
@@ -16,6 +17,8 @@ class Welcome extends StatelessWidget {
     return BlocBuilder<ThemeCubit, bool>(
       builder: (BuildContext context, bool state) {
         return Scaffold(
+          drawer: const MenuDrawer(),
+
           //backgroundColor: context.scheme.background,
           appBar: AppBar(
             title: const Text('Wakaluxe Widgets'),
@@ -69,8 +72,11 @@ class IconButtons extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const WakaluxeBoxedIcon(
-              icon: Hicons.information_square,
+            GestureDetector(
+              onTap: () {},
+              child: const WakaluxeBoxedIcon(
+                icon: Hicons.menu_bold,
+              ),
             ),
             WakaluxeBoxedIcon(
               icon: Hicons.gift_2,
