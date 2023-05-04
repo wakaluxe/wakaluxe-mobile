@@ -44,5 +44,11 @@ flutter:
 
   assets:
     - assets/
+    - assets/intro/
+    - assets/images/
+    - assets/icons/
+    - assets/icons/auth/
+    - assets/illustrations/
+    - assets/icons/hicon/linear/
 
 
