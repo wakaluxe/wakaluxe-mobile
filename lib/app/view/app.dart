@@ -27,7 +27,7 @@ class _WakaluxeState extends State<Wakaluxe> {
     return BlocBuilder<ThemeCubit, bool>(
       builder: (BuildContext context, bool state) {
         return ScreenUtilInit(
-                designSize: const Size(360, 690),
+                designSize: const Size(414, 850),
 
           minTextAdapt: true,
           splitScreenMode: true,
