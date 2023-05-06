@@ -25,7 +25,7 @@ class ViewInGarage extends StatelessWidget {
                   WakaluxeCarRental(
                     name: 'AMG 15',
                     brand: 'Mercedes Benz',
-                    imageUrl: 'assets/images/Luxurious.png',
+                    imageUrl: 'assets/images/luxurious.png',
                     garageClick: () {},
                     showGarage: false,
                   ),

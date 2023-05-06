@@ -22,10 +22,9 @@ class RentACar extends StatelessWidget {
                   WakaluxeCarRental(
                     brand: 'MERCEDES',
                     garageClick: () {},
-                    imageUrl: 'assets/images/Luxurious.png',
+                    imageUrl: 'assets/images/luxurious.png',
                     name: 'AMG',
                   ),
-                  
                   20.vGap,
                   InkWell(
                     onTap: () {
@@ -93,7 +92,7 @@ class RentACar extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image.asset('assets/images/Luxurious.png'),
+                            Image.asset('assets/images/luxurious.png'),
                             5.vGap,
                             Text(
                               'Premium',
@@ -136,7 +135,6 @@ class RentACar extends StatelessWidget {
                 ],
               ),
             ),
-           
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
