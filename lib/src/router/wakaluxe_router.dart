@@ -3,14 +3,14 @@ import 'package:wakaluxe/src/features/Communication/presentation/pages/message.d
 import 'package:wakaluxe/src/features/Communication/presentation/pages/messages.dart';
 import 'package:wakaluxe/src/features/Profile/presentation/pages/create-new-password.dart';
 import 'package:wakaluxe/src/features/Profile/presentation/pages/forgot_password.dart';
+import 'package:wakaluxe/src/features/Profile/presentation/pages/language.dart';
 import 'package:wakaluxe/src/features/Profile/presentation/pages/my_profile.dart';
 import 'package:wakaluxe/src/features/Profile/presentation/pages/my_trip.dart';
 import 'package:wakaluxe/src/features/Profile/presentation/pages/notification.dart';
-import 'package:wakaluxe/src/features/Profile/presentation/pages/verify_password.dart';
-import 'package:wakaluxe/src/features/onboarding/onboarding.dart';
-
 import 'package:wakaluxe/src/features/Profile/presentation/pages/security.dart';
 import 'package:wakaluxe/src/features/Profile/presentation/pages/settings.dart';
+import 'package:wakaluxe/src/features/Profile/presentation/pages/verify_password.dart';
+import 'package:wakaluxe/src/features/onboarding/onboarding.dart';
 
 @AdaptiveAutoRouter(
   replaceInRouteName: 'Page,Route',
@@ -67,6 +67,10 @@ import 'package:wakaluxe/src/features/Profile/presentation/pages/settings.dart';
     AutoRoute(
       page: CreateNewPassword,
       path: '/create-new-password',
+    ),
+    AutoRoute(
+      page: Language,
+      path: '/language',
     ),
   ],
 )

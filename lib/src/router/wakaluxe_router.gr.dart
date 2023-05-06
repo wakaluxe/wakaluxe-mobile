@@ -11,8 +11,8 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i12;
-import 'package:flutter/material.dart' as _i13;
+import 'package:auto_route/auto_route.dart' as _i13;
+import 'package:flutter/material.dart' as _i14;
 import 'package:wakaluxe/src/features/Communication/presentation/pages/message.dart'
     as _i4;
 import 'package:wakaluxe/src/features/Communication/presentation/pages/messages.dart'
@@ -22,6 +22,8 @@ import 'package:wakaluxe/src/features/Profile/presentation/pages/create-new-pass
     as _i11;
 import 'package:wakaluxe/src/features/Profile/presentation/pages/forgot_password.dart'
     as _i10;
+import 'package:wakaluxe/src/features/Profile/presentation/pages/language.dart'
+    as _i12;
 import 'package:wakaluxe/src/features/Profile/presentation/pages/my_profile.dart'
     as _i5;
 import 'package:wakaluxe/src/features/Profile/presentation/pages/my_trip.dart'
@@ -35,40 +37,40 @@ import 'package:wakaluxe/src/features/Profile/presentation/pages/settings.dart'
 import 'package:wakaluxe/src/features/Profile/presentation/pages/verify_password.dart'
     as _i9;
 
-class AppRouter extends _i12.RootStackRouter {
-  AppRouter([_i13.GlobalKey<_i13.NavigatorState>? navigatorKey])
+class AppRouter extends _i13.RootStackRouter {
+  AppRouter([_i14.GlobalKey<_i14.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i12.PageFactory> pagesMap = {
+  final Map<String, _i13.PageFactory> pagesMap = {
     Welcome.name: (routeData) {
       final args =
           routeData.argsAs<WelcomeArgs>(orElse: () => const WelcomeArgs());
-      return _i12.AdaptivePage<dynamic>(
+      return _i13.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i1.Welcome(key: args.key),
       );
     },
     ChooseLanguage.name: (routeData) {
-      return _i12.AdaptivePage<dynamic>(
+      return _i13.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i1.ChooseLanguage(),
       );
     },
     ChooseTheme.name: (routeData) {
-      return _i12.AdaptivePage<dynamic>(
+      return _i13.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i1.ChooseTheme(),
       );
     },
     MyTrip.name: (routeData) {
-      return _i12.AdaptivePage<dynamic>(
+      return _i13.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i2.MyTrip(),
       );
     },
     Messages.name: (routeData) {
-      return _i12.AdaptivePage<dynamic>(
+      return _i13.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i3.Messages(),
       );
@@ -77,7 +79,7 @@ class AppRouter extends _i12.RootStackRouter {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<MessageArgs>(
           orElse: () => MessageArgs(id: pathParams.getString('id')));
-      return _i12.AdaptivePage<dynamic>(
+      return _i13.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i4.Message(
           key: args.key,
@@ -86,116 +88,126 @@ class AppRouter extends _i12.RootStackRouter {
       );
     },
     MyProfile.name: (routeData) {
-      return _i12.AdaptivePage<dynamic>(
+      return _i13.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i5.MyProfile(),
       );
     },
     Notification.name: (routeData) {
-      return _i12.AdaptivePage<dynamic>(
+      return _i13.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i6.Notification(),
       );
     },
     Settings.name: (routeData) {
-      return _i12.AdaptivePage<dynamic>(
+      return _i13.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i7.Settings(),
       );
     },
     Security.name: (routeData) {
-      return _i12.AdaptivePage<dynamic>(
+      return _i13.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i8.Security(),
       );
     },
     VerifyPassword.name: (routeData) {
-      return _i12.AdaptivePage<dynamic>(
+      return _i13.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i9.VerifyPassword(),
       );
     },
     ForgotPassword.name: (routeData) {
-      return _i12.AdaptivePage<dynamic>(
+      return _i13.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i10.ForgotPassword(),
       );
     },
     CreateNewPassword.name: (routeData) {
-      return _i12.AdaptivePage<dynamic>(
+      return _i13.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i11.CreateNewPassword(),
+      );
+    },
+    Language.name: (routeData) {
+      return _i13.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const _i12.Language(),
       );
     },
   };
 
   @override
-  List<_i12.RouteConfig> get routes => [
-        _i12.RouteConfig(
+  List<_i13.RouteConfig> get routes => [
+        _i13.RouteConfig(
           '/#redirect',
           path: '/',
           redirectTo: '/welcome',
           fullMatch: true,
         ),
-        _i12.RouteConfig(
+        _i13.RouteConfig(
           Welcome.name,
           path: '/welcome',
         ),
-        _i12.RouteConfig(
+        _i13.RouteConfig(
           ChooseLanguage.name,
           path: '/choose-language',
         ),
-        _i12.RouteConfig(
+        _i13.RouteConfig(
           ChooseTheme.name,
           path: '/choose-theme',
         ),
-        _i12.RouteConfig(
+        _i13.RouteConfig(
           MyTrip.name,
           path: '/my-trip',
         ),
-        _i12.RouteConfig(
+        _i13.RouteConfig(
           Messages.name,
           path: '/messages',
         ),
-        _i12.RouteConfig(
+        _i13.RouteConfig(
           Message.name,
           path: '/message/:id',
         ),
-        _i12.RouteConfig(
+        _i13.RouteConfig(
           MyProfile.name,
           path: '/my-profile',
         ),
-        _i12.RouteConfig(
+        _i13.RouteConfig(
           Notification.name,
           path: '/notifications',
         ),
-        _i12.RouteConfig(
+        _i13.RouteConfig(
           Settings.name,
           path: '/settings',
         ),
-        _i12.RouteConfig(
+        _i13.RouteConfig(
           Security.name,
           path: '/security',
         ),
-        _i12.RouteConfig(
+        _i13.RouteConfig(
           VerifyPassword.name,
           path: '/verify-password',
         ),
-        _i12.RouteConfig(
+        _i13.RouteConfig(
           ForgotPassword.name,
           path: '/forgot-password',
         ),
-        _i12.RouteConfig(
+        _i13.RouteConfig(
           CreateNewPassword.name,
           path: '/create-new-password',
+        ),
+        _i13.RouteConfig(
+          Language.name,
+          path: '/language',
         ),
       ];
 }
 
 /// generated route for
 /// [_i1.Welcome]
-class Welcome extends _i12.PageRouteInfo<WelcomeArgs> {
-  Welcome({_i13.Key? key})
+class Welcome extends _i13.PageRouteInfo<WelcomeArgs> {
+  Welcome({_i14.Key? key})
       : super(
           Welcome.name,
           path: '/welcome',
@@ -208,7 +220,7 @@ class Welcome extends _i12.PageRouteInfo<WelcomeArgs> {
 class WelcomeArgs {
   const WelcomeArgs({this.key});
 
-  final _i13.Key? key;
+  final _i14.Key? key;
 
   @override
   String toString() {
@@ -218,7 +230,7 @@ class WelcomeArgs {
 
 /// generated route for
 /// [_i1.ChooseLanguage]
-class ChooseLanguage extends _i12.PageRouteInfo<void> {
+class ChooseLanguage extends _i13.PageRouteInfo<void> {
   const ChooseLanguage()
       : super(
           ChooseLanguage.name,
@@ -230,7 +242,7 @@ class ChooseLanguage extends _i12.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i1.ChooseTheme]
-class ChooseTheme extends _i12.PageRouteInfo<void> {
+class ChooseTheme extends _i13.PageRouteInfo<void> {
   const ChooseTheme()
       : super(
           ChooseTheme.name,
@@ -242,7 +254,7 @@ class ChooseTheme extends _i12.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.MyTrip]
-class MyTrip extends _i12.PageRouteInfo<void> {
+class MyTrip extends _i13.PageRouteInfo<void> {
   const MyTrip()
       : super(
           MyTrip.name,
@@ -254,7 +266,7 @@ class MyTrip extends _i12.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.Messages]
-class Messages extends _i12.PageRouteInfo<void> {
+class Messages extends _i13.PageRouteInfo<void> {
   const Messages()
       : super(
           Messages.name,
@@ -266,9 +278,9 @@ class Messages extends _i12.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.Message]
-class Message extends _i12.PageRouteInfo<MessageArgs> {
+class Message extends _i13.PageRouteInfo<MessageArgs> {
   Message({
-    _i13.Key? key,
+    _i14.Key? key,
     required String id,
   }) : super(
           Message.name,
@@ -289,7 +301,7 @@ class MessageArgs {
     required this.id,
   });
 
-  final _i13.Key? key;
+  final _i14.Key? key;
 
   final String id;
 
@@ -301,7 +313,7 @@ class MessageArgs {
 
 /// generated route for
 /// [_i5.MyProfile]
-class MyProfile extends _i12.PageRouteInfo<void> {
+class MyProfile extends _i13.PageRouteInfo<void> {
   const MyProfile()
       : super(
           MyProfile.name,
@@ -313,7 +325,7 @@ class MyProfile extends _i12.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.Notification]
-class Notification extends _i12.PageRouteInfo<void> {
+class Notification extends _i13.PageRouteInfo<void> {
   const Notification()
       : super(
           Notification.name,
@@ -325,7 +337,7 @@ class Notification extends _i12.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i7.Settings]
-class Settings extends _i12.PageRouteInfo<void> {
+class Settings extends _i13.PageRouteInfo<void> {
   const Settings()
       : super(
           Settings.name,
@@ -337,7 +349,7 @@ class Settings extends _i12.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.Security]
-class Security extends _i12.PageRouteInfo<void> {
+class Security extends _i13.PageRouteInfo<void> {
   const Security()
       : super(
           Security.name,
@@ -349,7 +361,7 @@ class Security extends _i12.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i9.VerifyPassword]
-class VerifyPassword extends _i12.PageRouteInfo<void> {
+class VerifyPassword extends _i13.PageRouteInfo<void> {
   const VerifyPassword()
       : super(
           VerifyPassword.name,
@@ -361,7 +373,7 @@ class VerifyPassword extends _i12.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i10.ForgotPassword]
-class ForgotPassword extends _i12.PageRouteInfo<void> {
+class ForgotPassword extends _i13.PageRouteInfo<void> {
   const ForgotPassword()
       : super(
           ForgotPassword.name,
@@ -373,7 +385,7 @@ class ForgotPassword extends _i12.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i11.CreateNewPassword]
-class CreateNewPassword extends _i12.PageRouteInfo<void> {
+class CreateNewPassword extends _i13.PageRouteInfo<void> {
   const CreateNewPassword()
       : super(
           CreateNewPassword.name,
@@ -381,4 +393,16 @@ class CreateNewPassword extends _i12.PageRouteInfo<void> {
         );
 
   static const String name = 'CreateNewPassword';
+}
+
+/// generated route for
+/// [_i12.Language]
+class Language extends _i13.PageRouteInfo<void> {
+  const Language()
+      : super(
+          Language.name,
+          path: '/language',
+        );
+
+  static const String name = 'Language';
 }

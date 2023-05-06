@@ -25,7 +25,11 @@ class Settings extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text('Language', style: theme.body1),
+            GestureDetector(
+              onTap: () {
+                context.router.pushNamed('/language');
+              },
+              child: Text('Language', style: theme.body1)),
             SizedBox(height: 20.h),
             Text('Turn Location on/off', style: theme.body1),
             SizedBox(height: 20.h),

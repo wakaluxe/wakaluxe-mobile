@@ -27,7 +27,11 @@ class ForgotPassword extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SvgPicture.asset(Constants.forgotPassword),
+              Center(
+                child: Transform.scale(
+                  scale: 1,
+                  child: SvgPicture.asset(Constants.forgotPassword, height: 300.h,)),
+              ),
               SizedBox(height: 25.h),
               Text(
                 'Select which contact details should be used to reset your password.',
@@ -35,7 +39,7 @@ class ForgotPassword extends StatelessWidget {
               ),
               40.vGap,
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 29.w, vertical: 21.h),
+                padding: EdgeInsets.symmetric(horizontal: 19.w, vertical: 5.h),
                 width: context.width,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.r),
@@ -51,7 +55,7 @@ class ForgotPassword extends StatelessWidget {
                     style: theme.body2,
                   ),
                   leading: CircleAvatar(
-                    radius: 15,
+                    radius: 20,
                     backgroundColor: context.scheme.tertiary,
                     child: SvgPicture.asset(Constants.callIcon),
                   ),
@@ -59,7 +63,7 @@ class ForgotPassword extends StatelessWidget {
               ),
               15.vGap,
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 29.w, vertical: 21.h),
+                padding: EdgeInsets.symmetric(horizontal: 19.w, vertical: 5.h),
                 width: context.width,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.r),
@@ -71,11 +75,11 @@ class ForgotPassword extends StatelessWidget {
                     style: theme.label,
                   ),
                   subtitle: Text(
-                    'chen********@yourdomain.com',
+                    'chen*****@yourdomain.com',
                     style: theme.body2,
                   ),
                   leading: CircleAvatar(
-                    radius: 15,
+                    radius: 20,
                     backgroundColor: context.scheme.error,
                     child: SvgPicture.asset(Constants.mailIcon),
                   ),
@@ -84,7 +88,7 @@ class ForgotPassword extends StatelessWidget {
               const Spacer(),
               WakaluxeButton(
                 text: 'Continue',
-                action: () => context.router.pushNamed('/verify-password/3'),
+                action: () => context.router.pushNamed('/verify-password'),
               )
             ],
           ),
