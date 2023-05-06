@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_color_utilities/material_color_utilities.dart';
+
+import 'package:wakaluxe/src/configs/configs.dart';
 
 @immutable
 class WakaluxeTheme extends ThemeExtension<WakaluxeTheme> {
   const WakaluxeTheme({
-    this.primaryColor = const Color(0xFF356859),
+    this.primaryColor = const Color(0xFFFBE521),
     this.tertiaryColor = const Color(0xFFFF5722),
     this.neutralColor = const Color(0xFFFFFFFF),
   });
@@ -17,7 +20,7 @@ class WakaluxeTheme extends ThemeExtension<WakaluxeTheme> {
   Scheme _scheme() {
     final base = CorePalette.of(primaryColor.value);
     final primary = base.primary;
-    final tertiary = CorePalette.of(tertiaryColor.value).primary;
+    final tertiary = CorePalette.of(tertiaryColor.value).tertiary;
     final neutral = CorePalette.of(neutralColor.value).neutral;
     return Scheme(
       primary: primary.get(40),
@@ -52,7 +55,7 @@ class WakaluxeTheme extends ThemeExtension<WakaluxeTheme> {
     );
   }
 
-  ThemeData _base(final ColorScheme colorScheme) {
+  ThemeData _base(ColorScheme colorScheme) {
     final primaryTextTheme = GoogleFonts.poppinsTextTheme();
     final secondaryTextTheme = GoogleFonts.montserratTextTheme();
     final isLight = colorScheme.brightness == Brightness.light;
@@ -152,8 +155,8 @@ const lightColorScheme = ColorScheme(
   onSecondary: Color(0xFFFFFFFF),
   secondaryContainer: Color(0xFFFFDBD1),
   onSecondaryContainer: Color(0xFF3B0900),
-  tertiary: Color(0xFF006B56),
-  onTertiary: Color(0xFFFFFFFF),
+  tertiary: Color(0xffFBE521),
+  onTertiary: Color(0xFF001F25),
   tertiaryContainer: Color(0xFF7EF8D5),
   onTertiaryContainer: Color(0xFF002018),
   error: Color(0xFFBA1A1A),
@@ -187,7 +190,7 @@ const darkColorScheme = ColorScheme(
   secondaryContainer: Color(0xFF862200),
   onSecondaryContainer: Color(0xFFFFDBD1),
   tertiary: Color(0xFF5FDBBA),
-  onTertiary: Color(0xFF00382C),
+  onTertiary: Color(0xFFFFFFFF),
   tertiaryContainer: Color(0xFF005140),
   onTertiaryContainer: Color(0xFF7EF8D5),
   error: Color(0xFFFFB4AB),
@@ -209,3 +212,45 @@ const darkColorScheme = ColorScheme(
   outlineVariant: Color(0xFF44464F),
   scrim: Color(0xFF000000),
 );
+
+extension FigmaStyles on TextTheme {
+  TextStyle get display2 => GoogleFonts.poppins(
+        fontSize: 34.sp,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 0.15,
+        height: 1.5,
+        color: Palette.primaryTextColor,
+      );
+  TextStyle get body1 => GoogleFonts.poppins(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w400,
+        color: Palette.secondaryTextColor,
+      );
+  TextStyle get body2 => GoogleFonts.poppins(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w500,
+        color: Palette.black.withOpacity(0.87),
+      );
+  TextStyle get label => GoogleFonts.poppins(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w400,
+        color: Palette.black,
+      );
+  TextStyle get display3 => GoogleFonts.poppins(
+        fontSize: 34.sp,
+        fontWeight: FontWeight.w500,
+        color: Palette.black,
+      );
+
+  TextStyle get headline => GoogleFonts.poppins(
+        fontSize: 24.sp,
+        fontWeight: FontWeight.w500,
+        color: Palette.black,
+      );
+
+  TextStyle get title => GoogleFonts.poppins(
+        fontSize: 20.sp,
+        fontWeight: FontWeight.w500,
+        color: Palette.black,
+      );
+}
