@@ -9,7 +9,7 @@ class WakaluxInputField extends StatelessWidget {
   const WakaluxInputField({
     required this.text,
     required this.hint,
-    required this.controller,
+    this.controller,
     this.icon,
     super.key,
     this.suffix,
@@ -20,7 +20,7 @@ class WakaluxInputField extends StatelessWidget {
 
   final TextTheme text;
   final String hint;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String? icon;
   final String? suffix;
   final String? Function(String?)? validator;

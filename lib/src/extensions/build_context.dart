@@ -33,6 +33,10 @@ extension WakaluxeBuildContextExtension on BuildContext {
         //fontWeight: FontWeight.w600,
         color: scheme.onBackground,
       );
+  TextStyle get titleMdBold => typography.titleMedium!.copyWith(
+        fontWeight: FontWeight.bold,
+        color: scheme.onBackground,
+      );
   TextStyle get titleSm => typography.titleSmall!.copyWith(
         //fontWeight: FontWeight.w600,
         color: scheme.onBackground,
@@ -65,6 +69,10 @@ extension WakaluxeBuildContextExtension on BuildContext {
   TextStyle get bodyLg => typography.bodyLarge!.copyWith(
         //fontWeight: FontWeight.w600,
         color: scheme.onBackground,
+      );
+  TextStyle get bodyLgGray => typography.bodyLarge!.copyWith(
+        //fontWeight: FontWeight.w600,
+        color: scheme.onBackground.withOpacity(0.6),
       );
   TextStyle get bodyLgBold => bodyLg.copyWith(
         fontWeight: FontWeight.w600,

@@ -35,5 +35,27 @@ class WakaluxeRouter extends $WakaluxeRouter {
       page: Rating.page,
       path: '/rating',
     ),
+    AutoRoute(
+      page: RentACar.page,
+      path: '/rent-a-car',
+    ),
+    AutoRoute(
+      page: AvailableCar.page,
+      path: '/available-cars',
+    ),
+    AutoRoute(
+      page: ViewCar.page,
+      path: '/view-car',
+    ),
+    AutoRoute(page: MyGarage.page, path: '/my_garage'),
+    AutoRoute(page: ViewInGarage.page, path: '/view_in_garage/:carId'),
+    AutoRoute(page: StatusReport.page, path: '/status_report/:carId'),
+    AutoRoute(
+      page: MaintainanceReport.page,
+      path: '/maintainance_report/:carId',
+    ),
+    AutoRoute(page: DailyObjectives.page, path: '/daily_objectices/:carId'),
+    AutoRoute(page: DriverLogin.page, path: '/driver_login'),
+    AutoRoute(page: DriverHome.page, path: '/driver_home')
   ];
 }

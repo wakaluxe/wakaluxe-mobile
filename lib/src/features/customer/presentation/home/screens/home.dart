@@ -44,7 +44,10 @@ class Home extends StatelessWidget {
                       Row(
                         children: [
                           //  remove and replace with hamburger icon
-                          Expanded(
+                          GestureDetector(
+                            onTap: () {
+                              context.router.pushNamed('/rent-a-car');
+                            },
                             child: Container(
                               padding: const EdgeInsets.symmetric(
                                 vertical: 10,
@@ -100,10 +103,11 @@ class Home extends StatelessWidget {
                             ),
                           ),
                           8.hGap,
-                          const Expanded(
-                            child: WakaluxeProfileImage(
-                              imageUrl: 'https://placeimg.com/640/480/any',
-                            ),
+                          WakaluxeProfileImage(
+                            onTap: () {
+                              context.router.pushNamed('/driver_login');
+                            },
+                            imageUrl: 'https://placeimg.com/640/480/any',
                           ),
                         ],
                       ),

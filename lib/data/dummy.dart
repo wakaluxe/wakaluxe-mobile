@@ -37,6 +37,16 @@ List<Map<String, dynamic>> suggestedRides = [
     'image': 'assets/images/taxi_7.png'
   },
 ];
+List<Map<String, dynamic>> myGarageContext = [
+  {
+    'name': 'Suzuki Vitara',
+    'image': 'assets/images/Suzuki-Car.png',
+  },
+  {
+    'name': 'Range Rocer',
+    'image': 'assets/images/SUV.png',
+  },
+];
 
 List<String> images = [
   'https://placeimg.com/640/480/any',
