@@ -8,7 +8,7 @@ class WakaluxeButton extends StatelessWidget {
   const WakaluxeButton({
     required this.text,
     this.action,
-    this.color = Palette.primary,
+    this.color ,
     super.key,
     this.width = .9,
     this.icon,
@@ -16,7 +16,7 @@ class WakaluxeButton extends StatelessWidget {
   final IconData? icon;
   final String text;
   final VoidCallback? action;
-  final Color color;
+  final Color? color;
   final double width;
 
   @override
@@ -27,7 +27,7 @@ class WakaluxeButton extends StatelessWidget {
         width: context.width * width,
         height: Constants.buttonHeight,
         decoration: BoxDecoration(
-          color: color,
+          color: color?? context.scheme.primary,
           borderRadius: BorderRadius.circular(Constants.borderRadius),
         ),
         child: Row(

@@ -31,42 +31,47 @@ class _MenuDrawerState extends State<MenuDrawer>
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
     return Drawer(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SvgPicture.asset(Constants.closeIcon),
-          41.vGap,
-          const CircleAvatar(
-            radius: 34,
-            backgroundImage: AssetImage(Constants.profile),
-          ),
-          TabBar(
-            controller: _tabController,
-            indicatorColor: context.scheme.tertiary,
-            tabs: const [
-              Tab(
-                text: 'Taxi Booking',
+      child: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.only(left: 16.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SvgPicture.asset(Constants.closeIcon),
+              20.vGap,
+              const CircleAvatar(
+                radius: 34,
+                backgroundImage: AssetImage(Constants.profile),
               ),
-              Tab(
-                text: 'Car Rentals',
-              ),
-            ],
-          ),
-          Expanded(
-            child: Padding(
-              padding:  EdgeInsets.only(left: 25.0.w),
-              child: TabBarView(
+              TabBar(
                 controller: _tabController,
-                children: const [
-                  TaxiBookingContent(),
-                  Center(
-                    child: Text('No Content Yet'),
+                indicatorColor: context.scheme.tertiary,
+                tabs: const [
+                  Tab(
+                    text: 'Taxi Booking',
+                  ),
+                  Tab(
+                    text: 'Car Rentals',
                   ),
                 ],
               ),
-            ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(left: 25.0.w),
+                  child: TabBarView(
+                    controller: _tabController,
+                    children: const [
+                      TaxiBookingContent(),
+                      Center(
+                        child: Text('No Content Yet'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
@@ -103,9 +108,12 @@ class TaxiBookingContent extends StatelessWidget {
           icon: Constants.headphoneIcon,
         ),
         30.vGap,
-        const TaxiBookingLabels(
-          title: 'Settings',
-          icon: Constants.settingIcon,
+        GestureDetector(
+          onTap: () => context.pushRoute(const Settings()),
+          child: const TaxiBookingLabels(
+            title: 'Settings',
+            icon: Constants.settingIcon,
+          ),
         )
       ],
     );

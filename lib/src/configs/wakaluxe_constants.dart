@@ -8,6 +8,11 @@ class Constants {
 
   static const String profile = 'assets/images/profile.png';
   static const String chat = 'assets/images/chat.png';
+  static const String chatBackground = 'assets/images/Chat_wallpaper.jpg';
+  static const String searchData = 'assets/images/Searching_data.jpg';
+  static const String forgotPassword =
+      'assets/illustrations/Forgot_password_bro.svg';
+  static const String newPassword = 'assets/illustrations/Secure_login_bro.svg';
 
   static const String closeIcon = 'assets/icons/hicon/bold/close.svg';
   static const String locationIcon = 'assets/icons/hicon/linear/location.svg';
@@ -21,10 +26,22 @@ class Constants {
   static const String sendIcon = 'assets/icons/hicon/linear/send.svg';
   static const String nearbyIcon = 'assets/icons/nearby.svg';
   static const String markerIcon = 'assets/icons/marker.svg';
-  static const String moreSquareIcon = 'assets/icons/hicon/linear/more_square.svg';
-
-
-
+  static const String moreSquareIcon =
+      'assets/icons/hicon/linear/more_square.svg';
+  static const String starIcon = 'assets/icons/hicon/linear/Star_2.svg';
+  static const String profileIcon =
+      'assets/icons/hicon/linear/Profile_Octagon.svg';
+  static const String notificationIcon =
+      'assets/icons/hicon/linear/Notification_3.svg';
+  static const String logoutIcon = 'assets/icons/hicon/linear/Logout.svg';
+  static const String subscriptionIcon =
+      'assets/icons/hicon/linear/Ticket_1.svg';
+  static const String walletIcon = 'assets/icons/hicon/linear/Wallet.svg';
+  static const String editIcon = 'assets/icons/hicon/linear/Edit_2.svg';
+  static const String editSquareIcon =
+      'assets/icons/hicon/linear/Edit_Square.svg';
+  static const String mailIcon = 'assets/icons/hicon/linear/Message_36.svg';
+  static const String passwordIcon = 'assets/icons/hicon/linear/Password_4.svg';
 }
 
 enum TripState {

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:wakaluxe/src/common/widgets/wakalux_back_button.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
@@ -32,10 +33,7 @@ class _MessagesState extends State<Messages>
     final theme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
-        leading: GestureDetector(
-          onTap: () => context.router.pop(),
-          child: const Icon(Icons.arrow_back_ios),
-        ),
+        leading: const WakaluxBackButton(),
         title: Text(
           'Inbox',
           style: theme.title,

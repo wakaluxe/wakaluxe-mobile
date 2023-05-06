@@ -1,7 +1,7 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:wakaluxe/src/common/widgets/wakalux_back_button.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
@@ -20,12 +20,7 @@ class MyTrip extends StatelessWidget {
           'Today',
           style: theme.body1,
         ),
-        leading: GestureDetector(
-          onTap: () => context.popRoute(),
-          child: const Icon(
-            Icons.arrow_back_ios,
-          ),
-        ),
+        leading: const WakaluxBackButton(),
         actions: [
           SvgPicture.asset(Constants.searchIcon),
           29.hGap,

@@ -6,6 +6,7 @@ import 'package:flutter_hicons/flutter_hicons.dart';
 
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/common/widgets/menu_drawer.dart';
+import 'package:wakaluxe/src/common/widgets/profile_drawer.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/onboarding/thememode/cubit/theme_cubit.dart';
@@ -21,6 +22,7 @@ class Welcome extends StatelessWidget {
         return Scaffold(
           key: _scaffoldKey,
           drawer: const MenuDrawer(),
+          endDrawer: const ProfileDrawer(),
 
           //backgroundColor: context.scheme.background,
           appBar: AppBar(
