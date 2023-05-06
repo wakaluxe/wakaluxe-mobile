@@ -1,22 +1,25 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hicons/flutter_hicons.dart';
+
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/common/widgets/menu_drawer.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
-
 import 'package:wakaluxe/src/features/onboarding/thememode/cubit/theme_cubit.dart';
 
 class Welcome extends StatelessWidget {
-  const Welcome({super.key});
+  Welcome({super.key});
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ThemeCubit, bool>(
       builder: (BuildContext context, bool state) {
         return Scaffold(
+          key: _scaffoldKey,
           drawer: const MenuDrawer(),
 
           //backgroundColor: context.scheme.background,
@@ -39,12 +42,14 @@ class Welcome extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Typograpgy(),
-                  Divider(),
-                  IconButtons(),
-                  Divider(),
-                  Buttons(),
+                children: [
+                  const Typograpgy(),
+                  const Divider(),
+                  IconButtons(
+                    scaffoldKey: _scaffoldKey,
+                  ),
+                  const Divider(),
+                  const Buttons(),
                 ],
               ),
             ),
@@ -56,7 +61,11 @@ class Welcome extends StatelessWidget {
 }
 
 class IconButtons extends StatelessWidget {
-  const IconButtons({super.key});
+  const IconButtons({
+    super.key,
+    required this.scaffoldKey,
+  });
+  final GlobalKey<ScaffoldState> scaffoldKey;
 
   @override
   Widget build(BuildContext context) {
@@ -72,12 +81,6 @@ class IconButtons extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            GestureDetector(
-              onTap: () {},
-              child: const WakaluxeBoxedIcon(
-                icon: Hicons.menu_bold,
-              ),
-            ),
             WakaluxeBoxedIcon(
               icon: Hicons.gift_2,
               color: context.scheme.primary,

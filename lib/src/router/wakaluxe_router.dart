@@ -1,5 +1,8 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:wakaluxe/src/features/Profile/presentation/pages/my_trip.dart';
 import 'package:wakaluxe/src/features/onboarding/onboarding.dart';
+
+import '../features/Communication/presentation/pages/messages.dart';
 
 @AdaptiveAutoRouter(
   replaceInRouteName: 'Page,Route',
@@ -16,6 +19,14 @@ import 'package:wakaluxe/src/features/onboarding/onboarding.dart';
     AutoRoute(
       page: ChooseTheme,
       path: '/choose-theme',
+    ),
+    AutoRoute(
+      page: MyTrip,
+      path: '/my-trip'
+    ),
+    AutoRoute(
+      page: Messages,
+      path: '/messages'
     ),
   ],
 )

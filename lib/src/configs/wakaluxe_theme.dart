@@ -71,7 +71,7 @@ class WakaluxeTheme extends ThemeExtension<WakaluxeTheme> {
       extensions: [this],
       colorScheme: colorScheme,
       visualDensity: VisualDensity.adaptivePlatformDensity,
-      scaffoldBackgroundColor: isLight ? neutralColor : colorScheme.background,
+      scaffoldBackgroundColor: isLight ? colorScheme.onPrimary : colorScheme.background,
       textTheme: textTheme,
       tabBarTheme: TabBarTheme(
         labelColor: colorScheme.onSurface,
@@ -94,7 +94,7 @@ class WakaluxeTheme extends ThemeExtension<WakaluxeTheme> {
         indicatorColor: colorScheme.secondaryContainer,
       ),
       appBarTheme: AppBarTheme(
-        backgroundColor: isLight ? neutralColor : colorScheme.surface,
+        backgroundColor: isLight ? colorScheme.onPrimary : colorScheme.surface,
       ),
       chipTheme: ChipThemeData(
         backgroundColor: isLight ? neutralColor : colorScheme.surface,
@@ -142,7 +142,7 @@ extension on Scheme {
 
 const lightColorScheme = ColorScheme(
   brightness: Brightness.light,
-  primary: Color(0xFF2B5BB5),
+  primary: Color(0xFFFBE521),
   onPrimary: Color(0xFFFFFFFF),
   primaryContainer: Color(0xFFD9E2FF),
   onPrimaryContainer: Color(0xFF001945),
@@ -247,5 +247,25 @@ extension FigmaStyles on TextTheme {
         fontSize: 20.sp,
         fontWeight: FontWeight.w500,
         color: Palette.primaryColorDark,
+      );
+      TextStyle get subtitle => GoogleFonts.poppins(
+        fontSize: 10.sp,
+        fontWeight: FontWeight.w500,
+        color: Palette.primaryTextColor,
+      );
+  TextStyle get subtitle3 => GoogleFonts.poppins(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w500,
+        color: Palette.primaryTextColor
+      );
+       TextStyle get button1 => GoogleFonts.poppins(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w500,
+        color: Palette.primaryTextColor
+      );
+      TextStyle get subHeading1 => GoogleFonts.poppins(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w600,
+        color: Palette.primaryTextColor
       );
 }
