@@ -1,4 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:wakaluxe/src/common/common.dart';
+import 'package:wakaluxe/src/common/widgets/wakaluxe_dotted_line.dart';
+import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
+import 'package:wakaluxe/src/extensions/build_context.dart';
+import 'package:wakaluxe/src/extensions/num.dart';
+
+import '../../configs/wakaluxe_icons.dart';
+
 import 'package:wakaluxe/src/common/Utils/wakalux_icons_icons.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
@@ -16,6 +24,7 @@ class WakaluxeTripDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).textTheme;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
