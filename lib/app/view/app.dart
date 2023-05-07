@@ -28,9 +28,9 @@ class _WakaluxeState extends State<Wakaluxe> {
       builder: (BuildContext context, bool state) {
         return ScreenUtilInit(
                 designSize: const Size(414, 850),
-      minTextAdapt: true,
-      splitScreenMode: true,
 
+          minTextAdapt: true,
+          splitScreenMode: true,
           builder: (context, child) {
             return MaterialApp.router(
               themeMode: state == false ? ThemeMode.light : ThemeMode.dark,
@@ -38,6 +38,8 @@ class _WakaluxeState extends State<Wakaluxe> {
               darkTheme: theme.toThemeData(
                 Brightness.dark,
               ),
+              routeInformationParser: router.defaultRouteParser(),
+              routerDelegate: router.delegate(),
               debugShowCheckedModeBanner: false,
               routerConfig: router.config(),
               supportedLocales: AppLocalizations.supportedLocales,

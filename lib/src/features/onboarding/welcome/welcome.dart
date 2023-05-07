@@ -1,3 +1,9 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hicons/flutter_hicons.dart';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,6 +11,8 @@ import 'package:flutter_hicons/flutter_hicons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:wakaluxe/src/common/common.dart';
+import 'package:wakaluxe/src/common/widgets/menu_drawer.dart';
+import 'package:wakaluxe/src/common/widgets/profile_drawer.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/auth/presentation/widgets/app_barred_scaffold.dart';
@@ -13,7 +21,8 @@ import 'package:wakaluxe/src/features/onboarding/welcome/page_view_model.dart';
 
 @RoutePage(name: 'welcome')
 class Welcome extends StatelessWidget {
-  const Welcome({super.key});
+  Welcome({super.key});
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +31,40 @@ class Welcome extends StatelessWidget {
 
     return BlocBuilder<ThemeCubit, bool>(
       builder: (BuildContext context, bool state) {
+        return Scaffold(
+          key: _scaffoldKey,
+          drawer: const MenuDrawer(),
+          endDrawer: const ProfileDrawer(),
+
+          //backgroundColor: context.scheme.background,
+          appBar: AppBar(
+            title: const Text('Wakaluxe Widgets'),
+            actions: [
+              CupertinoSwitch(
+                value: state,
+                activeColor: context.scheme.tertiary,
+                onChanged: (theme) {
+                  state == true
+                      ? context.read<ThemeCubit>().reset()
+                      : context.read<ThemeCubit>().toggle();
+                },
+              ),
+            ],
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(24),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Typograpgy(),
+                  const Divider(),
+                  IconButtons(
+                    scaffoldKey: _scaffoldKey,
+                  ),
+                  const Divider(),
+                  const Buttons(),
+                ],
         return AppBarredScaffold(
           body: IntroductionScreen(
             showDoneButton: false,
@@ -69,7 +112,11 @@ class Welcome extends StatelessWidget {
 }
 
 class IconButtons extends StatelessWidget {
-  const IconButtons({super.key});
+  const IconButtons({
+    super.key,
+    required this.scaffoldKey,
+  });
+  final GlobalKey<ScaffoldState> scaffoldKey;
 
   @override
   Widget build(BuildContext context) {
@@ -85,9 +132,6 @@ class IconButtons extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const WakaluxeBoxedIcon(
-              icon: Hicons.information_square,
-            ),
             WakaluxeBoxedIcon(
               icon: Hicons.gift_2,
               color: context.scheme.tertiary,

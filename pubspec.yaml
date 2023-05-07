@@ -58,6 +58,9 @@ flutter:
     - assets/icons/auth/
     - assets/illustrations/
     - assets/icons/hicon/linear/
+    - assets/icons/hicon/bold/
+
+
   fonts:
     - family: WakaluxIcons
       fonts:
