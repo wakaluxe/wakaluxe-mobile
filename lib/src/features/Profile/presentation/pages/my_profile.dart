@@ -10,6 +10,7 @@ import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 
+@RoutePage(name: 'MyProfile')
 class MyProfile extends StatelessWidget {
   const MyProfile({super.key});
 

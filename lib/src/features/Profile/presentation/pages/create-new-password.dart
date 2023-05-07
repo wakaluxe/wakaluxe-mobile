@@ -8,6 +8,7 @@ import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 
+@RoutePage(name: 'CreateNewPassword')
 class CreateNewPassword extends StatelessWidget {
   const CreateNewPassword({super.key});
 

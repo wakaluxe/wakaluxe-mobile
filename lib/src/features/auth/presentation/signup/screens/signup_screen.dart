@@ -57,15 +57,17 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
               text: text,
               hint: 'Email',
               controller: emailController,
-              icon: Constants.emailAsset,
+              //TODO: update icon
+              icon: Constants.starIcon,
             ),
             30.vGap,
             WakaluxInputField(
               text: text,
               hint: 'Password',
               controller: passwordController,
-              icon: Constants.passwordAsset,
-              suffix: Constants.visibleAsset,
+              //TODO: update icon
+              icon: Constants.starIcon,
+              suffix: Constants.starIcon,
               obscured: true,
             ),
             30.vGap,
@@ -73,8 +75,9 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
               text: text,
               hint: 'Confirm Password',
               controller: confirmPasswordController,
-              icon: Constants.passwordAsset,
-              suffix: Constants.notVisibleAsset,
+              //TODO: update icon
+              icon: Constants.starIcon,
+              suffix: Constants.starIcon,
               obscured: true,
             ),
             60.vGap,
@@ -112,9 +115,10 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SvgPicture.asset(Constants.facebookAsset),
+                //TODO: update icons
+                SvgPicture.asset(Constants.starIcon),
                 24.hGap,
-                SvgPicture.asset(Constants.googleAsset),
+                SvgPicture.asset(Constants.starIcon),
               ],
             ),
             33.vGap,

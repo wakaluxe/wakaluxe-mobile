@@ -1,9 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_hicons/flutter_hicons.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,8 +6,6 @@ import 'package:flutter_hicons/flutter_hicons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:wakaluxe/src/common/common.dart';
-import 'package:wakaluxe/src/common/widgets/menu_drawer.dart';
-import 'package:wakaluxe/src/common/widgets/profile_drawer.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/auth/presentation/widgets/app_barred_scaffold.dart';
@@ -31,40 +24,40 @@ class Welcome extends StatelessWidget {
 
     return BlocBuilder<ThemeCubit, bool>(
       builder: (BuildContext context, bool state) {
-        return Scaffold(
-          key: _scaffoldKey,
-          drawer: const MenuDrawer(),
-          endDrawer: const ProfileDrawer(),
+        // return Scaffold(
+        //   key: _scaffoldKey,
+        //   drawer: const MenuDrawer(),
+        //   endDrawer: const ProfileDrawer(),
 
-          //backgroundColor: context.scheme.background,
-          appBar: AppBar(
-            title: const Text('Wakaluxe Widgets'),
-            actions: [
-              CupertinoSwitch(
-                value: state,
-                activeColor: context.scheme.tertiary,
-                onChanged: (theme) {
-                  state == true
-                      ? context.read<ThemeCubit>().reset()
-                      : context.read<ThemeCubit>().toggle();
-                },
-              ),
-            ],
-          ),
-          body: Padding(
-            padding: const EdgeInsets.all(24),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Typograpgy(),
-                  const Divider(),
-                  IconButtons(
-                    scaffoldKey: _scaffoldKey,
-                  ),
-                  const Divider(),
-                  const Buttons(),
-                ],
+        //   //backgroundColor: context.scheme.background,
+        //   appBar: AppBar(
+        //     title: const Text('Wakaluxe Widgets'),
+        //     actions: [
+        //       CupertinoSwitch(
+        //         value: state,
+        //         activeColor: context.scheme.tertiary,
+        //         onChanged: (theme) {
+        //           state == true
+        //               ? context.read<ThemeCubit>().reset()
+        //               : context.read<ThemeCubit>().toggle();
+        //         },
+        //       ),
+        //     ],
+        //   ),
+        //   body: Padding(
+        //     padding: const EdgeInsets.all(24),
+        //     child: SingleChildScrollView(
+        //       child: Column(
+        //         mainAxisAlignment: MainAxisAlignment.center,
+        //         children: [
+        //           const Typograpgy(),
+        //           const Divider(),
+        //           IconButtons(
+        //             scaffoldKey: _scaffoldKey,
+        //           ),
+        //           const Divider(),
+        //           const Buttons(),
+        //         ],
         return AppBarredScaffold(
           body: IntroductionScreen(
             showDoneButton: false,

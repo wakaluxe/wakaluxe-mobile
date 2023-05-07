@@ -1,16 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:wakaluxe/src/features/Communication/presentation/pages/message.dart';
-import 'package:wakaluxe/src/features/Communication/presentation/pages/messages.dart';
-import 'package:wakaluxe/src/features/Profile/presentation/pages/create-new-password.dart';
-import 'package:wakaluxe/src/features/Profile/presentation/pages/forgot_password.dart';
-import 'package:wakaluxe/src/features/Profile/presentation/pages/language.dart';
-import 'package:wakaluxe/src/features/Profile/presentation/pages/my_profile.dart';
-import 'package:wakaluxe/src/features/Profile/presentation/pages/my_trip.dart';
-import 'package:wakaluxe/src/features/Profile/presentation/pages/notification.dart';
-import 'package:wakaluxe/src/features/Profile/presentation/pages/security.dart';
-import 'package:wakaluxe/src/features/Profile/presentation/pages/settings.dart';
-import 'package:wakaluxe/src/features/Profile/presentation/pages/verify_password.dart';
-import 'package:wakaluxe/src/features/onboarding/onboarding.dart';
+import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart';
 
 @AutoRouterConfig()
 class WakaluxeRouter extends $WakaluxeRouter {
@@ -29,52 +18,49 @@ class WakaluxeRouter extends $WakaluxeRouter {
       path: '/choose-theme',
     ),
     AutoRoute(
-      page: MyTrip,
+      page: MyTrip.page,
       path: '/my-trip',
     ),
     AutoRoute(
-      page: Messages,
+      page: Messages.page,
       path: '/messages',
     ),
     AutoRoute(
-      page: Message,
+      page: Message.page,
       path: '/message/:id',
     ),
     AutoRoute(
-      page: MyProfile,
+      page: MyProfile.page,
       path: '/my-profile',
     ),
     AutoRoute(
-      page: Notification,
+      page: Notification.page,
       path: '/notifications',
     ),
     AutoRoute(
-      page: Settings,
+      page: Settings.page,
       path: '/settings',
     ),
     AutoRoute(
-      page: Security,
+      page: Security.page,
       path: '/security',
     ),
     AutoRoute(
-      page: VerifyPassword,
+      page: VerifyPassword.page,
       path: '/verify-password',
     ),
     AutoRoute(
-      page: ForgotPassword,
+      page: ForgotPassword.page,
       path: '/forgot-password',
     ),
     AutoRoute(
-      page: CreateNewPassword,
+      page: CreateNewPassword.page,
       path: '/create-new-password',
     ),
     AutoRoute(
-      page: Language,
+      page: Language.page,
       path: '/language',
     ),
-  ],
-)
-class $AppRouter {}
     AutoRoute(page: Home.page, initial: true, path: '/home'),
     AutoRoute(page: Verification.page, path: '/verification'),
     AutoRoute(page: SignUp.page, path: '/sign-up'),

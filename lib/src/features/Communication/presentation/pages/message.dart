@@ -10,6 +10,7 @@ import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/Communication/presentation/widgets/chat_view.dart';
 import 'package:wakaluxe/src/features/Communication/presentation/widgets/message_input.dart';
 
+@RoutePage(name: 'Message')
 class Message extends StatefulWidget {
   const Message({
     super.key,

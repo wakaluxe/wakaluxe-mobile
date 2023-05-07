@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 
+@RoutePage(name: 'Settings')
 class Settings extends StatelessWidget {
   const Settings({super.key});
 
@@ -29,7 +30,8 @@ class Settings extends StatelessWidget {
               onTap: () {
                 context.router.pushNamed('/language');
               },
-              child: Text('Language', style: theme.body1)),
+              child: Text('Language', style: theme.body1),
+            ),
             SizedBox(height: 20.h),
             Text('Turn Location on/off', style: theme.body1),
             SizedBox(height: 20.h),

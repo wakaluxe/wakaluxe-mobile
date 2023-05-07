@@ -9,6 +9,7 @@ import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 
+@RoutePage(name: 'ForgotPassword')
 class ForgotPassword extends StatelessWidget {
   const ForgotPassword({super.key});
 
@@ -30,7 +31,11 @@ class ForgotPassword extends StatelessWidget {
               Center(
                 child: Transform.scale(
                   scale: 1,
-                  child: SvgPicture.asset(Constants.forgotPassword, height: 300.h,)),
+                  child: SvgPicture.asset(
+                    Constants.forgotPassword,
+                    height: 300.h,
+                  ),
+                ),
               ),
               SizedBox(height: 25.h),
               Text(

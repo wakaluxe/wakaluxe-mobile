@@ -5,6 +5,7 @@ import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 
+@RoutePage(name: 'Security')
 class Security extends StatelessWidget {
   const Security({super.key});
 
@@ -24,17 +25,17 @@ class Security extends StatelessWidget {
           padding: EdgeInsets.all(20.w),
           child: Column(
             children: <Widget>[
-            Row(
-              children: [
-                Text(
-                  'Remember Me',
-                  style: theme.body1,
-                ),
-                const Spacer(),
-                Checkbox(value: true, onChanged: (val){})
-              ],
-            ),
-            28.vGap,
+              Row(
+                children: [
+                  Text(
+                    'Remember Me',
+                    style: theme.body1,
+                  ),
+                  const Spacer(),
+                  Checkbox(value: true, onChanged: (val) {})
+                ],
+              ),
+              28.vGap,
               GestureDetector(
                 onTap: () => context.router.pushNamed('/forgot-password'),
                 child: Row(

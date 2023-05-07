@@ -87,7 +87,8 @@ class BackButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
             ),
           ),
-          child: SvgPicture.asset(Constants.backAsset),
+          //todo: change icon
+          child: const Icon(Icons.arrow_back_ios),
         ),
       ),
     );
