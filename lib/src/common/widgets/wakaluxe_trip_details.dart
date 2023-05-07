@@ -7,6 +7,11 @@ import 'package:wakaluxe/src/extensions/num.dart';
 
 import '../../configs/wakaluxe_icons.dart';
 
+import 'package:wakaluxe/src/common/Utils/wakalux_icons_icons.dart';
+import 'package:wakaluxe/src/common/common.dart';
+import 'package:wakaluxe/src/extensions/build_context.dart';
+import 'package:wakaluxe/src/extensions/num.dart';
+
 class WakaluxeTripDetails extends StatelessWidget {
   const WakaluxeTripDetails({
     required this.pickUpLocation,
@@ -35,7 +40,7 @@ class WakaluxeTripDetails extends StatelessWidget {
               children: [
                 Text(
                   'Pickup Location',
-                  style: theme.label,
+                  style: context.bodyLgBold,
                 ),
                 Text(
                   pickUpLocation,
@@ -69,7 +74,7 @@ class WakaluxeTripDetails extends StatelessWidget {
               children: [
                 Text(
                   'Stop Location',
-                  style: theme.label,
+                  style: context.bodyLgBold,
                 ),
                 Text(
                   dropOffLocation,
