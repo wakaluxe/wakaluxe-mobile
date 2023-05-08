@@ -10,7 +10,7 @@ import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/Communication/presentation/widgets/wakalux_badge.dart';
 
 import 'package:wakaluxe/src/features/Communication/presentation/widgets/messages_content.dart';
-
+@RoutePage()    
 class Messages extends StatefulWidget {
   const Messages({super.key});
 

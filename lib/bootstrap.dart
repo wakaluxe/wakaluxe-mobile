@@ -32,7 +32,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   final storage = await HydratedStorage.build(
     storageDirectory: await getTemporaryDirectory(),
   );
-  await dotenv.load();
+  // await dotenv.load();
   await HydratedBlocOverrides.runZoned(
     () async => runApp(await builder()),
     storage: storage,

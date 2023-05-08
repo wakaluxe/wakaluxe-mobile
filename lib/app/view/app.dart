@@ -14,10 +14,10 @@ class Wakaluxe extends StatefulWidget {
 }
 
 class _WakaluxeState extends State<Wakaluxe> {
-  late WakaluxeRouter router;
+  late WakaluxAppRouter router;
   @override
   void initState() {
-    router = WakaluxeRouter();
+    router = WakaluxAppRouter();
     super.initState();
   }
 
@@ -27,8 +27,7 @@ class _WakaluxeState extends State<Wakaluxe> {
     return BlocBuilder<ThemeCubit, bool>(
       builder: (BuildContext context, bool state) {
         return ScreenUtilInit(
-                designSize: const Size(414, 850),
-
+          designSize: const Size(414, 850),
           minTextAdapt: true,
           splitScreenMode: true,
           builder: (context, child) {
@@ -38,8 +37,8 @@ class _WakaluxeState extends State<Wakaluxe> {
               darkTheme: theme.toThemeData(
                 Brightness.dark,
               ),
-              routeInformationParser: router.defaultRouteParser(),
-              routerDelegate: router.delegate(),
+              // routeInformationParser: router.defaultRouteParser(),
+              // routerDelegate: router.delegate(),
               debugShowCheckedModeBanner: false,
               routerConfig: router.config(),
               supportedLocales: AppLocalizations.supportedLocales,

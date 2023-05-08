@@ -91,7 +91,7 @@ android {
         }
         development {
             dimension 'default'
-            applicationIdSuffix '.dev'
+            // applicationIdSuffix '.dev'
             manifestPlaceholders = [appName: '[DEV] Wakaluxe']
         }
     }
