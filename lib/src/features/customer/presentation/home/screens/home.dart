@@ -6,6 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wakaluxe/data/dummy.dart';
 import 'package:wakaluxe/src/common/Utils/wakalux_icons_icons.dart';
 import 'package:wakaluxe/src/common/common.dart';
+import 'package:wakaluxe/src/common/widgets/menu_drawer.dart';
+import 'package:wakaluxe/src/common/widgets/profile_drawer.dart';
 import 'package:wakaluxe/src/common/widgets/wakaluxe_driver_card.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
@@ -21,6 +23,8 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.scheme.onBackground,
+      drawer: const MenuDrawer(),
+      endDrawer: const ProfileDrawer(),
       body: SafeArea(
         child: BlocConsumer<HomeBloc, HomeState>(
           listener: (context, state) {
@@ -46,7 +50,7 @@ class Home extends StatelessWidget {
                           //  remove and replace with hamburger icon
                           GestureDetector(
                             onTap: () {
-                              context.router.pushNamed('/rent-a-car');
+                              Scaffold.of(context).openDrawer();
                             },
                             child: Container(
                               padding: const EdgeInsets.symmetric(
@@ -105,7 +109,7 @@ class Home extends StatelessWidget {
                           8.hGap,
                           WakaluxeProfileImage(
                             onTap: () {
-                              context.router.pushNamed('/driver_login');
+                              Scaffold.of(context).openEndDrawer();
                             },
                             imageUrl: 'https://placeimg.com/640/480/any',
                           ),

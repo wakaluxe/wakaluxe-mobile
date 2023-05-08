@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/common/widgets/wakaluxe_dotted_line.dart';
+import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
@@ -64,8 +66,8 @@ class WakaluxeTripDetails extends StatelessWidget {
         2.vGap,
         Row(
           children: [
-            Icon(
-              WakaluxIcons.location,
+            SvgPicture.asset(
+              Constants.locationIcon,
               color: context.scheme.error,
             ),
             10.hGap,

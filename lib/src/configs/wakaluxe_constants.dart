@@ -13,6 +13,9 @@ class Constants {
   static const String forgotPassword =
       'assets/illustrations/Forgot_password_bro.svg';
   static const String newPassword = 'assets/illustrations/Secure_login_bro.svg';
+  static const String facebookAsset = 'assets/icons/Facebook.svg';
+  static const String googleAsset = 'assets/icons/google.svg';
+
 
   static const String closeIcon = 'assets/icons/hicon/bold/close.svg';
   static const String locationIcon = 'assets/icons/hicon/linear/location.svg';
@@ -42,6 +45,9 @@ class Constants {
       'assets/icons/hicon/linear/Edit_Square.svg';
   static const String mailIcon = 'assets/icons/hicon/linear/Message_36.svg';
   static const String passwordIcon = 'assets/icons/hicon/linear/Password_4.svg';
+  static const String visibleIcon = 'assets/icons/hicon/linear/Show.svg';
+  static const String notVisibleIcon = 'assets/icons/hicon/linear/Hide.svg';
+  static const String hashtagIcon = 'assets/icons/hicon/linear/Hashtag.svg';
 }
 
 enum TripState {

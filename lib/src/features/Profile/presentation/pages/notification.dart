@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -8,7 +9,7 @@ import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/features/Profile/presentation/widgets/empty_notification_content.dart';
-
+@RoutePage()    
 class Notification extends StatefulWidget {
   const Notification({super.key});
 

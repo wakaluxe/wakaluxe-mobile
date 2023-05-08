@@ -87,7 +87,7 @@ class BackButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
             ),
           ),
-          child: SvgPicture.asset(Constants.backAsset),
+          child: SvgPicture.asset(Constants.backBoldIcon),
         ),
       ),
     );
