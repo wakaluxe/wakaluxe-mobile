@@ -186,7 +186,7 @@ class Home extends StatelessWidget {
                     left: 0,
                     right: 0,
                     child: SizedBox(
-                      height: context.height * 0.34,
+                      height: context.height * 0.36,
                       width: context.width,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
