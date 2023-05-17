@@ -29,7 +29,7 @@ class _MenuDrawerState extends State<MenuDrawer>
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).textTheme;
+  
     return Drawer(
       child: SafeArea(
         child: Padding(
@@ -60,10 +60,15 @@ class _MenuDrawerState extends State<MenuDrawer>
                   padding: EdgeInsets.only(left: 25.0.w),
                   child: TabBarView(
                     controller: _tabController,
-                    children: const [
-                      TaxiBookingContent(),
-                      Center(
-                        child: Text('No Content Yet'),
+                    children: [
+                      const TaxiBookingContent(),
+                      Column(
+                        children: const [
+                          ListTile(
+                            title: Text('Rentals'),
+                            leading: Icon(Icons.location_on),
+                          )
+                        ],
                       ),
                     ],
                   ),
