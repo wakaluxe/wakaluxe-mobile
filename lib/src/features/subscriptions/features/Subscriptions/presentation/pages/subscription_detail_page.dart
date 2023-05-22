@@ -53,7 +53,8 @@ class WakaluxeSubscriptionDetail extends StatelessWidget {
                 style: text.body1,
               ),
               const Spacer(),
-              const WakaluxeButton(
+               WakaluxeButton(
+                action: () => context.router.pushNamed('/home'),
                 text: 'Subscribe',
               ),
             ],

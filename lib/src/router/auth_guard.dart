@@ -10,8 +10,8 @@ class AuthGuard extends AutoRouteGuard {
       resolver.next();
     } else {
       // we redirect the user to our login page
-      router.push(
-        
+      router.pushNamed(
+        '/welcome'
       );
     }
   }

@@ -84,7 +84,7 @@ class _WakaluxeLoginState extends State<WakaluxeLogin> {
             50.vGap,
             WakaluxeButton(
               text: 'SIGN IN',
-              action: () => AutoRouter.of(context).pushNamed('/phone-number'),
+              action: () => AutoRouter.of(context).pushNamed('/home'),
               textColor: context.scheme.scrim,
             ),
             60.vGap,

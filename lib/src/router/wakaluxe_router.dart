@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart';
 
+import 'auth_guard.dart';
+
 @AutoRouterConfig()
 class WakaluxAppRouter extends $WakaluxAppRouter {
   @override
@@ -8,8 +10,8 @@ class WakaluxAppRouter extends $WakaluxAppRouter {
   @override
   List<AutoRoute> get routes => [
         /// routes go here
-
-        AutoRoute(page: Home.page, initial: true, path: '/home'),
+        AutoRoute(page: Welcome.page,  path: '/welcome', initial: true),
+        AutoRoute(page: Home.page,  path: '/home'),
         AutoRoute(page: Verification.page, path: '/verification'),
         AutoRoute(page: SignUp.page, path: '/sign-up'),
         AutoRoute(page: PhoneNumber.page, path: '/phone-number'),

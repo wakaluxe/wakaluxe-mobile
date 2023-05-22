@@ -79,6 +79,7 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
             ),
             60.vGap,
             WakaluxeButton(
+              action: () => context.router.pushNamed('/phone-number'),
               text: 'SIGN UP',
               textColor: context.scheme.scrim,
             ),
