@@ -13,7 +13,6 @@ import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc/home_bloc.d
 import 'package:wakaluxe/src/features/customer/presentation/home/screens/wakaluxe_home_sheets.dart';
 
 // List<Map<String, dynamic>> data = []
-
 @RoutePage(name: 'Home')
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -41,6 +40,30 @@ class Home extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     children: [
+                      TextButton(
+                        onPressed: () {
+                          context.router.pushNamed('/my-trip');
+                        },
+                        child: const Text('Trip'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          context.router.pushNamed('/my-profile');
+                        },
+                        child: const Text('Profile'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          context.router.pushNamed('/settings');
+                        },
+                        child: const Text('Settings'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          context.router.pushNamed('/notifications');
+                        },
+                        child: const Text('Notifications'),
+                      ),
                       Row(
                         children: [
                           //  remove and replace with hamburger icon
@@ -97,7 +120,7 @@ class Home extends StatelessWidget {
                                       ),
                                       message: 'Location Coordimates',
                                       onTap: () {
-                                        debugPrint('Testing out');
+                                        //debugPrint('Testing out');
                                       },
                                     ),
                             ),
@@ -144,11 +167,11 @@ class Home extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Expanded(child: 30.hGap),
+                            Expanded(
+                              child: 30.hGap,
+                            ),
                           ],
                         ),
-
-                      // will handle a bottom sheet and a modal sheet
                     ],
                   ),
                 ),
@@ -305,6 +328,4 @@ class Home extends StatelessWidget {
       ),
     );
   }
-
-// function to handle modal buttom sheet
 }
