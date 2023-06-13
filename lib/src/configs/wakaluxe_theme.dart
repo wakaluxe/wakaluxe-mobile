@@ -226,6 +226,11 @@ extension FigmaStyles on TextTheme {
   TextStyle get body2 => GoogleFonts.poppins(
         fontSize: 14.sp,
         fontWeight: FontWeight.w500,
+        color: Palette.primaryTextColor.withOpacity(0.87),
+      );
+  TextStyle get body3 => GoogleFonts.poppins(
+        fontSize: 12.sp,
+        fontWeight: FontWeight.w500,
         color: Palette.primaryColorDark.withOpacity(0.87),
       );
   TextStyle get label => GoogleFonts.poppins(
@@ -242,13 +247,13 @@ extension FigmaStyles on TextTheme {
   TextStyle get headline => GoogleFonts.poppins(
         fontSize: 24.sp,
         fontWeight: FontWeight.w500,
-        color: Palette.primaryColorDark,
+        color: Palette.black,
       );
 
   TextStyle get title => GoogleFonts.poppins(
         fontSize: 20.sp,
         fontWeight: FontWeight.w500,
-        color: Palette.primaryColorDark,
+        color: Palette.black,
       );
       TextStyle get subtitle => GoogleFonts.poppins(
         fontSize: 10.sp,

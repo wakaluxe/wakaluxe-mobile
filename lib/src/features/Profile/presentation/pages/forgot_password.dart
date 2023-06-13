@@ -17,7 +17,7 @@ class ForgotPassword extends StatelessWidget {
     final theme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
-        leading: const WakaluxBackButton(),
+        leading: const WakaluxBackhButton(),
         title: Text('Forgot Password', style: theme.title),
       ),
       body: SizedBox(
