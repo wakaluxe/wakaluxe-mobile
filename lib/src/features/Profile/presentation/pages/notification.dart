@@ -8,6 +8,7 @@ import 'package:wakaluxe/src/common/widgets/wakalux_back_button.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
+import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/Profile/presentation/widgets/empty_notification_content.dart';
 @RoutePage()    
 class Notification extends StatefulWidget {
@@ -24,7 +25,6 @@ class _NotificationState extends State<Notification> {
     final theme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
-        leading: const WakaluxBackButton(),
         title: Text(
           'Notifications',
           style: theme.title,
@@ -52,6 +52,7 @@ class _NotificationState extends State<Notification> {
               child: Text('Done', style: theme.button1),
             ),
           ),
+          22.4.hGap,
         ],
       ),
       body: notifications.isEmpty

@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
@@ -27,10 +28,7 @@ class _MessageState extends State<Message> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () => context.router.pop(),
-          icon: const Icon(Icons.arrow_back_ios),
-        ),
+        
         title: ListTile(
           leading: const Hero(
             tag: 'chat',
@@ -41,12 +39,12 @@ class _MessageState extends State<Message> {
           ),
           title: Text(
             'John Doe',
-            style: Theme.of(context).textTheme.titleLarge,
+            style: Theme.of(context).textTheme.body2,
           ),
           subtitle: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SvgPicture.asset(Constants.starIcon),
+              SvgPicture.asset(Constants.starIcon, height:20.h, width: 20.w),
               6.hGap,
               Text(
                 '4.5',
@@ -55,9 +53,9 @@ class _MessageState extends State<Message> {
             ],
           ),
           trailing: CircleAvatar(
-            radius: 20,
+            radius: 15,
             backgroundColor: context.scheme.tertiary,
-            child: SvgPicture.asset(Constants.callIcon),
+            child: SvgPicture.asset(Constants.callIcon, height: 17.h,width: 17.w,),
           ),
         ),
       ),

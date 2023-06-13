@@ -120,6 +120,8 @@ class profileTile extends StatelessWidget {
           width: 186.w,
           child: Text(
             content,
+              overflow: TextOverflow.ellipsis,
+
             style: t.body1.copyWith(
               color: context.scheme.outline.withOpacity(0.5),
             ),
