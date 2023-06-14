@@ -14,10 +14,10 @@ class Wakaluxe extends StatefulWidget {
 }
 
 class _WakaluxeState extends State<Wakaluxe> {
-  late WakaluxeRouter router;
+  late WakaluxAppRouter router;
   @override
   void initState() {
-    router = WakaluxeRouter();
+    router = WakaluxAppRouter();
     super.initState();
   }
 
@@ -37,7 +37,11 @@ class _WakaluxeState extends State<Wakaluxe> {
               darkTheme: theme.toThemeData(
                 Brightness.dark,
               ),
+<<<<<<< HEAD
               //routeInformationParser: router.defaultRouteParser(),
+=======
+              // routeInformationParser: router.defaultRouteParser(),
+>>>>>>> 5c430bba86ac8f925b88c0faa991c8679432bf5b
               // routerDelegate: router.delegate(),
               debugShowCheckedModeBanner: false,
               routerConfig: router.config(),

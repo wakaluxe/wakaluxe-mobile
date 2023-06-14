@@ -52,17 +52,26 @@ class _WakaluxeLoginState extends State<WakaluxeLogin> {
               text: text,
               hint: 'Email',
               controller: emailController,
+<<<<<<< HEAD
               //TODO: update icon
               icon: Constants.starIcon,
+=======
+              icon: Constants.mailIcon,
+>>>>>>> 5c430bba86ac8f925b88c0faa991c8679432bf5b
             ),
             30.vGap,
             WakaluxInputField(
               text: text,
               hint: 'Password',
               controller: passwordController,
+<<<<<<< HEAD
               //TODO: update icons
               icon: Constants.starIcon,
               suffix: Constants.starIcon,
+=======
+              icon: Constants.passwordIcon,
+              suffix: Constants.visibleIcon,
+>>>>>>> 5c430bba86ac8f925b88c0faa991c8679432bf5b
               obscured: true,
             ),
             30.vGap,
@@ -86,7 +95,7 @@ class _WakaluxeLoginState extends State<WakaluxeLogin> {
             50.vGap,
             WakaluxeButton(
               text: 'SIGN IN',
-              action: () => AutoRouter.of(context).pushNamed('/phone-number'),
+              action: () => AutoRouter.of(context).pushNamed('/home'),
               textColor: context.scheme.scrim,
             ),
             60.vGap,

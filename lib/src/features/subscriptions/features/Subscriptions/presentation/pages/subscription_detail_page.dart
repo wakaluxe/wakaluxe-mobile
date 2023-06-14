@@ -53,7 +53,8 @@ class WakaluxeSubscriptionDetail extends StatelessWidget {
                 style: text.body1,
               ),
               const Spacer(),
-              const WakaluxeButton(
+               WakaluxeButton(
+                action: () => context.router.pushNamed('/home'),
                 text: 'Subscribe',
               ),
             ],
@@ -87,8 +88,12 @@ class BackButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
             ),
           ),
+<<<<<<< HEAD
           //todo: change icon
           child: const Icon(Icons.arrow_back_ios),
+=======
+          child: SvgPicture.asset(Constants.backBoldIcon),
+>>>>>>> 5c430bba86ac8f925b88c0faa991c8679432bf5b
         ),
       ),
     );

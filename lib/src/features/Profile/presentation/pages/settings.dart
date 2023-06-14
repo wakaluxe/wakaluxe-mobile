@@ -2,8 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
+<<<<<<< HEAD
 
 @RoutePage(name: 'Settings')
+=======
+@RoutePage()    
+>>>>>>> 5c430bba86ac8f925b88c0faa991c8679432bf5b
 class Settings extends StatelessWidget {
   const Settings({super.key});
 

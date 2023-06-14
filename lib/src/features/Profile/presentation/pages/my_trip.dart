@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
 import 'package:wakaluxe/src/common/widgets/wakalux_back_button.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
@@ -9,7 +10,11 @@ import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/Profile/presentation/widgets/wakalux_trip_detail.dart';
 
+<<<<<<< HEAD
 @RoutePage(name: 'MyTrip')
+=======
+@RoutePage()
+>>>>>>> 5c430bba86ac8f925b88c0faa991c8679432bf5b
 class MyTrip extends StatelessWidget {
   const MyTrip({super.key});
 
@@ -32,7 +37,7 @@ class MyTrip extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-          DateWidget(theme: theme),
+          const DateWidget(),
           35.vGap,
           Expanded(
             child: ListView.builder(
@@ -73,57 +78,111 @@ class MyTrip extends StatelessWidget {
   }
 }
 
-class DateWidget extends StatelessWidget {
+class DateWidget extends StatefulWidget {
   const DateWidget({
     super.key,
-    required this.theme,
   });
 
-  final TextTheme theme;
+  @override
+  State<DateWidget> createState() => _DateWidgetState();
+}
 
+class _DateWidgetState extends State<DateWidget> {
+  final _focusedDay = DateTime.now().day;
+  int _selectedDay = DateTime.now().day;
+  final _dateController = ScrollController(
+  );
+  @override
+  void dispose() {
+    _dateController.dispose();
+    super.dispose();
+  }
+
+  initState() {
+    
+    super.initState();
+  }
+
+  final days = getCalendarData();
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).textTheme;
     return SizedBox(
       height: 70.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 10,
+        controller: _dateController,
+        itemCount: days.length,
+        
         itemBuilder: (BuildContext context, int index) {
-          return Container(
-            width: 70.w,
-            height: double.maxFinite,
-            margin: EdgeInsets.symmetric(horizontal: 5.w),
-            decoration: BoxDecoration(
-              color: context.scheme.surface.withOpacity(0.8),
-              borderRadius: BorderRadius.circular(16.r),
-              border: Border.all(color: context.scheme.onInverseSurface),
-            ),
-            child: Column(
-              children: [
-                Text(
-                  'Sun',
-                  style: theme.subtitle,
+          final day = days[index];
+          return GestureDetector(
+            onTap: () {
+              setState(() {
+                _selectedDay = day['day'] as int;
+              });
+            },
+            child: Container(
+              width: 70.w,
+              height: double.maxFinite,
+              margin: EdgeInsets.symmetric(horizontal: 5.w),
+              decoration: BoxDecoration(
+                color: context.scheme.surface.withOpacity(0.8),
+                borderRadius: BorderRadius.circular(16.r),
+                border: Border.all(
+                  color: _selectedDay == day['day']
+                      ? context.scheme.primary
+                      : context.scheme.onInverseSurface,
+                      width: 2,
                 ),
-                6.vGap,
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.center,
-                    width: double.maxFinite,
-                    decoration: BoxDecoration(
-                      color: context.scheme.outlineVariant.withOpacity(0.4),
-                      borderRadius: BorderRadius.circular(16.r),
-                    ),
-                    child: Text(
-                      '12',
-                      style: theme.subtitle3,
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    '${day['daysInWeek']}',
+                    style: theme.subtitle,
+                  ),
+                  6.vGap,
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: double.maxFinite,
+                      decoration: BoxDecoration(
+                        color: context.scheme.outlineVariant.withOpacity(0.4),
+                        borderRadius: BorderRadius.circular(16.r),
+                      ),
+                      child: Text(
+                        '${day['day']}',
+                        style: theme.subtitle3,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },
       ),
     );
   }
+}
+
+List<Map<String, Object>> getCalendarData() {
+  final today = DateTime.now();
+  final firstDay = DateTime.utc(today.year, today.month);
+  final lastDay = DateTime.utc(today.year, today.month + 1);
+  final days = lastDay.difference(firstDay).inDays;
+  final daysInMonth = List<DateTime>.generate(
+    days,
+    (index) => firstDay.add(Duration(days: index)),
+  );
+  final formattedDays = daysInMonth
+      .map(
+        (e) => {
+          'daysInWeek': DateFormat('EEEE').format(e).replaceFirst('day', ''),
+          'day': e.day
+        },
+      )
+      .toList();
+  return formattedDays;
 }

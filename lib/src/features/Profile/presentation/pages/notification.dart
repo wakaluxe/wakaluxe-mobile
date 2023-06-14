@@ -9,8 +9,12 @@ import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/features/Profile/presentation/widgets/empty_notification_content.dart';
+<<<<<<< HEAD
 
 @RoutePage(name: 'Notification')
+=======
+@RoutePage()    
+>>>>>>> 5c430bba86ac8f925b88c0faa991c8679432bf5b
 class Notification extends StatefulWidget {
   const Notification({super.key});
 

@@ -68,9 +68,12 @@ class ProfileDrawer extends StatelessWidget {
                 icon: Constants.walletIcon,
               ),
               350.vGap,
-              const TaxiBookingLabels(
-                title: 'Log Out',
-                icon: Constants.logoutIcon,
+              GestureDetector(
+                onTap: () => context.router.pushNamed('/login'),
+                child: const TaxiBookingLabels(
+                  title: 'Log Out',
+                  icon: Constants.logoutIcon,
+                ),
               ),
             ],
           ),
