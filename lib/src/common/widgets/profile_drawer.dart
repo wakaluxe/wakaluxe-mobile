@@ -7,7 +7,7 @@ import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 
-import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart';
+import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart' as routes;
 
 class ProfileDrawer extends StatelessWidget {
   const ProfileDrawer({super.key});
@@ -43,7 +43,7 @@ class ProfileDrawer extends StatelessWidget {
               ),
               40.vGap,
               GestureDetector(
-                onTap: () => context.pushRoute(const MyProfile()),
+                onTap: () => context.pushRoute(const routes.MyProfile()),
                 child: const TaxiBookingLabels(
                   title: 'My Profile',
                   icon: Constants.profileIcon,

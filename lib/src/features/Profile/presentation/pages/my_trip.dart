@@ -10,11 +10,7 @@ import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/Profile/presentation/widgets/wakalux_trip_detail.dart';
 
-<<<<<<< HEAD
-@RoutePage(name: 'MyTrip')
-=======
 @RoutePage()
->>>>>>> 5c430bba86ac8f925b88c0faa991c8679432bf5b
 class MyTrip extends StatelessWidget {
   const MyTrip({super.key});
 
@@ -90,16 +86,15 @@ class DateWidget extends StatefulWidget {
 class _DateWidgetState extends State<DateWidget> {
   final _focusedDay = DateTime.now().day;
   int _selectedDay = DateTime.now().day;
-  final _dateController = ScrollController(
-  );
+  final _dateController = ScrollController();
   @override
   void dispose() {
     _dateController.dispose();
     super.dispose();
   }
 
+  @override
   initState() {
-    
     super.initState();
   }
 
@@ -113,7 +108,6 @@ class _DateWidgetState extends State<DateWidget> {
         scrollDirection: Axis.horizontal,
         controller: _dateController,
         itemCount: days.length,
-        
         itemBuilder: (BuildContext context, int index) {
           final day = days[index];
           return GestureDetector(
@@ -133,7 +127,7 @@ class _DateWidgetState extends State<DateWidget> {
                   color: _selectedDay == day['day']
                       ? context.scheme.primary
                       : context.scheme.onInverseSurface,
-                      width: 2,
+                  width: 2,
                 ),
               ),
               child: Column(

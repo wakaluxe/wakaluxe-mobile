@@ -1,5 +1,3 @@
-import 'package:flutter_test/flutter_test.dart';
-import 'package:wakaluxe/app/app.dart';
 // import 'package:wakaluxe/counter/counter.dart';
 
 void main() {

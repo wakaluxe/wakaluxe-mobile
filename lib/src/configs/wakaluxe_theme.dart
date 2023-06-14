@@ -4,8 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:material_color_utilities/material_color_utilities.dart';
 import 'package:wakaluxe/src/configs/configs.dart';
 
-import 'package:wakaluxe/src/configs/configs.dart';
-
 @immutable
 class WakaluxeTheme extends ThemeExtension<WakaluxeTheme> {
   const WakaluxeTheme({
@@ -73,7 +71,8 @@ class WakaluxeTheme extends ThemeExtension<WakaluxeTheme> {
       extensions: [this],
       colorScheme: colorScheme,
       visualDensity: VisualDensity.adaptivePlatformDensity,
-      scaffoldBackgroundColor: isLight ? colorScheme.onPrimary : colorScheme.background,
+      scaffoldBackgroundColor:
+          isLight ? colorScheme.onPrimary : colorScheme.background,
       textTheme: textTheme,
       tabBarTheme: TabBarTheme(
         labelColor: colorScheme.onSurface,
@@ -226,6 +225,11 @@ extension FigmaStyles on TextTheme {
   TextStyle get body2 => GoogleFonts.poppins(
         fontSize: 14.sp,
         fontWeight: FontWeight.w500,
+        color: Palette.primaryTextColor.withOpacity(0.87),
+      );
+  TextStyle get body3 => GoogleFonts.poppins(
+        fontSize: 12.sp,
+        fontWeight: FontWeight.w500,
         color: Palette.primaryColorDark.withOpacity(0.87),
       );
   TextStyle get label => GoogleFonts.poppins(
@@ -242,15 +246,15 @@ extension FigmaStyles on TextTheme {
   TextStyle get headline => GoogleFonts.poppins(
         fontSize: 24.sp,
         fontWeight: FontWeight.w500,
-        color: Palette.primaryColorDark,
+        color: Palette.black,
       );
 
   TextStyle get title => GoogleFonts.poppins(
         fontSize: 20.sp,
         fontWeight: FontWeight.w500,
-        color: Palette.primaryColorDark,
+        color: Palette.black,
       );
-      TextStyle get subtitle => GoogleFonts.poppins(
+  TextStyle get subtitle => GoogleFonts.poppins(
         fontSize: 10.sp,
         fontWeight: FontWeight.w500,
         color: Palette.primaryTextColor,
@@ -258,16 +262,16 @@ extension FigmaStyles on TextTheme {
   TextStyle get subtitle3 => GoogleFonts.poppins(
         fontSize: 16.sp,
         fontWeight: FontWeight.w500,
-        color: Palette.primaryTextColor
+        color: Palette.primaryTextColor,
       );
-       TextStyle get button1 => GoogleFonts.poppins(
+  TextStyle get button1 => GoogleFonts.poppins(
         fontSize: 14.sp,
         fontWeight: FontWeight.w500,
-        color: Palette.primaryTextColor
+        color: Palette.primaryTextColor,
       );
-      TextStyle get subHeading1 => GoogleFonts.poppins(
+  TextStyle get subHeading1 => GoogleFonts.poppins(
         fontSize: 16.sp,
         fontWeight: FontWeight.w600,
-        color: Palette.primaryTextColor
+        color: Palette.primaryTextColor,
       );
 }

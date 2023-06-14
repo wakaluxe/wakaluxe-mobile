@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
-import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
-import 'package:wakaluxe/src/extensions/num.dart';
 
 class EmptyNotificationContent extends StatelessWidget {
   const EmptyNotificationContent({super.key});

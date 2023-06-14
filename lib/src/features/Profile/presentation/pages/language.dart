@@ -5,11 +5,7 @@ import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 
-<<<<<<< HEAD
-@RoutePage(name: 'Language')
-=======
-@RoutePage()    
->>>>>>> 5c430bba86ac8f925b88c0faa991c8679432bf5b
+@RoutePage()
 class Language extends StatefulWidget {
   const Language({super.key});
 

@@ -17,7 +17,6 @@ import 'package:wakaluxe/src/features/customer/presentation/home/screens/wakalux
 
 // List<Map<String, dynamic>> data = []
 @RoutePage(name: 'Home')
-
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -42,51 +41,20 @@ class _HomeState extends State<Home> {
       drawer: const MenuDrawer(),
       endDrawer: const ProfileDrawer(),
       body: BlocConsumer<HomeBloc, HomeState>(
-          listener: (context, state) {
-            if (state.onTrip) {
-              context.showSnackBar('Will be able to get directions in 5s');
-            }
-            if (state.getDirections) {
-              context.showSnackBar(
-                'Click, Payment bottom will show in 10s',
-              );
-            }
-          },
-          builder: (context, state) {
-            final data = getDriverData();
-            return Stack(
-              children: [
-<<<<<<< HEAD
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    children: [
-                      TextButton(
-                        onPressed: () {
-                          context.router.pushNamed('/my-trip');
-                        },
-                        child: const Text('Trip'),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          context.router.pushNamed('/my-profile');
-                        },
-                        child: const Text('Profile'),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          context.router.pushNamed('/settings');
-                        },
-                        child: const Text('Settings'),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          context.router.pushNamed('/notifications');
-                        },
-                        child: const Text('Notifications'),
-                      ),
-                      Row(
-=======
+        listener: (context, state) {
+          if (state.onTrip) {
+            context.showSnackBar('Will be able to get directions in 5s');
+          }
+          if (state.getDirections) {
+            context.showSnackBar(
+              'Click, Payment bottom will show in 10s',
+            );
+          }
+        },
+        builder: (context, state) {
+          final data = getDriverData();
+          return Stack(
+            children: [
               GoogleMap(
                 onMapCreated: _onMapCreated,
                 initialCameraPosition: CameraPosition(
@@ -100,7 +68,6 @@ class _HomeState extends State<Home> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Column(
->>>>>>> 5c430bba86ac8f925b88c0faa991c8679432bf5b
                         children: [
                           Row(
                             children: [
@@ -197,15 +164,11 @@ class _HomeState extends State<Home> {
                                       ),
                                       message: 'Destination Coordimates',
                                       onTap: () {
-<<<<<<< HEAD
-                                        //debugPrint('Testing out');
-=======
                                         WakaluxeBottomSheets
                                             .showSuggestedRidesModalSheet(
                                           context,
                                           data: suggestedRides,
                                         );
->>>>>>> 5c430bba86ac8f925b88c0faa991c8679432bf5b
                                       },
                                     ),
                                   ),
@@ -266,32 +229,6 @@ class _HomeState extends State<Home> {
                                       context,
                                     );
                                   },
-<<<<<<< HEAD
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: 30.hGap,
-                            ),
-                          ],
-                        ),
-                    ],
-                  ),
-                ),
-                if (state.selectDriver)
-                  Positioned(
-                    bottom: 20,
-                    left: 0,
-                    right: 0,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: WakaluxeButton(
-                        text: 'Select a driver',
-                        action: () {
-                          context.read<HomeBloc>().add(
-                                SelectDriverEvent(
-                                  selectDriver: !state.selectDriver,
-=======
                                   driverImage: driver['driverImage'] as String,
                                   driverName: driver['driverName'] as String,
                                   rating: 4.0,
@@ -302,7 +239,6 @@ class _HomeState extends State<Home> {
                                   price: driver['price'] as String,
                                   time: '5',
                                   imageLiknks: images,
->>>>>>> 5c430bba86ac8f925b88c0faa991c8679432bf5b
                                 ),
                               );
                             },
@@ -391,16 +327,13 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                       )
-                         
                   ],
                 ),
               ),
-       
-              ],
-            );
-          },
-        ),
-      
+            ],
+          );
+        },
+      ),
     );
   }
 }

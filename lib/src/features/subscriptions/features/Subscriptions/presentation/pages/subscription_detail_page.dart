@@ -2,11 +2,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:wakaluxe/src/common/common.dart';
-import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
-import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/widgets/padded_body.dart';
 import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/widgets/subscriptions_amount.dart';
@@ -28,32 +25,80 @@ class WakaluxeSubscriptionDetail extends StatelessWidget {
     return Scaffold(
       body: PaddedBody(
         body: Padding(
-          padding: EdgeInsets.only(top: 42.h),
+          padding: EdgeInsets.only(
+            top: 42.h,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const BackButton(),
+              const WakaluxBackhButton(),
               30.vGap,
-              Text('$plan Plan'),
-              15.vGap,
-              Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(
-                      text: '${subscription_amount(plan)}/',
-                      style: text.display3,
-                    ),
-                    TextSpan(text: 'month', style: text.body2)
-                  ],
-                ),
+              Text(
+                '$plan Plan',
+                style: text.headline,
               ),
-              40.vGap,
+              5.vGap,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: '${subscription_amount(plan)}/',
+                          style: text.title,
+                        ),
+                        TextSpan(text: 'month', style: text.body2)
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              30.vGap,
               Text(
                 'Description',
-                style: text.body1,
+                style: text.subHeading1,
+              ),
+              Expanded(
+                child: ListView.separated(
+                  itemCount: mockSubscriptions.length,
+                  separatorBuilder: (BuildContext context, int index) =>
+                      20.vGap,
+                  itemBuilder: (BuildContext context, int index) {
+                    final item = mockSubscriptions[index];
+                    return Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          '\u2022',
+                          style: TextStyle(fontSize: 30),
+                        ),
+                        10.hGap,
+                        SizedBox(
+                          width: 321.w,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                item['title']!,
+                                style: text.body2,
+                              ),
+                              // 5.vGap,
+                              Text(
+                                item['content']!,
+                                style: text.body1,
+                                maxLines: 8,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    );
+                  },
+                ),
               ),
               const Spacer(),
-               WakaluxeButton(
+              WakaluxeButton(
                 action: () => context.router.pushNamed('/home'),
                 text: 'Subscribe',
               ),
@@ -65,37 +110,14 @@ class WakaluxeSubscriptionDetail extends StatelessWidget {
   }
 }
 
-class BackButton extends StatelessWidget {
-  const BackButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        bottom: 8.0.h,
-      ),
-      child: InkWell(
-        onTap: () => context.router.pop(),
-        child: ElevatedButton(
-          onPressed: () => context.router.pop(),
-          style: ElevatedButton.styleFrom(
-            foregroundColor: context.scheme.onPrimary,
-            elevation: 10,
-            minimumSize: const Size(45, 45),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
-            ),
-          ),
-<<<<<<< HEAD
-          //todo: change icon
-          child: const Icon(Icons.arrow_back_ios),
-=======
-          child: SvgPicture.asset(Constants.backBoldIcon),
->>>>>>> 5c430bba86ac8f925b88c0faa991c8679432bf5b
-        ),
-      ),
-    );
-  }
-}
+final mockSubscriptions = [
+  {
+    'title': 'Higher Priority than No plan',
+    'content':
+        'Whenever you need a taxi, taxis will favor you over those without plans. '
+  },
+  {
+    'title': 'Plan pickups',
+    'content': 'You can plan your pickups in advance and have a taxi'
+  },
+];

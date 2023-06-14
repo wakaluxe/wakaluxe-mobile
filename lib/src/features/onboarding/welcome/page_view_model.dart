@@ -18,6 +18,8 @@ PageViewModel wakaluxPageViewModel({
   return PageViewModel(
     titleWidget: Text(
       title,
+                  textAlign: TextAlign.center,
+
       style: text.display2,
     ),
     bodyWidget: SizedBox(

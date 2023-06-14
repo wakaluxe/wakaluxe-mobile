@@ -145,9 +145,9 @@ class DriverHome extends StatelessWidget {
                               style: context.titleLgBold,
                             ),
                             10.vGap,
-                            Row(
+                            const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
+                              children: [
                                 WakaluxeOrderDetails(
                                   title: 'DISTANCE',
                                   value: '5.5km',

@@ -8,7 +8,7 @@ import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
-import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart';
+import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart' as routes;
 
 class MenuDrawer extends StatefulWidget {
   const MenuDrawer({super.key});
@@ -29,7 +29,6 @@ class _MenuDrawerState extends State<MenuDrawer>
 
   @override
   Widget build(BuildContext context) {
-  
     return Drawer(
       child: SafeArea(
         child: Padding(
@@ -60,10 +59,10 @@ class _MenuDrawerState extends State<MenuDrawer>
                   padding: EdgeInsets.only(left: 25.0.w),
                   child: TabBarView(
                     controller: _tabController,
-                    children: [
-                      const TaxiBookingContent(),
+                    children: const [
+                      TaxiBookingContent(),
                       Column(
-                        children: const [
+                        children: [
                           ListTile(
                             title: Text('Rentals'),
                             leading: Icon(Icons.location_on),
@@ -93,7 +92,7 @@ class TaxiBookingContent extends StatelessWidget {
       children: [
         44.vGap,
         GestureDetector(
-          onTap: () => context.pushRoute(const MyTrip()),
+          onTap: () => context.pushRoute(const routes.MyTrip()),
           child: const TaxiBookingLabels(
             title: 'My trips',
             icon: Constants.locationIcon,
@@ -101,7 +100,7 @@ class TaxiBookingContent extends StatelessWidget {
         ),
         30.vGap,
         GestureDetector(
-          onTap: () => context.pushRoute(const Messages()),
+          onTap: () => context.pushRoute(const routes.Messages()),
           child: const TaxiBookingLabels(
             title: 'Messages',
             icon: Constants.messageIcon,
@@ -114,7 +113,7 @@ class TaxiBookingContent extends StatelessWidget {
         ),
         30.vGap,
         GestureDetector(
-          onTap: () => context.pushRoute(const Settings()),
+          onTap: () => context.pushRoute(const routes.Settings()),
           child: const TaxiBookingLabels(
             title: 'Settings',
             icon: Constants.settingIcon,
@@ -127,9 +126,9 @@ class TaxiBookingContent extends StatelessWidget {
 
 class TaxiBookingLabels extends StatelessWidget {
   const TaxiBookingLabels({
-    super.key,
     required this.title,
     required this.icon,
+    super.key,
   });
 
   final String title;

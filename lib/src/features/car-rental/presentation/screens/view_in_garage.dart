@@ -42,10 +42,10 @@ class ViewInGarage extends StatelessWidget {
                         ),
                       ),
                       15.hGap,
-                      Column(
+                      const Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           WakaluxeTextProperty(
                             title: 'Time Left:',
                             value: '2weeks & 4 days',

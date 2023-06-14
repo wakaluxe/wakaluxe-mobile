@@ -11,10 +11,7 @@ import 'package:wakaluxe/src/extensions/num.dart';
 
 class WakaluxeTripDetails extends StatelessWidget {
   const WakaluxeTripDetails({
-    super.key,
-    required this.pickUpLocation,
-    required this.dropOffLocation,
-    required this.tripState,
+    required this.pickUpLocation, required this.dropOffLocation, required this.tripState, super.key,
   });
 
   final String pickUpLocation;
@@ -89,7 +86,7 @@ class WakaluxeTripDetails extends StatelessWidget {
               ),
               child: Text(tripState.name,
                   style:
-                      theme.subtitle.copyWith(color: context.scheme.tertiaryContainer)),
+                      theme.subtitle.copyWith(color: context.scheme.tertiaryContainer),),
             ),
           ],
         ),

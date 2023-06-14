@@ -58,12 +58,7 @@ class _WakaluxePhoneNumberState extends State<WakaluxePhoneNumber> {
             text: text,
             hint: '690909090',
             controller: phoneController,
-<<<<<<< HEAD
-            //TODO: update icon
-            icon: Constants.starIcon,
-=======
             icon: Constants.hashtagIcon,
->>>>>>> 5c430bba86ac8f925b88c0faa991c8679432bf5b
             formatter: [phoneFormatter],
           ),
           86.vGap,

@@ -7,8 +7,7 @@ import 'package:wakaluxe/src/extensions/build_context.dart';
 class WakaluxBadge extends StatelessWidget {
   final String value;
   const WakaluxBadge({
-    super.key,
-    required this.value,
+    required this.value, super.key,
   });
 
   @override

@@ -9,12 +9,8 @@ import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
-<<<<<<< HEAD
 
-@RoutePage(name: 'MyProfile')
-=======
-@RoutePage()    
->>>>>>> 5c430bba86ac8f925b88c0faa991c8679432bf5b
+@RoutePage()
 class MyProfile extends StatelessWidget {
   const MyProfile({super.key});
 
@@ -97,9 +93,9 @@ class MyProfile extends StatelessWidget {
 
 class profileTile extends StatelessWidget {
   const profileTile({
-    super.key,
     required this.title,
     required this.content,
+    super.key,
     this.hasEdit = false,
   });
 
@@ -125,6 +121,7 @@ class profileTile extends StatelessWidget {
           width: 186.w,
           child: Text(
             content,
+            overflow: TextOverflow.ellipsis,
             style: t.body1.copyWith(
               color: context.scheme.outline.withOpacity(0.5),
             ),

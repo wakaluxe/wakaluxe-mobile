@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wakaluxe/src/configs/configs.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 
 class WakaluxeBoxedIcon extends StatelessWidget {
@@ -23,7 +22,7 @@ class WakaluxeBoxedIcon extends StatelessWidget {
           height: 52,
           width: 52,
           decoration: BoxDecoration(
-            color: color?? context.scheme.tertiary,
+            color: color ?? context.scheme.tertiary,
             borderRadius: BorderRadius.circular(20),
           ),
           child: Center(

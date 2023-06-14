@@ -1,20 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/common/widgets/wakaluxe_dotted_line.dart';
-<<<<<<< HEAD
-import 'package:wakaluxe/src/configs/wakaluxe_icons.dart' as icons;
-=======
 import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
-import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
-import 'package:wakaluxe/src/extensions/build_context.dart';
-import 'package:wakaluxe/src/extensions/num.dart';
-
-import '../../configs/wakaluxe_icons.dart';
-
-import 'package:wakaluxe/src/common/Utils/wakalux_icons_icons.dart';
-import 'package:wakaluxe/src/common/common.dart';
->>>>>>> 5c430bba86ac8f925b88c0faa991c8679432bf5b
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 
@@ -69,14 +57,8 @@ class WakaluxeTripDetails extends StatelessWidget {
         2.vGap,
         Row(
           children: [
-<<<<<<< HEAD
-            Icon(
-              icons.WakaluxIcons.location,
-=======
             SvgPicture.asset(
               Constants.locationIcon,
->>>>>>> 5c430bba86ac8f925b88c0faa991c8679432bf5b
-              color: context.scheme.error,
             ),
             10.hGap,
             Column(

@@ -2,18 +2,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:wakaluxe/src/common/widgets/wakalux_back_button.dart';
 import 'package:wakaluxe/src/common/widgets/wakaluxe_button.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
-<<<<<<< HEAD
 
-@RoutePage(name: 'ForgotPassword')
-=======
-@RoutePage()    
->>>>>>> 5c430bba86ac8f925b88c0faa991c8679432bf5b
+@RoutePage()
 class ForgotPassword extends StatelessWidget {
   const ForgotPassword({super.key});
 
@@ -22,7 +17,7 @@ class ForgotPassword extends StatelessWidget {
     final theme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
-        leading: const WakaluxBackButton(),
+        leading: const WakaluxBackhButton(),
         title: Text('Forgot Password', style: theme.title),
       ),
       body: SizedBox(
