@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/widgets.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -32,6 +34,10 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     storageDirectory: await getTemporaryDirectory(),
   );
   // await dotenv.load();
+  await Hive.initFlutter();
+  await Hive.openBox('first_run');
+
+
   await HydratedBlocOverrides.runZoned(
     () async => runApp(await builder()),
     storage: storage,

@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:wakaluxe/src/extensions/build_context.dart';
+
 class Constants {
   static const String appName = 'Wakaluxe';
   static const String appVersion = '1.0.0';
@@ -14,11 +17,13 @@ class Constants {
       'assets/illustrations/Forgot_password_bro.svg';
   static const String newPassword = 'assets/illustrations/Secure_login_bro.svg';
   static const String facebookAsset = 'assets/icons/Facebook.svg';
+  static const String appleAsset = 'assets/icons/apple.svg';
   static const String googleAsset = 'assets/icons/google.svg';
-
 
   static const String closeIcon = 'assets/icons/hicon/bold/close.svg';
   static const String locationIcon = 'assets/icons/hicon/linear/location.svg';
+  static const String hideIcon = 'assets/icons/hicon/linear/Hide.svg';
+  static const String showIcon = 'assets/icons/hicon/linear/Show.svg';
   static const String settingIcon = 'assets/icons/hicon/linear/setting.svg';
   static const String headphoneIcon = 'assets/icons/hicon/linear/headphone.svg';
   static const String messageIcon = 'assets/icons/hicon/linear/message.svg';
@@ -29,6 +34,8 @@ class Constants {
   static const String sendIcon = 'assets/icons/hicon/linear/send.svg';
   static const String nearbyIcon = 'assets/icons/nearby.svg';
   static const String markerIcon = 'assets/icons/marker.svg';
+  static const String textIcon = '/assets/icons/hicon/linear/text.svg';
+
   static const String moreSquareIcon =
       'assets/icons/hicon/linear/more_square.svg';
   static const String starIcon = 'assets/icons/hicon/linear/Star_2.svg';
@@ -70,6 +77,21 @@ extension TripStateExtension on TripState {
         return 'Pending';
       default:
         return 'Unknown';
+    }
+  }
+
+  Color color(BuildContext context) {
+    switch (this) {
+      case TripState.upcoming:
+        return context.scheme.surfaceTint;
+      case TripState.completed:
+        return context.scheme.tertiary;
+      case TripState.cancelled:
+        return context.scheme.error;
+      case TripState.pending:
+        return context.scheme.primary;
+      default:
+        return context.scheme.outline;
     }
   }
 }

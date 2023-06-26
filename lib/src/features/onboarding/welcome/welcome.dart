@@ -23,7 +23,7 @@ class Welcome extends StatelessWidget {
         dotsDecorator: DotsDecorator(
           size: Size.square(16.r),
           activeSize: const Size(20, 10),
-          activeColor: context.scheme.tertiary,
+          activeColor: context.scheme.primary,
           color: Colors.black26,
           spacing: const EdgeInsets.symmetric(horizontal: 3),
           activeShape: RoundedRectangleBorder(

@@ -28,6 +28,8 @@ class _MessageState extends State<Message> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: context.scheme.background,
+        elevation: 0,
         title: ListTile(
           leading: const Hero(
             tag: 'chat',

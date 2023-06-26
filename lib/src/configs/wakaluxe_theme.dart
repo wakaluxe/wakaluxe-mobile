@@ -151,7 +151,7 @@ const lightColorScheme = ColorScheme(
   onSecondary: Color(0xFFFFFFFF),
   secondaryContainer: Color(0xFFFFDBD1),
   onSecondaryContainer: Color(0xFF3B0900),
-  tertiary: Color(0xffFBE521),
+  tertiary: Color(0xff61D480),
   onTertiary: Color(0xFF001F25),
   tertiaryContainer: Color(0xFF7EF8D5),
   onTertiaryContainer: Color(0xFF002018),
@@ -217,6 +217,7 @@ extension FigmaStyles on TextTheme {
         height: 1.5,
         color: Palette.primaryTextColor,
       );
+
   TextStyle get body1 => GoogleFonts.poppins(
         fontSize: 16.sp,
         fontWeight: FontWeight.w400,
@@ -240,7 +241,7 @@ extension FigmaStyles on TextTheme {
   TextStyle get display3 => GoogleFonts.poppins(
         fontSize: 34.sp,
         fontWeight: FontWeight.w500,
-        color: Palette.primaryColorDark,
+        color: Palette.black,
       );
 
   TextStyle get headline => GoogleFonts.poppins(
@@ -272,6 +273,11 @@ extension FigmaStyles on TextTheme {
   TextStyle get subHeading1 => GoogleFonts.poppins(
         fontSize: 16.sp,
         fontWeight: FontWeight.w600,
+        color: Palette.primaryTextColor,
+      );
+  TextStyle get extraLargeTitle => GoogleFonts.poppins(
+        fontSize: 40.sp,
+        fontWeight: FontWeight.w500,
         color: Palette.primaryTextColor,
       );
 }

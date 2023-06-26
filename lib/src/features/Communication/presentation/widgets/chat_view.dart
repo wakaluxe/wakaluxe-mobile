@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
+import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 
 class ChatView extends StatefulWidget {
@@ -22,47 +22,32 @@ class _ChatViewState extends State<ChatView> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: DecoratedBox(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(Constants.chatBackground),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: ListView.builder(
-          itemCount: messages.length,
-          itemBuilder: (BuildContext context, int index) {
-            final message = messages[index];
-            return Align(
-              alignment: message['sender'] == 'user'
-                  ? Alignment.centerRight
-                  : Alignment.centerLeft,
-              child: Container(
-                margin: const EdgeInsets.all(8),
-                padding: const EdgeInsets.symmetric(
-                  vertical: 16,
-                  horizontal: 16,
-                ),
-                decoration: BoxDecoration(
-                  color: context.scheme.surface,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 2,
-                      blurRadius: 5,
-                      offset: const Offset(0, 3),
-                    ),
-                  ],
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Text(
-                  message['text']!,
-                  style: const TextStyle(fontSize: 16),
-                ),
+      child: ListView.builder(
+        itemCount: messages.length,
+        itemBuilder: (BuildContext context, int index) {
+          final message = messages[index];
+          return Align(
+            alignment: message['sender'] == 'user'
+                ? Alignment.centerRight
+                : Alignment.centerLeft,
+            child: Container(
+              margin: const EdgeInsets.all(8),
+              padding: const EdgeInsets.symmetric(
+                vertical: 16,
+                horizontal: 16,
               ),
-            );
-          },
-        ),
+              decoration: BoxDecoration(
+                color: context.scheme.tertiary,
+                
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Text(
+                message['text']!,
+                style: Theme.of(context).textTheme.button1,
+              ),
+            ),
+          );
+        },
       ),
     );
   }

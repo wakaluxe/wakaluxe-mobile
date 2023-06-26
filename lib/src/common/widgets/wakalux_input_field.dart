@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 
-class WakaluxInputField extends StatelessWidget {
+class WakaluxInputField extends StatefulWidget {
   const WakaluxInputField({
     required this.text,
     required this.hint,
@@ -28,6 +29,22 @@ class WakaluxInputField extends StatelessWidget {
   final List<TextInputFormatter>? formatter;
 
   @override
+  State<WakaluxInputField> createState() => _WakaluxInputFieldState();
+}
+
+class _WakaluxInputFieldState extends State<WakaluxInputField> {
+  bool mask = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    if (widget.obscured) {
+      mask = true;
+    }
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -44,22 +61,33 @@ class WakaluxInputField extends StatelessWidget {
         children: [
           Expanded(
             child: TextFormField(
-              validator: validator,
-              obscureText: obscured,
-              inputFormatters: formatter,
+              validator: widget.validator,
+              obscureText: mask,
+              inputFormatters: widget.formatter,
               decoration: InputDecoration(
-                labelText: hint,
-                icon: icon != null
+                labelText: widget.hint,
+                icon: widget.icon != null
                     ? SvgPicture.asset(
-                        icon!,
+                        widget.icon!,
                       )
                     : null,
-                labelStyle: text.body1,
+                labelStyle: widget.text.body1,
                 border: InputBorder.none,
               ),
             ),
           ),
-          if (suffix != null) SvgPicture.asset(suffix!)
+          if (widget.obscured)
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  mask = !mask;
+                });
+              },
+              child: SvgPicture.asset(
+                mask ? Constants.showIcon : Constants.hideIcon,
+              ),
+            ),
+          if (widget.suffix != null) SvgPicture.asset(widget.suffix!)
         ],
       ),
     );

@@ -9,8 +9,9 @@ import 'package:wakaluxe/src/features/auth/presentation/widgets/app_barred_scaff
 
 @RoutePage(name: 'Verification')
 class WakaluxeVerification extends StatelessWidget {
-  const WakaluxeVerification({super.key});
-
+  const WakaluxeVerification({
+    super.key,
+  });
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
@@ -43,12 +44,6 @@ class WakaluxeVerification extends StatelessWidget {
               ),
             ),
           ),
-          98.vGap,
-          WakaluxeButton(
-            text: 'Verify',
-            action: () => context.router.pushNamed('/subscriptions'),
-            width: 0.4,
-          ),
           24.vGap,
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -63,7 +58,13 @@ class WakaluxeVerification extends StatelessWidget {
                 style: text.body1.copyWith(color: context.scheme.tertiary),
               ),
             ],
-          )
+          ),
+          98.vGap,
+          WakaluxeButton(
+            text: 'Verify',
+            action: () => context.router.pushNamed('/create-pin'),
+            width: 0.4,
+          ),
         ],
       ),
     );
