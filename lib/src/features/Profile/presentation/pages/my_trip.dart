@@ -41,7 +41,7 @@ class _MyTripState extends State<MyTrip> {
           leading: const WakaluxBackButton(),
           actions: [
             GestureDetector(
-              onTap: ()=> _handlePickDate(context),
+              onTap: () => _handlePickDate(context),
               child: SvgPicture.asset(Constants.calendarIcon),
             ),
             26.hGap,
@@ -111,15 +111,15 @@ class _MyTripState extends State<MyTrip> {
   }
 
   Future<void> _handlePickDate(BuildContext context) async {
-    final date = await showDatePicker(
+    showDatePicker(
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime.now().subtract(const Duration(days: 30)),
       lastDate: DateTime.now(),
-    );
-    if (date != null) {
-      await context.read<TripCubit>().fetchMyTripsByDate(page: 1, date: date);
-    }
+    ).then((value) {
+      if (value != null) {
+        context.read<TripCubit>().fetchMyTripsByDate(page: 1, date: value);
+      }
+    });
   }
 }
-dfdfgdfgdfgdfg

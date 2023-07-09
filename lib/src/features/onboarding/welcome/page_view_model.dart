@@ -37,7 +37,7 @@ PageViewModel wakaluxPageViewModel({
             WakaluxeButton(
               text: 'Get Started',
               
-              action: () => AutoRouter.of(context!).pushNamed('/sign-up'),
+              action: () => AutoRouter.of(context!).pushNamed('/home'),
             ),]
         ],
       ),

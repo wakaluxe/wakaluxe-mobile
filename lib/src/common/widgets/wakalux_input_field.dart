@@ -1,23 +1,27 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 
 class WakaluxInputField extends StatefulWidget {
   const WakaluxInputField({
+    Key? key,
     required this.text,
     required this.hint,
     this.controller,
     this.icon,
-    super.key,
     this.suffix,
     this.validator,
     this.obscured = false,
     this.formatter,
-  });
+    this.radius,
+    this.keyboardType,
+  }) : super(key: key);
 
   final TextTheme text;
   final String hint;
@@ -27,6 +31,8 @@ class WakaluxInputField extends StatefulWidget {
   final String? Function(String?)? validator;
   final bool obscured;
   final List<TextInputFormatter>? formatter;
+  final double? radius;
+  final TextInputType? keyboardType;
 
   @override
   State<WakaluxInputField> createState() => _WakaluxInputFieldState();
@@ -47,10 +53,11 @@ class _WakaluxInputFieldState extends State<WakaluxInputField> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 50.h,
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       decoration: BoxDecoration(
         color: context.scheme.primaryContainer.withOpacity(0.05),
-        borderRadius: BorderRadius.circular(20.r),
+        borderRadius: BorderRadius.circular(widget.radius ?? 20.r),
         border: Border.all(
           width: 2.r,
           color: context.scheme.scrim.withOpacity(0.1),
@@ -64,14 +71,15 @@ class _WakaluxInputFieldState extends State<WakaluxInputField> {
               validator: widget.validator,
               obscureText: mask,
               inputFormatters: widget.formatter,
+              keyboardType: TextInputType.text,
               decoration: InputDecoration(
-                labelText: widget.hint,
+                hintText: widget.hint,
                 icon: widget.icon != null
                     ? SvgPicture.asset(
                         widget.icon!,
                       )
                     : null,
-                labelStyle: widget.text.body1,
+                hintStyle: widget.text.body1,
                 border: InputBorder.none,
               ),
             ),

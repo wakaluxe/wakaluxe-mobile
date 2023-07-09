@@ -67,7 +67,7 @@ class ProfileDrawer extends StatelessWidget {
                 title: 'Payment methods',
                 icon: Constants.walletIcon,
               ),
-              350.vGap,
+              250.h.vGap,
               GestureDetector(
                 onTap: () => context.router.pushNamed('/login'),
                 child: const TaxiBookingLabels(

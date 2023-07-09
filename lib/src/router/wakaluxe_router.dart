@@ -37,6 +37,10 @@ class WakaluxAppRouter extends $WakaluxAppRouter {
           path: '/payment-details',
         ),
         AutoRoute(
+          page: EditProfile.page,
+          path: '/edit-profile',
+        ),
+        AutoRoute(
           page: Rating.page,
           path: '/rating',
         ),

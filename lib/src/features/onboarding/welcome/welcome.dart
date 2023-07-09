@@ -10,7 +10,7 @@ import 'package:wakaluxe/src/features/onboarding/welcome/page_view_model.dart';
 @RoutePage(name: 'welcome')
 class Welcome extends StatelessWidget {
   Welcome({super.key});
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+ // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
