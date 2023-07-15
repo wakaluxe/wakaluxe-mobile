@@ -21,6 +21,7 @@ class WakaluxePhoneSignUp extends StatefulWidget {
 class _WakaluxePhoneSignUpState extends State<WakaluxePhoneSignUp> {
   late TextEditingController phoneController;
   late TextEditingController pinController;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -48,45 +49,52 @@ class _WakaluxePhoneSignUpState extends State<WakaluxePhoneSignUp> {
       filter: {'#': RegExp('[0-9]')},
     );
 
-    return AppBarredScaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Enter your Phone Number',
-            style: text.display3,
-          ),
-          10.vGap,
-          Text(
-            'We will send you a verification code',
-            style: text.body1,
-          ),
-          31.vGap,
-          WakaluxInputField(
-            text: text,
-            hint: '690909090',
-            controller: phoneController,
-            icon: Constants.hashtagIcon,
-            formatter: [phoneFormatter],
-          ),
-          17.vGap,
-            WakaluxInputField(
-            text: text,
-            hint: 'Pin',
-            controller: pinController,
-            icon: Constants.passwordIcon,
-            obscured: true,
-            formatter: [pinFormatter],
-          ),
-const Spacer(),
-          Center(
-            child: WakaluxeButton(
-              text: 'Continue',
-              action: () => AutoRouter.of(context).pushNamed('/verification'),
+    return Form(
+      key: _formKey,
+      child: AppBarredScaffold(
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Enter your Phone Number',
+              style: text.display3,
             ),
-          ),
-        ],
+            10.vGap,
+            Text(
+              'We will send you a verification code',
+              style: text.body1,
+            ),
+            31.vGap,
+            WakaluxInputField(
+              text: text,
+              hint: '690909090',
+              controller: phoneController,
+              icon: Constants.hashtagIcon,
+              formatter: [phoneFormatter],
+            ),
+            17.vGap,
+              WakaluxInputField(
+              text: text,
+              hint: 'Pin',
+              controller: pinController,
+              icon: Constants.passwordIcon,
+              obscured: true,
+              formatter: [pinFormatter],
+            ),
+    const Spacer(),
+            Center(
+              child: WakaluxeButton(
+                text: 'Continue',
+                action: () => AutoRouter.of(context).pushNamed('/verification'),
+              ),
+            ),
+          ],
+        ),
       ),
     );
+  }
+
+  _handleSignUp(){
+
   }
 }

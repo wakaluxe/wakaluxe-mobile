@@ -19,7 +19,7 @@ class Constants {
   static const String facebookAsset = 'assets/icons/Facebook.svg';
   static const String appleAsset = 'assets/icons/apple.svg';
   static const String googleAsset = 'assets/icons/google.svg';
-
+  static const String bookAsset = 'assets/illustrations/book.svg';
   static const String closeIcon = 'assets/icons/hicon/bold/close.svg';
   static const String locationIcon = 'assets/icons/hicon/linear/location.svg';
   static const String hideIcon = 'assets/icons/hicon/linear/Hide.svg';

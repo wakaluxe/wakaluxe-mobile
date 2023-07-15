@@ -18,7 +18,7 @@ class WakaluxAppRouter extends $WakaluxAppRouter {
           ],
         ),
         AutoRoute(page: Home.page, path: '/home'),
-        // AutoRoute(page: Login.page, path: '/login'),
+        AutoRoute(page: Login.page, path: '/login'),
         AutoRoute(page: Verification.page, path: '/verification'),
         AutoRoute(page: SignUp.page, path: '/sign-up'),
         // AutoRoute(page: PhoneNumber.page, path: '/phone-number'),
@@ -39,6 +39,10 @@ class WakaluxAppRouter extends $WakaluxAppRouter {
         AutoRoute(
           page: EditProfile.page,
           path: '/edit-profile',
+        ),
+        AutoRoute(
+          page: Home_2.page,
+          path: '/home-2',
         ),
         AutoRoute(
           page: Rating.page,

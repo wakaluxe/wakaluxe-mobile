@@ -10,7 +10,7 @@ class OnBoardingGuard extends AutoRouteGuard {
       box.put('is_first_run', false);
       resolver.next();
     } else {
-      router.pushNamed('/home');
+      router.pushNamed('/home-2');
     }
   }
 }

@@ -1,11 +1,15 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:wakaluxe/firebase_options.dart';
+import 'package:wakaluxe/src/dependencies_container.dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -29,9 +33,15 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   };
 
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await registerServices();
   Bloc.observer = const AppBlocObserver();
   final storage = await HydratedStorage.build(
-    storageDirectory: await HydratedStorage.webStorageDirectory,
+    storageDirectory: kIsWeb
+        ?  HydratedStorage.webStorageDirectory
+        : await getTemporaryDirectory(),
   );
   // await dotenv.load();
   await Hive.initFlutter();

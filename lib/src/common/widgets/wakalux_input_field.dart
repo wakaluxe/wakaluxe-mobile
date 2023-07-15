@@ -70,6 +70,7 @@ class _WakaluxInputFieldState extends State<WakaluxInputField> {
             child: TextFormField(
               validator: widget.validator,
               obscureText: mask,
+              controller: widget.controller,
               inputFormatters: widget.formatter,
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
