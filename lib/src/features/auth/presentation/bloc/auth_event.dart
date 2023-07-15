@@ -53,3 +53,9 @@ class OnPhoneAuthVerificationCompleteEvent extends AuthEvent {
     required this.credential,
   });
 }
+
+class OnLogOutRequestEvent extends AuthEvent {}
+
+class OnAppStartEvent extends AuthEvent {
+}
+

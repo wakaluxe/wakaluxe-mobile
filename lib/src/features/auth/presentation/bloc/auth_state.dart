@@ -38,3 +38,26 @@ class PhoneAuthCodeSentSuccess extends AuthState {
 }
 
 class PhoneAuthCodeRetrievalTimeOut extends AuthState {}
+
+class AuthLogOutInit extends AuthState {}
+class AuthLogOutSuccess extends AuthState {}
+class AuthLogOutError extends AuthState {
+   final String error;
+   const AuthLogOutError({
+     required this.error,
+   });
+   @override
+   List<Object> get props => [error];
+}
+
+class AuthAppStartInit extends AuthState {}
+class AuthAppStartSuccess extends AuthState {}
+
+class AuthAppStartError extends AuthState {
+   final String error;
+   const AuthAppStartError({
+     required this.error,
+   });
+   @override
+   List<Object> get props => [error];
+}

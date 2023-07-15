@@ -12,6 +12,7 @@ import 'package:wakaluxe/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:wakaluxe/src/features/auth/presentation/verification/cubit/timer_cubit.dart';
 import 'package:wakaluxe/src/features/auth/presentation/verification/cubit/timer_state.dart';
 import 'package:wakaluxe/src/features/auth/presentation/widgets/app_barred_scaffold.dart';
+import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart';
 
 @RoutePage(name: 'Verification')
 class WakaluxeVerification extends StatefulWidget {
@@ -35,14 +36,14 @@ class _WakaluxeVerificationState extends State<WakaluxeVerification> {
     controller.dispose();
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
     return BlocProvider(
       create: (context) => TimerCubit(),
-      child: WillPopScope(
-        onWillPop: () async => false,
+    //  child: WillPopScope(
+      //  onWillPop: () async => false,
         child: AppBarredScaffold(
           body: BlocListener<AuthBloc, AuthState>(
             listener: (context, state) {
@@ -63,7 +64,8 @@ class _WakaluxeVerificationState extends State<WakaluxeVerification> {
                 context.popRoute();
               }
               if (state is PhoneAuthVerified) {
-                context.router.pushNamed('home');
+                context.router
+                    .pushNamed('/home-map');
               }
             },
             child: Column(
@@ -83,7 +85,6 @@ class _WakaluxeVerificationState extends State<WakaluxeVerification> {
                   length: 6,
                   defaultPinTheme: PinTheme(
                     width: 56,
-                    
                     height: 56,
                     textStyle: const TextStyle(
                       fontSize: 20,
@@ -150,7 +151,7 @@ class _WakaluxeVerificationState extends State<WakaluxeVerification> {
                     }
                     return WakaluxeButton(
                       text: 'Verify',
-                      action:  _handleVerifyOtp,
+                      action: _handleVerifyOtp,
                       width: 0.4,
                     );
                   },
@@ -159,7 +160,7 @@ class _WakaluxeVerificationState extends State<WakaluxeVerification> {
             ),
           ),
         ),
-      ),
+  //    ),
     );
   }
 

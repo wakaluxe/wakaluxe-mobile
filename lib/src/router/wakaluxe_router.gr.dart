@@ -44,7 +44,7 @@ import 'package:wakaluxe/src/features/Communication/presentation/pages/messages.
     as _i17;
 import 'package:wakaluxe/src/features/customer/presentation/home/home_2.dart'
     as _i18;
-import 'package:wakaluxe/src/features/customer/presentation/home/screens/home.dart'
+import 'package:wakaluxe/src/features/customer/presentation/home/screens/home_map.dart'
     as _i19;
 import 'package:wakaluxe/src/features/customer/presentation/payment_details/screens/payment_details.dart'
     as _i20;
@@ -238,10 +238,10 @@ abstract class $WakaluxAppRouter extends _i40.RootStackRouter {
         child: const _i18.Home2Screen(),
       );
     },
-    Home.name: (routeData) {
+    HomeMap.name: (routeData) {
       return _i40.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i19.Home(),
+        child: const _i19.HomeMap(),
       );
     },
     PaymentDetails.name: (routeData) {
@@ -785,15 +785,15 @@ class Home_2 extends _i40.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i19.Home]
-class Home extends _i40.PageRouteInfo<void> {
-  const Home({List<_i40.PageRouteInfo>? children})
+/// [_i19.HomeMap]
+class HomeMap extends _i40.PageRouteInfo<void> {
+  const HomeMap({List<_i40.PageRouteInfo>? children})
       : super(
-          Home.name,
+          HomeMap.name,
           initialChildren: children,
         );
 
-  static const String name = 'Home';
+  static const String name = 'HomeMap';
 
   static const _i40.PageInfo<void> page = _i40.PageInfo<void>(name);
 }

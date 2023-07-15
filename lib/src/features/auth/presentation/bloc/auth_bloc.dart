@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:wakaluxe/src/common/Utils/logger.dart';
 import 'package:wakaluxe/src/features/auth/data/firebase_auth_remote_data_source.dart';
 import 'package:wakaluxe/src/features/auth/domain/exceptions/sign_in_with_credential.dart';
 
@@ -17,6 +18,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc(this.authRepository) : super(AuthInitial()) {
     on<AuthEvent>((event, emit) {
       // TODO: implement event handler
+      _onAppStart(event, emit);
       on<SendOtpToPhoneEvent>(_onSendOtp);
       on<VerifySentOtpEvent>(_onVerifyOtp);
       on<OnPhoneOtpSent>((event, emit) =>
@@ -24,6 +26,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       on<OnPhoneAuthErrorEvent>(
           (event, emit) => emit(PhoneAuthError(error: event.error)));
       on<OnPhoneAuthVerificationCompleteEvent>(_loginWithCredential);
+      on<OnLogOutRequestEvent>(_onLogOut);
     });
   }
 
@@ -89,6 +92,30 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(PhoneAuthError(error: e.message ?? e.code));
     } catch (e) {
       emit(PhoneAuthError(error: e.toString()));
+    }
+  }
+
+  Future<void> _onLogOut(
+      OnLogOutRequestEvent event, Emitter<AuthState> emit) async {
+    try {
+      emit(AuthLogOutInit());
+      await authRepository.signOut();
+      emit(AuthLogOutSuccess());
+    } catch (e) {
+      emit(AuthLogOutError(error: e.toString()));
+    }
+  }
+
+  Future<void> _onAppStart(
+      AuthEvent event, Emitter<AuthState> emit) async {
+    try {
+      logInfo('sign in anonymously');
+      final user = authRepository.currentUser;
+      if (!user.hasId) {
+
+      await authRepository.signInAnonymously();
+      }
+    } catch (e) {
     }
   }
 }

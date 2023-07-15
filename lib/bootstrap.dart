@@ -10,6 +10,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:wakaluxe/firebase_options.dart';
 import 'package:wakaluxe/src/dependencies_container.dart';
+import 'package:wakaluxe/src/features/auth/data/local_auser_data.dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -40,13 +41,13 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   Bloc.observer = const AppBlocObserver();
   final storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
-        ?  HydratedStorage.webStorageDirectory
+        ? HydratedStorage.webStorageDirectory
         : await getTemporaryDirectory(),
   );
   // await dotenv.load();
   await Hive.initFlutter();
   await Hive.openBox('first_run');
-
+  await locator<LocalUSerData>().initialize(); 
   await HydratedBlocOverrides.runZoned(
     () async => runApp(await builder()),
     storage: storage,

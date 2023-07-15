@@ -483,6 +483,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_mapbox_navigation:
+    dependency: "direct main"
+    description:
+      name: flutter_mapbox_navigation
+      sha256: fc3df09f30f0498dd43c0b828ef9ae830c23fc40694b126ccb4609c1ebe2b3ff
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.7"
   flutter_native_splash:
     dependency: "direct main"
     description:

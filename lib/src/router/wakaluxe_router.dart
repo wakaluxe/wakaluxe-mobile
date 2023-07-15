@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:wakaluxe/src/router/auth_guard.dart';
 import 'package:wakaluxe/src/router/onboarding_guard.dart';
 import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart';
 
@@ -17,7 +18,8 @@ class WakaluxAppRouter extends $WakaluxAppRouter {
             OnBoardingGuard(),
           ],
         ),
-        AutoRoute(page: Home.page, path: '/home'),
+       // AutoRoute(page: Home.page, path: '/home', guards: [AuthGuard()]),
+        AutoRoute(page: HomeMap.page, path: '/home-map', guards: [AuthGuard()]),
         AutoRoute(page: Login.page, path: '/login'),
         AutoRoute(page: Verification.page, path: '/verification'),
         AutoRoute(page: SignUp.page, path: '/sign-up'),
@@ -85,6 +87,7 @@ class WakaluxAppRouter extends $WakaluxAppRouter {
         AutoRoute(
           page: MyProfile.page,
           path: '/my-profile',
+          guards: [AuthGuard()]
         ),
         AutoRoute(
           page: Notification.page,

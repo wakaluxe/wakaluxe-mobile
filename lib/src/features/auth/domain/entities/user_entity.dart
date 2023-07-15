@@ -7,7 +7,7 @@ class UserEntity {
   final String? phoneNumber;
   final String? profilePicture;
   final String? token;
- const UserEntity({
+  const UserEntity({
     required this.id,
     required this.fullName,
     required this.phoneNumber,
@@ -28,17 +28,18 @@ class UserEntity {
   factory UserEntity.fromMap(Map<String, dynamic> map) {
     return UserEntity(
       id: map['id'] as String,
-      fullName: map['fullName'] as String,
-      phoneNumber: map['phoneNumber'] as String,
-      profilePicture: map['profilePicture'] != null ? map['profilePicture'] as String : null,
-      token: map['token'] != null ? map['token'] as String : null,
+      fullName: map['fullName'] as String?,
+      phoneNumber: map['phoneNumber'] as String?,
+      //TODO: fix this LATER
+      profilePicture: null,
+      token: null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
   factory UserEntity.fromJson(String source) =>
-      UserEntity.fromMap(json.decode(source) as Map<String, dynamic>);
+      UserEntity.fromMap(Map<String, dynamic>.from(jsonDecode(source) as Map));
 
   UserEntity copyWith({
     String? id,
@@ -57,11 +58,10 @@ class UserEntity {
   }
 
   bool get hasToken => token != null && token!.isNotEmpty;
-
-  static const empty =  UserEntity(
+  bool get hasId => id.isNotEmpty;
+  static const empty = UserEntity(
     id: '',
     fullName: '',
     phoneNumber: '',
   );
-
 }
