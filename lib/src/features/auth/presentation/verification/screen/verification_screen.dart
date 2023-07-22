@@ -42,125 +42,124 @@ class _WakaluxeVerificationState extends State<WakaluxeVerification> {
     final text = Theme.of(context).textTheme;
     return BlocProvider(
       create: (context) => TimerCubit(),
-    //  child: WillPopScope(
+      //  child: WillPopScope(
       //  onWillPop: () async => false,
-        child: AppBarredScaffold(
-          body: BlocListener<AuthBloc, AuthState>(
-            listener: (context, state) {
-              if (state is PhoneAuthCodeRetrievalTimeOut) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Time out'),
-                  ),
-                );
-                context.popRoute();
-              }
-              if (state is PhoneAuthError) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(state.error),
-                  ),
-                );
-                context.popRoute();
-              }
-              if (state is PhoneAuthVerified) {
-                context.router
-                    .pushNamed('/home-map');
-              }
-            },
-            child: Column(
-              children: [
-                Text(
-                  'OTP Verification',
-                  style: text.display2,
+      child: AppBarredScaffold(
+        body: BlocListener<AuthBloc, AuthState>(
+          listener: (context, state) {
+            if (state is PhoneAuthCodeRetrievalTimeOut) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Time out'),
                 ),
-                10.vGap,
-                Text(
-                  'A verification code has been send to ${widget.phoneNumber}',
-                  style: text.body1,
+              );
+              context.popRoute();
+            }
+            if (state is PhoneAuthError) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(state.error),
                 ),
-                32.vGap,
-                Pinput(
-                  controller: controller,
-                  length: 6,
-                  defaultPinTheme: PinTheme(
-                    width: 56,
-                    height: 56,
-                    textStyle: const TextStyle(
-                      fontSize: 20,
-                      color: Color.fromRGBO(30, 60, 87, 1),
-                      fontWeight: FontWeight.w600,
-                    ),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                          color: const Color.fromRGBO(234, 239, 243, 1)),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
+              );
+              context.popRoute();
+            }
+            if (state is PhoneAuthVerified) {
+              context.router.pushNamed('/home-map');
+            }
+          },
+          child: Column(
+            children: [
+              Text(
+                'OTP Verification',
+                style: text.display2,
+              ),
+              10.vGap,
+              Text(
+                'A verification code has been send to ${widget.phoneNumber}',
+                style: text.body1,
+              ),
+              32.vGap,
+              Pinput(
+                controller: controller,
+                length: 6,
+                defaultPinTheme: PinTheme(
+                  width: 56,
+                  height: 56,
+                  textStyle: const TextStyle(
+                    fontSize: 20,
+                    color: Color.fromRGBO(30, 60, 87, 1),
+                    fontWeight: FontWeight.w600,
+                  ),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                        color: const Color.fromRGBO(234, 239, 243, 1)),
+                    borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                24.vGap,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Didn't receive the code?",
-                      style: text.body2,
-                    ),
-                    8.hGap,
-                    BlocConsumer<TimerCubit, TimerState>(
-                      listener: (context, state) {},
-                      builder: (context, state) {
-                        if (state is TimerInitial) {
-                          return GestureDetector(
-                            // onTap: ,
-                            child: Text(
-                              'Resend(30s)',
-                              style: text.body1
-                                  .copyWith(color: context.scheme.tertiary),
-                            ),
-                          );
-                        }
-                        if (state is TimerInProgress) {
-                          return Text(
-                            'please wait (${state.elapsed}s)',
+              ),
+              24.vGap,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Didn't receive the code?",
+                    style: text.body2,
+                  ),
+                  8.hGap,
+                  BlocConsumer<TimerCubit, TimerState>(
+                    listener: (context, state) {},
+                    builder: (context, state) {
+                      if (state is TimerInitial) {
+                        return GestureDetector(
+                          // onTap: ,
+                          child: Text(
+                            'Resend(30s)',
                             style: text.body1
                                 .copyWith(color: context.scheme.tertiary),
-                          );
-                        }
-                        return SizedBox();
-                      },
-                    ),
-                  ],
-                ),
-                98.vGap,
-                BlocBuilder<AuthBloc, AuthState>(
-                  builder: (context, state) {
-                    if (state is PhoneAuthLoading) {
-                      return WakaluxeButton(
-                        text: 'verifying...',
-                        width: 0.4,
-                        color: context.scheme.outline,
-                      );
-                    }
-                    if (state is loginWithCredentialnit) {
-                      return WakaluxeButton(
-                        text: 'logging you in...',
-                        width: 0.4,
-                        color: context.scheme.outline,
-                      );
-                    }
+                          ),
+                        );
+                      }
+                      if (state is TimerInProgress) {
+                        return Text(
+                          'please wait (${state.elapsed}s)',
+                          style: text.body1
+                              .copyWith(color: context.scheme.tertiary),
+                        );
+                      }
+                      return SizedBox();
+                    },
+                  ),
+                ],
+              ),
+              98.vGap,
+              BlocBuilder<AuthBloc, AuthState>(
+                builder: (context, state) {
+                  if (state is PhoneAuthLoading) {
                     return WakaluxeButton(
-                      text: 'Verify',
-                      action: _handleVerifyOtp,
+                      text: 'verifying...',
                       width: 0.4,
+                      color: context.scheme.outline,
                     );
-                  },
-                ),
-              ],
-            ),
+                  }
+                  if (state is LoginWithCredentialnit) {
+                    return WakaluxeButton(
+                      text: 'logging you in...',
+                      width: 0.4,
+                      color: context.scheme.outline,
+                    );
+                  }
+                  return WakaluxeButton(
+                    text: 'Verify',
+                    action: _handleVerifyOtp,
+                    width: 0.4,
+                  );
+                },
+              ),
+            ],
           ),
         ),
-  //    ),
+      ),
+      //    ),
     );
   }
 

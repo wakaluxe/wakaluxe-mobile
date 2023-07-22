@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "297590824503-2f0paft677kibqvso1p0q80u0ncui5li.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.apps.ictu.wakaluxe",
+            "certificate_hash": "2dfb430fcd419b1e97b0245c584f46ad5249d433"
+          }
+        },
+        {
           "client_id": "297590824503-i812vgi28uhsddab6kq7ebve9c1neh46.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "297590824503-i812vgi28uhsddab6kq7ebve9c1neh46.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "297590824503-4fe7slhfu2ihaj4prhh07k8qi7nq5ugb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.apps.ictu.wakaluxe"
+              }
             }
           ]
         }

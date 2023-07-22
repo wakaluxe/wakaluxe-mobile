@@ -17,10 +17,9 @@ class FirebaseAuthRepository {
   final LocalUSerData _localUSerData = locator<LocalUSerData>();
   final FirebaseAuth _auth = locator<FirebaseAuth>();
 
-  FirebaseAuthRepository() ;
+  FirebaseAuthRepository();
 
   Stream<UserEntity> get user {
-    
     return _auth.authStateChanges().map((firebaseUser) {
       final user =
           firebaseUser == null ? UserEntity.empty : firebaseUser.toUser;
@@ -65,6 +64,7 @@ class FirebaseAuthRepository {
       signInAnonymously() async {
     try {
       final response = await _auth.signInAnonymously();
+      logInfo('the token is: ${await response.user?.getIdToken()}');
       return Right(response);
     } on FirebaseAuthException catch (e) {
       logError(e.toString());
@@ -95,7 +95,7 @@ class FirebaseAuthRepository {
   Future<Either<LogOutException, UserCredential>> signOut() async {
     try {
       await _auth.signOut();
-       _localUSerData.deleteUser();
+      _localUSerData.deleteUser();
       final response = await _auth.signInAnonymously();
       return Right(response);
     } on FirebaseAuthException catch (e) {

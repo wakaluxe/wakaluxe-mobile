@@ -80,7 +80,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       Emitter<AuthState> emit) async {
     // After receiving the credential from the event, we will login with the credential and then will emit the [PhoneAuthVerified] state after successful login
     try {
-      emit(loginWithCredentialnit());
+      emit(LoginWithCredentialnit());
       final result = await authRepository.signWithcredential(event.credential);
       result.fold((error) => emit(PhoneAuthError(error: error.message)),
           ((user) {
@@ -106,16 +106,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  Future<void> _onAppStart(
-      AuthEvent event, Emitter<AuthState> emit) async {
+  Future<void> _onAppStart(AuthEvent event, Emitter<AuthState> emit) async {
     try {
       logInfo('sign in anonymously');
       final user = authRepository.currentUser;
-      if (!user.hasId) {
 
-      await authRepository.signInAnonymously();
+      if (!user.hasId) {
+        await authRepository.signInAnonymously();
       }
-    } catch (e) {
-    }
+    } catch (e) {}
   }
 }
