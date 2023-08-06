@@ -4,8 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PaddedBody extends StatelessWidget {
   const PaddedBody({
-    super.key,
-    required this.body,
+    required this.body, super.key,
   });
   final Widget body;
 

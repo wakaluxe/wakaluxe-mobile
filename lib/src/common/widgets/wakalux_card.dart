@@ -6,15 +6,17 @@ import 'package:wakaluxe/src/extensions/build_context.dart';
 class WakaluxCard extends StatelessWidget {
   const WakaluxCard({
     required this.child,
+    this.width,
     super.key,
   });
   final Widget child;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 10,
+      padding: EdgeInsets.symmetric(
+        horizontal: width == null ? 10 : 2,
         vertical: 10,
       ),
       child: Container(
@@ -25,16 +27,16 @@ class WakaluxCard extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: context.scheme.onBackground.withOpacity(0.2),
-              spreadRadius: 5,
-              blurRadius: 7,
+              spreadRadius: 1,
+              blurRadius: 5,
               offset: const Offset(
                 0,
-                3,
+                2,
               ), // changes position of shadow
             ),
           ],
         ),
-        width: context.width * 0.9,
+        width: width ?? context.width * 0.9,
         margin: const EdgeInsets.only(left: 10),
         child: Padding(
           padding: const EdgeInsets.symmetric(

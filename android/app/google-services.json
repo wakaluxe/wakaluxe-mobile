@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "144237079404",
+    "project_id": "wakaluxe-app",
+    "storage_bucket": "wakaluxe-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144237079404:android:805337e24da5dde32c6149",
+        "android_client_info": {
+          "package_name": "com.apps.ictu.wakaluxe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "144237079404-ekfmg85sn7jvr2sodnrsl9u208d5uhf8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQjzaoLJCI_0JuwEqYlUUQC5h-mdNivcQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "144237079404-ekfmg85sn7jvr2sodnrsl9u208d5uhf8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

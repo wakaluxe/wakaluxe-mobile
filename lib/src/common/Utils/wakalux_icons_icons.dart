@@ -13,7 +13,7 @@
 ///
 ///
 ///
-library;
+// library;
 
 import 'package:flutter/widgets.dart';
 
@@ -21,7 +21,7 @@ class WakaluxIcons {
   WakaluxIcons._();
 
   static const _kFontFam = 'WakaluxIcons';
-  static const String? _kFontPkg = null;
+  // static const String? _kFontPkg = null;
 
   static const IconData calendar = IconData(0xe800, fontFamily: _kFontFam);
   static const IconData phone = IconData(0xe801, fontFamily: _kFontFam);

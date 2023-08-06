@@ -1,9 +1,18 @@
-import 'package:bloc/bloc.dart';
-// ignore: depend_on_referenced_packages
-import 'package:meta/meta.dart' show immutable;
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 
-part 'language_state.dart';
+class LanguageCubit extends HydratedCubit<String> {
+  LanguageCubit() : super('en');
 
-class LanguageCubit extends Cubit<LanguageState> {
-  LanguageCubit() : super(LanguageInitial());
+  void toggle({required String locale}) => emit(locale);
+  void reset() => emit('en');
+
+  @override
+  String fromJson(Map<String, dynamic> json) {
+    return json['language'] as String;
+  }
+
+  @override
+  Map<String, dynamic> toJson(String state) {
+    return <String, String>{'language': state};
+  }
 }

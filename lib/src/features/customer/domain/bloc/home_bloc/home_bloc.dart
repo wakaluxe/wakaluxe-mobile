@@ -122,13 +122,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           onTrip: true,
         ), // delay the operation by 5 seconds
       );
-      await Future.delayed(const Duration(seconds: 5));
+      await Future.delayed(const Duration(seconds: 2));
       emit(
         HomeInitial().copyWith(
           getDirections: true,
         ),
       );
-      await Future.delayed(const Duration(seconds: 10));
+      await Future.delayed(const Duration(seconds: 2));
       emit(
         HomeInitial().copyWith(
           payfare: true,
