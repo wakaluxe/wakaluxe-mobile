@@ -1,7 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wakaluxe/features/payments/presentation/cubit/payment_cubit.dart';
+import 'package:wakaluxe/features/payments/presentation/pages/payment_processing_screen.dart';
+import 'package:wakaluxe/features/payments/presentation/widgets/payment_field_widget.dart';
 import 'package:wakaluxe/src/common/Utils/helpers.dart';
 
 import 'package:wakaluxe/src/common/common.dart';
@@ -9,9 +15,10 @@ import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 
+@RoutePage()
 class PaymentInformationScreen extends StatefulWidget {
   const PaymentInformationScreen({Key? key}) : super(key: key);
-
+  static String name = '/payment-information';
   @override
   State<PaymentInformationScreen> createState() =>
       _PaymentInformationScreenState();
@@ -42,35 +49,51 @@ class _PaymentInformationScreenState extends State<PaymentInformationScreen> {
         ),
         child: Form(
           key: _formKey,
-          child: Column(
-            children: <Widget>[
-              Text(
-                'Payment Details',
-                style: textTheme.title,
-              ),
-              34.h.vGap,
-              Text(
-                'Customer number',
-                style: textTheme.body2,
-              ),
-              8.h.vGap,
-              PaymentFieldWidget(
-                controller: _accountNumberController,
-                hint: 'Enter your phone number',
-                validator: phoneNumberValidator,
-                
-              ),
-              15.h.vGap,
-              Text('Taxi fare(XAF)', style: textTheme.body2),
-              PaymentFieldWidget(hint: '500', controller: _amountController),
-              111.h.vGap,
-              GestureDetector(
-                onTap: _handleConfirmation,
-                child: WakaluxeButton(
-                  text: 'Pay',
+          child: BlocListener<PaymentCubit, PaymentsState>(
+            listener: (context, state) {
+              _handleConfirmation();
+            },
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  'Payment Details',
+                  style: textTheme.title,
                 ),
-              ),
-            ],
+                34.h.vGap,
+                Text(
+                  'Customer number',
+                  style: textTheme.body2,
+                ),
+                10.h.vGap,
+                PaymentFieldWidget(
+                  controller: _accountNumberController,
+                  hint: 'Enter your phone number',
+                  validator: phoneNumberValidator,
+                  formatters: [phoneFormatter],
+                ),
+                30.h.vGap,
+                Text('Taxi fare(XAF)', style: textTheme.body2),
+                10.h.vGap,
+                PaymentFieldWidget(
+                  
+                  hint: '500', controller: _amountController, 
+                  validator: requireValidator,
+                  ),
+                111.h.vGap,
+                GestureDetector(
+                  onTap: _handleConfirmation,
+                  child: WakaluxeButton(
+                    text: 'Pay',
+                    action: () => context
+                        .read<PaymentCubit>()
+                        .addPaymentInformation(
+                            amount: _amountController.text,
+                            number: _accountNumberController.text),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -78,50 +101,13 @@ class _PaymentInformationScreenState extends State<PaymentInformationScreen> {
   }
 
   void _handleConfirmation() {
-    if (_formKey.currentState!.validate()) {
+    if (!_formKey.currentState!.validate()) {
       context.showSnackBar(
-        'Payment successful',
+        'Please enter a valid information',
         duration: const Duration(seconds: 2),
       );
+    } else {
+      context.router.pushNamed(PaymentProcessingScreen.name);
     }
-  }
-}
-
-class PaymentFieldWidget extends StatelessWidget {
-  const PaymentFieldWidget({
-    Key? key,
-    required this.hint,
-    required this.controller,
-    this.validator,
-    this.formatters,
-  }) : super(key: key);
-
-  final String hint;
-  final TextEditingController controller;
-  final String? Function(String?)? validator;
-  final List<TextInputFormatter>? formatters;
-
-  @override
-  Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        border: Border.all(color: context.scheme.outline),
-        borderRadius: BorderRadius.circular(20.r),
-      ),
-      child: TextFormField(
-        validator: validator,
-        keyboardType: TextInputType.number,
-        inputFormatters: formatters,
-        controller: controller,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: hint,
-          contentPadding: EdgeInsets.symmetric(
-            horizontal: 20.w,
-            vertical: 20.h,
-          ),
-        ),
-      ),
-    );
   }
 }

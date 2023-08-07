@@ -29,6 +29,17 @@ String daysOfWeekFormatter(DateTime date, {bool short = false}) {
     return null;
   }
 
+  
+  String? requireValidator(String? value) {
+    if (value!.isEmpty) {
+      return 'Please enter your OTP';
+    }
+    
+    return null;
+  }
+
+  
+
   String? emailValidator(String? value) {
     if (value!.isEmpty) {
 

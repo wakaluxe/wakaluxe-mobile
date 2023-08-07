@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:wakaluxe/features/payments/presentation/pages/payment_methods_screen.dart';
 
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
@@ -127,7 +128,7 @@ class _Home2ScreenState extends State<Home2Screen> {
                             title: 'Payment',
                             icon: Constants.subscriptionIcon,
                             onTap: () =>
-                                context.router.pushNamed('/my-Profile')),
+                                context.router.pushNamed(PaymentMethodsScreen.path)),
                         HomeBox(
                             t: t,
                             title: 'My Trips',

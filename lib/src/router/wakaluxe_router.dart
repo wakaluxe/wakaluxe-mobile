@@ -118,5 +118,8 @@ class WakaluxAppRouter extends $WakaluxAppRouter {
           page: Language.page,
           path: '/language',
         ),
+        AutoRoute(page: PaymentInformationRoute.page, path: '/payment-information'),
+        AutoRoute(page: PaymentMethodsRoute.page, path: '/payment-methods'),
+        AutoRoute(page: PaymentProcessingRoute.page, path: '/payment-processing')
       ];
 }
