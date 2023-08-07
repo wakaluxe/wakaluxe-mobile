@@ -43,15 +43,13 @@ class _HomeMapState extends State<HomeMap> {
   //Prediction? initialValue;
 
   // final TextEditingController _controller = TextEditingController();
- late final  LatLng _center ;
+  late final LatLng _center;
 
-    late GoogleMapController mapController;
-
+  late GoogleMapController mapController;
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
   }
-  
 
   String? _platformVersion;
   String? _instruction;
@@ -151,22 +149,36 @@ class _HomeMapState extends State<HomeMap> {
     super.initState();
   }
 
-  List<WayPoint> _waypoints = []  ;
+  List<WayPoint> _waypoints = [];
 
   Future<void> initialize() async {
-        final location  = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-_center = LatLng(location.latitude, location.longitude);
+    final location = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    _center = LatLng(location.latitude, location.longitude);
     // If the widget was removed from the tree while the asynchronous platform
     // message was in flight, we want to discard the reply rather than calling
     // setState to update our non-existent appearance.
-    if (!mounted) return;
+    //if (!mounted) return;
 
     _navigationOption = MapBoxOptions(
-        longPressDestinationEnabled: false,
-        mode: MapBoxNavigationMode.drivingWithTraffic);
+        initialLatitude: 36.1175275,
+        initialLongitude: -115.1839524,
+        zoom: 13.0,
+        tilt: 0.0,
+        bearing: 0.0,
+        enableRefresh: false,
+        alternatives: true,
+        voiceInstructionsEnabled: true,
+        bannerInstructionsEnabled: true,
+        allowsUTurnAtWayPoints: true,
+        mode: MapBoxNavigationMode.drivingWithTraffic,
+        mapStyleUrlDay: "https://url_to_day_style",
+        mapStyleUrlNight: "https://url_to_night_style",
+        units: VoiceUnits.imperial,
+        simulateRoute: true,
+        language: "en");
     _navigationOption.simulateRoute = true;
-    _navigationOption.initialLatitude = 36.1175275;
-    _navigationOption.initialLongitude = -115.1839524;
+
     MapBoxNavigation.instance.registerRouteEventListener(_onEmbeddedRouteEvent);
     MapBoxNavigation.instance.setDefaultOptions(_navigationOption);
 
@@ -209,8 +221,9 @@ _center = LatLng(location.latitude, location.longitude);
           }
 
           if (state.payfare) {
-            
-
+            MapBoxNavigation.instance.startNavigation(
+              wayPoints: _waypoints,
+            );
           }
         },
         builder: (context, state) {
@@ -220,15 +233,15 @@ _center = LatLng(location.latitude, location.longitude);
           }
           return Stack(
             children: [
-                GoogleMap(
-                  myLocationEnabled: true,
+              GoogleMap(
+                myLocationEnabled: true,
                 onMapCreated: _onMapCreated,
                 initialCameraPosition: CameraPosition(
                   target: _center,
                   zoom: 11,
                 ),
-              ), 
-            /*   Expanded(
+              ),
+              /*   Expanded(
                 child: Container(
                   color: Colors.grey,
                   child: GoogleMap(
@@ -480,7 +493,6 @@ _center = LatLng(location.latitude, location.longitude);
                           child: WakaluxeButton(
                             text: 'Get Directions',
                             action: () {
-
                               WakaluxeBottomSheets.showDiretionSheet(context);
                               final _origin = WayPoint(
                                   name: "Way Point 1",
@@ -507,27 +519,20 @@ _center = LatLng(location.latitude, location.longitude);
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: WakaluxeButton(
                             text: 'Pay fare',
-                            action: () {
-                                        print("pay fare: ${_waypoints} ");
-                            MapBoxNavigation.instance.startNavigation(
-                                wayPoints: _waypoints,
-                                options: MapBoxOptions(
-                                    mode: MapBoxNavigationMode.driving,
-                                    simulateRoute: true,
-                                    language: "en",
-                                    allowsUTurnAtWayPoints: true,
-                                    units: VoiceUnits.metric));
+                            action: () async {
+                              print("pay fare: ${_waypoints} ");
 
                               context.showSnackBar(
                                 'Will still to move to payment screen',
                               );
+                              await Future.delayed(Duration(seconds: 2));
                               context.read<HomeBloc>().add(
                                     HomeInitialEvent(),
                                   );
-                              /* context.router.pushAndPopUntil(
+                              context.router.pushAndPopUntil(
                                 const PaymentMethodsRoute(),
                                 predicate: (_) => true,
-                              ); */
+                              );
                             },
                             color: context.scheme.primary,
                             // textColor: context.scheme.onTertoniary,
@@ -545,8 +550,12 @@ _center = LatLng(location.latitude, location.longitude);
   }
 
   void _handleDestinationSelection() async {
-    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-  final homePosition = WayPoint(name: 'location', latitude: position.latitude, longitude: position.longitude);
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    final homePosition = WayPoint(
+        name: 'location',
+        latitude: position.latitude,
+        longitude: position.longitude);
     _waypoints.add(homePosition);
     await Navigator.push(
       context,
@@ -557,8 +566,11 @@ _center = LatLng(location.latitude, location.longitude);
               : Constants.iosGoogleMapKey,
           onPlacePicked: (result) {
             print(result.geometry!.location.lat);
-       final waypoint =     WayPoint(name: 'destinations', latitude: result.geometry!.location.lat, longitude: result.geometry!.location.lng);
-      _waypoints.add(waypoint);
+            final waypoint = WayPoint(
+                name: 'destinations',
+                latitude: result.geometry!.location.lat,
+                longitude: result.geometry!.location.lng);
+            _waypoints.add(waypoint);
             context.read<HomeBloc>().add(
                   SelectLocationEvent(
                     lat: result.geometry!.location.lat,
