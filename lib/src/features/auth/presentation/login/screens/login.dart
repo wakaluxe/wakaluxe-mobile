@@ -25,7 +25,7 @@ class _LoginState extends State<Login> {
   late TextEditingController passwordController;
 
   final _formKey = GlobalKey<FormState>();
-  
+
   @override
   void initState() {
     phoneController = TextEditingController();
@@ -44,7 +44,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
-     final phoneFormatter = MaskTextInputFormatter(
+    final phoneFormatter = MaskTextInputFormatter(
       mask: '+237 ###-##-##-##',
       filter: {'#': RegExp('[0-9]')},
     );
@@ -88,7 +88,7 @@ class _LoginState extends State<Login> {
                   SizedBox(
                     width: 68.w,
                     child: Divider(
-                      color: context.scheme.scrim.withOpacity(0.1),
+                      color: context.colorScheme.scrim.withOpacity(0.1),
                       thickness: 2.r,
                     ),
                   ),
@@ -101,7 +101,7 @@ class _LoginState extends State<Login> {
                   SizedBox(
                     width: 68.w,
                     child: Divider(
-                      color: context.scheme.scrim.withOpacity(0.1),
+                      color: context.colorScheme.scrim.withOpacity(0.1),
                       thickness: 2.r,
                     ),
                   ),
@@ -140,7 +140,7 @@ class _LoginState extends State<Login> {
                     child: Text(
                       'Log In',
                       style: text.body2.copyWith(
-                        color: context.scheme.primary,
+                        color: context.colorScheme.primary,
                       ),
                     ),
                   ),
@@ -150,7 +150,7 @@ class _LoginState extends State<Login> {
               WakaluxeButton(
                 action: () => context.router.pushNamed('/verification'),
                 text: 'SIGN UP',
-                textColor: context.scheme.scrim,
+                textColor: context.colorScheme.scrim,
               ),
             ],
           ),

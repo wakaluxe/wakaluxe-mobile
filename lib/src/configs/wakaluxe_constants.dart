@@ -45,10 +45,8 @@ class Constants {
   static const String nearbyIcon = 'assets/icons/nearby.svg';
   static const String markerIcon = 'assets/icons/marker.svg';
   static const String textIcon = '/assets/icons/hicon/linear/text.svg';
-  static const String orangeMoneyIcon =
-      'assets/icons/orange_money.svg';
-  static const String mtnMoneyIcon =
-      'assets/icons/mtn_momo.svg';
+  static const String orangeMoneyIcon = 'assets/icons/orange_money.svg';
+  static const String mtnMoneyIcon = 'assets/icons/mtn_momo.svg';
   static const String moreSquareIcon =
       'assets/icons/hicon/linear/more_square.svg';
   static const String masterCardIcon = 'assets/icons/mastercard.svg';
@@ -97,15 +95,15 @@ extension TripStateExtension on TripState {
   Color color(BuildContext context) {
     switch (this) {
       case TripState.upcoming:
-        return context.scheme.surfaceTint;
+        return context.colorScheme.surfaceTint;
       case TripState.completed:
-        return context.scheme.tertiary;
+        return context.colorScheme.tertiary;
       case TripState.cancelled:
-        return context.scheme.error;
+        return context.colorScheme.error;
       case TripState.pending:
-        return context.scheme.primary;
+        return context.colorScheme.primary;
       default:
-        return context.scheme.outline;
+        return context.colorScheme.outline;
     }
   }
 }

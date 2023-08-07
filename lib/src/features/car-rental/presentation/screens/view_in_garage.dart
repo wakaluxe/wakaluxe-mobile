@@ -71,7 +71,8 @@ class ViewInGarage extends StatelessWidget {
                       child: Text(
                         'SPECIFICATIONS',
                         style: context.titleLg.copyWith(
-                          color: context.scheme.onBackground.withOpacity(0.6),
+                          color:
+                              context.colorScheme.onBackground.withOpacity(0.6),
                         ),
                       ),
                     ),
@@ -101,7 +102,8 @@ class ViewInGarage extends StatelessWidget {
                       child: Text(
                         'Pick-up location',
                         style: context.bodyMd.copyWith(
-                          color: context.scheme.onBackground.withOpacity(0.6),
+                          color:
+                              context.colorScheme.onBackground.withOpacity(0.6),
                         ),
                       ),
                     ),
@@ -116,7 +118,7 @@ class ViewInGarage extends StatelessWidget {
                       width: context.width,
                       height: context.height * .2,
                       decoration: BoxDecoration(
-                        color: context.scheme.onBackground.withOpacity(.1),
+                        color: context.colorScheme.onBackground.withOpacity(.1),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       alignment: Alignment.center,
@@ -131,7 +133,7 @@ class ViewInGarage extends StatelessWidget {
               margin: const EdgeInsets.only(left: 20, top: 20),
               padding: const EdgeInsets.all(5),
               decoration: BoxDecoration(
-                color: context.scheme.background,
+                color: context.colorScheme.background,
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: [
                   BoxShadow(
@@ -148,7 +150,7 @@ class ViewInGarage extends StatelessWidget {
                 child: Icon(
                   Platform.isIOS ? Icons.arrow_back_ios : Icons.arrow_back,
                   size: 30,
-                  color: context.scheme.onBackground,
+                  color: context.colorScheme.onBackground,
                 ),
               ),
             ),

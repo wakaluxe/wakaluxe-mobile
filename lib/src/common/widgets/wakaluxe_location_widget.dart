@@ -23,7 +23,7 @@ class WakaluxeLocationWidget extends StatelessWidget {
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         decoration: BoxDecoration(
-          color: context.scheme.background,
+          color: context.colorScheme.background,
           borderRadius: BorderRadius.circular(30),
         ),
         child: Row(
@@ -38,7 +38,7 @@ class WakaluxeLocationWidget extends StatelessWidget {
               child: Text(
                 message,
                 style: context.bodySm.copyWith(
-                  color: context.scheme.onBackground,
+                  color: context.colorScheme.onBackground,
                 ),
                 textAlign: TextAlign.center,
               ),

@@ -84,8 +84,8 @@ class WakaluxeBottomSheets {
                                     );
                               },
                               width: 0.42,
-                              color: context.scheme.background,
-                              textColor: context.scheme.onBackground,
+                              color: context.colorScheme.background,
+                              textColor: context.colorScheme.onBackground,
                               isOutline: true,
                               isSelected: state.selectedPaymentType == 0,
                             ),
@@ -99,8 +99,8 @@ class WakaluxeBottomSheets {
                                       ),
                                     );
                               },
-                              color: context.scheme.background,
-                              textColor: context.scheme.onBackground,
+                              color: context.colorScheme.background,
+                              textColor: context.colorScheme.onBackground,
                               isOutline: true,
                               isSelected: state.selectedPaymentType == 1,
                             ),
@@ -112,7 +112,7 @@ class WakaluxeBottomSheets {
                 ),
                 10.vGap,
                 Divider(
-                  color: context.scheme.onBackground.withOpacity(0.5),
+                  color: context.colorScheme.onBackground.withOpacity(0.5),
                   thickness: 0.5,
                 ),
                 10.vGap,
@@ -124,8 +124,8 @@ class WakaluxeBottomSheets {
                         Navigator.pop(context);
                         showPaymentBottomSheet(context);
                       },
-                      color: context.scheme.tertiary,
-                      textColor: context.scheme.onTertiary,
+                      color: context.colorScheme.tertiary,
+                      textColor: context.colorScheme.onTertiary,
                     );
                   },
                 ),
@@ -214,7 +214,7 @@ class WakaluxeBottomSheets {
                     25.vGap,
                     WakaluxeButton(
                       text: 'Apply',
-                      color: context.scheme.onPrimaryContainer,
+                      color: context.colorScheme.onPrimaryContainer,
                       action: () {
                         Navigator.pop(context);
                         context.read<HomeBloc>().add(
@@ -265,9 +265,9 @@ class WakaluxeBottomSheets {
                                 ShowBookingDetailsEvent(),
                               );
                         },
-                        color: context.scheme.background,
+                        color: context.colorScheme.background,
                         width: 0.3,
-                        textColor: context.scheme.error,
+                        textColor: context.colorScheme.error,
                       );
                     },
                   ),
@@ -281,9 +281,9 @@ class WakaluxeBottomSheets {
                                 OnTripEvent(),
                               );
                         },
-                        color: context.scheme.tertiary,
+                        color: context.colorScheme.tertiary,
                         width: 0.3,
-                        textColor: context.scheme.onTertiary,
+                        textColor: context.colorScheme.onTertiary,
                       );
                     },
                   ),
@@ -333,7 +333,7 @@ class WakaluxeBottomSheets {
                           onPressed: () => Navigator.pop(context),
                           icon: Icon(
                             Icons.close,
-                            color: context.scheme.onBackground,
+                            color: context.colorScheme.onBackground,
                           ),
                         ),
                       ),
@@ -396,8 +396,8 @@ class WakaluxeBottomSheets {
                 WakaluxeButton(
                   text: 'Submit',
                   action: action,
-                  color: context.scheme.onBackground.withOpacity(0.1),
-                  textColor: context.scheme.onBackground,
+                  color: context.colorScheme.onBackground.withOpacity(0.1),
+                  textColor: context.colorScheme.onBackground,
                 )
               ],
             ),
@@ -430,7 +430,7 @@ class WakaluxeBottomSheets {
                 ),
                 5.vGap,
                 Divider(
-                  color: context.scheme.onBackground.withOpacity(0.5),
+                  color: context.colorScheme.onBackground.withOpacity(0.5),
                   thickness: 0.5,
                 ),
                 5.vGap,

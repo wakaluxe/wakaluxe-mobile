@@ -25,7 +25,7 @@ class ProfileButton extends StatelessWidget {
           horizontal: 11.w,
         ),
         decoration: BoxDecoration(
-          color: context.scheme.surfaceVariant,
+          color: context.colorScheme.surfaceVariant,
           borderRadius: BorderRadius.circular(5.r),
         ),
         child: Text(
@@ -36,4 +36,3 @@ class ProfileButton extends StatelessWidget {
     );
   }
 }
-

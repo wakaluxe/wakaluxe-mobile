@@ -18,8 +18,7 @@ PageViewModel wakaluxPageViewModel({
   return PageViewModel(
     titleWidget: Text(
       title,
-                  textAlign: TextAlign.center,
-
+      textAlign: TextAlign.center,
       style: text.display2,
     ),
     bodyWidget: SizedBox(
@@ -32,13 +31,13 @@ PageViewModel wakaluxPageViewModel({
             textAlign: TextAlign.center,
             style: text.body1,
           ),
-          if (end) ...[12.vGap,
-          
+          if (end) ...[
+            12.vGap,
             WakaluxeButton(
               text: 'Get Started',
-              
               action: () => AutoRouter.of(context!).pushNamed('/home-2'),
-            ),]
+            ),
+          ]
         ],
       ),
     ),

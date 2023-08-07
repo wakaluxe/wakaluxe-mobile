@@ -47,7 +47,7 @@ class ForgotPassword extends StatelessWidget {
                 width: context.width,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.r),
-                  border: Border.all(color: context.scheme.primary),
+                  border: Border.all(color: context.colorScheme.primary),
                 ),
                 child: ListTile(
                   title: Text(
@@ -60,7 +60,7 @@ class ForgotPassword extends StatelessWidget {
                   ),
                   leading: CircleAvatar(
                     radius: 20,
-                    backgroundColor: context.scheme.tertiary,
+                    backgroundColor: context.colorScheme.tertiary,
                     child: SvgPicture.asset(Constants.callIcon),
                   ),
                 ),
@@ -71,7 +71,7 @@ class ForgotPassword extends StatelessWidget {
                 width: context.width,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.r),
-                  border: Border.all(color: context.scheme.outline),
+                  border: Border.all(color: context.colorScheme.outline),
                 ),
                 child: ListTile(
                   title: Text(
@@ -84,7 +84,7 @@ class ForgotPassword extends StatelessWidget {
                   ),
                   leading: CircleAvatar(
                     radius: 20,
-                    backgroundColor: context.scheme.error,
+                    backgroundColor: context.colorScheme.error,
                     child: SvgPicture.asset(Constants.mailIcon),
                   ),
                 ),

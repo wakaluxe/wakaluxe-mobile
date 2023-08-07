@@ -153,9 +153,9 @@ class _EditProfileState extends State<EditProfile> {
               const Spacer(),
               WakaluxeButton(
                 text: 'Apply',
-                textColor: context.scheme.onSecondary,
+                textColor: context.colorScheme.onSecondary,
                 action: _handleSubmit,
-                color: context.scheme.secondary,
+                color: context.colorScheme.secondary,
               )
             ],
           ),
@@ -170,9 +170,7 @@ class _EditProfileState extends State<EditProfile> {
     }
   }
 
-  void _handleProfilePicChange(){
-
-  }
+  void _handleProfilePicChange() {}
 
   void _showDialog() {
     showDialog(

@@ -58,7 +58,7 @@ class Rating extends StatelessWidget {
               const Spacer(),
               WakaluxeButton(
                 text: 'Done',
-                textColor: context.scheme.onTertiary,
+                textColor: context.colorScheme.onTertiary,
                 action: () {},
               )
             ],

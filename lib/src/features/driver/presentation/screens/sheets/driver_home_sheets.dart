@@ -61,7 +61,7 @@ class WakaluxeDriverButtomSheets {
                   ),
                   10.vGap,
                   Divider(
-                    color: context.scheme.onBackground,
+                    color: context.colorScheme.onBackground,
                     thickness: 0.5,
                   ),
                   10.vGap,
@@ -86,7 +86,7 @@ class WakaluxeDriverButtomSheets {
                       children: [
                         Icon(
                           Icons.location_on_rounded,
-                          color: context.scheme.error,
+                          color: context.colorScheme.error,
                           size: 22,
                         ),
                         10.hGap,
@@ -110,7 +110,7 @@ class WakaluxeDriverButtomSheets {
                   // create button
                   WakaluxeButton(
                     text: 'Start Trip',
-                    textColor: context.scheme.onTertiary,
+                    textColor: context.colorScheme.onTertiary,
                     action: () {
                       if (!state) {
                         cubit.onHomeSheetChanged(value: true);
@@ -149,7 +149,7 @@ class WakaluxeDriverButtomSheets {
               ),
               10.vGap,
               Divider(
-                color: context.scheme.onBackground,
+                color: context.colorScheme.onBackground,
                 thickness: 0.5,
               ),
               10.vGap,
@@ -164,7 +164,7 @@ class WakaluxeDriverButtomSheets {
               // create button
               WakaluxeButton(
                 text: 'Trip Completed',
-                textColor: context.scheme.onTertiary,
+                textColor: context.colorScheme.onTertiary,
                 action: () {
                   Navigator.of(context).pop();
                 },

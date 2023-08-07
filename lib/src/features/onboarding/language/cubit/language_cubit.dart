@@ -5,6 +5,7 @@ class LanguageCubit extends HydratedCubit<String> {
 
   void toggle({required String locale}) => emit(locale);
   void reset() => emit('en');
+  void setLocale(String locale) => emit(locale);
 
   @override
   String fromJson(Map<String, dynamic> json) {

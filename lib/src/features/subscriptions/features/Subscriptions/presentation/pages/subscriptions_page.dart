@@ -30,7 +30,7 @@ class WakaluxeSubscriptions extends StatelessWidget {
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w500,
                   fontSize: 24.sp,
-                  color: context.scheme.onSurfaceVariant,
+                  color: context.colorScheme.onSurfaceVariant,
                 ),
               ),
             ),
@@ -92,7 +92,10 @@ class WakaluxeSubscriptions extends StatelessWidget {
 
 class SubscriptionsCard extends StatelessWidget {
   const SubscriptionsCard({
-    required this.text, required this.plan, required this.features, super.key,
+    required this.text,
+    required this.plan,
+    required this.features,
+    super.key,
     this.isSelected = false,
   });
 
@@ -116,17 +119,17 @@ class SubscriptionsCard extends StatelessWidget {
               blurRadius: 5,
               offset: const Offset(0, 3), // changes position of shadow
             ),
-            const BoxShadow(
-              color: Colors.white,
+            BoxShadow(
+              color: context.colorScheme.onPrimary,
               spreadRadius: 2,
               blurRadius: 5,
-              offset: Offset(0, -3), // changes position of shadow
+              offset: const Offset(0, -3), // changes position of shadow
             ),
           ],
           border: Border.all(
             color: isSelected
-                ? context.scheme.primary
-                : context.scheme.scrim.withOpacity(0.05),
+                ? context.colorScheme.primary
+                : context.colorScheme.scrim.withOpacity(0.05),
             width: 2.w,
           ),
           color: Theme.of(context).scaffoldBackgroundColor,

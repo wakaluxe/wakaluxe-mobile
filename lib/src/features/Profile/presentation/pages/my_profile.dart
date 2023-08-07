@@ -2,14 +2,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 
 import 'package:wakaluxe/src/common/widgets/wakalux_back_button.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
-import 'package:wakaluxe/src/features/Profile/presentation/pages/edit_profile.dart' show EditProfile;
+import 'package:wakaluxe/src/features/Profile/presentation/pages/edit_profile.dart'
+    show EditProfile;
 import 'package:wakaluxe/src/features/Profile/presentation/widgets/profile_box_widget.dart';
 import 'package:wakaluxe/src/features/Profile/presentation/widgets/profile_button.dart';
 
@@ -19,12 +19,11 @@ class MyProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final t = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         leading: const WakaluxBackButton(),
-        title: Text(
+        title: const Text(
           'Welcome!',
         ),
       ),
@@ -39,39 +38,39 @@ class MyProfile extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 100.w,
                   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                  backgroundImage: AssetImage(Constants.profile),
+                  backgroundImage: const AssetImage(Constants.profile),
                 ),
               ),
               10.h.vGap,
               Text(
                 'Ngome James',
-                style: t.title,
+                style: context.theme.textTheme.title,
               ),
               4.h.vGap,
               Text(
                 '+237612345678',
-                style: t.body1,
+                style: context.theme.textTheme.body1,
               ),
               4.h.vGap,
               Text(
                 'customer@gmail.com',
-                style: t.body1,
+                style: context.theme.textTheme.body1,
               ),
               4.h.vGap,
-              Text('Subscription Plan', style: t.body1),
+              Text('Subscription Plan', style: context.theme.textTheme.body1),
               35.h.vGap,
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   ProfileButton(
-                    t: t,
+                    t: context.theme.textTheme,
                     title: 'Edit Profile',
                     onTap: () =>
                         context.router.pushNamed(EditProfile.routeName),
                   ),
                   20.w.hGap,
                   ProfileButton(
-                    t: t,
+                    t: context.theme.textTheme,
                     title: 'Change Plan',
                     onTap: () {},
                   ),
@@ -83,13 +82,13 @@ class MyProfile extends StatelessWidget {
                 child: Row(
                   children: <Widget>[
                     ProfileBoxWidget(
-                      t: t,
+                      t: context.theme.textTheme,
                       title: 'Ride Token',
                       value: '70',
                     ),
                     20.w.hGap,
                     ProfileBoxWidget(
-                      t: t,
+                      t: context.theme.textTheme,
                       title: 'Rides Cancelled',
                       value: '10',
                     ),

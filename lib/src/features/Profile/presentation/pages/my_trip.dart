@@ -78,7 +78,7 @@ class _MyTripState extends State<MyTrip> {
                             vertical: 8.h,
                           ),
                           decoration: BoxDecoration(
-                            color: context.scheme.surface,
+                            color: context.colorScheme.surface,
                             borderRadius: BorderRadius.circular(16.r),
                             boxShadow: [
                               BoxShadow(
@@ -111,7 +111,7 @@ class _MyTripState extends State<MyTrip> {
   }
 
   Future<void> _handlePickDate(BuildContext context) async {
-    showDatePicker(
+    await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime.now().subtract(const Duration(days: 30)),

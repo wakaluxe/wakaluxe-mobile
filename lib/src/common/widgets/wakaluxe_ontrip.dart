@@ -27,7 +27,7 @@ class WakaluxeOnTrip extends StatelessWidget {
           ),
           5.vGap,
           Divider(
-            color: context.scheme.onBackground,
+            color: context.colorScheme.onBackground,
             // .withOpacity(0.6),
             thickness: 0.4,
           ),

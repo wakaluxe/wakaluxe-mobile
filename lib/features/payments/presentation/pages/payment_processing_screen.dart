@@ -9,7 +9,7 @@ import 'package:wakaluxe/src/extensions/num.dart';
 
 @RoutePage()
 class PaymentProcessingScreen extends StatefulWidget {
-  const PaymentProcessingScreen({Key? key}) : super(key: key);
+  const PaymentProcessingScreen({super.key});
   static String name = '/payment-processing';
 
   @override
@@ -34,28 +34,28 @@ class _PaymentProcessingScreenState extends State<PaymentProcessingScreen> {
           horizontal: 20.0.w,
         ),
         child: BlocListener<PaymentCubit, PaymentsState>(
-            listener: (context, state) {
-              if (state is PaymentProcessedState) {
-             
-                context.router.popUntilRoot();
-              }
-            },
-            child: Column(
-              children: <Widget>[
-                Text(
-                  'Processing your payment',
-                  style: textTheme.body1,
-                ),
-                17.h.vGap,
-                Loader(),
-                170.h.vGap,
-                Text(
-                  'Please wait a moment while we process your payment. It might take 5 minutes or more.',
-                  style: textTheme.label,
-                  textAlign: TextAlign.center,
-                )
-              ],
-            )),
+          listener: (context, state) {
+            if (state is PaymentProcessedState) {
+              context.router.popUntilRoot();
+            }
+          },
+          child: Column(
+            children: <Widget>[
+              Text(
+                'Processing your payment',
+                style: textTheme.body1,
+              ),
+              17.h.vGap,
+              const Loader(),
+              170.h.vGap,
+              Text(
+                'Please wait a moment while we process your payment. It might take 5 minutes or more.',
+                style: textTheme.label,
+                textAlign: TextAlign.center,
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -71,7 +71,7 @@ class Loader extends StatelessWidget {
     return BlocBuilder<PaymentCubit, PaymentsState>(
       builder: (context, state) {
         return LinearProgressIndicator(
-          color: (context.scheme.primary),
+          color: context.colorScheme.primary,
           backgroundColor: Colors.grey[200],
           value: state.processingValue,
         );

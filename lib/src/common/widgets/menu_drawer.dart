@@ -44,7 +44,7 @@ class _MenuDrawerState extends State<MenuDrawer>
               ),
               TabBar(
                 controller: _tabController,
-                indicatorColor: context.scheme.tertiary,
+                indicatorColor: context.colorScheme.tertiary,
                 tabs: const [
                   Tab(
                     text: 'Taxi Booking',

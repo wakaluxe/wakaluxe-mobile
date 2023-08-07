@@ -91,7 +91,7 @@ class _Home2ScreenState extends State<Home2Screen> {
                         if (state is AuthLogOutError) {
                           context.showSnackBar(
                             state.error,
-                            color: context.scheme.error,
+                            color: context.colorScheme.error,
                           );
                           if (state is AuthLogOutSuccess) {
                             context.router.pushAndPopUntil(
@@ -168,10 +168,10 @@ class _Home2ScreenState extends State<Home2Screen> {
 
 class HomeCard extends StatelessWidget {
   const HomeCard({
-    super.key,
     required this.t,
-    this.onTap,
     required this.title,
+    super.key,
+    this.onTap,
   });
 
   final TextTheme t;
@@ -186,7 +186,7 @@ class HomeCard extends StatelessWidget {
         height: 173.h,
         width: 178.w,
         decoration: BoxDecoration(
-          color: context.scheme.surfaceVariant,
+          color: context.colorScheme.surfaceVariant,
           borderRadius: BorderRadius.circular(5.r),
         ),
         child: Column(

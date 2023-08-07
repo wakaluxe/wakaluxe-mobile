@@ -35,8 +35,8 @@ class StatusReport extends StatelessWidget {
                 action: () {
                   context.router.pushNamed('/maintainance_report/:carId');
                 },
-                color: context.scheme.tertiary,
-                textColor: context.scheme.onTertiary,
+                color: context.colorScheme.tertiary,
+                textColor: context.colorScheme.onTertiary,
               ),
             ),
             20.vGap,

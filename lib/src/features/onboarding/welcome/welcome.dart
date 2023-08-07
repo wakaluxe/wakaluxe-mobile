@@ -3,14 +3,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/features/auth/presentation/widgets/app_barred_scaffold.dart';
 import 'package:wakaluxe/src/features/onboarding/welcome/page_view_model.dart';
 
 @RoutePage(name: 'welcome')
 class Welcome extends StatelessWidget {
-  Welcome({super.key});
- // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  const Welcome({super.key});
+  // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,7 @@ class Welcome extends StatelessWidget {
         dotsDecorator: DotsDecorator(
           size: Size.square(16.r),
           activeSize: const Size(20, 10),
-          activeColor: context.scheme.primary,
+          // activeColor,: context.colorScheme.primary,
           color: Colors.black26,
           spacing: const EdgeInsets.symmetric(horizontal: 3),
           activeShape: RoundedRectangleBorder(
@@ -74,7 +73,7 @@ class Welcome extends StatelessWidget {
 //         Text(
 //           'Icon Buttons',
 //           style: context.bodyLg.copyWith(
-//             color: context.scheme.onBackground,
+//             color: context.colorScheme.onBackground,
 //             fontWeight: FontWeight.bold,
 //           ),
 //         ),
@@ -83,15 +82,15 @@ class Welcome extends StatelessWidget {
 //           children: [
 //             WakaluxeBoxedIcon(
 //               icon: Hicons.gift_2,
-//               color: context.scheme.tertiary,
+//               color: context.colorScheme.tertiary,
 //             ),
 //             WakaluxeBoxedIcon(
 //               icon: Hicons.wallet,
-//               color: context.scheme.secondary,
+//               color: context.colorScheme.secondary,
 //             ),
 //             WakaluxeBoxedIcon(
 //               icon: Hicons.send_2,
-//               color: context.scheme.tertiary,
+//               color: context.colorScheme.tertiary,
 //             ),
 //           ],
 //         ),
@@ -110,30 +109,30 @@ class Welcome extends StatelessWidget {
 //         Text(
 //           'Wakaluxe Buttons',
 //           style: context.bodyLg.copyWith(
-//             color: context.scheme.onBackground,
+//             color: context.colorScheme.onBackground,
 //             fontWeight: FontWeight.bold,
 //           ),
 //         ),
 //         12.vGap,
 //         const WakaluxeButton(
 //           text: 'Primary',
-//           //color: context.scheme.primary,
+//           //color: context.colorScheme.primary,
 //         ),
 //         12.vGap,
 //         WakaluxeButton(
 //           text: 'Secondary',
-//           color: context.scheme.secondary,
+//           color: context.colorScheme.secondary,
 //         ),
 //         12.vGap,
 //         WakaluxeButton(
 //           text: 'Tertiary',
-//           color: context.scheme.tertiary,
+//           color: context.colorScheme.tertiary,
 //         ),
 //         12.vGap,
 //         WakaluxeButton(
 //           text: 'With icon',
 //           icon: Hicons.send_2,
-//           color: context.scheme.tertiary,
+//           color: context.colorScheme.tertiary,
 //         ),
 //         12.vGap,
 //         Row(
@@ -163,7 +162,7 @@ class Welcome extends StatelessWidget {
 //         Text(
 //           'Wakaluxe Typography',
 //           style: context.bodyLg.copyWith(
-//             color: context.scheme.onBackground,
+//             color: context.colorScheme.onBackground,
 //             fontWeight: FontWeight.bold,
 //           ),
 //         ),

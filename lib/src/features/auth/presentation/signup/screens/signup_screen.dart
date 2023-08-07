@@ -55,7 +55,9 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
           context.router.pushNamed('/home');
         }
         if (state is PhoneAuthCodeSentSuccess) {
-          context.router.push(Verification(phoneNumber: _trimedPhoneNumber, verificationd: state.verificationId));
+          context.router.push(Verification(
+              phoneNumber: _trimedPhoneNumber,
+              verificationd: state.verificationId));
         }
         // Show error message if any error occurs while verifying phone number and otp code
         if (state is PhoneAuthError) {
@@ -98,7 +100,7 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
                 //       SizedBox(
                 //         width: 68.w,
                 //         child: Divider(
-                //           color: context.scheme.scrim.withOpacity(0.1),
+                //           color: context.colorScheme.scrim.withOpacity(0.1),
                 //           thickness: 2.r,
                 //         ),
                 //       ),
@@ -111,7 +113,7 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
                 //       SizedBox(
                 //         width: 68.w,
                 //         child: Divider(
-                //           color: context.scheme.scrim.withOpacity(0.1),
+                //           color: context.colorScheme.scrim.withOpacity(0.1),
                 //           thickness: 2.r,
                 //         ),
                 //       ),
@@ -151,7 +153,7 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
                       child: Text(
                         'Sign In',
                         style: text.body2.copyWith(
-                          color: context.scheme.primary,
+                          color: context.colorScheme.primary,
                         ),
                       ),
                     ),
@@ -163,15 +165,14 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
                     if (state is PhoneAuthLoading) {
                       return WakaluxeButton(
                         text: 'Please Wait...',
-                        color: context.scheme.outline,
+                        color: context.colorScheme.outline,
                       );
                     }
                     return GestureDetector(
                       onTap: _verifyPhoneNumber,
                       child: WakaluxeButton(
-                        
                         text: 'SIGN UP',
-                        textColor: context.scheme.scrim,
+                        textColor: context.colorScheme.scrim,
                       ),
                     );
                   },
@@ -282,7 +283,7 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
 //                 SizedBox(
 //                   width: 68.w,
 //                   child: Divider(
-//                     color: context.scheme.scrim.withOpacity(0.1),
+//                     color: context.colorScheme.scrim.withOpacity(0.1),
 //                     thickness: 2.r,
 //                   ),
 //                 ),
@@ -295,7 +296,7 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
 //                 SizedBox(
 //                   width: 68.w,
 //                   child: Divider(
-//                     color: context.scheme.scrim.withOpacity(0.1),
+//                     color: context.colorScheme.scrim.withOpacity(0.1),
 //                     thickness: 2.r,
 //                   ),
 //                 ),
@@ -336,7 +337,7 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
 //             WakaluxeButton(
 //               action: () => context.router.pushNamed('/verification'),
 //               text: 'SIGN UP',
-//               textColor: context.scheme.scrim,
+//               textColor: context.colorScheme.scrim,
 //             ),
 //           ],
 //         ),

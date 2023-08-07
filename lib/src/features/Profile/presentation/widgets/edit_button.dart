@@ -27,7 +27,7 @@ class WakaluxEditButton extends StatelessWidget {
           horizontal: 24.w,
         ),
         decoration: BoxDecoration(
-          color: context.scheme.primary,
+          color: context.colorScheme.primary,
           borderRadius: BorderRadius.circular(5.r),
         ),
         child: Text(

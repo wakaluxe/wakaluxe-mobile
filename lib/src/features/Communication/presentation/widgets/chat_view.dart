@@ -37,8 +37,7 @@ class _ChatViewState extends State<ChatView> {
                 horizontal: 16,
               ),
               decoration: BoxDecoration(
-                color: context.scheme.tertiary,
-                
+                color: context.colorScheme.tertiary,
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Text(
