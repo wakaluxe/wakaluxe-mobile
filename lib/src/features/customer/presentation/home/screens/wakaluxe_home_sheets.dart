@@ -10,7 +10,7 @@ class WakaluxeBottomSheets {
     BuildContext context, {
     required List<Map<String, dynamic>> data,
   }) async {
-    await showModalBottomSheet(
+    await showModalBottomSheet<void>(
       context: context,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
@@ -211,7 +211,6 @@ class WakaluxeBottomSheets {
                         width: 50,
                       ),
                     ),
-             
                     25.vGap,
                     WakaluxeButton(
                       text: 'Apply',
