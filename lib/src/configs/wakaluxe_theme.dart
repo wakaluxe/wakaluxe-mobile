@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_color_utilities/material_color_utilities.dart';
-
 import 'package:wakaluxe/src/configs/configs.dart';
 
 @immutable
@@ -10,7 +9,7 @@ class WakaluxeTheme extends ThemeExtension<WakaluxeTheme> {
   const WakaluxeTheme({
     this.primaryColor = const Color(0xFFFBE521),
     this.tertiaryColor = const Color(0xFFFF5722),
-    this.neutralColor = const Color(0xFFFFFFFF),
+    this.neutralColor = const Color(0xFFFFFBE6),
   });
 
   final Color primaryColor;
@@ -58,7 +57,6 @@ class WakaluxeTheme extends ThemeExtension<WakaluxeTheme> {
   ThemeData _base(ColorScheme colorScheme) {
     final primaryTextTheme = GoogleFonts.poppinsTextTheme();
     final secondaryTextTheme = GoogleFonts.montserratTextTheme();
-    final isLight = colorScheme.brightness == Brightness.light;
     final textTheme = primaryTextTheme.copyWith(
       displaySmall: secondaryTextTheme.displaySmall,
       displayMedium: secondaryTextTheme.displayMedium,
@@ -67,17 +65,15 @@ class WakaluxeTheme extends ThemeExtension<WakaluxeTheme> {
       headlineMedium: secondaryTextTheme.headlineMedium,
       headlineLarge: secondaryTextTheme.headlineLarge,
     );
-
+    final isLight = colorScheme.brightness == Brightness.light;
     return ThemeData(
       useMaterial3: true,
       extensions: [this],
       colorScheme: colorScheme,
       visualDensity: VisualDensity.adaptivePlatformDensity,
-      scaffoldBackgroundColor: isLight ? neutralColor : colorScheme.background,
-      textTheme: textTheme.apply(
-        displayColor: isLight ? Colors.black : Colors.white,
-        bodyColor: isLight ? Colors.black : Colors.white,
-      ),
+      scaffoldBackgroundColor:
+          isLight ? colorScheme.onPrimary : colorScheme.background,
+      textTheme: textTheme,
       tabBarTheme: TabBarTheme(
         labelColor: colorScheme.onSurface,
         unselectedLabelColor: colorScheme.onSurface,
@@ -99,7 +95,7 @@ class WakaluxeTheme extends ThemeExtension<WakaluxeTheme> {
         indicatorColor: colorScheme.secondaryContainer,
       ),
       appBarTheme: AppBarTheme(
-        backgroundColor: isLight ? neutralColor : colorScheme.surface,
+        backgroundColor: isLight ? colorScheme.onPrimary : colorScheme.surface,
       ),
       chipTheme: ChipThemeData(
         backgroundColor: isLight ? neutralColor : colorScheme.surface,
@@ -147,7 +143,7 @@ extension on Scheme {
 
 const lightColorScheme = ColorScheme(
   brightness: Brightness.light,
-  primary: Color(0xFF2B5BB5),
+  primary: Color(0xFFFBE521),
   onPrimary: Color(0xFFFFFFFF),
   primaryContainer: Color(0xFFD9E2FF),
   onPrimaryContainer: Color(0xFF001945),
@@ -229,17 +225,22 @@ extension FigmaStyles on TextTheme {
   TextStyle get body2 => GoogleFonts.poppins(
         fontSize: 14.sp,
         fontWeight: FontWeight.w500,
-        color: Palette.black.withOpacity(0.87),
+        color: Palette.primaryTextColor.withOpacity(0.87),
+      );
+  TextStyle get body3 => GoogleFonts.poppins(
+        fontSize: 12.sp,
+        fontWeight: FontWeight.w500,
+        color: Palette.primaryColorDark.withOpacity(0.87),
       );
   TextStyle get label => GoogleFonts.poppins(
         fontSize: 14.sp,
         fontWeight: FontWeight.w400,
-        color: Palette.black,
+        color: Palette.primaryColorDark,
       );
   TextStyle get display3 => GoogleFonts.poppins(
         fontSize: 34.sp,
         fontWeight: FontWeight.w500,
-        color: Palette.black,
+        color: Palette.primaryColorDark,
       );
 
   TextStyle get headline => GoogleFonts.poppins(
@@ -252,5 +253,25 @@ extension FigmaStyles on TextTheme {
         fontSize: 20.sp,
         fontWeight: FontWeight.w500,
         color: Palette.black,
+      );
+  TextStyle get subtitle => GoogleFonts.poppins(
+        fontSize: 10.sp,
+        fontWeight: FontWeight.w500,
+        color: Palette.primaryTextColor,
+      );
+  TextStyle get subtitle3 => GoogleFonts.poppins(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w500,
+        color: Palette.primaryTextColor,
+      );
+  TextStyle get button1 => GoogleFonts.poppins(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w500,
+        color: Palette.primaryTextColor,
+      );
+  TextStyle get subHeading1 => GoogleFonts.poppins(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w600,
+        color: Palette.primaryTextColor,
       );
 }

@@ -4,11 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:wakaluxe/src/configs/configs.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
+import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/widgets/padded_body.dart';
 
+@RoutePage(
+  name: 'Subscriptions',
+)
 class WakaluxeSubscriptions extends StatelessWidget {
   const WakaluxeSubscriptions({super.key});
 
@@ -17,22 +20,26 @@ class WakaluxeSubscriptions extends StatelessWidget {
     final text = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
+        leading: const SizedBox(),
         actions: [
-          GestureDetector(
-            child: Text(
-              'Skip',
-              style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w500,
-                fontSize: 24.sp,
-                color: Palette.secondaryTextColor,
+          Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: GestureDetector(
+              child: Text(
+                'Skip',
+                style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 24.sp,
+                  color: context.scheme.onSurfaceVariant,
+                ),
               ),
             ),
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: PaddedBody(
-          body: Column(
+      body: PaddedBody(
+        body: SingleChildScrollView(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
@@ -48,19 +55,32 @@ class WakaluxeSubscriptions extends StatelessWidget {
               SubscriptionsCard(
                 text: text,
                 plan: 'Business',
-                isSelected: true,
+                features: const [
+                  'Higher Priority than No plan',
+                  'Plan pickups',
+                ],
               ),
               25.vGap,
               GestureDetector(
                 child: SubscriptionsCard(
                   text: text,
                   plan: 'Family',
+                  isSelected: true,
+                  features: const [
+                    'Higher Priority than No plan',
+                    'Plan pickups',
+                  ],
                 ),
               ),
               25.vGap,
               SubscriptionsCard(
                 text: text,
                 plan: 'Personal',
+                features: const [
+                  'Pay your taxi fare',
+                  'Normal Priority',
+                  'Pay your taxi fare'
+                ],
               ),
             ],
           ),
@@ -72,15 +92,14 @@ class WakaluxeSubscriptions extends StatelessWidget {
 
 class SubscriptionsCard extends StatelessWidget {
   const SubscriptionsCard({
-    required this.text,
-    required this.plan,
-    super.key,
+    required this.text, required this.plan, required this.features, super.key,
     this.isSelected = false,
   });
 
   final TextTheme text;
   final String plan;
   final bool isSelected;
+  final List<String> features;
 
   @override
   Widget build(BuildContext context) {
@@ -90,12 +109,27 @@ class SubscriptionsCard extends StatelessWidget {
         height: 173.h,
         width: 374.w,
         decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: const Offset(0, 3), // changes position of shadow
+            ),
+            const BoxShadow(
+              color: Colors.white,
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: Offset(0, -3), // changes position of shadow
+            ),
+          ],
           border: Border.all(
-            color:
-                isSelected ? Palette.primary : Palette.black.withOpacity(0.05),
+            color: isSelected
+                ? context.scheme.primary
+                : context.scheme.scrim.withOpacity(0.05),
             width: 2.w,
           ),
-          color: Palette.black.withOpacity(0.05),
+          color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.circular(20.r),
         ),
         padding: EdgeInsets.symmetric(
@@ -105,21 +139,42 @@ class SubscriptionsCard extends StatelessWidget {
         child: Column(
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   '$plan Plan',
                   style: text.title,
-                )
+                ),
+                Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Price/',
+                        style: text.title,
+                      ),
+                      TextSpan(text: 'month', style: text.label)
+                    ],
+                  ),
+                  style: text.title,
+                ),
+                10.vGap,
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  'Price/Month',
-                  style: text.title,
-                )
-              ],
+            Column(
+              children: features
+                  .map(
+                    (e) => Row(
+                      children: [
+                        const Text('\u2022 ', style: TextStyle(fontSize: 8)),
+                        5.hGap,
+                        Text(
+                          e,
+                          style: text.subtitle,
+                        ),
+                      ],
+                    ),
+                  )
+                  .toList(),
             )
           ],
         ),

@@ -127,3 +127,5 @@ app.*.map.json
 !.idea/runConfigurations/
 
 ./flutter_clean_arch/*
+
+*env

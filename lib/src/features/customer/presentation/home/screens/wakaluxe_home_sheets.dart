@@ -3,8 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
-
-import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc.dart';
+import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc/home_bloc.dart';
 
 class WakaluxeBottomSheets {
   static Future<void> showSuggestedRidesModalSheet(
@@ -212,25 +211,11 @@ class WakaluxeBottomSheets {
                         width: 50,
                       ),
                     ),
-                    WakaluxTile(
-                      isSelected: state.selectedPaymentMethod == 2,
-                      onTap: () {
-                        context.read<HomeBloc>().add(
-                              SelectPaymentMethodEvent(
-                                selectedPaymentMethod: 2,
-                              ),
-                            );
-                      },
-                      title: 'Cash Payment',
-                      leading: Image.asset(
-                        'assets/images/middle.png',
-                        height: 50,
-                        width: 50,
-                      ),
-                    ),
+             
                     25.vGap,
                     WakaluxeButton(
                       text: 'Apply',
+                      color: context.scheme.onPrimaryContainer,
                       action: () {
                         Navigator.pop(context);
                         context.read<HomeBloc>().add(

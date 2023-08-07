@@ -2,11 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 import 'package:wakaluxe/src/common/common.dart';
-import 'package:wakaluxe/src/configs/configs.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
+import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/auth/presentation/widgets/app_barred_scaffold.dart';
 
+@RoutePage(name: 'Verification')
 class WakaluxeVerification extends StatelessWidget {
   const WakaluxeVerification({super.key});
 
@@ -59,7 +60,7 @@ class WakaluxeVerification extends StatelessWidget {
               8.hGap,
               Text(
                 'Resend(30s)',
-                style: text.body1.copyWith(color: Palette.primary),
+                style: text.body1.copyWith(color: context.scheme.tertiary),
               ),
             ],
           )

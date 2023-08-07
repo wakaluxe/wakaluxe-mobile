@@ -6,9 +6,8 @@ import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 
 class AppBarredScaffold extends StatelessWidget {
   const AppBarredScaffold({
-    Key? key,
-    required this.body,
-  }) : super(key: key);
+    required this.body, super.key,
+  });
   final Widget body;
 
   @override
