@@ -9,8 +9,7 @@ import 'package:wakaluxe/src/features/onboarding/welcome/page_view_model.dart';
 
 @RoutePage(name: 'welcome')
 class Welcome extends StatelessWidget {
-  Welcome({super.key});
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  const Welcome({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +23,7 @@ class Welcome extends StatelessWidget {
           size: Size.square(16.r),
           activeSize: const Size(20, 10),
           activeColor: context.colorScheme.tertiary,
-          color: Colors.black26,
+          color: context.colorScheme.onBackground,
           spacing: const EdgeInsets.symmetric(horizontal: 3),
           activeShape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(25),

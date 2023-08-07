@@ -16,7 +16,6 @@ class MyProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final t = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
         leading: const WakaluxBackButton(),
@@ -58,28 +57,28 @@ class MyProfile extends StatelessWidget {
                 ),
               ),
               73.vGap,
-              const profileTile(
+              const ProfileTile(
                 title: 'Name',
                 content: 'Customer/driver name',
                 hasEdit: true,
               ),
               35.vGap,
-              const profileTile(
+              const ProfileTile(
                 title: 'Phone Number',
                 content: '+237690596605',
               ),
               35.vGap,
-              const profileTile(
+              const ProfileTile(
                 title: 'Email',
                 content: 'customer@gmail.com',
               ),
               35.vGap,
-              const profileTile(
+              const ProfileTile(
                 title: 'Gender',
                 content: 'Male',
               ),
               35.vGap,
-              const profileTile(
+              const ProfileTile(
                 title: 'BirthDay',
                 content: '',
                 hasEdit: true,
@@ -92,8 +91,8 @@ class MyProfile extends StatelessWidget {
   }
 }
 
-class profileTile extends StatelessWidget {
-  const profileTile({
+class ProfileTile extends StatelessWidget {
+  const ProfileTile({
     required this.title,
     required this.content,
     super.key,

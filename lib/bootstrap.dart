@@ -1,9 +1,12 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
+
+import 'package:wakaluxe/app/common/widgets/wakaluxe_blocs.dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -31,9 +34,24 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   final storage = await HydratedStorage.build(
     storageDirectory: await getTemporaryDirectory(),
   );
+  HydratedBloc.storage = storage;
+
+  await SystemChrome.setPreferredOrientations(
+    [DeviceOrientation.portraitUp],
+  );
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+      systemNavigationBarColor: Colors.transparent,
+      systemNavigationBarIconBrightness: Brightness.dark,
+    ),
+  );
+
   // await dotenv.load();
-  await HydratedBlocOverrides.runZoned(
-    () async => runApp(await builder()),
-    storage: storage,
+  runApp(
+    WakaluxeBlocs(
+      child: await builder(),
+    ),
   );
 }
