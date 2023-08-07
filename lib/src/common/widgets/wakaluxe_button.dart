@@ -11,13 +11,14 @@ class WakaluxeButton extends StatelessWidget {
   const WakaluxeButton({
     required this.text,
     this.action,
-    this.color ,
+    this.color,
     super.key,
     this.width = .9,
     this.icon,
     this.textColor,
     this.isOutline = false,
-    this.isSelected = false,
+    this.svg,
+    this.isSelected = false, 
   });
   final IconData? icon;
   final String text;
@@ -27,6 +28,7 @@ class WakaluxeButton extends StatelessWidget {
   final Color? textColor;
   final bool isOutline;
   final bool isSelected;
+  final String? svg;
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +38,13 @@ class WakaluxeButton extends StatelessWidget {
         width: context.width * width,
         height: Constants.buttonHeight,
         decoration: BoxDecoration(
-          color: color?? context.scheme.primary,
+          color: isOutline ? Theme.of(context).scaffoldBackgroundColor :color ?? context.scheme.primary,
           borderRadius: BorderRadius.circular(Constants.borderRadius),
           border: (isOutline || isSelected)
               ? Border.all(
-                  color: !isSelected
+
+                  color: 
+                   !isSelected
                       ? context.scheme.onBackground.withOpacity(0.5)
                       : context.scheme.tertiary,
                   width: 0.8,
@@ -50,11 +54,19 @@ class WakaluxeButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            if(svg != null) ...[
+              SvgPicture.asset(
+                svg!,
+                height: 20,
+                width: 20,
+              ),
+              8.hGap,
+            ],
             Text(
               text,
               style: context.bodyLg.copyWith(
                 color:
-                    (textColor == null) ? context.scheme.onPrimary : textColor,
+                    (textColor == null) ? context.scheme.onBackground : textColor,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -105,7 +117,6 @@ class WakaluxeButtonMedium extends StatelessWidget {
   }
 }
 
-
 class WakaluxBackhButton extends StatelessWidget {
   const WakaluxBackhButton({
     super.key,
@@ -115,37 +126,36 @@ class WakaluxBackhButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => context.router.pop(),
-    child: Container(
-      height: 48.h,
+      child: Container(
+        height: 48.h,
         width: 48.w,
-      decoration: BoxDecoration(
-        color: context.scheme.background,
-        borderRadius: BorderRadius.circular(10),
-        
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.3),
-            spreadRadius: 2,
-            blurRadius: 5,
-            offset: const Offset(0, 3), // changes position of shadow
+        decoration: BoxDecoration(
+          color: context.scheme.background,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: const Offset(0, 3), // changes position of shadow
+            ),
+            const BoxShadow(
+              color: Colors.white,
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: Offset(0, -3), // changes position of shadow
+            ),
+          ],
+        ),
+        child: Transform.scale(
+          scale: 0.5,
+          child: SvgPicture.asset(
+            Constants.backBoldIcon,
+            height: 22,
+            width: 17,
           ),
-          const BoxShadow(
-            color: Colors.white,
-            spreadRadius: 2,
-            blurRadius: 5,
-            offset: Offset(0, -3), // changes position of shadow
-          ),
-        ],
-      ),
-      child: Transform.scale(
-        scale: 0.5,
-        child: SvgPicture.asset(
-          Constants.backBoldIcon,
-          height: 22,
-          width: 17,
         ),
       ),
-    ),
     );
   }
 }

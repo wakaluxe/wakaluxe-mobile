@@ -1,29 +1,29 @@
 // coverage:ignore-file
-class LogInWithEmailAndPasswordException implements Exception {
-  const LogInWithEmailAndPasswordException([
+class LogInWithPhoneException implements Exception {
+  const LogInWithPhoneException([
     this.message = 'Unknown error occurred.',
   ]);
 
-  factory LogInWithEmailAndPasswordException.fromCode(String code) {
+  factory LogInWithPhoneException.fromCode(String code) {
     switch (code) {
       case 'invalid-email':
-        return const LogInWithEmailAndPasswordException(
+        return const LogInWithPhoneException(
           'Email is not valid or badly formatted.',
         );
       case 'user-disabled':
-        return const LogInWithEmailAndPasswordException(
+        return const LogInWithPhoneException(
           'This user has been disabled. Please contact support for help.',
         );
       case 'user-not-found':
-        return const LogInWithEmailAndPasswordException(
+        return const LogInWithPhoneException(
           'Email is not found, please create an account.',
         );
       case 'wrong-password':
-        return const LogInWithEmailAndPasswordException(
+        return const LogInWithPhoneException(
           'Incorrect password, please try again.',
         );
       default:
-        return const LogInWithEmailAndPasswordException();
+        return const LogInWithPhoneException();
     }
   }
 

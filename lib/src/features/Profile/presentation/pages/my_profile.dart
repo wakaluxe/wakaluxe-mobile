@@ -3,12 +3,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:wakaluxe/src/common/widgets/wakalux_back_button.dart';
 
+import 'package:wakaluxe/src/common/widgets/wakalux_back_button.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
+import 'package:wakaluxe/src/features/Profile/presentation/pages/edit_profile.dart' show EditProfile;
+import 'package:wakaluxe/src/features/Profile/presentation/widgets/profile_box_widget.dart';
+import 'package:wakaluxe/src/features/Profile/presentation/widgets/profile_button.dart';
 
 @RoutePage()
 class MyProfile extends StatelessWidget {
@@ -19,117 +22,84 @@ class MyProfile extends StatelessWidget {
     final t = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         leading: const WakaluxBackButton(),
+        title: Text(
+          'Welcome!',
+        ),
       ),
       body: SizedBox(
         width: context.width,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.0.w),
+          padding: EdgeInsets.symmetric(horizontal: 10.0.w),
           child: Column(
             children: <Widget>[
               Hero(
                 tag: 'profile',
-                child: Container(
-                  height: 144.h,
-                  width: 144.w,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: const DecorationImage(
-                      image: AssetImage(Constants.profile),
-                      fit: BoxFit.cover,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.3),
-                        spreadRadius: 2,
-                        blurRadius: 5,
-                        offset:
-                            const Offset(0, 3), // changes position of shadow
-                      ),
-                      const BoxShadow(
-                        color: Colors.white,
-                        spreadRadius: 2,
-                        blurRadius: 5,
-                        offset: Offset(0, -3), // changes position of shadow
-                      ),
-                    ],
-                  ),
+                child: CircleAvatar(
+                  radius: 100.w,
+                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                  backgroundImage: AssetImage(Constants.profile),
                 ),
               ),
-              73.vGap,
-              const profileTile(
-                title: 'Name',
-                content: 'Customer/driver name',
-                hasEdit: true,
+              10.h.vGap,
+              Text(
+                'Ngome James',
+                style: t.title,
               ),
-              35.vGap,
-              const profileTile(
-                title: 'Phone Number',
-                content: '+237690596605',
+              4.h.vGap,
+              Text(
+                '+237612345678',
+                style: t.body1,
               ),
-              35.vGap,
-              const profileTile(
-                title: 'Email',
-                content: 'customer@gmail.com',
+              4.h.vGap,
+              Text(
+                'customer@gmail.com',
+                style: t.body1,
               ),
-              35.vGap,
-              const profileTile(
-                title: 'Gender',
-                content: 'Male',
+              4.h.vGap,
+              Text('Subscription Plan', style: t.body1),
+              35.h.vGap,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  ProfileButton(
+                    t: t,
+                    title: 'Edit Profile',
+                    onTap: () =>
+                        context.router.pushNamed(EditProfile.routeName),
+                  ),
+                  20.w.hGap,
+                  ProfileButton(
+                    t: t,
+                    title: 'Change Plan',
+                    onTap: () {},
+                  ),
+                ],
               ),
-              35.vGap,
-              const profileTile(
-                title: 'BirthDay',
-                content: '',
-                hasEdit: true,
-              ),
+              34.h.vGap,
+              SizedBox(
+                height: 120.h,
+                child: Row(
+                  children: <Widget>[
+                    ProfileBoxWidget(
+                      t: t,
+                      title: 'Ride Token',
+                      value: '70',
+                    ),
+                    20.w.hGap,
+                    ProfileBoxWidget(
+                      t: t,
+                      title: 'Rides Cancelled',
+                      value: '10',
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-class profileTile extends StatelessWidget {
-  const profileTile({
-    required this.title,
-    required this.content,
-    super.key,
-    this.hasEdit = false,
-  });
-
-  final String title;
-  final String content;
-  final bool hasEdit;
-
-  @override
-  Widget build(BuildContext context) {
-    final t = Theme.of(context).textTheme;
-
-    return Row(
-      children: [
-        SizedBox(
-          width: 140.w,
-          child: Text(
-            title,
-            style: t.body1,
-          ),
-        ),
-        10.hGap,
-        SizedBox(
-          width: 186.w,
-          child: Text(
-            content,
-            overflow: TextOverflow.ellipsis,
-            style: t.body1.copyWith(
-              color: context.scheme.outline.withOpacity(0.5),
-            ),
-          ),
-        ),
-        10.hGap,
-        if (hasEdit) SvgPicture.asset(Constants.editIcon)
-      ],
     );
   }
 }

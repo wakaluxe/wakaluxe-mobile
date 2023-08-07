@@ -10,7 +10,7 @@ import 'package:wakaluxe/src/features/onboarding/welcome/page_view_model.dart';
 @RoutePage(name: 'welcome')
 class Welcome extends StatelessWidget {
   Welcome({super.key});
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+ // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class Welcome extends StatelessWidget {
         dotsDecorator: DotsDecorator(
           size: Size.square(16.r),
           activeSize: const Size(20, 10),
-          activeColor: context.scheme.tertiary,
+          activeColor: context.scheme.primary,
           color: Colors.black26,
           spacing: const EdgeInsets.symmetric(horizontal: 3),
           activeShape: RoundedRectangleBorder(

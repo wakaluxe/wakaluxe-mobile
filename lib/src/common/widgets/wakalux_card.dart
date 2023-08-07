@@ -15,9 +15,10 @@ class WakaluxCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: width == null ? 10 : 2,
-        vertical: 10,
+      padding: EdgeInsets.only(
+        right: width == null ? 10 : 2,
+        left: width == null ? 10 : 2,
+        top: 10,
       ),
       child: Container(
         decoration: BoxDecoration(

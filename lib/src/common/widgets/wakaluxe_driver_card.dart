@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_image_stack/flutter_image_stack.dart';
 import 'package:wakaluxe/src/common/common.dart';
+import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 
@@ -42,13 +43,12 @@ class WakaluxeBookingDetails extends StatelessWidget {
             rating: rating,
           ),
         ),
-        5.vGap,
+        3.vGap,
         Divider(
           color: context.scheme.onBackground,
           // .withOpacity(0.6),
           thickness: 0.4,
         ),
-        5.vGap,
         Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 15,
@@ -66,13 +66,12 @@ class WakaluxeBookingDetails extends StatelessWidget {
             ],
           ),
         ),
-        5.vGap,
         Divider(
           color: context.scheme.onBackground,
           // .withOpacity(0.6),
           thickness: 0.4,
         ),
-        5.vGap,
+        3.vGap,
         Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 15,
@@ -133,16 +132,19 @@ class WakaluxeBookingDetails extends StatelessWidget {
             ],
           ),
         ),
-        20.vGap,
+        10.vGap,
         Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 10,
           ),
-          child: WakaluxeButton(
-            text: 'Confirm',
-            action: action,
-            color: context.scheme.tertiary,
-            textColor: context.scheme.onTertiary,
+          child: TextButton(
+            child: Text('Confirm', style: Theme.of(context).textTheme.button1,),
+            onPressed: action,
+            style: TextButton.styleFrom(
+              backgroundColor: context.scheme.tertiary, 
+            ),
+         /*    color: ,
+            textColor: context.scheme.onTertiary, */
           ),
         )
       ],
