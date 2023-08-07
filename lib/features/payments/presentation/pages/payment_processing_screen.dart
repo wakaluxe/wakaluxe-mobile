@@ -1,14 +1,28 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wakaluxe/features/payments/presentation/cubit/payment_cubit.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 
 @RoutePage()
-class PaymentProcessingScreen extends StatelessWidget {
+class PaymentProcessingScreen extends StatefulWidget {
   const PaymentProcessingScreen({Key? key}) : super(key: key);
   static String name = '/payment-processing';
+
+  @override
+  State<PaymentProcessingScreen> createState() =>
+      _PaymentProcessingScreenState();
+}
+
+class _PaymentProcessingScreenState extends State<PaymentProcessingScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<PaymentCubit>().paymentProcessing();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,27 +33,49 @@ class PaymentProcessingScreen extends StatelessWidget {
           vertical: 100.h,
           horizontal: 20.0.w,
         ),
-        child: Column(
-          children: <Widget>[
-            Text(
-              'Processing your payment',
-              style: textTheme.body1,
-            ),
-            17.h.vGap,
-            LinearProgressIndicator(
-              color: (context.scheme.primary),
-              backgroundColor: Colors.grey[200],
-              value: 0.33,
-            ),
-            170.h.vGap,
-            Text(
-              'Please wait a moment while we process your payment. It might take 5 minutes or more.',
-              style: textTheme.label,
-              textAlign: TextAlign.center,
-            )
-          ],
-        ),
+        child: BlocListener<PaymentCubit, PaymentsState>(
+            listener: (context, state) {
+              if (state is PaymentProcessedState) {
+             
+                context.router.popUntilRoot();
+              }
+            },
+            child: Column(
+              children: <Widget>[
+                Text(
+                  'Processing your payment',
+                  style: textTheme.body1,
+                ),
+                17.h.vGap,
+                Loader(),
+                170.h.vGap,
+                Text(
+                  'Please wait a moment while we process your payment. It might take 5 minutes or more.',
+                  style: textTheme.label,
+                  textAlign: TextAlign.center,
+                )
+              ],
+            )),
       ),
+    );
+  }
+}
+
+class Loader extends StatelessWidget {
+  const Loader({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<PaymentCubit, PaymentsState>(
+      builder: (context, state) {
+        return LinearProgressIndicator(
+          color: (context.scheme.primary),
+          backgroundColor: Colors.grey[200],
+          value: state.processingValue,
+        );
+      },
     );
   }
 }

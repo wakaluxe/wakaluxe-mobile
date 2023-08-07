@@ -2,26 +2,30 @@
 part of 'payment_cubit.dart';
 
 class PaymentsState extends Equatable {
-  PaymentsState({
+  const PaymentsState({
     this.type = PaymentMethodsType.UNDEFINE,
     this.amount = '0',
     this.accountNumber = '',
+     this.processingValue = 0.0,
   });
   final PaymentMethodsType type;
   final String amount;
   final String accountNumber;
+  final double processingValue;
   @override
-  List<Object> get props => [type, amount, accountNumber];
+  List<Object> get props => [type, amount, accountNumber, processingValue];
 
   PaymentsState copyWith({
     PaymentMethodsType? type,
     String? amount,
     String? accountNumber,
+    double? processingValue,
   }) {
     return PaymentsState(
       type: type ?? this.type,
       amount: amount ?? this.amount,
       accountNumber: accountNumber ?? this.accountNumber,
+      processingValue: processingValue ?? this.processingValue,
     );
   }
 }
@@ -35,4 +39,12 @@ class PaymentUpdatePaymentTypeState extends PaymentsState {
 class AddPaymentInformationState extends PaymentsState {
   AddPaymentInformationState(
       {required super.amount, required super.accountNumber});
+}
+
+class PaymentProcessingState extends PaymentsState {
+  PaymentProcessingState({required super.processingValue});
+}
+
+class PaymentProcessedState extends PaymentsState {
+  PaymentProcessedState():super(processingValue: 0);
 }

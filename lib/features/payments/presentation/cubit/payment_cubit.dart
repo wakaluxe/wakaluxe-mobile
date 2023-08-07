@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -14,5 +16,15 @@ class PaymentCubit extends Cubit<PaymentsState> {
 
   void addPaymentInformation({required String amount, required String number}) {
     emit(AddPaymentInformationState(amount: amount, accountNumber: number));
+  }
+
+  void paymentProcessing() {
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      if (state.processingValue >= 1) {
+        timer.cancel();
+    emit(PaymentProcessedState());
+      }
+      emit(PaymentProcessingState(processingValue: state.processingValue + 0.1));
+    });
   }
 }
