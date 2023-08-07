@@ -23,19 +23,19 @@ class WakaluxePerson extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 25,
-              backgroundColor: context.scheme.tertiaryContainer,
+              backgroundColor: context.colorScheme.tertiaryContainer,
               child: Icon(
                 WakaluxIcons.message_outlined,
-                color: context.scheme.onBackground,
+                color: context.colorScheme.onBackground,
               ),
             ),
             5.hGap,
             CircleAvatar(
               radius: 25,
-              backgroundColor: context.scheme.secondaryContainer,
+              backgroundColor: context.colorScheme.secondaryContainer,
               child: Icon(
                 WakaluxIcons.phone,
-                color: context.scheme.onBackground,
+                color: context.colorScheme.onBackground,
               ),
             ),
           ],

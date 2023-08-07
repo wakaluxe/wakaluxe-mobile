@@ -46,11 +46,12 @@ class MyProfile extends StatelessWidget {
                         offset:
                             const Offset(0, 3), // changes position of shadow
                       ),
-                      const BoxShadow(
-                        color: Colors.white,
+                      BoxShadow(
+                        color: context.colorScheme.onPrimary,
                         spreadRadius: 2,
                         blurRadius: 5,
-                        offset: Offset(0, -3), // changes position of shadow
+                        offset:
+                            const Offset(0, -3), // changes position of shadow
                       ),
                     ],
                   ),
@@ -123,7 +124,7 @@ class profileTile extends StatelessWidget {
             content,
             overflow: TextOverflow.ellipsis,
             style: t.body1.copyWith(
-              color: context.scheme.outline.withOpacity(0.5),
+              color: context.colorScheme.outline.withOpacity(0.5),
             ),
           ),
         ),

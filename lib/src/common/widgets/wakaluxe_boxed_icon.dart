@@ -22,7 +22,7 @@ class WakaluxeBoxedIcon extends StatelessWidget {
           height: 52,
           width: 52,
           decoration: BoxDecoration(
-            color: color ?? context.scheme.tertiary,
+            color: color ?? context.colorScheme.tertiary,
             borderRadius: BorderRadius.circular(20),
           ),
           child: Center(

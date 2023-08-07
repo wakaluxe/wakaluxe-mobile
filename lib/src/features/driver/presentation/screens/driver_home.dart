@@ -15,7 +15,7 @@ class DriverHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.scheme.onBackground,
+      backgroundColor: context.colorScheme.onBackground,
       body: SafeArea(
         child: BlocBuilder<DriverHomeCubit, DriverHomeState>(
           bloc: cubit,
@@ -39,12 +39,12 @@ class DriverHome extends StatelessWidget {
                                 horizontal: 8,
                               ),
                               decoration: BoxDecoration(
-                                color: context.scheme.background,
+                                color: context.colorScheme.background,
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Icon(
                                 Icons.menu,
-                                color: context.scheme.onBackground,
+                                color: context.colorScheme.onBackground,
                               ),
                             ),
                           ),
@@ -59,7 +59,7 @@ class DriverHome extends StatelessWidget {
                                   vertical: 10,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: context.scheme.background,
+                                  color: context.colorScheme.background,
                                   borderRadius: BorderRadius.circular(30),
                                 ),
                                 child: Column(
@@ -112,7 +112,7 @@ class DriverHome extends StatelessWidget {
                                   vertical: 15,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: context.scheme.background,
+                                  color: context.colorScheme.background,
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Text(
@@ -164,7 +164,7 @@ class DriverHome extends StatelessWidget {
                             ),
                             10.vGap,
                             Divider(
-                              color: context.scheme.onBackground,
+                              color: context.colorScheme.onBackground,
                               thickness: 0.5,
                             ),
                             10.vGap,
@@ -182,14 +182,14 @@ class DriverHome extends StatelessWidget {
                                   WakaluxeButtonMedium(
                                     text: 'Reject',
                                     width: 0.4,
-                                    color: context.scheme.errorContainer,
-                                    textColor: context.scheme.error,
+                                    color: context.colorScheme.errorContainer,
+                                    textColor: context.colorScheme.error,
                                   ),
                                   WakaluxeButtonMedium(
                                     text: 'Accept',
                                     width: 0.4,
-                                    color: context.scheme.tertiary,
-                                    textColor: context.scheme.onTertiary,
+                                    color: context.colorScheme.tertiary,
+                                    textColor: context.colorScheme.onTertiary,
                                     action: cubit.toggleAcceptRide,
                                   )
                                 ],
@@ -218,7 +218,7 @@ class DriverHome extends StatelessWidget {
                             ),
                             10.vGap,
                             Divider(
-                              color: context.scheme.onBackground,
+                              color: context.colorScheme.onBackground,
                               thickness: 0.5,
                             ),
                             10.vGap,
@@ -226,8 +226,8 @@ class DriverHome extends StatelessWidget {
                             20.vGap,
                             WakaluxeButton(
                               text: 'Start',
-                              color: context.scheme.tertiary,
-                              textColor: context.scheme.onTertiary,
+                              color: context.colorScheme.tertiary,
+                              textColor: context.colorScheme.onTertiary,
                               action: () {
                                 cubit.changeAcceptRide();
                                 WakaluxeDriverButtomSheets.showPickUpPointSheet(

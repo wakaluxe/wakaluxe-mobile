@@ -44,7 +44,7 @@ class _ChatViewState extends State<ChatView> {
                   horizontal: 16,
                 ),
                 decoration: BoxDecoration(
-                  color: context.scheme.surface,
+                  color: context.colorScheme.surface,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.5),

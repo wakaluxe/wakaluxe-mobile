@@ -49,7 +49,7 @@ class VerifyPassword extends StatelessWidget {
                   TextSpan(
                     text: '60 s',
                     style: theme.body1.copyWith(
-                      color: context.scheme.primary,
+                      color: context.colorScheme.primary,
                     ),
                   ),
                 ],

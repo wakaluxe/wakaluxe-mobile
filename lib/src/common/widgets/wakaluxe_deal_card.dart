@@ -33,7 +33,7 @@ class WakaluxeDealCard extends StatelessWidget {
                   horizontal: 20,
                 ),
                 decoration: BoxDecoration(
-                  color: context.scheme.tertiary,
+                  color: context.colorScheme.tertiary,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Text(tag),

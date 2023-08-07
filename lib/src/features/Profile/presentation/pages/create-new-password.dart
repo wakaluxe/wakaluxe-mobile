@@ -72,7 +72,7 @@ class WakaluxInputField extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 8.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.r),
-        color: context.scheme.outlineVariant.withOpacity(0.3),
+        color: context.colorScheme.outlineVariant.withOpacity(0.3),
       ),
       child: TextFormField(
         obscureText: true,

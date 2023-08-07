@@ -23,7 +23,7 @@ class Welcome extends StatelessWidget {
         dotsDecorator: DotsDecorator(
           size: Size.square(16.r),
           activeSize: const Size(20, 10),
-          activeColor: context.scheme.tertiary,
+          activeColor: context.colorScheme.tertiary,
           color: Colors.black26,
           spacing: const EdgeInsets.symmetric(horizontal: 3),
           activeShape: RoundedRectangleBorder(
@@ -74,7 +74,7 @@ class Welcome extends StatelessWidget {
 //         Text(
 //           'Icon Buttons',
 //           style: context.bodyLg.copyWith(
-//             color: context.scheme.onBackground,
+//             color: context.colorScheme.onBackground,
 //             fontWeight: FontWeight.bold,
 //           ),
 //         ),
@@ -83,15 +83,15 @@ class Welcome extends StatelessWidget {
 //           children: [
 //             WakaluxeBoxedIcon(
 //               icon: Hicons.gift_2,
-//               color: context.scheme.tertiary,
+//               color: context.colorScheme.tertiary,
 //             ),
 //             WakaluxeBoxedIcon(
 //               icon: Hicons.wallet,
-//               color: context.scheme.secondary,
+//               color: context.colorScheme.secondary,
 //             ),
 //             WakaluxeBoxedIcon(
 //               icon: Hicons.send_2,
-//               color: context.scheme.tertiary,
+//               color: context.colorScheme.tertiary,
 //             ),
 //           ],
 //         ),
@@ -110,30 +110,30 @@ class Welcome extends StatelessWidget {
 //         Text(
 //           'Wakaluxe Buttons',
 //           style: context.bodyLg.copyWith(
-//             color: context.scheme.onBackground,
+//             color: context.colorScheme.onBackground,
 //             fontWeight: FontWeight.bold,
 //           ),
 //         ),
 //         12.vGap,
 //         const WakaluxeButton(
 //           text: 'Primary',
-//           //color: context.scheme.primary,
+//           //color: context.colorScheme.primary,
 //         ),
 //         12.vGap,
 //         WakaluxeButton(
 //           text: 'Secondary',
-//           color: context.scheme.secondary,
+//           color: context.colorScheme.secondary,
 //         ),
 //         12.vGap,
 //         WakaluxeButton(
 //           text: 'Tertiary',
-//           color: context.scheme.tertiary,
+//           color: context.colorScheme.tertiary,
 //         ),
 //         12.vGap,
 //         WakaluxeButton(
 //           text: 'With icon',
 //           icon: Hicons.send_2,
-//           color: context.scheme.tertiary,
+//           color: context.colorScheme.tertiary,
 //         ),
 //         12.vGap,
 //         Row(
@@ -163,7 +163,7 @@ class Welcome extends StatelessWidget {
 //         Text(
 //           'Wakaluxe Typography',
 //           style: context.bodyLg.copyWith(
-//             color: context.scheme.onBackground,
+//             color: context.colorScheme.onBackground,
 //             fontWeight: FontWeight.bold,
 //           ),
 //         ),

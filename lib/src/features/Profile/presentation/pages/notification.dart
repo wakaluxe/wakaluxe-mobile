@@ -77,7 +77,7 @@ class _NotificationState extends State<Notification> {
                               ? Checkbox(value: false, onChanged: (val) {})
                               : CircleAvatar(
                                   radius: 5.r,
-                                  backgroundColor: context.scheme.primary,
+                                  backgroundColor: context.colorScheme.primary,
                                 ),
                           title: Text(
                             notification['name'] as String,
@@ -101,13 +101,13 @@ class _NotificationState extends State<Notification> {
                         children: [
                           NotificationButton(
                             title: 'Mark all as read',
-                            color: context.scheme.inversePrimary,
+                            color: context.colorScheme.inversePrimary,
                             onPressed: () {},
                           ),
                           const Spacer(),
                           NotificationButton(
                             title: 'Clear all',
-                            color: context.scheme.primary,
+                            color: context.colorScheme.primary,
                             onPressed: () {
                               setState(() {
                                 notifications.clear();

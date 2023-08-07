@@ -12,7 +12,7 @@ class AvailableCars extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.scheme.background,
+      backgroundColor: context.colorScheme.background,
       appBar: AppBar(),
       body: Stack(
         children: [
@@ -63,10 +63,10 @@ class AvailableCars extends StatelessWidget {
               height: context.height * 0.06,
               width: context.width,
               decoration: BoxDecoration(
-                color: context.scheme.background,
+                color: context.colorScheme.background,
                 border: Border(
                   top: BorderSide(
-                    color: context.scheme.onBackground,
+                    color: context.colorScheme.onBackground,
                   ),
                 ),
               ),
@@ -77,7 +77,7 @@ class AvailableCars extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.sort,
-                      color: context.scheme.onBackground,
+                      color: context.colorScheme.onBackground,
                     ),
                     10.hGap,
                     Text(

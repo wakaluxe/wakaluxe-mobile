@@ -25,7 +25,7 @@ class WakaluxeTripDetails extends StatelessWidget {
           children: [
             Icon(
               Icons.person,
-              color: context.scheme.primary,
+              color: context.colorScheme.primary,
             ),
             10.hGap,
             Column(
@@ -50,7 +50,7 @@ class WakaluxeTripDetails extends StatelessWidget {
           child: CustomPaint(
             size: const Size(1, 50),
             painter: WakaluxeDottedLine(
-              color: context.scheme.onBackground,
+              color: context.colorScheme.onBackground,
             ),
           ),
         ),

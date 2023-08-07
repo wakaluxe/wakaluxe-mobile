@@ -60,7 +60,7 @@ class WakaluxeVerification extends StatelessWidget {
               8.hGap,
               Text(
                 'Resend(30s)',
-                style: text.body1.copyWith(color: context.scheme.tertiary),
+                style: text.body1.copyWith(color: context.colorScheme.tertiary),
               ),
             ],
           )

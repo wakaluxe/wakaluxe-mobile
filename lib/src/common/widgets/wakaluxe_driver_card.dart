@@ -44,7 +44,7 @@ class WakaluxeBookingDetails extends StatelessWidget {
         ),
         5.vGap,
         Divider(
-          color: context.scheme.onBackground,
+          color: context.colorScheme.onBackground,
           // .withOpacity(0.6),
           thickness: 0.4,
         ),
@@ -68,7 +68,7 @@ class WakaluxeBookingDetails extends StatelessWidget {
         ),
         5.vGap,
         Divider(
-          color: context.scheme.onBackground,
+          color: context.colorScheme.onBackground,
           // .withOpacity(0.6),
           thickness: 0.4,
         ),
@@ -81,7 +81,7 @@ class WakaluxeBookingDetails extends StatelessWidget {
             children: [
               Icon(
                 Icons.directions_car,
-                color: context.scheme.onBackground,
+                color: context.colorScheme.onBackground,
                 size: 50,
               ),
               10.hGap,
@@ -141,8 +141,8 @@ class WakaluxeBookingDetails extends StatelessWidget {
           child: WakaluxeButton(
             text: 'Confirm',
             action: action,
-            color: context.scheme.tertiary,
-            textColor: context.scheme.onTertiary,
+            color: context.colorScheme.tertiary,
+            textColor: context.colorScheme.onTertiary,
           ),
         )
       ],

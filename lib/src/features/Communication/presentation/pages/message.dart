@@ -53,7 +53,7 @@ class _MessageState extends State<Message> {
           ),
           trailing: CircleAvatar(
             radius: 15,
-            backgroundColor: context.scheme.tertiary,
+            backgroundColor: context.colorScheme.tertiary,
             child: SvgPicture.asset(
               Constants.callIcon,
               height: 17.h,

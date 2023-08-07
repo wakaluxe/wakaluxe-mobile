@@ -11,7 +11,7 @@ class WakaluxeButton extends StatelessWidget {
   const WakaluxeButton({
     required this.text,
     this.action,
-    this.color ,
+    this.color,
     super.key,
     this.width = .9,
     this.icon,
@@ -36,13 +36,13 @@ class WakaluxeButton extends StatelessWidget {
         width: context.width * width,
         height: Constants.buttonHeight,
         decoration: BoxDecoration(
-          color: color?? context.scheme.primary,
+          color: color ?? context.colorScheme.primary,
           borderRadius: BorderRadius.circular(Constants.borderRadius),
           border: (isOutline || isSelected)
               ? Border.all(
                   color: !isSelected
-                      ? context.scheme.onBackground.withOpacity(0.5)
-                      : context.scheme.tertiary,
+                      ? context.colorScheme.onBackground.withOpacity(0.5)
+                      : context.colorScheme.tertiary,
                   width: 0.8,
                 )
               : null,
@@ -53,8 +53,9 @@ class WakaluxeButton extends StatelessWidget {
             Text(
               text,
               style: context.bodyLg.copyWith(
-                color:
-                    (textColor == null) ? context.scheme.onPrimary : textColor,
+                color: (textColor == null)
+                    ? context.colorScheme.onPrimary
+                    : textColor,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -105,7 +106,6 @@ class WakaluxeButtonMedium extends StatelessWidget {
   }
 }
 
-
 class WakaluxBackhButton extends StatelessWidget {
   const WakaluxBackhButton({
     super.key,
@@ -115,37 +115,36 @@ class WakaluxBackhButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => context.router.pop(),
-    child: Container(
-      height: 48.h,
+      child: Container(
+        height: 48.h,
         width: 48.w,
-      decoration: BoxDecoration(
-        color: context.scheme.background,
-        borderRadius: BorderRadius.circular(10),
-        
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.3),
-            spreadRadius: 2,
-            blurRadius: 5,
-            offset: const Offset(0, 3), // changes position of shadow
+        decoration: BoxDecoration(
+          color: context.colorScheme.background,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: const Offset(0, 3), // changes position of shadow
+            ),
+            BoxShadow(
+              color: context.colorScheme.onPrimary,
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: const Offset(0, -3), // changes position of shadow
+            ),
+          ],
+        ),
+        child: Transform.scale(
+          scale: 0.5,
+          child: SvgPicture.asset(
+            Constants.backBoldIcon,
+            height: 22,
+            width: 17,
           ),
-          const BoxShadow(
-            color: Colors.white,
-            spreadRadius: 2,
-            blurRadius: 5,
-            offset: Offset(0, -3), // changes position of shadow
-          ),
-        ],
-      ),
-      child: Transform.scale(
-        scale: 0.5,
-        child: SvgPicture.asset(
-          Constants.backBoldIcon,
-          height: 22,
-          width: 17,
         ),
       ),
-    ),
     );
   }
 }

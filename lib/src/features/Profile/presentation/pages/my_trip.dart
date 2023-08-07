@@ -46,7 +46,7 @@ class MyTrip extends StatelessWidget {
                     padding:
                         EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
                     decoration: BoxDecoration(
-                      color: context.scheme.surface,
+                      color: context.colorScheme.surface,
                       borderRadius: BorderRadius.circular(16.r),
                       boxShadow: [
                         BoxShadow(
@@ -121,12 +121,12 @@ class _DateWidgetState extends State<DateWidget> {
               height: double.maxFinite,
               margin: EdgeInsets.symmetric(horizontal: 5.w),
               decoration: BoxDecoration(
-                color: context.scheme.surface.withOpacity(0.8),
+                color: context.colorScheme.surface.withOpacity(0.8),
                 borderRadius: BorderRadius.circular(16.r),
                 border: Border.all(
                   color: _selectedDay == day['day']
-                      ? context.scheme.primary
-                      : context.scheme.onInverseSurface,
+                      ? context.colorScheme.primary
+                      : context.colorScheme.onInverseSurface,
                   width: 2,
                 ),
               ),
@@ -142,7 +142,8 @@ class _DateWidgetState extends State<DateWidget> {
                       alignment: Alignment.center,
                       width: double.maxFinite,
                       decoration: BoxDecoration(
-                        color: context.scheme.outlineVariant.withOpacity(0.4),
+                        color:
+                            context.colorScheme.outlineVariant.withOpacity(0.4),
                         borderRadius: BorderRadius.circular(16.r),
                       ),
                       child: Text(

@@ -6,7 +6,7 @@ extension WakaluxeBuildContextExtension on BuildContext {
   /// ```dart
   /// context.theme
   /// context.typography
-  /// context.scheme
+  /// context.colorScheme
   /// context.brightness
   /// context.isLight
   /// context.isDark
@@ -22,45 +22,45 @@ extension WakaluxeBuildContextExtension on BuildContext {
   TextTheme get typography => theme.textTheme;
   TextStyle get titleLg => typography.titleLarge!.copyWith(
         //fontWeight: FontWeight.w600,
-        color: scheme.onBackground,
+        color: colorScheme.onBackground,
       );
   TextStyle get titleLgBold => typography.titleLarge!.copyWith(
         fontWeight: FontWeight.w600,
-        color: scheme.onBackground,
+        color: colorScheme.onBackground,
         fontSize: 18,
       );
   TextStyle get titleMd => typography.titleMedium!.copyWith(
         //fontWeight: FontWeight.w600,
-        color: scheme.onBackground,
+        color: colorScheme.onBackground,
       );
   TextStyle get titleMdBold => typography.titleMedium!.copyWith(
         fontWeight: FontWeight.bold,
-        color: scheme.onBackground,
+        color: colorScheme.onBackground,
       );
   TextStyle get titleSm => typography.titleSmall!.copyWith(
         //fontWeight: FontWeight.w600,
-        color: scheme.onBackground,
+        color: colorScheme.onBackground,
       );
 
   TextStyle get displayLg => typography.displayLarge!.copyWith(
         //fontWeight: FontWeight.w600,
-        color: scheme.onBackground,
+        color: colorScheme.onBackground,
       );
   TextStyle get displayMd => typography.displayMedium!.copyWith(
         //fontWeight: FontWeight.w600,
-        color: scheme.onBackground,
+        color: colorScheme.onBackground,
       );
   TextStyle get displaySm => typography.displaySmall!.copyWith(
         //fontWeight: FontWeight.w600,
-        color: scheme.onBackground,
+        color: colorScheme.onBackground,
       );
   TextStyle get bodySm => typography.bodySmall!.copyWith(
         //fontWeight: FontWeight.w600,
-        color: scheme.onBackground,
+        color: colorScheme.onBackground,
       );
   TextStyle get bodyMd => typography.bodyMedium!.copyWith(
         //fontWeight: FontWeight.w600,
-        color: scheme.onBackground,
+        color: colorScheme.onBackground,
       );
 
   TextStyle get bodyMdBold => bodyMd.copyWith(
@@ -68,18 +68,18 @@ extension WakaluxeBuildContextExtension on BuildContext {
       );
   TextStyle get bodyLg => typography.bodyLarge!.copyWith(
         //fontWeight: FontWeight.w600,
-        color: scheme.onBackground,
+        color: colorScheme.onBackground,
       );
   TextStyle get bodyLgGray => typography.bodyLarge!.copyWith(
         //fontWeight: FontWeight.w600,
-        color: scheme.onBackground.withOpacity(0.6),
+        color: colorScheme.onBackground.withOpacity(0.6),
       );
   TextStyle get bodyLgBold => bodyLg.copyWith(
         fontWeight: FontWeight.w600,
       );
 
   /// Get the [ColorScheme] of the current [Theme].
-  ColorScheme get scheme => theme.colorScheme;
+  ColorScheme get colorScheme => theme.colorScheme;
 
   /// Get the [Brightness] of the current [Theme].
   Brightness get brightness => theme.brightness;
@@ -116,7 +116,7 @@ extension WakaluxeBuildContextExtension on BuildContext {
         content: Text(message, style: bodyMd),
         behavior: SnackBarBehavior.floating,
         duration: duration ?? const Duration(seconds: 1),
-        backgroundColor: color ?? scheme.primary,
+        backgroundColor: color ?? colorScheme.primary,
       ),
     );
   }
@@ -133,7 +133,7 @@ extension WakaluxeBuildContextExtension on BuildContext {
         content: Text(message, style: bodyMd),
         behavior: SnackBarBehavior.floating,
         duration: duration ?? const Duration(seconds: 1),
-        backgroundColor: color ?? scheme.primary,
+        backgroundColor: color ?? colorScheme.primary,
         action: SnackBarAction(
           label: actionLabel,
           onPressed: onAction,

@@ -51,7 +51,7 @@ class WakaluxeCancleRide extends StatelessWidget {
           ),
           10.vGap,
           Divider(
-            color: context.scheme.onBackground,
+            color: context.colorScheme.onBackground,
             // .withOpacity(0.6),
             thickness: 0.4,
           ),
@@ -63,7 +63,7 @@ class WakaluxeCancleRide extends StatelessWidget {
           ),
           10.vGap,
           Divider(
-            color: context.scheme.onBackground,
+            color: context.colorScheme.onBackground,
             thickness: 0.4,
           ),
           10.vGap,
@@ -74,7 +74,7 @@ class WakaluxeCancleRide extends StatelessWidget {
           ),
           10.vGap,
           Divider(
-            color: context.scheme.onBackground,
+            color: context.colorScheme.onBackground,
             // .withOpacity(0.6),
             thickness: 0.4,
           ),
@@ -91,7 +91,7 @@ class WakaluxeCancleRide extends StatelessWidget {
             children: [
               Icon(
                 Icons.credit_card,
-                color: context.scheme.onBackground,
+                color: context.colorScheme.onBackground,
               ),
               10.hGap,
               Text(
@@ -108,8 +108,8 @@ class WakaluxeCancleRide extends StatelessWidget {
           25.vGap,
           WakaluxeButton(
             text: 'Cancel Ride',
-            color: context.scheme.errorContainer,
-            textColor: context.scheme.error,
+            color: context.colorScheme.errorContainer,
+            textColor: context.colorScheme.error,
             action: action,
           )
         ],

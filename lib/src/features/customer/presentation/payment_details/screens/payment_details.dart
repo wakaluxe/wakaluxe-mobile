@@ -77,7 +77,7 @@ class PaymentDetails extends StatelessWidget {
                 Align(
                   child: WakaluxeButtonMedium(
                     text: 'Dial *126#',
-                    textColor: context.scheme.onTertiary,
+                    textColor: context.colorScheme.onTertiary,
                     action: () {
                       // we'll create a cubit.submit() method
                       context.router.pushNamed('/rating');

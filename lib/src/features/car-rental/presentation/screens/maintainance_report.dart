@@ -55,8 +55,8 @@ class MaintainanceReport extends StatelessWidget {
                   action: () {
                     context.router.pushNamed('/daily_objectices/:carId');
                   },
-                  color: context.scheme.tertiary,
-                  textColor: context.scheme.onTertiary,
+                  color: context.colorScheme.tertiary,
+                  textColor: context.colorScheme.onTertiary,
                 ),
               ),
             ],

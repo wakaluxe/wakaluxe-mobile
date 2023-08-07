@@ -21,12 +21,12 @@ class WakaluxCard extends StatelessWidget {
       ),
       child: Container(
         decoration: BoxDecoration(
-          color: context.scheme.background,
+          color: context.colorScheme.background,
           borderRadius: BorderRadius.circular(20),
           //add box shadow
           boxShadow: [
             BoxShadow(
-              color: context.scheme.onBackground.withOpacity(0.2),
+              color: context.colorScheme.onBackground.withOpacity(0.2),
               spreadRadius: 1,
               blurRadius: 5,
               offset: const Offset(

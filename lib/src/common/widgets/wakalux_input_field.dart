@@ -32,11 +32,11 @@ class WakaluxInputField extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       decoration: BoxDecoration(
-        color: context.scheme.primaryContainer.withOpacity(0.05),
+        color: context.colorScheme.primaryContainer.withOpacity(0.05),
         borderRadius: BorderRadius.circular(20.r),
         border: Border.all(
           width: 2.r,
-          color: context.scheme.scrim.withOpacity(0.1),
+          color: context.colorScheme.scrim.withOpacity(0.1),
         ),
       ),
       child: Row(

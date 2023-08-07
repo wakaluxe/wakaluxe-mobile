@@ -37,7 +37,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.scheme.onBackground,
+      backgroundColor: context.colorScheme.onBackground,
       drawer: const MenuDrawer(),
       endDrawer: const ProfileDrawer(),
       body: BlocConsumer<HomeBloc, HomeState>(
@@ -82,12 +82,12 @@ class _HomeState extends State<Home> {
                                     horizontal: 8,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: context.scheme.background,
+                                    color: context.colorScheme.background,
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   child: Icon(
                                     Icons.menu,
-                                    color: context.scheme.onBackground,
+                                    color: context.colorScheme.onBackground,
                                   ),
                                 ),
                               ),
@@ -106,7 +106,8 @@ class _HomeState extends State<Home> {
                                             vertical: 10,
                                           ),
                                           decoration: BoxDecoration(
-                                            color: context.scheme.background,
+                                            color:
+                                                context.colorScheme.background,
                                             borderRadius:
                                                 BorderRadius.circular(30),
                                           ),
@@ -118,11 +119,12 @@ class _HomeState extends State<Home> {
                                       : WakaluxeLocationWidget(
                                           leading: Icon(
                                             Icons.person,
-                                            color: context.scheme.primary,
+                                            color: context.colorScheme.primary,
                                           ),
                                           trainling: Icon(
                                             Icons.close,
-                                            color: context.scheme.onBackground,
+                                            color: context
+                                                .colorScheme.onBackground,
                                           ),
                                           message: 'Location Coordimates',
                                           onTap: () {
@@ -156,11 +158,11 @@ class _HomeState extends State<Home> {
                                     child: WakaluxeLocationWidget(
                                       leading: Icon(
                                         WakaluxIcons.location,
-                                        color: context.scheme.error,
+                                        color: context.colorScheme.error,
                                       ),
                                       trainling: Icon(
                                         Icons.close,
-                                        color: context.scheme.onBackground,
+                                        color: context.colorScheme.onBackground,
                                       ),
                                       message: 'Destination Coordimates',
                                       onTap: () {
@@ -200,8 +202,8 @@ class _HomeState extends State<Home> {
                                   .read<HomeBloc>()
                                   .add(ShowDriversEvent(showDrivers: true));
                             },
-                            color: context.scheme.tertiary,
-                            textColor: context.scheme.onTertiary,
+                            color: context.colorScheme.tertiary,
+                            textColor: context.colorScheme.onTertiary,
                           ),
                         ),
                       ),
@@ -299,8 +301,8 @@ class _HomeState extends State<Home> {
                             action: () {
                               WakaluxeBottomSheets.showDiretionSheet(context);
                             },
-                            color: context.scheme.tertiary,
-                            textColor: context.scheme.onTertiary,
+                            color: context.colorScheme.tertiary,
+                            textColor: context.colorScheme.onTertiary,
                           ),
                         ),
                       ),
@@ -322,8 +324,8 @@ class _HomeState extends State<Home> {
                                     HomeInitialEvent(),
                                   );
                             },
-                            color: context.scheme.primary,
-                            // textColor: context.scheme.onTertoniary,
+                            color: context.colorScheme.primary,
+                            // textColor: context.colorScheme.onTertoniary,
                           ),
                         ),
                       )

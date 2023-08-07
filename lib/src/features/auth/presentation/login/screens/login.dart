@@ -85,7 +85,7 @@ class _WakaluxeLoginState extends State<WakaluxeLogin> {
             WakaluxeButton(
               text: 'SIGN IN',
               action: () => AutoRouter.of(context).pushNamed('/home'),
-              textColor: context.scheme.scrim,
+              textColor: context.colorScheme.scrim,
             ),
             60.vGap,
             Row(
@@ -94,7 +94,7 @@ class _WakaluxeLoginState extends State<WakaluxeLogin> {
                 SizedBox(
                   width: 68.w,
                   child: Divider(
-                    color: context.scheme.scrim.withOpacity(0.1),
+                    color: context.colorScheme.scrim.withOpacity(0.1),
                     thickness: 2.r,
                   ),
                 ),
@@ -107,7 +107,7 @@ class _WakaluxeLoginState extends State<WakaluxeLogin> {
                 SizedBox(
                   width: 68.w,
                   child: Divider(
-                    color: context.scheme.scrim.withOpacity(0.1),
+                    color: context.colorScheme.scrim.withOpacity(0.1),
                     thickness: 2.r,
                   ),
                 ),

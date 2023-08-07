@@ -74,8 +74,8 @@ class DriverLogin extends StatelessWidget {
                 const Spacer(),
                 WakaluxeButton(
                   text: 'Login',
-                  color: context.scheme.tertiary,
-                  textColor: context.scheme.onTertiary,
+                  color: context.colorScheme.tertiary,
+                  textColor: context.colorScheme.onTertiary,
                   action: () {
                     context.router.pushNamed('/driver_home');
                   },

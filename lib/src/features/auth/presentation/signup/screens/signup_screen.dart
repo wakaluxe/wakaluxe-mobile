@@ -81,7 +81,7 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
             WakaluxeButton(
               action: () => context.router.pushNamed('/phone-number'),
               text: 'SIGN UP',
-              textColor: context.scheme.scrim,
+              textColor: context.colorScheme.scrim,
             ),
             45.vGap,
             Row(
@@ -90,7 +90,7 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
                 SizedBox(
                   width: 68.w,
                   child: Divider(
-                    color: context.scheme.scrim.withOpacity(0.1),
+                    color: context.colorScheme.scrim.withOpacity(0.1),
                     thickness: 2.r,
                   ),
                 ),
@@ -103,7 +103,7 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
                 SizedBox(
                   width: 68.w,
                   child: Divider(
-                    color: context.scheme.scrim.withOpacity(0.1),
+                    color: context.colorScheme.scrim.withOpacity(0.1),
                     thickness: 2.r,
                   ),
                 ),

@@ -25,7 +25,7 @@ class WakaluxePropertyCard extends StatelessWidget {
           Text(
             propertyName,
             style: context.bodyLg.copyWith(
-              color: context.scheme.onBackground.withOpacity(0.6),
+              color: context.colorScheme.onBackground.withOpacity(0.6),
             ),
           ),
           2.vGap,
