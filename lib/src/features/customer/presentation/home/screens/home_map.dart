@@ -145,8 +145,8 @@ class _HomeMapState extends State<HomeMap> {
 
   @override
   void initState() {
+     super.initState();
     initialize();
-    super.initState();
   }
 
   List<WayPoint> _waypoints = [];
