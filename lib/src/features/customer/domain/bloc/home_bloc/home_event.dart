@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'home_bloc.dart';
 
 @immutable
@@ -26,8 +27,12 @@ class SelectDriverEvent extends HomeEvent {
 }
 
 class ShowDriversEvent extends HomeEvent {
-  ShowDriversEvent({required this.showDrivers});
+  ShowDriversEvent({
+    required this.showDrivers,
+    required this.loadingDrivers,
+  });
   final bool showDrivers;
+  final bool loadingDrivers;
 }
 
 class ShowSuccessBookEvent extends HomeEvent {
@@ -54,4 +59,13 @@ class GetDirectionsEvent extends HomeEvent {
 
 class PayFareEvent extends HomeEvent {
   PayFareEvent();
+}
+
+class SelectLocationEvent extends HomeEvent {
+final   double lat;
+ final double lng;
+  SelectLocationEvent({
+    required this.lat,
+    required this.lng,
+  });
 }

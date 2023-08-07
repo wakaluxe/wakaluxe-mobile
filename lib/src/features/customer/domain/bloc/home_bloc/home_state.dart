@@ -13,6 +13,9 @@ class HomeState {
     required this.onTrip,
     required this.getDirections,
     required this.payfare,
+    required this.lat,
+    required this.lng,
+    required this.loadingDrivers,
   });
   final int selectedIndex;
   final int selectedPaymentType;
@@ -24,6 +27,9 @@ class HomeState {
   final bool onTrip;
   final bool getDirections;
   final bool payfare;
+  final double lat;
+  final double lng;
+  final bool loadingDrivers;
 
   HomeState copyWith({
     int? selectedIndex,
@@ -36,6 +42,9 @@ class HomeState {
     bool? onTrip,
     bool? getDirections,
     bool? payfare,
+    double? lat,
+    double? lng,
+    bool? loadingDrivers,
   }) {
     return HomeState(
       selectedIndex: selectedIndex ?? this.selectedIndex,
@@ -49,6 +58,9 @@ class HomeState {
       onTrip: onTrip ?? this.onTrip,
       getDirections: getDirections ?? this.getDirections,
       payfare: payfare ?? this.payfare,
+      lat: lat ?? this.lat,
+      lng: lng ?? this.lng,
+      loadingDrivers: loadingDrivers ?? this.loadingDrivers,
     );
   }
 }
@@ -66,6 +78,9 @@ class HomeInitial extends HomeState {
           onTrip: false,
           getDirections: false,
           payfare: false,
+          lat: 0.0,
+          lng: 0.0,
+          loadingDrivers: false,
         );
 }
 
@@ -80,7 +95,11 @@ class SelectRideState extends HomeState {
     required super.selectedReview,
     required super.onTrip,
     required super.getDirections,
+
     required super.payfare,
+    required super.lat,
+    required super.lng,
+    required super.loadingDrivers,
   });
 }
 
@@ -96,6 +115,9 @@ class SelectPaymentTypeState extends HomeState {
     required super.onTrip,
     required super.getDirections,
     required super.payfare,
+    required super.lat,
+    required super.lng,
+     required super.loadingDrivers,
   });
 }
 
@@ -111,6 +133,9 @@ class SelectPaymentMethodState extends HomeState {
     required super.onTrip,
     required super.getDirections,
     required super.payfare,
+    required super.lat,
+    required super.lng,
+     required super.loadingDrivers,
   });
 }
 
@@ -126,6 +151,9 @@ class SelectDriverState extends HomeState {
     required super.onTrip,
     required super.getDirections,
     required super.payfare,
+    required super.lat,
+    required super.lng,
+     required super.loadingDrivers,
   });
 }
 
@@ -141,6 +169,9 @@ class ShowDriverState extends HomeState {
     required super.onTrip,
     required super.getDirections,
     required super.payfare,
+    required super.lat,
+    required super.lng,
+     required super.loadingDrivers,
   });
 }
 
@@ -156,7 +187,11 @@ class ShowBookingDetailsState extends HomeState {
     required super.onTrip,
     required super.getDirections,
     required super.payfare,
+    required super.lat,
+    required super.lng,
+     required super.loadingDrivers,
   });
+
 }
 
 class SelectReviewState extends HomeState {
@@ -171,5 +206,26 @@ class SelectReviewState extends HomeState {
     required super.onTrip,
     required super.getDirections,
     required super.payfare,
+    required super.lat,
+    required super.lng,
+     required super.loadingDrivers,
+  });
+}
+
+class ShowLocationPickerState extends HomeState {
+  ShowLocationPickerState({
+    required super.selectedIndex,
+    required super.selectedPaymentType,
+    required super.selectedPaymentMethod,
+    required super.selectDriver,
+    required super.showDrivers,
+    required super.showBookingDetails,
+    required super.selectedReview,
+    required super.onTrip,
+    required super.getDirections,
+    required super.payfare,
+    required super.lat,
+    required super.lng,
+     required super.loadingDrivers,
   });
 }

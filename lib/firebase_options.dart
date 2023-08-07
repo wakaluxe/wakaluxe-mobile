@@ -21,15 +21,9 @@ class DefaultFirebaseOptions {
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for android - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -60,5 +54,24 @@ class DefaultFirebaseOptions {
     authDomain: 'wakaluxe-mobile.firebaseapp.com',
     storageBucket: 'wakaluxe-mobile.appspot.com',
     measurementId: 'G-11HRCQ2V2L',
+  );
+
+  static const FirebaseOptions android = FirebaseOptions(
+    apiKey: 'AIzaSyCvTvxZ3zrZRICj3fJhYe0L_T6Uonan_U0',
+    appId: '1:297590824503:android:d216610245324ffa96e9b2',
+    messagingSenderId: '297590824503',
+    projectId: 'wakaluxe-mobile',
+    storageBucket: 'wakaluxe-mobile.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyCb0u6rY4Cu3b9hCRNd7SywU8bumsy0udU',
+    appId: '1:297590824503:ios:e8ba6e252587f7dc96e9b2',
+    messagingSenderId: '297590824503',
+    projectId: 'wakaluxe-mobile',
+    storageBucket: 'wakaluxe-mobile.appspot.com',
+    androidClientId: '297590824503-2f0paft677kibqvso1p0q80u0ncui5li.apps.googleusercontent.com',
+    iosClientId: '297590824503-4fe7slhfu2ihaj4prhh07k8qi7nq5ugb.apps.googleusercontent.com',
+    iosBundleId: 'com.apps.ictu.wakaluxe',
   );
 }

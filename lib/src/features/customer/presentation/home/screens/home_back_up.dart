@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+ // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -181,7 +181,7 @@ class _HomeState extends State<Home> {
                         ],
                       ),
                     ),
-                    if (state.selectDriver)
+              /*       if (state.selectDriver)
                       Positioned(
                         bottom: 20,
                         left: 0,
@@ -327,7 +327,7 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                       )
-                  ],
+                 */  ],
                 ),
               ),
             ],
@@ -337,3 +337,4 @@ class _HomeState extends State<Home> {
     );
   }
 }
+ 

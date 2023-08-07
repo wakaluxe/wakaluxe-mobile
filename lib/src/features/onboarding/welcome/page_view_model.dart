@@ -32,7 +32,7 @@ PageViewModel wakaluxPageViewModel({
             textAlign: TextAlign.center,
             style: text.body1,
           ),
-          if (end) ...[15.vGap,
+          if (end) ...[12.vGap,
           
             WakaluxeButton(
               text: 'Get Started',

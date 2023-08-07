@@ -19,7 +19,7 @@ class WakaluxAppRouter extends $WakaluxAppRouter {
           ],
         ),
        // AutoRoute(page: Home.page, path: '/home', guards: [AuthGuard()]),
-        AutoRoute(page: HomeMap.page, path: '/home-map', guards: [AuthGuard()]),
+        AutoRoute(page: HomeMap.page, path: '/home-map', ),
         AutoRoute(page: Login.page, path: '/login'),
         AutoRoute(page: Verification.page, path: '/verification'),
         AutoRoute(page: SignUp.page, path: '/sign-up'),

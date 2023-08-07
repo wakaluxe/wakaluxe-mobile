@@ -5,11 +5,21 @@ class Constants {
   static const String appName = 'Wakaluxe';
   static const String appVersion = '1.0.0';
   static const String appDescription = 'Wakaluxe';
-
+  static const String mapboxPublicApiKey =
+      'pk.eyJ1IjoiY2hlbjIzNyIsImEiOiJja3pxczBzeW0zdXQwMnBucmpoczlnejM3In0.AMtu9V5Qb-Uzx4UDH6anKQ';
+  static const String mapboxSecretApiKey =
+      'sk.eyJ1IjoiY2hlbjIzNyIsImEiOiJjbGs0MzZ5MWEwMHkxM3FudHNibTkxNmlwIn0.KjL_GfTjwo6ZmZ6ly3RNIA';
+  static const String androidGoogleMapKey =
+      'AIzaSyCrJaRKpo96CK8D7LDPSGl_mVvmSQ7CpKc';
+  static const String iosGoogleMapKey =
+      'AIzaSyBZOIpGjTHWn8vNwGtfRBlSzYj1KOCY06Q';
   static const double borderRadius = 14;
   static const double buttonHeight = 52;
 
+  static const String baseUrl = 'https://wakaluxe.herokuapp.com/api/v1';
+
   static const String profile = 'assets/images/profile.png';
+  static const String driver = 'assets/images/driver.png';
   static const String chat = 'assets/images/chat.png';
   static const String chatBackground = 'assets/images/Chat_wallpaper.jpg';
   static const String searchData = 'assets/images/Searching_data.jpg';
@@ -35,9 +45,13 @@ class Constants {
   static const String nearbyIcon = 'assets/icons/nearby.svg';
   static const String markerIcon = 'assets/icons/marker.svg';
   static const String textIcon = '/assets/icons/hicon/linear/text.svg';
-
+  static const String orangeMoneyIcon =
+      'assets/icons/orange_money.svg';
+  static const String mtnMoneyIcon =
+      'assets/icons/mtn_momo.svg';
   static const String moreSquareIcon =
       'assets/icons/hicon/linear/more_square.svg';
+  static const String masterCardIcon = 'assets/icons/mastercard.svg';
   static const String starIcon = 'assets/icons/hicon/linear/Star_2.svg';
   static const String profileIcon =
       'assets/icons/hicon/linear/Profile_Octagon.svg';

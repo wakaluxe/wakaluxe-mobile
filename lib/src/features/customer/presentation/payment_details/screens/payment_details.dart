@@ -46,7 +46,7 @@ class PaymentDetails extends StatelessWidget {
                 WakaluxInputField(
                   controller: cubit.driverNumber,
                   hint: '',
-                  icon: '',
+                  
                   text: text,
                 ),
                 10.vGap,
@@ -58,7 +58,7 @@ class PaymentDetails extends StatelessWidget {
                 WakaluxInputField(
                   controller: cubit.taxiFare,
                   hint: '',
-                  icon: '',
+                  
                   text: text,
                 ),
                 10.vGap,
@@ -70,7 +70,7 @@ class PaymentDetails extends StatelessWidget {
                 WakaluxInputField(
                   controller: cubit.customerNumber,
                   hint: '',
-                  icon: '',
+                  
                   text: text,
                 ),
                 30.vGap,
