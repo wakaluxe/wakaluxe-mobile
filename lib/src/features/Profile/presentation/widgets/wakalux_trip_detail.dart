@@ -84,13 +84,12 @@ class WakaluxeTripDetails extends StatelessWidget {
                 vertical: 5.h,
               ),
               decoration: BoxDecoration(
-                color: context.colorScheme.tertiaryContainer.withOpacity(0.6),
+                color: tripState.color(context).withOpacity(0.4),
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Text(
                 tripState.name,
-                style: theme.subtitle
-                    .copyWith(color: context.colorScheme.tertiaryContainer),
+                style: theme.subtitle.copyWith(color: tripState.color(context)),
               ),
             ),
           ],

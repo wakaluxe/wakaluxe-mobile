@@ -48,4 +48,9 @@ class _WakaluxeState extends State<Wakaluxe> {
       },
     );
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 }

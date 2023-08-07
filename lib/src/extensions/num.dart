@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 extension WakaluxeNumExtensions on num {
   /// Extension methods for [num] to convert to [Gap].

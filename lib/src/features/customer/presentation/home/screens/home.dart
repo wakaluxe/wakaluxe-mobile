@@ -204,9 +204,12 @@ class _HomeState extends State<Home> {
                                           selectDriver: !state.selectDriver,
                                         ),
                                       );
-                                  context
-                                      .read<HomeBloc>()
-                                      .add(ShowDriversEvent(showDrivers: true));
+                                  context.read<HomeBloc>().add(
+                                        ShowDriversEvent(
+                                          showDrivers: true,
+                                          loadingDrivers: false,
+                                        ),
+                                      );
                                 },
                                 color: context.colorScheme.tertiary,
                                 textColor: context.colorScheme.onTertiary,

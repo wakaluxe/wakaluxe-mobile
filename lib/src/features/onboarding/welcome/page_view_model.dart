@@ -32,10 +32,10 @@ PageViewModel wakaluxPageViewModel({
             style: text.body1,
           ),
           if (end) ...[
-            20.vGap,
+            12.vGap,
             WakaluxeButton(
               text: 'Get Started',
-              action: () => AutoRouter.of(context!).pushNamed('/sign-up'),
+              action: () => AutoRouter.of(context!).pushNamed('/home-2'),
             ),
           ]
         ],

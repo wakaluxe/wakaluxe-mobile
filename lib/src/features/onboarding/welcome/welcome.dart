@@ -3,13 +3,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/features/auth/presentation/widgets/app_barred_scaffold.dart';
 import 'package:wakaluxe/src/features/onboarding/welcome/page_view_model.dart';
 
 @RoutePage(name: 'welcome')
 class Welcome extends StatelessWidget {
   const Welcome({super.key});
+  // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +22,8 @@ class Welcome extends StatelessWidget {
         dotsDecorator: DotsDecorator(
           size: Size.square(16.r),
           activeSize: const Size(20, 10),
-          activeColor: context.colorScheme.tertiary,
-          color: context.colorScheme.onBackground,
+          // activeColor,: context.colorScheme.primary,
+          color: Colors.black26,
           spacing: const EdgeInsets.symmetric(horizontal: 3),
           activeShape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(25),

@@ -1,4 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:wakaluxe/src/router/auth_guard.dart';
+import 'package:wakaluxe/src/router/onboarding_guard.dart';
 import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart';
 
 @AutoRouterConfig()
@@ -8,20 +10,41 @@ class WakaluxAppRouter extends $WakaluxAppRouter {
   @override
   List<AutoRoute> get routes => [
         /// routes go here
-        AutoRoute(page: Welcome.page, path: '/welcome', initial: true),
-        AutoRoute(page: Home.page, path: '/home'),
+        AutoRoute(
+          page: Welcome.page,
+          path: '/welcome',
+          initial: true,
+          guards: [
+            OnBoardingGuard(),
+          ],
+        ),
+       // AutoRoute(page: Home.page, path: '/home', guards: [AuthGuard()]),
+        AutoRoute(page: HomeMap.page, path: '/home-map', ),
+        AutoRoute(page: Login.page, path: '/login'),
         AutoRoute(page: Verification.page, path: '/verification'),
         AutoRoute(page: SignUp.page, path: '/sign-up'),
-        AutoRoute(page: PhoneNumber.page, path: '/phone-number'),
-        AutoRoute(page: Login.page, path: '/login'),
+        // AutoRoute(page: PhoneNumber.page, path: '/phone-number'),
+        AutoRoute(page: PhoneSignUp.page, path: '/phone-sign-up'),
+        AutoRoute(page: WakaluxeCreatePin.page, path: '/create-pin'),
+        AutoRoute(page: EnterFullName.page, path: '/enter-full-name'),
+
         AutoRoute(page: Subscriptions.page, path: '/subscriptions'),
         AutoRoute(
           page: SubscriptionDetail.page,
           path: '/subscription-detail/:plan',
         ),
+
         AutoRoute(
           page: PaymentDetails.page,
           path: '/payment-details',
+        ),
+        AutoRoute(
+          page: EditProfile.page,
+          path: '/edit-profile',
+        ),
+        AutoRoute(
+          page: Home_2.page,
+          path: '/home-2',
         ),
         AutoRoute(
           page: Rating.page,
@@ -64,6 +87,7 @@ class WakaluxAppRouter extends $WakaluxAppRouter {
         AutoRoute(
           page: MyProfile.page,
           path: '/my-profile',
+          guards: [AuthGuard()]
         ),
         AutoRoute(
           page: Notification.page,
@@ -94,5 +118,8 @@ class WakaluxAppRouter extends $WakaluxAppRouter {
           page: Language.page,
           path: '/language',
         ),
+        AutoRoute(page: PaymentInformationRoute.page, path: '/payment-information'),
+        AutoRoute(page: PaymentMethodsRoute.page, path: '/payment-methods'),
+        AutoRoute(page: PaymentProcessingRoute.page, path: '/payment-processing')
       ];
 }

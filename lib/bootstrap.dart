@@ -1,28 +1,20 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
-
 import 'package:wakaluxe/app/common/widgets/wakaluxe_blocs.dart';
-
-class AppBlocObserver extends BlocObserver {
-  const AppBlocObserver();
-
-  @override
-  void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
-    super.onChange(bloc, change);
-    log('onChange(${bloc.runtimeType}, $change)');
-  }
-
-  @override
-  void onError(BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) {
-    log('onError(${bloc.runtimeType}, $error, $stackTrace)');
-    super.onError(bloc, error, stackTrace);
-  }
-}
+import 'package:wakaluxe/app_observer.dart';
+import 'package:wakaluxe/firebase_options.dart';
+import 'package:wakaluxe/src/dependencies_container.dart';
+import 'package:wakaluxe/src/features/auth/data/local_auser_data.dart';
 
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   FlutterError.onError = (details) {
@@ -30,9 +22,18 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   };
 
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  if (Platform.isAndroid) {
+    AndroidGoogleMapsFlutter.useAndroidViewSurface = true;
+  }
+  await registerServices();
   Bloc.observer = const AppBlocObserver();
   final storage = await HydratedStorage.build(
-    storageDirectory: await getTemporaryDirectory(),
+    storageDirectory: kIsWeb
+        ? HydratedStorage.webStorageDirectory
+        : await getTemporaryDirectory(),
   );
   HydratedBloc.storage = storage;
 
@@ -47,7 +48,9 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
       systemNavigationBarIconBrightness: Brightness.dark,
     ),
   );
-
+  await Hive.initFlutter();
+  await Hive.openBox('first_run');
+  await locator<LocalUSerData>().initialize();
   // await dotenv.load();
   runApp(
     WakaluxeBlocs(

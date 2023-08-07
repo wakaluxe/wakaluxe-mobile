@@ -72,7 +72,19 @@ class _NotificationState extends State<Notification> {
                       itemCount: notifications.length,
                       itemBuilder: (context, index) {
                         final notification = notifications[index];
-                        return ListTile(
+                        return
+                            /* Row(
+                          children: <Widget>[
+                            isManage
+                              ? Checkbox(value: false, onChanged: (val) {})
+                              : CircleAvatar(
+                                  radius: 5.r,
+                                  backgroundColor: context.colorScheme.primary,
+                                ),
+
+                          ],
+                        ); */
+                            ListTile(
                           leading: isManage
                               ? Checkbox(value: false, onChanged: (val) {})
                               : CircleAvatar(
@@ -89,7 +101,7 @@ class _NotificationState extends State<Notification> {
                           ),
                           trailing: Text(
                             notification['time'] as String,
-                            style: theme.bodyLarge,
+                            style: theme.bodyMedium,
                           ),
                         );
                       },

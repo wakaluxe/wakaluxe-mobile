@@ -147,11 +147,11 @@ const lightColorScheme = ColorScheme(
   onPrimary: Color(0xFFFFFFFF),
   primaryContainer: Color(0xFFD9E2FF),
   onPrimaryContainer: Color(0xFF001945),
-  secondary: Color(0xFFB02F00),
+  secondary: Color(0xFF040033),
   onSecondary: Color(0xFFFFFFFF),
   secondaryContainer: Color(0xFFFFDBD1),
   onSecondaryContainer: Color(0xFF3B0900),
-  tertiary: Color(0xffFBE521),
+  tertiary: Color(0xff61D480),
   onTertiary: Color(0xFF001F25),
   tertiaryContainer: Color(0xFF7EF8D5),
   onTertiaryContainer: Color(0xFF002018),
@@ -163,7 +163,7 @@ const lightColorScheme = ColorScheme(
   onBackground: Color(0xFF001F25),
   surface: Color(0xFFF8FDFF),
   onSurface: Color(0xFF001F25),
-  surfaceVariant: Color(0xFFE1E2EC),
+  surfaceVariant: Color(0xffD9D9D9),
   onSurfaceVariant: Color(0xFF44464F),
   outline: Color(0xFF757780),
   onInverseSurface: Color(0xFFD6F6FF),
@@ -217,6 +217,7 @@ extension FigmaStyles on TextTheme {
         height: 1.5,
         color: Palette.primaryTextColor,
       );
+
   TextStyle get body1 => GoogleFonts.poppins(
         fontSize: 16.sp,
         fontWeight: FontWeight.w400,
@@ -235,18 +236,23 @@ extension FigmaStyles on TextTheme {
   TextStyle get label => GoogleFonts.poppins(
         fontSize: 14.sp,
         fontWeight: FontWeight.w400,
-        color: Palette.primaryColorDark,
+        color: Palette.black,
       );
   TextStyle get display3 => GoogleFonts.poppins(
         fontSize: 34.sp,
         fontWeight: FontWeight.w500,
-        color: Palette.primaryColorDark,
+        color: Palette.black,
       );
 
   TextStyle get headline => GoogleFonts.poppins(
         fontSize: 24.sp,
         fontWeight: FontWeight.w500,
         color: Palette.black,
+      );
+  TextStyle get headlineLarge => GoogleFonts.poppins(
+        fontSize: 24.sp,
+        fontWeight: FontWeight.w700,
+        color: Palette.black.withOpacity(0.87),
       );
 
   TextStyle get title => GoogleFonts.poppins(
@@ -272,6 +278,11 @@ extension FigmaStyles on TextTheme {
   TextStyle get subHeading1 => GoogleFonts.poppins(
         fontSize: 16.sp,
         fontWeight: FontWeight.w600,
+        color: Palette.primaryTextColor,
+      );
+  TextStyle get extraLargeTitle => GoogleFonts.poppins(
+        fontSize: 40.sp,
+        fontWeight: FontWeight.w500,
         color: Palette.primaryTextColor,
       );
 }

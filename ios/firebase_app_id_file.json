@@ -1,7 +1,7 @@
 {
   "file_generated_by": "FlutterFire CLI",
   "purpose": "FirebaseAppID & ProjectID for this Firebase app in this directory",
-  "GOOGLE_APP_ID": "1:144237079404:ios:5788aae9fe34d2a82c6149",
-  "FIREBASE_PROJECT_ID": "wakaluxe-app",
-  "GCM_SENDER_ID": "144237079404"
+  "GOOGLE_APP_ID": "1:297590824503:ios:e8ba6e252587f7dc96e9b2",
+  "FIREBASE_PROJECT_ID": "wakaluxe-mobile",
+  "GCM_SENDER_ID": "297590824503"
 }

@@ -24,6 +24,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           onTrip: state.onTrip,
           getDirections: state.getDirections,
           payfare: state.payfare,
+          lat: state.lat,
+          loadingDrivers: state.loadingDrivers,
+          lng: state.lng,
         ),
       );
     });
@@ -40,6 +43,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           onTrip: state.onTrip,
           getDirections: state.getDirections,
           payfare: state.payfare,
+          lat: state.lat,
+          lng: state.lng,
+          loadingDrivers: state.loadingDrivers,
         ),
       );
     });
@@ -55,7 +61,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           selectedReview: state.selectedReview,
           onTrip: state.onTrip,
           getDirections: state.getDirections,
+          loadingDrivers: state.loadingDrivers,
           payfare: state.payfare,
+          lat: state.lat,
+          lng: state.lng,
         ),
       );
     });
@@ -68,29 +77,37 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           selectDriver: event.selectDriver,
           showDrivers: state.showDrivers,
           showBookingDetails: state.showBookingDetails,
+          loadingDrivers: state.loadingDrivers,
           selectedReview: state.selectedReview,
           onTrip: state.onTrip,
           getDirections: state.getDirections,
           payfare: state.payfare,
+          lat: state.lat,
+          lng: state.lng,
         ),
       );
     });
 
     on<ShowDriversEvent>((event, emit) {
-      emit(
-        ShowDriverState(
-          selectedIndex: state.selectedIndex,
-          selectedPaymentType: state.selectedPaymentType,
-          selectedPaymentMethod: state.selectedPaymentMethod,
-          selectDriver: state.selectDriver,
-          showDrivers: event.showDrivers,
-          showBookingDetails: state.showBookingDetails,
-          selectedReview: state.selectedReview,
-          onTrip: state.onTrip,
-          getDirections: state.getDirections,
-          payfare: state.payfare,
-        ),
-      );
+     // Future.delayed(const Duration(seconds: 4), () {
+        emit(
+          ShowDriverState(
+            selectedIndex: state.selectedIndex,
+            selectedPaymentType: state.selectedPaymentType,
+            selectedPaymentMethod: state.selectedPaymentMethod,
+            selectDriver: state.selectDriver,
+            showDrivers: event.showDrivers,
+            showBookingDetails: state.showBookingDetails,
+            selectedReview: state.selectedReview,
+            onTrip: state.onTrip,
+            loadingDrivers: event.loadingDrivers,
+            getDirections: state.getDirections,
+            payfare: state.payfare,
+            lat: state.lat,
+            lng: state.lng,
+          ),
+        );
+   //   });
     });
 
     on<ShowBookingDetailsEvent>((event, emit) {
@@ -111,8 +128,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           showBookingDetails: state.showBookingDetails,
           selectedReview: event.selectedReview,
           onTrip: state.onTrip,
+          loadingDrivers: state.loadingDrivers,
           getDirections: state.getDirections,
           payfare: state.payfare,
+          lat: state.lat,
+          lng: state.lng,
         ),
       );
     });
@@ -132,6 +152,16 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       emit(
         HomeInitial().copyWith(
           payfare: true,
+        ),
+      );
+    });
+
+    on<SelectLocationEvent>((event, emit) {
+      emit(
+        HomeInitial().copyWith(
+          lat: event.lat,
+          lng: event.lng,
+          loadingDrivers: true,
         ),
       );
     });

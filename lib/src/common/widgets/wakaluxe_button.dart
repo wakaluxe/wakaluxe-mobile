@@ -17,6 +17,7 @@ class WakaluxeButton extends StatelessWidget {
     this.icon,
     this.textColor,
     this.isOutline = false,
+    this.svg,
     this.isSelected = false,
   });
   final IconData? icon;
@@ -27,6 +28,7 @@ class WakaluxeButton extends StatelessWidget {
   final Color? textColor;
   final bool isOutline;
   final bool isSelected;
+  final String? svg;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,9 @@ class WakaluxeButton extends StatelessWidget {
         width: context.width * width,
         height: Constants.buttonHeight,
         decoration: BoxDecoration(
-          color: color ?? context.colorScheme.primary,
+          color: isOutline
+              ? Theme.of(context).scaffoldBackgroundColor
+              : color ?? context.colorScheme.primary,
           borderRadius: BorderRadius.circular(Constants.borderRadius),
           border: (isOutline || isSelected)
               ? Border.all(
@@ -50,11 +54,19 @@ class WakaluxeButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            if (svg != null) ...[
+              SvgPicture.asset(
+                svg!,
+                height: 20,
+                width: 20,
+              ),
+              8.hGap,
+            ],
             Text(
               text,
               style: context.bodyLg.copyWith(
                 color: (textColor == null)
-                    ? context.colorScheme.onPrimary
+                    ? context.colorScheme.onBackground
                     : textColor,
                 fontWeight: FontWeight.bold,
               ),
@@ -128,11 +140,11 @@ class WakaluxBackhButton extends StatelessWidget {
               blurRadius: 5,
               offset: const Offset(0, 3), // changes position of shadow
             ),
-            BoxShadow(
-              color: context.colorScheme.onPrimary,
+            const BoxShadow(
+              color: Colors.white,
               spreadRadius: 2,
               blurRadius: 5,
-              offset: const Offset(0, -3), // changes position of shadow
+              offset: Offset(0, -3), // changes position of shadow
             ),
           ],
         ),
