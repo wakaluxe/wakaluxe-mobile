@@ -95,7 +95,6 @@ class SelectRideState extends HomeState {
     required super.selectedReview,
     required super.onTrip,
     required super.getDirections,
-
     required super.payfare,
     required super.lat,
     required super.lng,
@@ -117,7 +116,7 @@ class SelectPaymentTypeState extends HomeState {
     required super.payfare,
     required super.lat,
     required super.lng,
-     required super.loadingDrivers,
+    required super.loadingDrivers,
   });
 }
 
@@ -135,7 +134,7 @@ class SelectPaymentMethodState extends HomeState {
     required super.payfare,
     required super.lat,
     required super.lng,
-     required super.loadingDrivers,
+    required super.loadingDrivers,
   });
 }
 
@@ -153,7 +152,7 @@ class SelectDriverState extends HomeState {
     required super.payfare,
     required super.lat,
     required super.lng,
-     required super.loadingDrivers,
+    required super.loadingDrivers,
   });
 }
 
@@ -171,7 +170,7 @@ class ShowDriverState extends HomeState {
     required super.payfare,
     required super.lat,
     required super.lng,
-     required super.loadingDrivers,
+    required super.loadingDrivers,
   });
 }
 
@@ -189,9 +188,8 @@ class ShowBookingDetailsState extends HomeState {
     required super.payfare,
     required super.lat,
     required super.lng,
-     required super.loadingDrivers,
+    required super.loadingDrivers,
   });
-
 }
 
 class SelectReviewState extends HomeState {
@@ -208,7 +206,7 @@ class SelectReviewState extends HomeState {
     required super.payfare,
     required super.lat,
     required super.lng,
-     required super.loadingDrivers,
+    required super.loadingDrivers,
   });
 }
 
@@ -226,6 +224,6 @@ class ShowLocationPickerState extends HomeState {
     required super.payfare,
     required super.lat,
     required super.lng,
-     required super.loadingDrivers,
+    required super.loadingDrivers,
   });
 }

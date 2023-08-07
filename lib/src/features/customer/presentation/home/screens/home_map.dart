@@ -13,6 +13,7 @@ import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
 //import 'package:map_location_picker/map_location_picker.dart';
 
 import 'package:wakaluxe/data/dummy.dart';
+import 'package:wakaluxe/features/payments/presentation/pages/payment_methods_screen.dart';
 import 'package:wakaluxe/src/common/Utils/wakalux_icons_icons.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/common/widgets/menu_drawer.dart';
@@ -24,6 +25,7 @@ import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc/home_bloc.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/screens/wakaluxe_home_sheets.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/widgets/taxi_fetching.dart';
+import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart';
 
 // List<Map<String, dynamic>> data = []
 @RoutePage(name: 'HomeMap')
@@ -180,8 +182,9 @@ class _HomeMapState extends State<HomeMap> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.scheme.background,
-      drawer: const MenuDrawer(),
+      /*    drawer: const MenuDrawer(),
       endDrawer: const ProfileDrawer(),
+  */
       body: BlocConsumer<HomeBloc, HomeState>(
         listener: (context, state) {
           if (state.onTrip) {
@@ -198,6 +201,10 @@ class _HomeMapState extends State<HomeMap> {
                     ShowDriversEvent(showDrivers: true, loadingDrivers: false),
                   );
             });
+          }
+
+          if (state.payfare) {
+            context.router.pushNamed(PaymentMethodsScreen.path);
           }
         },
         builder: (context, state) {
@@ -228,8 +235,8 @@ class _HomeMapState extends State<HomeMap> {
                             longitude: state.lng,
                             isSilent: true);
                         _controller = controller;
-                        controller.initialize();
-                        controller
+                        await controller.initialize();
+                        await controller
                             .buildRoute(wayPoints: [_origin, _destination]);
                       }),
                 ),
@@ -362,8 +369,12 @@ class _HomeMapState extends State<HomeMap> {
                                       selectDriver: !state.selectDriver,
                                     ),
                                   );
-                              context.read<HomeBloc>().add(ShowDriversEvent(
-                                  showDrivers: true, loadingDrivers: false));
+                              context.read<HomeBloc>().add(
+                                    ShowDriversEvent(
+                                      showDrivers: true,
+                                      loadingDrivers: false,
+                                    ),
+                                  );
                             },
                             color: context.scheme.tertiary,
                             textColor: context.scheme.onTertiary,
@@ -495,7 +506,10 @@ class _HomeMapState extends State<HomeMap> {
                               context.read<HomeBloc>().add(
                                     HomeInitialEvent(),
                                   );
-                              context.router.pushNamed('/payment-details');
+                              context.router.pushAndPopUntil(
+                                const PaymentMethodsRoute(),
+                                predicate: (_) => true,
+                              );
                             },
                             color: context.scheme.primary,
                             // textColor: context.scheme.onTertoniary,
