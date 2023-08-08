@@ -89,25 +89,25 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     });
 
     on<ShowDriversEvent>((event, emit) {
-     // Future.delayed(const Duration(seconds: 4), () {
-        emit(
-          ShowDriverState(
-            selectedIndex: state.selectedIndex,
-            selectedPaymentType: state.selectedPaymentType,
-            selectedPaymentMethod: state.selectedPaymentMethod,
-            selectDriver: state.selectDriver,
-            showDrivers: event.showDrivers,
-            showBookingDetails: state.showBookingDetails,
-            selectedReview: state.selectedReview,
-            onTrip: state.onTrip,
-            loadingDrivers: event.loadingDrivers,
-            getDirections: state.getDirections,
-            payfare: state.payfare,
-            lat: state.lat,
-            lng: state.lng,
-          ),
-        );
-   //   });
+      // Future.delayed(const Duration(seconds: 4), () {
+      emit(
+        ShowDriverState(
+          selectedIndex: state.selectedIndex,
+          selectedPaymentType: state.selectedPaymentType,
+          selectedPaymentMethod: state.selectedPaymentMethod,
+          selectDriver: state.selectDriver,
+          showDrivers: event.showDrivers,
+          showBookingDetails: state.showBookingDetails,
+          selectedReview: state.selectedReview,
+          onTrip: state.onTrip,
+          loadingDrivers: event.loadingDrivers,
+          getDirections: state.getDirections,
+          payfare: state.payfare,
+          lat: state.lat,
+          lng: state.lng,
+        ),
+      );
+      //   });
     });
 
     on<ShowBookingDetailsEvent>((event, emit) {
@@ -142,13 +142,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           onTrip: true,
         ), // delay the operation by 5 seconds
       );
-      await Future.delayed(const Duration(seconds: 2));
+      await Future<void>.delayed(const Duration(seconds: 2));
       emit(
         HomeInitial().copyWith(
           getDirections: true,
         ),
       );
-      await Future.delayed(const Duration(seconds: 2));
+      await Future<void>.delayed(const Duration(seconds: 2));
       emit(
         HomeInitial().copyWith(
           payfare: true,

@@ -2,7 +2,6 @@
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wakaluxe/features/payments/presentation/cubit/payment_cubit.dart';
@@ -17,7 +16,7 @@ import 'package:wakaluxe/src/extensions/num.dart';
 
 @RoutePage()
 class PaymentInformationScreen extends StatefulWidget {
-  const PaymentInformationScreen({Key? key}) : super(key: key);
+  const PaymentInformationScreen({super.key});
   static String name = '/payment-information';
   @override
   State<PaymentInformationScreen> createState() =>
@@ -40,7 +39,7 @@ class _PaymentInformationScreenState extends State<PaymentInformationScreen> {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
-        leading: WakaluxBackhButton(),
+        leading: const WakaluxBackhButton(),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(
@@ -84,14 +83,16 @@ class _PaymentInformationScreenState extends State<PaymentInformationScreen> {
                 GestureDetector(
                   onTap: _handleConfirmation,
                   child: WakaluxeButton(
-                      text: 'Pay',
-                      action: () {
-                            context.read<PaymentCubit>().paymentProcessing();
+                    text: 'Pay',
+                    action: () {
+                      context.read<PaymentCubit>().paymentProcessing();
 
-                        context.read<PaymentCubit>().addPaymentInformation(
+                      context.read<PaymentCubit>().addPaymentInformation(
                             amount: _amountController.text,
-                            number: _accountNumberController.text);
-                      }),
+                            number: _accountNumberController.text,
+                          );
+                    },
+                  ),
                 ),
               ],
             ),

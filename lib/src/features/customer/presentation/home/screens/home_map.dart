@@ -9,7 +9,6 @@ import 'package:flutter_mapbox_navigation/flutter_mapbox_navigation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
-import 'package:hive/hive.dart';
 //import 'package:map_location_picker/map_location_picker.dart';
 //import 'package:google_maps_flutter/google_maps_flutter.dart';
 //import 'package:map_location_picker/map_location_picker.dart';
@@ -41,7 +40,7 @@ class _HomeMapState extends State<HomeMap> {
   //Prediction? initialValue;
 
   // final TextEditingController _controller = TextEditingController();
-    LatLng _center = const LatLng(45.521563, -122.677433);
+  LatLng _center = const LatLng(45.521563, -122.677433);
 
   late GoogleMapController mapController;
 
@@ -155,12 +154,12 @@ class _HomeMapState extends State<HomeMap> {
     initialize();
   }
 
-  List<WayPoint> _waypoints = [];
-  void initPosition() async {
+  final List<WayPoint> _waypoints = [];
+  Future<void> initPosition() async {
     final location = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
+      desiredAccuracy: LocationAccuracy.high,
+    );
     _center = LatLng(location.latitude, location.longitude);
-
   }
 
   Future<void> initialize() async {
@@ -170,25 +169,27 @@ class _HomeMapState extends State<HomeMap> {
     //if (!mounted) return;
 
     _navigationOption = MapBoxOptions(
-        initialLatitude: 36.1175275,
-        initialLongitude: -115.1839524,
-        zoom: 13.0,
-        tilt: 0.0,
-        bearing: 0.0,
-        enableRefresh: false,
-        alternatives: true,
-        voiceInstructionsEnabled: true,
-        bannerInstructionsEnabled: true,
-        allowsUTurnAtWayPoints: true,
-        mode: MapBoxNavigationMode.drivingWithTraffic,
-        mapStyleUrlDay: "https://url_to_day_style",
-        mapStyleUrlNight: "https://url_to_night_style",
-        units: VoiceUnits.imperial,
-        simulateRoute: true,
-        language: "en");
+      initialLatitude: 36.1175275,
+      initialLongitude: -115.1839524,
+      zoom: 13,
+      tilt: 0,
+      bearing: 0,
+      enableRefresh: false,
+      alternatives: true,
+      voiceInstructionsEnabled: true,
+      bannerInstructionsEnabled: true,
+      allowsUTurnAtWayPoints: true,
+      mode: MapBoxNavigationMode.drivingWithTraffic,
+      mapStyleUrlDay: 'https://url_to_day_style',
+      mapStyleUrlNight: 'https://url_to_night_style',
+      units: VoiceUnits.imperial,
+      simulateRoute: true,
+      language: 'en',
+    );
     _navigationOption.simulateRoute = true;
 
-    MapBoxNavigation.instance.registerRouteEventListener(_onEmbeddedRouteEvent);
+    await MapBoxNavigation.instance
+        .registerRouteEventListener(_onEmbeddedRouteEvent);
     MapBoxNavigation.instance.setDefaultOptions(_navigationOption);
 
     String? platformVersion;
@@ -533,16 +534,16 @@ class _HomeMapState extends State<HomeMap> {
                           child: WakaluxeButton(
                             text: 'Pay fare',
                             action: () async {
-                              print("pay fare: ${_waypoints} ");
+                              print('pay fare: $_waypoints ');
 
                               context.showSnackBar(
                                 'Will still to move to payment screen',
                               );
-                              await Future.delayed(Duration(seconds: 2));
+                              await Future.delayed(const Duration(seconds: 2));
                               context.read<HomeBloc>().add(
                                     HomeInitialEvent(),
                                   );
-                              context.router.pushAndPopUntil(
+                              await context.router.pushAndPopUntil(
                                 const PaymentMethodsRoute(),
                                 predicate: (_) => true,
                               );
@@ -562,13 +563,15 @@ class _HomeMapState extends State<HomeMap> {
     );
   }
 
-  void _handleDestinationSelection() async {
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
+  Future<void> _handleDestinationSelection() async {
+    final position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
     final homePosition = WayPoint(
-        name: 'location',
-        latitude: position.latitude,
-        longitude: position.longitude);
+      name: 'location',
+      latitude: position.latitude,
+      longitude: position.longitude,
+    );
     _waypoints.add(homePosition);
     await Navigator.push(
       context,
@@ -580,9 +583,10 @@ class _HomeMapState extends State<HomeMap> {
           onPlacePicked: (result) {
             print(result.geometry!.location.lat);
             final waypoint = WayPoint(
-                name: 'destinations',
-                latitude: result.geometry!.location.lat,
-                longitude: result.geometry!.location.lng);
+              name: 'destinations',
+              latitude: result.geometry!.location.lat,
+              longitude: result.geometry!.location.lng,
+            );
             _waypoints.add(waypoint);
             context.read<HomeBloc>().add(
                   SelectLocationEvent(
@@ -603,8 +607,6 @@ class _HomeMapState extends State<HomeMap> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
-
     super.dispose();
   }
 }

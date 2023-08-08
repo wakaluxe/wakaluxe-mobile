@@ -35,6 +35,7 @@ class WakaluxeBlocs extends StatelessWidget {
         ),
         BlocProvider<HomeBloc>(
           create: (context) => HomeBloc(),
+          lazy: false,
         ),
         BlocProvider(create: (context) => TripCubit()),
         BlocProvider(create: (context) => LanguageCubit()),
