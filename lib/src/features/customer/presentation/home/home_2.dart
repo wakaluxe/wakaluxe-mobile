@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:wakaluxe/features/payments/presentation/pages/payment_methods_screen.dart';
 
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
@@ -14,7 +13,7 @@ import 'package:wakaluxe/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/widgets/home_box.dart';
 import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart';
 
-import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
+import '../../../../configs/wakaluxe_constants.dart';
 
 @RoutePage(name: 'Home_2')
 class Home2Screen extends StatefulWidget {
@@ -31,7 +30,7 @@ class _Home2ScreenState extends State<Home2Screen> {
 
   @override
   void initState() {
-    context.read<AuthBloc>().add(OnAppStartEvent());
+        context.read<AuthBloc>().add(OnAppStartEvent());
     super.initState();
   }
 
@@ -78,19 +77,21 @@ class _Home2ScreenState extends State<Home2Screen> {
                             t: t,
                             title: 'Chat',
                             icon: Constants.messageIcon,
-                            onTap: () => context.router.pushNamed('/messages')),
+                            onTap: () =>
+                                context.router.pushNamed('/messages')),
                         HomeBox(
                             t: t,
                             title: 'Settings',
                             icon: Constants.settingIcon,
-                            onTap: () => context.router.pushNamed('/settings')),
+                            onTap: () =>
+                                context.router.pushNamed('/settings')),
                         BlocConsumer<AuthBloc, AuthState>(
                           listener: (context, state) {
                             // TODO: implement listener
                             if (state is AuthLogOutError) {
                               context.showSnackBar(
                                 state.error,
-                                color: context.scheme.error,
+                                color: context.colorScheme.error,
                               );
                               if (state is AuthLogOutSuccess) {
                                 context.router.pushAndPopUntil(SignUp(),
@@ -114,12 +115,9 @@ class _Home2ScreenState extends State<Home2Screen> {
                               icon: Constants.logoutIcon,
                               onTap: _handleLogOutRequest,
                             );
-                          }
-                        }
-                      },
-                      builder: (context, state) {
-                        if (state is AuthLogOutInit) {
-                          return HomeBox(
+                          },
+                        ),
+                        HomeBox(
                             t: t,
                             title: 'Subscriptions',
                             icon: Constants.walletIcon,
@@ -129,8 +127,8 @@ class _Home2ScreenState extends State<Home2Screen> {
                             t: t,
                             title: 'Payment',
                             icon: Constants.subscriptionIcon,
-                            onTap: () => context.router
-                                .pushNamed(PaymentMethodsScreen.path)),
+                            onTap: () =>
+                                context.router.pushNamed(PaymentMethodsScreen.path)),
                         HomeBox(
                             t: t,
                             title: 'My Trips',
@@ -149,10 +147,7 @@ class _Home2ScreenState extends State<Home2Screen> {
                   HomeCard(
                     title: 'Book a Taxi',
                     t: t,
-                    onTap: () async {
-                    await  _determinePosition();
-                     await context.router.pushNamed('/home-map');
-                    },
+                    onTap: () => context.router.pushNamed('/home-map'),
                   ),
                   10.w.hGap,
                   HomeCard(title: 'Rent a Car', t: t),
@@ -162,52 +157,15 @@ class _Home2ScreenState extends State<Home2Screen> {
           ),
         ));
   }
-
-  Future<Position> _determinePosition() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    // Test if location services are enabled.
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      // Location services are not enabled don't continue
-      // accessing the position and request users of the
-      // App to enable the location services.
-      return Future.error('Location services are disabled.');
-    }
-
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        // Permissions are denied, next time you could try
-        // requesting permissions again (this is also where
-        // Android's shouldShowRequestPermissionRationale
-        // returned true. According to Android guidelines
-        // your App should show an explanatory UI now.
-        return Future.error('Location permissions are denied');
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      // Permissions are denied forever, handle appropriately.
-      return Future.error(
-          'Location permissions are permanently denied, we cannot request permissions.');
-    }
-
-    // When we reach here, permissions are granted and we can
-    // continue accessing the position of the device.
-    return await Geolocator.getCurrentPosition();
-  }
 }
 
 class HomeCard extends StatelessWidget {
   const HomeCard({
+    Key? key,
     required this.t,
-    required this.title,
-    super.key,
     this.onTap,
-  });
+    required this.title,
+  }) : super(key: key);
 
   final TextTheme t;
   final void Function()? onTap;

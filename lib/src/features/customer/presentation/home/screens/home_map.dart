@@ -24,6 +24,7 @@ import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc/home_bloc.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/screens/wakaluxe_home_sheets.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/widgets/taxi_fetching.dart';
+import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart';
 
 // List<Map<String, dynamic>> data = []
 @RoutePage(name: 'HomeMap')
