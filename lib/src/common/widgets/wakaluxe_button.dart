@@ -18,7 +18,7 @@ class WakaluxeButton extends StatelessWidget {
     this.textColor,
     this.isOutline = false,
     this.svg,
-    this.isSelected = false, 
+    this.isSelected = false,
   });
   final IconData? icon;
   final String text;
@@ -38,15 +38,15 @@ class WakaluxeButton extends StatelessWidget {
         width: context.width * width,
         height: Constants.buttonHeight,
         decoration: BoxDecoration(
-          color: isOutline ? Theme.of(context).scaffoldBackgroundColor :color ?? context.scheme.primary,
+          color: isOutline
+              ? Theme.of(context).scaffoldBackgroundColor
+              : color ?? context.colorScheme.primary,
           borderRadius: BorderRadius.circular(Constants.borderRadius),
           border: (isOutline || isSelected)
               ? Border.all(
-
-                  color: 
-                   !isSelected
-                      ? context.scheme.onBackground.withOpacity(0.5)
-                      : context.scheme.tertiary,
+                  color: !isSelected
+                      ? context.colorScheme.onBackground.withOpacity(0.5)
+                      : context.colorScheme.tertiary,
                   width: 0.8,
                 )
               : null,
@@ -54,7 +54,7 @@ class WakaluxeButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if(svg != null) ...[
+            if (svg != null) ...[
               SvgPicture.asset(
                 svg!,
                 height: 20,
@@ -65,8 +65,9 @@ class WakaluxeButton extends StatelessWidget {
             Text(
               text,
               style: context.bodyLg.copyWith(
-                color:
-                    (textColor == null) ? context.scheme.onBackground : textColor,
+                color: (textColor == null)
+                    ? context.colorScheme.onBackground
+                    : textColor,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -130,7 +131,7 @@ class WakaluxBackhButton extends StatelessWidget {
         height: 48.h,
         width: 48.w,
         decoration: BoxDecoration(
-          color: context.scheme.background,
+          color: context.colorScheme.background,
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(

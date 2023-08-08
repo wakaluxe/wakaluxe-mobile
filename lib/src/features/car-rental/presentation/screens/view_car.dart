@@ -17,7 +17,7 @@ class ViewCar extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = ViewCarCubit();
     return Scaffold(
-      backgroundColor: context.scheme.background,
+      backgroundColor: context.colorScheme.background,
       body: SafeArea(
         child: Stack(
           children: [
@@ -63,7 +63,8 @@ class ViewCar extends StatelessWidget {
                       child: Text(
                         'SPECIFICATIONS',
                         style: context.titleLg.copyWith(
-                          color: context.scheme.onBackground.withOpacity(0.6),
+                          color:
+                              context.colorScheme.onBackground.withOpacity(0.6),
                         ),
                       ),
                     ),
@@ -93,7 +94,8 @@ class ViewCar extends StatelessWidget {
                       child: Text(
                         'Pick-up location',
                         style: context.bodyMd.copyWith(
-                          color: context.scheme.onBackground.withOpacity(0.6),
+                          color:
+                              context.colorScheme.onBackground.withOpacity(0.6),
                         ),
                       ),
                     ),
@@ -104,7 +106,7 @@ class ViewCar extends StatelessWidget {
                     width: context.width,
                     height: context.height * .2,
                     decoration: BoxDecoration(
-                      color: context.scheme.onBackground.withOpacity(.1),
+                      color: context.colorScheme.onBackground.withOpacity(.1),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     alignment: Alignment.center,
@@ -115,7 +117,7 @@ class ViewCar extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: WakaluxeButton(
                       text: 'Rent Car',
-                      textColor: context.scheme.onTertiary,
+                      textColor: context.colorScheme.onTertiary,
                       action: () {
                         context.router.pushNamed('/my_garage');
                       },
@@ -144,8 +146,8 @@ class ViewCar extends StatelessWidget {
                           child: Text(
                             'Per month',
                             style: context.bodyMd.copyWith(
-                              color:
-                                  context.scheme.onBackground.withOpacity(0.6),
+                              color: context.colorScheme.onBackground
+                                  .withOpacity(0.6),
                             ),
                           ),
                         )
@@ -161,7 +163,7 @@ class ViewCar extends StatelessWidget {
               margin: const EdgeInsets.only(left: 20, top: 20),
               padding: const EdgeInsets.all(5),
               decoration: BoxDecoration(
-                color: context.scheme.background,
+                color: context.colorScheme.background,
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: [
                   BoxShadow(
@@ -178,7 +180,7 @@ class ViewCar extends StatelessWidget {
                 child: Icon(
                   Platform.isIOS ? Icons.arrow_back_ios : Icons.arrow_back,
                   size: 30,
-                  color: context.scheme.onBackground,
+                  color: context.colorScheme.onBackground,
                 ),
               ),
             ),

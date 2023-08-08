@@ -20,7 +20,7 @@ class WakaluxeProfileImage extends StatelessWidget {
           borderRadius: BorderRadius.circular(100),
           boxShadow: [
             BoxShadow(
-              color: context.scheme.onBackground.withOpacity(0.5),
+              color: context.colorScheme.onBackground.withOpacity(0.5),
               blurRadius: 4,
               offset: const Offset(0, 2),
             ),
@@ -28,13 +28,13 @@ class WakaluxeProfileImage extends StatelessWidget {
         ),
         child: CircleAvatar(
           radius: size ?? 25,
-          backgroundColor: Colors.white,
+          backgroundColor: context.colorScheme.onPrimary,
           child: ClipPath(
             clipper: const ShapeBorderClipper(
               shape: CircleBorder(),
             ),
             child: ColoredBox(
-              color: context.scheme.primary,
+              color: context.colorScheme.primary,
               child: Image.network(
                 imageUrl,
                 fit: BoxFit.cover,

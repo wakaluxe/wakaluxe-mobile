@@ -55,7 +55,7 @@ class WakaluxeTripDetails extends StatelessWidget {
           child: CustomPaint(
             size: const Size(1, 50),
             painter: WakaluxeDottedLine(
-              color: context.scheme.onBackground,
+              color: context.colorScheme.onBackground,
             ),
           ),
         ),

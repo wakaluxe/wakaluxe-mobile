@@ -46,7 +46,6 @@ class PaymentDetails extends StatelessWidget {
                 WakaluxInputField(
                   controller: cubit.driverNumber,
                   hint: '',
-                  
                   text: text,
                 ),
                 10.vGap,
@@ -58,7 +57,6 @@ class PaymentDetails extends StatelessWidget {
                 WakaluxInputField(
                   controller: cubit.taxiFare,
                   hint: '',
-                  
                   text: text,
                 ),
                 10.vGap,
@@ -70,14 +68,13 @@ class PaymentDetails extends StatelessWidget {
                 WakaluxInputField(
                   controller: cubit.customerNumber,
                   hint: '',
-                  
                   text: text,
                 ),
                 30.vGap,
                 Align(
                   child: WakaluxeButtonMedium(
                     text: 'Dial *126#',
-                    textColor: context.scheme.onTertiary,
+                    textColor: context.colorScheme.onTertiary,
                     action: () {
                       // we'll create a cubit.submit() method
                       context.router.pushNamed('/rating');

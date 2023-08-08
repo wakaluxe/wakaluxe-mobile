@@ -50,10 +50,10 @@ class _MessagesState extends State<Messages>
             children: [
               TabBar(
                 controller: _tabController,
-                indicatorColor: context.scheme.primary,
+                indicatorColor: context.colorScheme.primary,
                 labelStyle: theme.subHeading1,
                 unselectedLabelStyle: theme.subHeading1.copyWith(
-                  color: context.scheme.outlineVariant,
+                  color: context.colorScheme.outlineVariant,
                 ),
                 tabs: [
                   Row(

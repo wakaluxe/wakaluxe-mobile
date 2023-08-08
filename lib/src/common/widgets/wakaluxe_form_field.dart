@@ -38,17 +38,17 @@ class WakaluxeFormField extends StatelessWidget {
           horizontal: 10,
           vertical: 20,
         ),
-        focusColor: context.scheme.onBackground,
+        focusColor: context.colorScheme.onBackground,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
           borderSide: BorderSide(
-            color: context.scheme.onBackground.withOpacity(0.4),
+            color: context.colorScheme.onBackground.withOpacity(0.4),
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
           borderSide: BorderSide(
-            color: context.scheme.onBackground.withOpacity(0.6),
+            color: context.colorScheme.onBackground.withOpacity(0.6),
           ),
         ),
       ),

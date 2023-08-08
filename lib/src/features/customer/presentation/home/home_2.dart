@@ -14,7 +14,7 @@ import 'package:wakaluxe/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/widgets/home_box.dart';
 import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart';
 
-import '../../../../configs/wakaluxe_constants.dart';
+import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 
 @RoutePage(name: 'Home_2')
 class Home2Screen extends StatefulWidget {
@@ -114,9 +114,12 @@ class _Home2ScreenState extends State<Home2Screen> {
                               icon: Constants.logoutIcon,
                               onTap: _handleLogOutRequest,
                             );
-                          },
-                        ),
-                        HomeBox(
+                          }
+                        }
+                      },
+                      builder: (context, state) {
+                        if (state is AuthLogOutInit) {
+                          return HomeBox(
                             t: t,
                             title: 'Subscriptions',
                             icon: Constants.walletIcon,
@@ -200,11 +203,11 @@ class _Home2ScreenState extends State<Home2Screen> {
 
 class HomeCard extends StatelessWidget {
   const HomeCard({
-    Key? key,
     required this.t,
-    this.onTap,
     required this.title,
-  }) : super(key: key);
+    super.key,
+    this.onTap,
+  });
 
   final TextTheme t;
   final void Function()? onTap;
@@ -218,7 +221,7 @@ class HomeCard extends StatelessWidget {
         height: 173.h,
         width: 178.w,
         decoration: BoxDecoration(
-          color: context.scheme.surfaceVariant,
+          color: context.colorScheme.surfaceVariant,
           borderRadius: BorderRadius.circular(5.r),
         ),
         child: Column(

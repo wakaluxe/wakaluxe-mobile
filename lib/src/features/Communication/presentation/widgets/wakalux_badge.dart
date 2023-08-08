@@ -7,7 +7,8 @@ import 'package:wakaluxe/src/extensions/build_context.dart';
 class WakaluxBadge extends StatelessWidget {
   final String value;
   const WakaluxBadge({
-    required this.value, super.key,
+    required this.value,
+    super.key,
   });
 
   @override
@@ -18,7 +19,7 @@ class WakaluxBadge extends StatelessWidget {
       width: 30,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: context.scheme.primary,
+        color: context.colorScheme.primary,
       ),
       child: Center(
         child: Text(

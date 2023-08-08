@@ -11,7 +11,7 @@ import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart';
 
 @RoutePage()
 class PaymentProcessingScreen extends StatefulWidget {
-  const PaymentProcessingScreen({Key? key}) : super(key: key);
+  const PaymentProcessingScreen({super.key});
   static String name = '/payment-processing';
 
   @override
@@ -73,7 +73,7 @@ class Loader extends StatelessWidget {
     return BlocBuilder<PaymentCubit, PaymentsState>(
       builder: (context, state) {
         return LinearProgressIndicator(
-          color: (context.scheme.primary),
+          color: context.colorScheme.primary,
           backgroundColor: Colors.grey[200],
           value: state.processingValue,
         );

@@ -20,12 +20,11 @@ class WakaluxeOptionCard extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           color: isSelected
-              ? context.scheme.tertiary
-              : context.scheme.onBackground,
+              ? context.colorScheme.tertiary
+              : context.colorScheme.onBackground,
         ),
         borderRadius: BorderRadius.circular(10),
         // boxShadow: BoxShadow()
-        
       ),
       width: context.width * 0.31,
       padding: const EdgeInsets.all(5),

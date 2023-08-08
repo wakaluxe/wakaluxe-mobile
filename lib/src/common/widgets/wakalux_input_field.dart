@@ -10,7 +10,7 @@ import 'package:wakaluxe/src/extensions/build_context.dart';
 
 class WakaluxInputField extends StatefulWidget {
   const WakaluxInputField({
-    Key? key,
+    super.key,
     required this.text,
     required this.hint,
     this.controller,
@@ -21,7 +21,7 @@ class WakaluxInputField extends StatefulWidget {
     this.formatter,
     this.radius,
     this.keyboardType,
-  }) : super(key: key);
+  });
 
   final TextTheme text;
   final String hint;
@@ -56,11 +56,11 @@ class _WakaluxInputFieldState extends State<WakaluxInputField> {
       height: 50.h,
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       decoration: BoxDecoration(
-        color: context.scheme.primaryContainer.withOpacity(0.05),
+        color: context.colorScheme.primaryContainer.withOpacity(0.05),
         borderRadius: BorderRadius.circular(widget.radius ?? 20.r),
         border: Border.all(
           width: 2.r,
-          color: context.scheme.scrim.withOpacity(0.1),
+          color: context.colorScheme.scrim.withOpacity(0.1),
         ),
       ),
       child: Row(

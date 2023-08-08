@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, avoid_print, inference_failure_on_instance_creation, use_build_context_synchronously
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
@@ -15,11 +15,8 @@ import 'package:hive/hive.dart';
 //import 'package:map_location_picker/map_location_picker.dart';
 
 import 'package:wakaluxe/data/dummy.dart';
-import 'package:wakaluxe/features/payments/presentation/pages/payment_methods_screen.dart';
 import 'package:wakaluxe/src/common/Utils/wakalux_icons_icons.dart';
 import 'package:wakaluxe/src/common/common.dart';
-import 'package:wakaluxe/src/common/widgets/menu_drawer.dart';
-import 'package:wakaluxe/src/common/widgets/profile_drawer.dart';
 import 'package:wakaluxe/src/common/widgets/wakaluxe_driver_card.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
@@ -27,7 +24,6 @@ import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc/home_bloc.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/screens/wakaluxe_home_sheets.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/widgets/taxi_fetching.dart';
-import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart';
 
 // List<Map<String, dynamic>> data = []
 @RoutePage(name: 'HomeMap')
@@ -39,8 +35,8 @@ class HomeMap extends StatefulWidget {
 }
 
 class _HomeMapState extends State<HomeMap> {
-  String address = "null";
-  String autocompletePlace = "null";
+  String address = 'null';
+  String autocompletePlace = 'null';
   //Prediction? initialValue;
 
   // final TextEditingController _controller = TextEditingController();
@@ -55,48 +51,55 @@ class _HomeMapState extends State<HomeMap> {
   String? _platformVersion;
   String? _instruction;
   final _origin = WayPoint(
-      name: "Way Point 1",
-      latitude: 38.9111117447887,
-      longitude: -77.04012393951416,
-      isSilent: true);
+    name: 'Way Point 1',
+    latitude: 38.9111117447887,
+    longitude: -77.04012393951416,
+    isSilent: true,
+  );
   final _stop1 = WayPoint(
-      name: "Way Point 2",
-      latitude: 38.91113678979344,
-      longitude: -77.03847169876099,
-      isSilent: true);
+    name: 'Way Point 2',
+    latitude: 38.91113678979344,
+    longitude: -77.03847169876099,
+    isSilent: true,
+  );
   final _stop2 = WayPoint(
-      name: "Way Point 3",
-      latitude: 38.91040213277608,
-      longitude: -77.03848242759705,
-      isSilent: false);
+    name: 'Way Point 3',
+    latitude: 38.91040213277608,
+    longitude: -77.03848242759705,
+    isSilent: false,
+  );
   final _stop3 = WayPoint(
-      name: "Way Point 4",
-      latitude: 38.909650771013034,
-      longitude: -77.03850388526917,
-      isSilent: true);
+    name: 'Way Point 4',
+    latitude: 38.909650771013034,
+    longitude: -77.03850388526917,
+    isSilent: true,
+  );
   final _destination = WayPoint(
-      name: "Way Point 5",
-      latitude: 38.90894949285854,
-      longitude: -77.03651905059814,
-      isSilent: false);
+    name: 'Way Point 5',
+    latitude: 38.90894949285854,
+    longitude: -77.03651905059814,
+    isSilent: false,
+  );
 
   final _home = WayPoint(
-      name: "Home",
-      latitude: 37.77440680146262,
-      longitude: -122.43539772352648,
-      isSilent: false);
+    name: 'Home',
+    latitude: 37.77440680146262,
+    longitude: -122.43539772352648,
+    isSilent: false,
+  );
 
   final _store = WayPoint(
-      name: "Store",
-      latitude: 37.76556957793795,
-      longitude: -122.42409811526268,
-      isSilent: false);
-  bool _isMultipleStop = false;
+    name: 'Store',
+    latitude: 37.76556957793795,
+    longitude: -122.42409811526268,
+    isSilent: false,
+  );
+  final bool _isMultipleStop = false;
   double? _distanceRemaining, _durationRemaining;
   MapBoxNavigationViewController? _controller;
   bool _routeBuilt = false;
   bool _isNavigating = false;
-  bool _inFreeDrive = false;
+  final bool _inFreeDrive = false;
   late MapBoxOptions _navigationOption;
   Future<void> _onEmbeddedRouteEvent(e) async {
     _distanceRemaining = await MapBoxNavigation.instance.getDistanceRemaining();
@@ -104,7 +107,7 @@ class _HomeMapState extends State<HomeMap> {
 
     switch (e.eventType) {
       case MapBoxEvent.progress_change:
-        var progressEvent = e.data as RouteProgressEvent;
+        final progressEvent = e.data as RouteProgressEvent;
         if (progressEvent.currentStepInstruction != null) {
           _instruction = progressEvent.currentStepInstruction;
         }
@@ -203,7 +206,7 @@ class _HomeMapState extends State<HomeMap> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.scheme.background,
+      backgroundColor: context.colorScheme.background,
       /*    drawer: const MenuDrawer(),
       endDrawer: const ProfileDrawer(),
   */
@@ -286,12 +289,12 @@ class _HomeMapState extends State<HomeMap> {
                                     horizontal: 8,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: context.scheme.background,
+                                    color: context.colorScheme.background,
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   child: Icon(
                                     Icons.menu,
-                                    color: context.scheme.onBackground,
+                                    color: context.colorScheme.onBackground,
                                   ),
                                 ),
                               ),
@@ -310,7 +313,8 @@ class _HomeMapState extends State<HomeMap> {
                                             vertical: 10,
                                           ),
                                           decoration: BoxDecoration(
-                                            color: context.scheme.background,
+                                            color:
+                                                context.colorScheme.background,
                                             borderRadius:
                                                 BorderRadius.circular(30),
                                           ),
@@ -322,11 +326,12 @@ class _HomeMapState extends State<HomeMap> {
                                       : WakaluxeLocationWidget(
                                           leading: Icon(
                                             Icons.person,
-                                            color: context.scheme.primary,
+                                            color: context.colorScheme.primary,
                                           ),
                                           trainling: Icon(
                                             Icons.close,
-                                            color: context.scheme.onBackground,
+                                            color: context
+                                                .colorScheme.onBackground,
                                           ),
                                           message: 'Location Coordinates',
                                           onTap: () {
@@ -360,11 +365,11 @@ class _HomeMapState extends State<HomeMap> {
                                     child: WakaluxeLocationWidget(
                                       leading: Icon(
                                         WakaluxIcons.location,
-                                        color: context.scheme.error,
+                                        color: context.colorScheme.error,
                                       ),
                                       trainling: Icon(
                                         Icons.close,
-                                        color: context.scheme.onBackground,
+                                        color: context.colorScheme.onBackground,
                                       ),
                                       message: 'Destination Coordimates',
                                       onTap: _handleDestinationSelection,
@@ -401,8 +406,8 @@ class _HomeMapState extends State<HomeMap> {
                                     ),
                                   );
                             },
-                            color: context.scheme.tertiary,
-                            textColor: context.scheme.onTertiary,
+                            color: context.colorScheme.tertiary,
+                            textColor: context.colorScheme.onTertiary,
                           ),
                         ),
                       ),
@@ -499,19 +504,21 @@ class _HomeMapState extends State<HomeMap> {
                             text: 'Get Directions',
                             action: () {
                               WakaluxeBottomSheets.showDiretionSheet(context);
-                              final _origin = WayPoint(
-                                  name: "Way Point 1",
-                                  latitude: state.lat,
-                                  longitude: state.lng,
-                                  isSilent: true);
+                              final origin = WayPoint(
+                                name: 'Way Point 1',
+                                latitude: state.lat,
+                                longitude: state.lng,
+                                isSilent: true,
+                              );
 
                               setState(() {
                                 _controller?.buildRoute(
-                                    wayPoints: [_origin, _destination]);
+                                  wayPoints: [origin, _destination],
+                                );
                               });
                             },
-                            color: context.scheme.tertiary,
-                            textColor: context.scheme.onTertiary,
+                            color: context.colorScheme.tertiary,
+                            textColor: context.colorScheme.onTertiary,
                           ),
                         ),
                       ),
@@ -539,8 +546,8 @@ class _HomeMapState extends State<HomeMap> {
                                 predicate: (_) => true,
                               );
                             },
-                            color: context.scheme.primary,
-                            // textColor: context.scheme.onTertoniary,
+                            color: context.colorScheme.primary,
+                            // textColor: context.colorScheme.onTertoniary,
                           ),
                         ),
                       )

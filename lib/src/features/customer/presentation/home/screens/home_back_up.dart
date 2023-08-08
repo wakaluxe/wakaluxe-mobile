@@ -1,5 +1,4 @@
- // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:auto_route/auto_route.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -9,7 +8,6 @@ import 'package:wakaluxe/src/common/Utils/wakalux_icons_icons.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/common/widgets/menu_drawer.dart';
 import 'package:wakaluxe/src/common/widgets/profile_drawer.dart';
-import 'package:wakaluxe/src/common/widgets/wakaluxe_driver_card.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc/home_bloc.dart';
@@ -37,7 +35,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.scheme.onBackground,
+      backgroundColor: context.colorScheme.onBackground,
       drawer: const MenuDrawer(),
       endDrawer: const ProfileDrawer(),
       body: BlocConsumer<HomeBloc, HomeState>(
@@ -82,12 +80,12 @@ class _HomeState extends State<Home> {
                                     horizontal: 8,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: context.scheme.background,
+                                    color: context.colorScheme.background,
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   child: Icon(
                                     Icons.menu,
-                                    color: context.scheme.onBackground,
+                                    color: context.colorScheme.onBackground,
                                   ),
                                 ),
                               ),
@@ -106,7 +104,8 @@ class _HomeState extends State<Home> {
                                             vertical: 10,
                                           ),
                                           decoration: BoxDecoration(
-                                            color: context.scheme.background,
+                                            color:
+                                                context.colorScheme.background,
                                             borderRadius:
                                                 BorderRadius.circular(30),
                                           ),
@@ -118,11 +117,12 @@ class _HomeState extends State<Home> {
                                       : WakaluxeLocationWidget(
                                           leading: Icon(
                                             Icons.person,
-                                            color: context.scheme.primary,
+                                            color: context.colorScheme.primary,
                                           ),
                                           trainling: Icon(
                                             Icons.close,
-                                            color: context.scheme.onBackground,
+                                            color: context
+                                                .colorScheme.onBackground,
                                           ),
                                           message: 'Location Coordimates',
                                           onTap: () {
@@ -156,11 +156,11 @@ class _HomeState extends State<Home> {
                                     child: WakaluxeLocationWidget(
                                       leading: Icon(
                                         WakaluxIcons.location,
-                                        color: context.scheme.error,
+                                        color: context.colorScheme.error,
                                       ),
                                       trainling: Icon(
                                         Icons.close,
-                                        color: context.scheme.onBackground,
+                                        color: context.colorScheme.onBackground,
                                       ),
                                       message: 'Destination Coordimates',
                                       onTap: () {
@@ -181,7 +181,7 @@ class _HomeState extends State<Home> {
                         ],
                       ),
                     ),
-              /*       if (state.selectDriver)
+                    /*       if (state.selectDriver)
                       Positioned(
                         bottom: 20,
                         left: 0,
@@ -200,8 +200,8 @@ class _HomeState extends State<Home> {
                                   .read<HomeBloc>()
                                   .add(ShowDriversEvent(showDrivers: true));
                             },
-                            color: context.scheme.tertiary,
-                            textColor: context.scheme.onTertiary,
+                            color: context.colorScheme.tertiary,
+                            textColor: context.colorScheme.onTertiary,
                           ),
                         ),
                       ),
@@ -299,8 +299,8 @@ class _HomeState extends State<Home> {
                             action: () {
                               WakaluxeBottomSheets.showDiretionSheet(context);
                             },
-                            color: context.scheme.tertiary,
-                            textColor: context.scheme.onTertiary,
+                            color: context.colorScheme.tertiary,
+                            textColor: context.colorScheme.onTertiary,
                           ),
                         ),
                       ),
@@ -322,12 +322,13 @@ class _HomeState extends State<Home> {
                                     HomeInitialEvent(),
                                   );
                             },
-                            color: context.scheme.primary,
-                            // textColor: context.scheme.onTertoniary,
+                            color: context.colorScheme.primary,
+                            // textColor: context.colorScheme.onTertoniary,
                           ),
                         ),
                       )
-                 */  ],
+                 */
+                  ],
                 ),
               ),
             ],
@@ -337,4 +338,3 @@ class _HomeState extends State<Home> {
     );
   }
 }
- 

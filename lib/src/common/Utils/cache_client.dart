@@ -7,17 +7,16 @@ class HiveClient {
   String _boxName = '';
 
   Future<void> initialize(String boxName) async {
- 
     _boxName = boxName;
     await Hive.openBox<String>(_boxName);
   }
 
   Box<String> getBox() {
-   // if (Hive.isBoxOpen(_boxName)) {
-      return Hive.box(_boxName);
-   // } else {
-   //   return await Hive.openBox(_boxName);
-   // }
+    // if (Hive.isBoxOpen(_boxName)) {
+    return Hive.box(_boxName);
+    // } else {
+    //   return await Hive.openBox(_boxName);
+    // }
   }
 
   Future<void> closeBox() async {
@@ -26,33 +25,33 @@ class HiveClient {
     }
   }
 
-  void addItem(String item) async {
-    final box = await getBox();
+  Future<void> addItem(String item) async {
+    final box = getBox();
     await box.put(_boxName, item);
- //   await box.close();
+    //   await box.close();
   }
 
-  dynamic getItem(String key)  {
-    final box =  getBox() ; 
-    final item =  box.get(key) ;
-   // await box.close();
+  dynamic getItem(String key) {
+    final box = getBox();
+    final item = box.get(key);
+    // await box.close();
     return item;
   }
 
   Future<List<dynamic>> getItems() async {
-    final box = await getBox();
+    final box = getBox();
     final items = box.values.toList();
     return items;
   }
 
-  void deleteItem(int index) async {
-    final box = await getBox();
+  Future<void> deleteItem(int index) async {
+    final box = getBox();
     await box.deleteAt(index);
-   // await box.close();
+    // await box.close();
   }
 
-  void clearBox()async{
-    final box =  getBox();
+  Future<void> clearBox() async {
+    final box = getBox();
     await box.clear();
   }
 }

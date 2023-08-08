@@ -18,7 +18,7 @@ class WakaluxeRoundedButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(100),
           boxShadow: [
             BoxShadow(
-              color: context.scheme.onBackground.withOpacity(0.5),
+              color: context.colorScheme.onBackground.withOpacity(0.5),
               blurRadius: 4,
               offset: const Offset(0, 2),
             ),
@@ -26,13 +26,13 @@ class WakaluxeRoundedButton extends StatelessWidget {
         ),
         child: CircleAvatar(
           radius: 25,
-          backgroundColor: Colors.white,
+          backgroundColor: context.colorScheme.onPrimary,
           child: ClipPath(
             clipper: const ShapeBorderClipper(
               shape: CircleBorder(),
             ),
             child: Container(
-              color: color ?? context.scheme.tertiary,
+              color: color ?? context.colorScheme.tertiary,
               width: 45,
               height: 45,
               child: Center(

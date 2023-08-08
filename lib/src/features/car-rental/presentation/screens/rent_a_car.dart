@@ -11,7 +11,7 @@ class RentACar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.scheme.background,
+      backgroundColor: context.colorScheme.background,
       body: SafeArea(
         child: Stack(
           children: [
@@ -37,7 +37,7 @@ class RentACar extends StatelessWidget {
                         vertical: 10,
                       ),
                       decoration: BoxDecoration(
-                        color: context.scheme.tertiary,
+                        color: context.colorScheme.tertiary,
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Column(
@@ -55,7 +55,7 @@ class RentACar extends StatelessWidget {
                               ),
                               Icon(
                                 Icons.arrow_forward,
-                                color: context.scheme.onBackground,
+                                color: context.colorScheme.onBackground,
                                 size: 20,
                               )
                             ],
@@ -146,11 +146,12 @@ class RentACar extends StatelessWidget {
                       horizontal: 8,
                     ),
                     decoration: BoxDecoration(
-                      color: context.scheme.onPrimary,
+                      color: context.colorScheme.onPrimary,
                       borderRadius: BorderRadius.circular(15),
                       boxShadow: [
                         BoxShadow(
-                          color: context.scheme.onBackground.withOpacity(0.5),
+                          color:
+                              context.colorScheme.onBackground.withOpacity(0.5),
                           blurRadius: 4,
                           offset: const Offset(0, 2),
                         ),
@@ -158,7 +159,7 @@ class RentACar extends StatelessWidget {
                     ),
                     child: Icon(
                       Icons.menu,
-                      color: context.scheme.onBackground,
+                      color: context.colorScheme.onBackground,
                     ),
                   ),
                   const WakaluxeProfileImage(

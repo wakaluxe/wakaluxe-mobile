@@ -23,14 +23,14 @@ class WakaluxeCarRental extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: context.scheme.background,
+        color: context.colorScheme.background,
         borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(30),
           bottomRight: Radius.circular(30),
         ),
         boxShadow: [
           BoxShadow(
-            color: context.scheme.onBackground.withOpacity(0.5),
+            color: context.colorScheme.onBackground.withOpacity(0.5),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
@@ -77,7 +77,7 @@ class WakaluxeCarRental extends StatelessWidget {
                             5.hGap,
                             Icon(
                               Icons.arrow_forward_ios,
-                              color: context.scheme.onBackground,
+                              color: context.colorScheme.onBackground,
                               size: 15,
                             ),
                           ],

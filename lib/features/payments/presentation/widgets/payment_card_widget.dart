@@ -8,14 +8,14 @@ import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 
 class PaymentCardWidget extends StatelessWidget {
-  const PaymentCardWidget({
-    Key? key,
-    required this.textTheme,
-    required this.title,
-    this.icon,
-    required this.isSelected,
-    required this.onTap
-  }) : super(key: key);
+  const PaymentCardWidget(
+      {Key? key,
+      required this.textTheme,
+      required this.title,
+      this.icon,
+      required this.isSelected,
+      required this.onTap})
+      : super(key: key);
 
   final TextTheme textTheme;
   final String title;
@@ -33,7 +33,9 @@ class PaymentCardWidget extends StatelessWidget {
           horizontal: 20.w,
         ),
         decoration: BoxDecoration(
-          color: isSelected ? context.scheme.primary: context.scheme.onSurfaceVariant,
+          color: isSelected
+              ? context.colorScheme.primary
+              : context.colorScheme.onSurfaceVariant,
           borderRadius: BorderRadius.circular(8.r),
         ),
         child: Row(

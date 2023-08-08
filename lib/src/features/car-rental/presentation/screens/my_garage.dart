@@ -13,7 +13,7 @@ class MyGarage extends StatelessWidget {
   Widget build(BuildContext context) {
     final data = myGarageContext;
     return Scaffold(
-      backgroundColor: context.scheme.background,
+      backgroundColor: context.colorScheme.background,
       appBar: AppBar(),
       body: SingleChildScrollView(
         child: Column(

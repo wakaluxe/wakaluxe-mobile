@@ -24,7 +24,8 @@ class WakaluxTile extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           border: Border.all(
-            color: isSelected ? context.scheme.tertiary : Colors.transparent,
+            color:
+                isSelected ? context.colorScheme.tertiary : Colors.transparent,
             width: 2,
           ),
           borderRadius: BorderRadius.circular(20),

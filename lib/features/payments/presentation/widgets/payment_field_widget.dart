@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,7 +21,7 @@ class PaymentFieldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        border: Border.all(color: context.scheme.outline),
+        border: Border.all(color: context.colorScheme.outline),
         borderRadius: BorderRadius.circular(20.r),
       ),
       child: TextFormField(
