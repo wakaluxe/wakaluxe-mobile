@@ -32,7 +32,7 @@ class _MessageState extends State<Message> {
         elevation: 0,
         title: ListTile(
           leading: const Hero(
-            tag: 'chat',
+            tag: Uuid().v4(),
             child: CircleAvatar(
               radius: 20,
               backgroundImage: AssetImage('assets/images/chat.png'),

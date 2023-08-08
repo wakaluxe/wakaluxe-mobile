@@ -12,9 +12,7 @@ abstract class AuthState extends Equatable {
   List<Object> get props => [user];
 }
 
-class AuthInitial extends AuthState {
-  
-}
+class AuthInitial extends AuthState {}
 
 class PhoneAuthError extends AuthState {
   final String error;
@@ -26,15 +24,14 @@ class PhoneAuthError extends AuthState {
 }
 
 class PhoneAuthVerified extends AuthState {
+  @override
   final UserEntity user;
-  PhoneAuthVerified({
+  const PhoneAuthVerified({
     required this.user,
-  }):super(user: user);
+  }) : super(user: user);
 }
 
-class PhoneAuthLoading extends AuthState {
-  
-}
+class PhoneAuthLoading extends AuthState {}
 
 class LoginWithCredentialnit extends AuthState {}
 
@@ -51,9 +48,7 @@ class PhoneAuthCodeRetrievalTimeOut extends AuthState {}
 
 class AuthLogOutInit extends AuthState {}
 
-class AuthLogOutSuccess extends AuthState {
-
-}
+class AuthLogOutSuccess extends AuthState {}
 
 class AuthLogOutError extends AuthState {
   final String error;
@@ -67,10 +62,11 @@ class AuthLogOutError extends AuthState {
 class AuthAppStartInit extends AuthState {}
 
 class AuthAppStartSuccess extends AuthState {
+  @override
   final UserEntity user;
   const AuthAppStartSuccess({
     required this.user,
-  }): super(user: user);
+  }) : super(user: user);
   @override
   List<Object> get props => [user];
 }
