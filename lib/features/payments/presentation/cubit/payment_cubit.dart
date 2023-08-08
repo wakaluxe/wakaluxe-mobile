@@ -9,7 +9,7 @@ part 'payment_state.dart';
 
 class PaymentCubit extends Cubit<PaymentsState> {
   PaymentCubit() : super(PaymentsInitialState());
-
+  
   void updatePaymentMethod(PaymentMethodsType type) {
     emit(PaymentUpdatePaymentTypeState(type: type));
   }
@@ -19,12 +19,13 @@ class PaymentCubit extends Cubit<PaymentsState> {
   }
 
   void paymentProcessing() {
-    Timer.periodic(Duration(seconds: 1), (timer) {
+    Timer.periodic(const Duration(seconds: 3), (timer) {
       if (state.processingValue >= 1) {
         timer.cancel();
-    emit(PaymentProcessedState());
+        emit(PaymentProcessedState());
       }
-      emit(PaymentProcessingState(processingValue: state.processingValue + 0.1));
+      emit(
+          PaymentProcessingState(processingValue: state.processingValue + 0.3));
     });
   }
 }

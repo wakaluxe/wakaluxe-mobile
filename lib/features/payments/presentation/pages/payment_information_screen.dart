@@ -76,21 +76,22 @@ class _PaymentInformationScreenState extends State<PaymentInformationScreen> {
                 Text('Taxi fare(XAF)', style: textTheme.body2),
                 10.h.vGap,
                 PaymentFieldWidget(
-                  
-                  hint: '500', controller: _amountController, 
+                  hint: '500',
+                  controller: _amountController,
                   validator: requireValidator,
-                  ),
+                ),
                 111.h.vGap,
                 GestureDetector(
                   onTap: _handleConfirmation,
                   child: WakaluxeButton(
-                    text: 'Pay',
-                    action: () => context
-                        .read<PaymentCubit>()
-                        .addPaymentInformation(
+                      text: 'Pay',
+                      action: () {
+                            context.read<PaymentCubit>().paymentProcessing();
+
+                        context.read<PaymentCubit>().addPaymentInformation(
                             amount: _amountController.text,
-                            number: _accountNumberController.text),
-                  ),
+                            number: _accountNumberController.text);
+                      }),
                 ),
               ],
             ),

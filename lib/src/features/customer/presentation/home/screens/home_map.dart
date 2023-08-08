@@ -9,6 +9,7 @@ import 'package:flutter_mapbox_navigation/flutter_mapbox_navigation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
+import 'package:hive/hive.dart';
 //import 'package:map_location_picker/map_location_picker.dart';
 //import 'package:google_maps_flutter/google_maps_flutter.dart';
 //import 'package:map_location_picker/map_location_picker.dart';
@@ -43,7 +44,7 @@ class _HomeMapState extends State<HomeMap> {
   //Prediction? initialValue;
 
   // final TextEditingController _controller = TextEditingController();
-  late final LatLng _center;
+    LatLng _center = const LatLng(45.521563, -122.677433);
 
   late GoogleMapController mapController;
 
@@ -145,16 +146,20 @@ class _HomeMapState extends State<HomeMap> {
 
   @override
   void initState() {
-     super.initState();
+    initPosition();
+    super.initState();
     initialize();
   }
 
   List<WayPoint> _waypoints = [];
-
-  Future<void> initialize() async {
+  void initPosition() async {
     final location = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
     _center = LatLng(location.latitude, location.longitude);
+
+  }
+
+  Future<void> initialize() async {
     // If the widget was removed from the tree while the asynchronous platform
     // message was in flight, we want to discard the reply rather than calling
     // setState to update our non-existent appearance.
@@ -244,7 +249,7 @@ class _HomeMapState extends State<HomeMap> {
               /*   Expanded(
                 child: Container(
                   color: Colors.grey,
-                  child: GoogleMap(
+                  child: MapBoxNavigationView(
                       options: _navigationOption,
                       onRouteEvent: _onEmbeddedRouteEvent,
                       onCreated:

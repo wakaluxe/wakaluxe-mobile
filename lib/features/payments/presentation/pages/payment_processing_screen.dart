@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wakaluxe/features/payments/presentation/cubit/payment_cubit.dart';
+import 'package:wakaluxe/src/common/Utils/logger.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
+import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart';
 
 @RoutePage()
 class PaymentProcessingScreen extends StatefulWidget {
@@ -21,7 +23,6 @@ class _PaymentProcessingScreenState extends State<PaymentProcessingScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<PaymentCubit>().paymentProcessing();
   }
 
   @override
@@ -36,8 +37,9 @@ class _PaymentProcessingScreenState extends State<PaymentProcessingScreen> {
         child: BlocListener<PaymentCubit, PaymentsState>(
             listener: (context, state) {
               if (state is PaymentProcessedState) {
-             
-                context.router.popUntilRoot();
+                logInfo('Payment processed');
+                context.router
+                    .pushAndPopUntil(HomeMap(), predicate: (_) => true);
               }
             },
             child: Column(
