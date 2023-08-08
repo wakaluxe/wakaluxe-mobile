@@ -9,6 +9,7 @@ import 'package:flutter_mapbox_navigation/flutter_mapbox_navigation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
+import 'package:hive/hive.dart';
 //import 'package:map_location_picker/map_location_picker.dart';
 //import 'package:google_maps_flutter/google_maps_flutter.dart';
 //import 'package:map_location_picker/map_location_picker.dart';
@@ -23,6 +24,7 @@ import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc/home_bloc.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/screens/wakaluxe_home_sheets.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/widgets/taxi_fetching.dart';
+import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart';
 
 // List<Map<String, dynamic>> data = []
 @RoutePage(name: 'HomeMap')
@@ -39,7 +41,7 @@ class _HomeMapState extends State<HomeMap> {
   //Prediction? initialValue;
 
   // final TextEditingController _controller = TextEditingController();
-  late final LatLng _center;
+    LatLng _center = const LatLng(45.521563, -122.677433);
 
   late GoogleMapController mapController;
 
@@ -148,31 +150,45 @@ class _HomeMapState extends State<HomeMap> {
 
   @override
   void initState() {
-    initialize();
+    initPosition();
     super.initState();
+    initialize();
   }
 
-  final List<WayPoint> _waypoints = [];
+  List<WayPoint> _waypoints = [];
+  void initPosition() async {
+    final location = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    _center = LatLng(location.latitude, location.longitude);
+
+  }
 
   Future<void> initialize() async {
-    final location = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
-    );
-    _center = LatLng(location.latitude, location.longitude);
     // If the widget was removed from the tree while the asynchronous platform
     // message was in flight, we want to discard the reply rather than calling
     // setState to update our non-existent appearance.
-    if (!mounted) return;
+    //if (!mounted) return;
 
     _navigationOption = MapBoxOptions(
-      longPressDestinationEnabled: false,
-      mode: MapBoxNavigationMode.drivingWithTraffic,
-    );
+        initialLatitude: 36.1175275,
+        initialLongitude: -115.1839524,
+        zoom: 13.0,
+        tilt: 0.0,
+        bearing: 0.0,
+        enableRefresh: false,
+        alternatives: true,
+        voiceInstructionsEnabled: true,
+        bannerInstructionsEnabled: true,
+        allowsUTurnAtWayPoints: true,
+        mode: MapBoxNavigationMode.drivingWithTraffic,
+        mapStyleUrlDay: "https://url_to_day_style",
+        mapStyleUrlNight: "https://url_to_night_style",
+        units: VoiceUnits.imperial,
+        simulateRoute: true,
+        language: "en");
     _navigationOption.simulateRoute = true;
-    _navigationOption.initialLatitude = 36.1175275;
-    _navigationOption.initialLongitude = -115.1839524;
-    await MapBoxNavigation.instance
-        .registerRouteEventListener(_onEmbeddedRouteEvent);
+
+    MapBoxNavigation.instance.registerRouteEventListener(_onEmbeddedRouteEvent);
     MapBoxNavigation.instance.setDefaultOptions(_navigationOption);
 
     String? platformVersion;
@@ -213,7 +229,11 @@ class _HomeMapState extends State<HomeMap> {
             });
           }
 
-          if (state.payfare) {}
+          if (state.payfare) {
+            MapBoxNavigation.instance.startNavigation(
+              wayPoints: _waypoints,
+            );
+          }
         },
         builder: (context, state) {
           final data = getDriverData();
@@ -233,7 +253,7 @@ class _HomeMapState extends State<HomeMap> {
               /*   Expanded(
                 child: Container(
                   color: Colors.grey,
-                  child: GoogleMap(
+                  child: MapBoxNavigationView(
                       options: _navigationOption,
                       onRouteEvent: _onEmbeddedRouteEvent,
                       onCreated:
@@ -512,29 +532,20 @@ class _HomeMapState extends State<HomeMap> {
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: WakaluxeButton(
                             text: 'Pay fare',
-                            action: () {
-                              print('pay fare: $_waypoints ');
-                              MapBoxNavigation.instance.startNavigation(
-                                wayPoints: _waypoints,
-                                options: MapBoxOptions(
-                                  mode: MapBoxNavigationMode.driving,
-                                  simulateRoute: true,
-                                  language: 'en',
-                                  allowsUTurnAtWayPoints: true,
-                                  units: VoiceUnits.metric,
-                                ),
-                              );
+                            action: () async {
+                              print("pay fare: ${_waypoints} ");
 
                               context.showSnackBar(
                                 'Will still to move to payment screen',
                               );
+                              await Future.delayed(Duration(seconds: 2));
                               context.read<HomeBloc>().add(
                                     HomeInitialEvent(),
                                   );
-                              /* context.router.pushAndPopUntil(
+                              context.router.pushAndPopUntil(
                                 const PaymentMethodsRoute(),
                                 predicate: (_) => true,
-                              ); */
+                              );
                             },
                             color: context.colorScheme.primary,
                             // textColor: context.colorScheme.onTertoniary,
@@ -551,15 +562,13 @@ class _HomeMapState extends State<HomeMap> {
     );
   }
 
-  Future<void> _handleDestinationSelection() async {
-    final position = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
-    );
+  void _handleDestinationSelection() async {
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
     final homePosition = WayPoint(
-      name: 'location',
-      latitude: position.latitude,
-      longitude: position.longitude,
-    );
+        name: 'location',
+        latitude: position.latitude,
+        longitude: position.longitude);
     _waypoints.add(homePosition);
     await Navigator.push(
       context,
@@ -571,10 +580,9 @@ class _HomeMapState extends State<HomeMap> {
           onPlacePicked: (result) {
             print(result.geometry!.location.lat);
             final waypoint = WayPoint(
-              name: 'destinations',
-              latitude: result.geometry!.location.lat,
-              longitude: result.geometry!.location.lng,
-            );
+                name: 'destinations',
+                latitude: result.geometry!.location.lat,
+                longitude: result.geometry!.location.lng);
             _waypoints.add(waypoint);
             context.read<HomeBloc>().add(
                   SelectLocationEvent(
