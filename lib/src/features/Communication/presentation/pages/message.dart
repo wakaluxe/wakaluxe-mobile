@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:uuid/uuid.dart';
 
 import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
@@ -31,9 +32,9 @@ class _MessageState extends State<Message> {
         backgroundColor: context.colorScheme.background,
         elevation: 0,
         title: ListTile(
-          leading: const Hero(
-            tag: Uuid().v4(),
-            child: CircleAvatar(
+          leading: Hero(
+            tag: const Uuid().v4(),
+            child: const CircleAvatar(
               radius: 20,
               backgroundImage: AssetImage('assets/images/chat.png'),
             ),

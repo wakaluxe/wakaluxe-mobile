@@ -1,19 +1,18 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, lines_longer_than_80_chars
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:wakaluxe/features/payments/presentation/pages/payment_methods_screen.dart';
-
+import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/widgets/home_box.dart';
+import 'package:wakaluxe/src/features/customer/presentation/home/widgets/promotion_banner.dart';
 import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart';
-
-import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 
 @RoutePage(name: 'Home_2')
 class Home2Screen extends StatefulWidget {
@@ -36,23 +35,35 @@ class _Home2ScreenState extends State<Home2Screen> {
 
   @override
   Widget build(BuildContext context) {
+    return const HomeView();
+  }
+}
+
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     final t = Theme.of(context).textTheme;
     return Scaffold(
-      appBar: AppBar(
-        leading: const SizedBox(),
-        actions: [
-          GestureDetector(
-            onTap: () {
-              context.router.pushNamed('/notifications');
-            },
-            child: SvgPicture.asset(Constants.notificationIcon),
-          )
-        ],
-      ),
       body: Padding(
-        padding: EdgeInsets.all(19.0.w),
+        padding: EdgeInsets.all(0.0.w),
         child: Column(
           children: <Widget>[
+            24.vGap,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    context.router.pushNamed('/notifications');
+                  },
+                  child: SvgPicture.asset(Constants.notificationIcon),
+                ),
+              ],
+            ),
+            const PromotionBanner(),
+            24.vGap,
             Text(
               'Hi! Welcome to Wakalux',
               style: t.title,
@@ -115,7 +126,7 @@ class _Home2ScreenState extends State<Home2Screen> {
                           t: t,
                           title: 'Log Out',
                           icon: Constants.logoutIcon,
-                          onTap: _handleLogOutRequest,
+                          onTap: () {},
                         );
                       },
                     ),

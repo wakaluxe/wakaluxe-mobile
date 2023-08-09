@@ -49,7 +49,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     ),
   );
   await Hive.initFlutter();
-  await Hive.openBox<void>('first_run');
+  await Hive.openBox<bool>('first_run');
   await locator<LocalUSerData>().initialize();
   // await dotenv.load();
   runApp(

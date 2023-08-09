@@ -9,11 +9,36 @@ class WakaluxAppRouter extends $WakaluxAppRouter {
   RouteType get defaultRouteType => const RouteType.material();
   @override
   List<AutoRoute> get routes => [
+        // Shared Scaffold Routes
+        AutoRoute(
+          page: WakaluxeHome.page,
+          path: '/',
+          initial: true,
+          children: [
+            AutoRoute(
+              page: WakaluxeTaxiBooking.page,
+              path: 'taxi-booking',
+            ),
+            AutoRoute(
+              page: WakaluxeTrips.page,
+              path: 'trips-history',
+            ),
+            AutoRoute(
+              page: WakaluxeCarRent.page,
+              path: 'rent-a-car',
+            ),
+            AutoRoute(
+              page: WakaluxeUserProfile.page,
+              path: 'profile',
+            ),
+          ],
+        ),
+
         /// routes go here
         AutoRoute(
           page: Welcome.page,
           path: '/welcome',
-          initial: true,
+          // initial: true,
           guards: [
             OnBoardingGuard(),
           ],
