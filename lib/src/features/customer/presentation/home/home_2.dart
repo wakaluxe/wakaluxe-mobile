@@ -6,6 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:wakaluxe/features/payments/presentation/pages/payment_methods_screen.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
+
+import 'package:wakaluxe/features/payments/presentation/pages/payment_methods_screen.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
@@ -46,68 +48,80 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = Theme.of(context).textTheme;
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(0.0.w),
-        child: Column(
-          children: <Widget>[
-            24.vGap,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    context.router.pushNamed('/notifications');
-                  },
-                  child: SvgPicture.asset(Constants.notificationIcon),
-                ),
-              ],
-            ),
-            const PromotionBanner(),
-            24.vGap,
-            Text(
-              'Hi! Welcome to Wakalux',
-              style: t.title,
-            ),
-            40.h.vGap,
-            SizedBox(
-              height: 230.h,
-              child: Expanded(
-                child: GridView.count(
-                  crossAxisCount: 4,
-                  shrinkWrap: true,
-                  crossAxisSpacing: 10.w,
-                  mainAxisSpacing: 10.h,
-                  children: [
-                    HomeBox(
-                      t: t,
-                      title: 'My Profile',
-                      icon: Constants.profileIcon,
-                      onTap: () => context.router.pushNamed('/my-profile'),
-                    ),
-                    HomeBox(
-                      t: t,
-                      title: 'Chat',
-                      icon: Constants.messageIcon,
-                      onTap: () => context.router.pushNamed('/messages'),
-                    ),
-                    HomeBox(
-                      t: t,
-                      title: 'Settings',
-                      icon: Constants.settingIcon,
-                      onTap: () => context.router.pushNamed('/settings'),
-                    ),
-                    BlocConsumer<AuthBloc, AuthState>(
-                      listener: (context, state) {
-                        // TODO: implement listener
-                        if (state is AuthLogOutError) {
-                          context.showSnackBar(
-                            state.error,
-                            color: context.colorScheme.error,
-                          );
-                          if (state is AuthLogOutSuccess) {
-                            context.router.pushAndPopUntil(
-                              const SignUp(),
-                              predicate: (route) => false,
+        appBar: AppBar(
+          leading: const SizedBox(),
+          actions: [
+            GestureDetector(
+              onTap: () {
+                context.router.pushNamed('/notifications');
+              },
+              child: SvgPicture.asset(Constants.notificationIcon),
+            )
+          ],
+        ),
+        body: Padding(
+          padding: EdgeInsets.all(19.0.w),
+          child: Column(
+            children: <Widget>[
+              Text(
+                'Hi! Welcome to Wakalux',
+                style: t.title,
+              ),
+              40.h.vGap,
+              SizedBox(
+                height: 230.h,
+                child: Expanded(
+                  child: GridView.count(
+                      crossAxisCount: 4,
+                      shrinkWrap: true,
+                      crossAxisSpacing: 10.w,
+                      mainAxisSpacing: 10.h,
+                      children: [
+                        HomeBox(
+                            t: t,
+                            title: 'My Profile',
+                            icon: Constants.profileIcon,
+                            onTap: () =>
+                                context.router.pushNamed('/my-Profile')),
+                        HomeBox(
+                            t: t,
+                            title: 'Chat',
+                            icon: Constants.messageIcon,
+                            onTap: () => context.router.pushNamed('/messages')),
+                        HomeBox(
+                            t: t,
+                            title: 'Settings',
+                            icon: Constants.settingIcon,
+                            onTap: () => context.router.pushNamed('/settings')),
+                        BlocConsumer<AuthBloc, AuthState>(
+                          listener: (context, state) {
+                            // TODO: implement listener
+                            if (state is AuthLogOutError) {
+                              context.showSnackBar(
+                                state.error,
+                                color: context.colorScheme.error,
+                              );
+                              if (state is AuthLogOutSuccess) {
+                                context.router.pushAndPopUntil(SignUp(),
+                                    predicate: (route) => false);
+                              }
+                            }
+                          },
+                          builder: (context, state) {
+                            if (state is AuthLogOutInit) {
+                              return HomeBox(
+                                t: t,
+                                onTap: () {},
+                                title: 'Please wait...',
+                                icon: Constants.logoutIcon,
+                                //onTap: _handleLogOutRequest,
+                              );
+                            }
+                            return HomeBox(
+                              t: t,
+                              title: 'Log Out',
+                              icon: Constants.logoutIcon,
+                              onTap: _handleLogOutRequest,
                             );
                           }
                         }
@@ -116,64 +130,38 @@ class HomeView extends StatelessWidget {
                         if (state is AuthLogOutInit) {
                           return HomeBox(
                             t: t,
-                            onTap: () {},
-                            title: 'Please wait...',
-                            icon: Constants.logoutIcon,
-                            //onTap: _handleLogOutRequest,
-                          );
-                        }
-                        return HomeBox(
-                          t: t,
-                          title: 'Log Out',
-                          icon: Constants.logoutIcon,
-                          onTap: () {},
-                        );
-                      },
-                    ),
-                    HomeBox(
-                      t: t,
-                      title: 'Subscriptions',
-                      icon: Constants.walletIcon,
-                      onTap: () => context.router.pushNamed('/subscriptions'),
-                    ),
-                    HomeBox(
-                      t: t,
-                      title: 'Payment',
-                      icon: Constants.subscriptionIcon,
-                      onTap: () =>
-                          context.router.pushNamed(PaymentMethodsScreen.path),
-                    ),
-                    HomeBox(
-                      t: t,
-                      title: 'My Trips',
-                      icon: Constants.locationIcon,
-                      onTap: () => context.router.pushNamed('/my-trip'),
-                    ),
-                    HomeBox(
-                      t: t,
-                      title: 'Support',
-                      icon: Constants.headphoneIcon,
-                      onTap: () => context.router.pushNamed('/settings'),
-                    ),
-                  ],
+                            title: 'Payment',
+                            icon: Constants.subscriptionIcon,
+                            onTap: () => context.router
+                                .pushNamed(PaymentMethodsScreen.path)),
+                        HomeBox(
+                            t: t,
+                            title: 'My Trips',
+                            icon: Constants.locationIcon,
+                            onTap: () => context.router.pushNamed('/my-trip')),
+                        HomeBox(
+                            t: t,
+                            title: 'Support',
+                            icon: Constants.headphoneIcon,
+                            onTap: () => context.router.pushNamed('/settings')),
+                      ]),
                 ),
               ),
-            ),
-            Row(
-              children: <Widget>[
-                HomeCard(
-                  title: 'Book a Taxi',
-                  t: t,
-                  onTap: () => context.router.pushNamed('/home-map'),
-                ),
-                10.w.hGap,
-                HomeCard(title: 'Rent a Car', t: t),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
+              Row(
+                children: <Widget>[
+                  HomeCard(
+                    image: Constants.onBoard2,
+                    title: 'Book a Taxi',
+                    t: t,
+                    onTap: () => context.router.pushNamed('/home-map'),
+                  ),
+                  10.w.hGap,
+                  HomeCard(title: 'Rent a Car', t: t, image: Constants.onBoard1,),
+                ],
+              ),
+            ],
+          ),
+        ));
   }
 }
 
@@ -181,13 +169,13 @@ class HomeCard extends StatelessWidget {
   const HomeCard({
     required this.t,
     required this.title,
-    super.key,
-    this.onTap,
-  });
+    required this.image,
+  }) : super(key: key);
 
   final TextTheme t;
   final void Function()? onTap;
   final String title;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -202,7 +190,10 @@ class HomeCard extends StatelessWidget {
         ),
         child: Column(
           children: <Widget>[
-            SvgPicture.asset(Constants.bookAsset),
+            SvgPicture.asset(image,
+            height: 100,
+            width: 100,
+            ),
             12.h.vGap,
             Text(
               title,

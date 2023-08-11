@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_mapbox_navigation/flutter_mapbox_navigation.dart';
 import 'package:geolocator/geolocator.dart';
@@ -14,6 +13,7 @@ import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
 //import 'package:map_location_picker/map_location_picker.dart';
 
 import 'package:wakaluxe/data/dummy.dart';
+import 'package:wakaluxe/src/common/Utils/logger.dart';
 import 'package:wakaluxe/src/common/Utils/wakalux_icons_icons.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/common/widgets/wakaluxe_driver_card.dart';
@@ -22,8 +22,11 @@ import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc/home_bloc.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/screens/wakaluxe_home_sheets.dart';
+import 'package:wakaluxe/src/features/customer/presentation/home/widgets/on_trip_widget.dart';
+import 'package:wakaluxe/src/features/customer/presentation/home/widgets/pay_fare_widget.dart';
+import 'package:wakaluxe/src/features/customer/presentation/home/widgets/select_driver_widget.dart';
+import 'package:wakaluxe/src/features/customer/presentation/home/widgets/showing_booking_detail_widget.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/widgets/taxi_fetching.dart';
-import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart';
 
 // List<Map<String, dynamic>> data = []
 @RoutePage(name: 'HomeMap')
@@ -48,32 +51,13 @@ class _HomeMapState extends State<HomeMap> {
     mapController = controller;
   }
 
-  String? _platformVersion;
-  String? _instruction;
   final _origin = WayPoint(
     name: 'Way Point 1',
     latitude: 38.9111117447887,
     longitude: -77.04012393951416,
     isSilent: true,
   );
-  final _stop1 = WayPoint(
-    name: 'Way Point 2',
-    latitude: 38.91113678979344,
-    longitude: -77.03847169876099,
-    isSilent: true,
-  );
-  final _stop2 = WayPoint(
-    name: 'Way Point 3',
-    latitude: 38.91040213277608,
-    longitude: -77.03848242759705,
-    isSilent: false,
-  );
-  final _stop3 = WayPoint(
-    name: 'Way Point 4',
-    latitude: 38.909650771013034,
-    longitude: -77.03850388526917,
-    isSilent: true,
-  );
+
   final _destination = WayPoint(
     name: 'Way Point 5',
     latitude: 38.90894949285854,
@@ -81,25 +65,8 @@ class _HomeMapState extends State<HomeMap> {
     isSilent: false,
   );
 
-  final _home = WayPoint(
-    name: 'Home',
-    latitude: 37.77440680146262,
-    longitude: -122.43539772352648,
-    isSilent: false,
-  );
-
-  final _store = WayPoint(
-    name: 'Store',
-    latitude: 37.76556957793795,
-    longitude: -122.42409811526268,
-    isSilent: false,
-  );
-  final bool _isMultipleStop = false;
   double? _distanceRemaining, _durationRemaining;
   MapBoxNavigationViewController? _controller;
-  bool _routeBuilt = false;
-  bool _isNavigating = false;
-  final bool _inFreeDrive = false;
   late MapBoxOptions _navigationOption;
   Future<void> _onEmbeddedRouteEvent(e) async {
     _distanceRemaining = await MapBoxNavigation.instance.getDistanceRemaining();
@@ -108,37 +75,30 @@ class _HomeMapState extends State<HomeMap> {
     switch (e.eventType) {
       case MapBoxEvent.progress_change:
         final progressEvent = e.data as RouteProgressEvent;
-        if (progressEvent.currentStepInstruction != null) {
-          _instruction = progressEvent.currentStepInstruction;
-        }
+        if (progressEvent.currentStepInstruction != null) {}
         break;
       case MapBoxEvent.route_building:
       case MapBoxEvent.route_built:
-        setState(() {
-          _routeBuilt = true;
-        });
         break;
       case MapBoxEvent.route_build_failed:
-        setState(() {
-          _routeBuilt = false;
-        });
         break;
       case MapBoxEvent.navigation_running:
-        setState(() {
-          _isNavigating = true;
-        });
         break;
       case MapBoxEvent.on_arrival:
-        if (!_isMultipleStop) {
-          await Future.delayed(const Duration(seconds: 3));
-          await _controller?.finishNavigation();
-        } else {}
+        await Future.delayed(const Duration(seconds: 3));
+        await _controller?.finishNavigation();
+        logInfo('on_arrival');
+
         break;
       case MapBoxEvent.navigation_finished:
+        await _controller?.finishNavigation();
+        logInfo('on_finished');
+
+        break;
+
       case MapBoxEvent.navigation_cancelled:
         setState(() {
-          _routeBuilt = false;
-          _isNavigating = false;
+          Navigator.pop(context);
         });
         break;
       default:
@@ -154,23 +114,23 @@ class _HomeMapState extends State<HomeMap> {
     initialize();
   }
 
-  final List<WayPoint> _waypoints = [];
   Future<void> initPosition() async {
     final location = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
+      desiredAccuracy: LocationAccuracy.low,
     );
+    logInfo('location: $location');
     _center = LatLng(location.latitude, location.longitude);
   }
+
+  final List<WayPoint> _waypoints = [];
 
   Future<void> initialize() async {
     // If the widget was removed from the tree while the asynchronous platform
     // message was in flight, we want to discard the reply rather than calling
     // setState to update our non-existent appearance.
-    //if (!mounted) return;
+    if (!mounted) return;
 
     _navigationOption = MapBoxOptions(
-      initialLatitude: 36.1175275,
-      initialLongitude: -115.1839524,
       zoom: 13,
       tilt: 0,
       bearing: 0,
@@ -186,32 +146,16 @@ class _HomeMapState extends State<HomeMap> {
       simulateRoute: true,
       language: 'en',
     );
-    _navigationOption.simulateRoute = true;
 
     await MapBoxNavigation.instance
         .registerRouteEventListener(_onEmbeddedRouteEvent);
     MapBoxNavigation.instance.setDefaultOptions(_navigationOption);
-
-    String? platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      platformVersion = await MapBoxNavigation.instance.getPlatformVersion();
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colorScheme.background,
-      /*    drawer: const MenuDrawer(),
-      endDrawer: const ProfileDrawer(),
-  */
       body: BlocConsumer<HomeBloc, HomeState>(
         listener: (context, state) {
           if (state.onTrip) {
@@ -230,9 +174,28 @@ class _HomeMapState extends State<HomeMap> {
             });
           }
 
+          final starter = WayPoint(
+            name: 'lol',
+            latitude: _center.latitude,
+            longitude: _center.longitude,
+            isSilent: false,
+          );
+
+          final ender = WayPoint(
+            name: 'arrival',
+            latitude: _center.latitude + 0.001,
+            longitude: -_center.longitude + 0.001,
+            isSilent: false,
+          );
+
           if (state.payfare) {
             MapBoxNavigation.instance.startNavigation(
-              wayPoints: _waypoints,
+              wayPoints: [
+                /* _origin,
+                _destination, */
+                starter,
+                _destined!,
+              ],
             );
           }
         },
@@ -251,26 +214,6 @@ class _HomeMapState extends State<HomeMap> {
                   zoom: 11,
                 ),
               ),
-              /*   Expanded(
-                child: Container(
-                  color: Colors.grey,
-                  child: MapBoxNavigationView(
-                      options: _navigationOption,
-                      onRouteEvent: _onEmbeddedRouteEvent,
-                      onCreated:
-                          (MapBoxNavigationViewController controller) async {
-                        final _origin = WayPoint(
-                            name: "Way Point 1",
-                            latitude: state.lat,
-                            longitude: state.lng,
-                            isSilent: true);
-                        _controller = controller;
-                        await controller.initialize();
-                        await controller
-                            .buildRoute(wayPoints: [_origin, _destination]);
-                      }),
-                ),
-              ), */
               SafeArea(
                 child: Stack(
                   children: [
@@ -347,7 +290,7 @@ class _HomeMapState extends State<HomeMap> {
                                 onTap: () {
                                   Scaffold.of(context).openEndDrawer();
                                 },
-                                imageUrl: 'https://placeimg.com/640/480/any',
+                                imageUrl: 'http://via.placeimg.com/640/480/any',
                               ),
                             ],
                           ),
@@ -373,7 +316,7 @@ class _HomeMapState extends State<HomeMap> {
                                         Icons.close,
                                         color: context.colorScheme.onBackground,
                                       ),
-                                      message: 'Destination Coordimates',
+                                      message: 'Destination Coordinates',
                                       onTap: _handleDestinationSelection,
                                     ),
                                   ),
@@ -381,38 +324,11 @@ class _HomeMapState extends State<HomeMap> {
                                 Expanded(child: 30.hGap),
                               ],
                             ),
-
                           // will handle a bottom sheet and a modal sheet
                         ],
                       ),
                     ),
-                    if (state.selectDriver)
-                      Positioned(
-                        bottom: 20,
-                        left: 0,
-                        right: 0,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: WakaluxeButton(
-                            text: 'Select a driver',
-                            action: () {
-                              context.read<HomeBloc>().add(
-                                    SelectDriverEvent(
-                                      selectDriver: !state.selectDriver,
-                                    ),
-                                  );
-                              context.read<HomeBloc>().add(
-                                    ShowDriversEvent(
-                                      showDrivers: true,
-                                      loadingDrivers: false,
-                                    ),
-                                  );
-                            },
-                            color: context.colorScheme.tertiary,
-                            textColor: context.colorScheme.onTertiary,
-                          ),
-                        ),
-                      ),
+                    if (state.selectDriver) const SelectDriverWidget(),
                     if (state.showDrivers)
                       Positioned(
                         bottom: 20,
@@ -454,47 +370,8 @@ class _HomeMapState extends State<HomeMap> {
                         ),
                       ),
                     if (state.showBookingDetails)
-                      Positioned(
-                        bottom: 20,
-                        left: 0,
-                        right: 0,
-                        child: WakaluxCard(
-                          child: WakaluxeCancleRide(
-                            driverImage: 'https://placeimg.com/640/480/nature',
-                            driverName: 'Ayuko Peters',
-                            dropOffLocation: 'Avenue des banques',
-                            paymentAmount: '500',
-                            paymentMethod: 'MTN Mobile Money',
-                            pickUpLocation: 'Dispensaire Messasi',
-                            rating: 4.0,
-                            timeLeft: 5,
-                            action: () {
-                              context.read<HomeBloc>().add(
-                                    HomeInitialEvent(),
-                                  );
-                              WakaluxeBottomSheets.showRemarkSheet(
-                                context,
-                                () {
-                                  Navigator.pop(context);
-                                },
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                    if (state.onTrip)
-                      const Positioned(
-                        bottom: 20,
-                        left: 0,
-                        right: 0,
-                        child: WakaluxCard(
-                          child: WakaluxeOnTrip(
-                            driverImage: Constants.driver,
-                            driverName: 'Ayuko Peters',
-                            rating: 4,
-                          ),
-                        ),
-                      ),
+                      const ShowBookingDetailsWidget(),
+                    if (state.onTrip) const OnTripWidget(),
                     if (state.getDirections)
                       Positioned(
                         bottom: 20,
@@ -506,53 +383,13 @@ class _HomeMapState extends State<HomeMap> {
                             text: 'Get Directions',
                             action: () {
                               WakaluxeBottomSheets.showDiretionSheet(context);
-                              final origin = WayPoint(
-                                name: 'Way Point 1',
-                                latitude: state.lat,
-                                longitude: state.lng,
-                                isSilent: true,
-                              );
-
-                              setState(() {
-                                _controller?.buildRoute(
-                                  wayPoints: [origin, _destination],
-                                );
-                              });
                             },
                             color: context.colorScheme.tertiary,
                             textColor: context.colorScheme.onTertiary,
                           ),
                         ),
                       ),
-                    if (state.payfare)
-                      Positioned(
-                        bottom: 20,
-                        left: 0,
-                        right: 0,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: WakaluxeButton(
-                            text: 'Pay fare',
-                            action: () async {
-                              print('pay fare: $_waypoints ');
-
-                              context.showSnackBar(
-                                'Will still to move to payment screen',
-                              );
-                              await Future.delayed(const Duration(seconds: 2));
-                              context.read<HomeBloc>().add(
-                                    HomeInitialEvent(),
-                                  );
-                              await context.router.pushAndPopUntil(
-                                const PaymentMethodsRoute(),
-                                predicate: (_) => true,
-                              );
-                            },
-                            color: context.colorScheme.primary,
-                            // textColor: context.colorScheme.onTertoniary,
-                          ),
-                        ),
-                      )
+                    if (state.payfare) PayFareWidget(waypoints: _waypoints)
                   ],
                 ),
               ),
@@ -563,16 +400,10 @@ class _HomeMapState extends State<HomeMap> {
     );
   }
 
+  WayPoint? _destined;
+
   Future<void> _handleDestinationSelection() async {
-    final position = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
-    );
-    final homePosition = WayPoint(
-      name: 'location',
-      latitude: position.latitude,
-      longitude: position.longitude,
-    );
-    _waypoints.add(homePosition);
+    _waypoints.add(_origin);
     await Navigator.push(
       context,
       MaterialPageRoute(
@@ -581,13 +412,14 @@ class _HomeMapState extends State<HomeMap> {
               ? Constants.androidGoogleMapKey
               : Constants.iosGoogleMapKey,
           onPlacePicked: (result) {
-            print(result.geometry!.location.lat);
-            final waypoint = WayPoint(
-              name: 'destinations',
+            logDebug('destined location ${result.geometry!.location}');
+            _destined = WayPoint(
+              name: 'destination',
               latitude: result.geometry!.location.lat,
               longitude: result.geometry!.location.lng,
+              isSilent: false,
             );
-            _waypoints.add(waypoint);
+            _waypoints.add(_destination);
             context.read<HomeBloc>().add(
                   SelectLocationEvent(
                     lat: result.geometry!.location.lat,
