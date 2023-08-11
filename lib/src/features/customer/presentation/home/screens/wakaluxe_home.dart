@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hicons/flutter_hicons.dart';
+import 'package:heroicons/heroicons.dart';
+import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart' as routes;
 
 @RoutePage()
@@ -21,39 +22,48 @@ class WakaluxeHome extends StatelessWidget {
         child: child,
       ),
       bottomNavigationBuilder: (context, tabsRouter) {
-        return BottomNavigationBar(
-          useLegacyColorScheme: false,
-          landscapeLayout: BottomNavigationBarLandscapeLayout.linear,
-          currentIndex: tabsRouter.activeIndex,
-          onTap: tabsRouter.setActiveIndex,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.local_taxi,
-                // color: context.colorScheme.onBackground,
+        return NavigationBar(
+          backgroundColor: context.colorScheme.background,
+          surfaceTintColor: context.colorScheme.background,
+          indicatorColor: context.colorScheme.primary.withOpacity(.55),
+          //labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+          // indicatorShape: Sati
+          // useLegacyColorScheme: false,
+          // landscapeLayout: BottomNavigationBarLandscapeLayout.linear,
+          onDestinationSelected: (dest) => tabsRouter.setActiveIndex(dest),
+          selectedIndex: tabsRouter.activeIndex,
+          destinations: const [
+            NavigationDestination(
+              icon: HeroIcon(
+                HeroIcons.sparkles,
+                style: HeroIconStyle.outline,
+                size: 24,
               ),
-              label: 'Taxi',
+              label: 'Wakaluxe',
             ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.car_rental,
-                // color: context.colorScheme.onBackground,
+            NavigationDestination(
+              icon: HeroIcon(
+                HeroIcons.rocketLaunch,
+                style: HeroIconStyle.outline,
+                size: 24,
               ),
-              label: 'Car Rent',
+              label: 'Rent',
             ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Hicons.hide,
-                //color: context.colorScheme.onBackground,
+            NavigationDestination(
+              icon: HeroIcon(
+                HeroIcons.queueList,
+                style: HeroIconStyle.outline,
+                size: 24,
               ),
               label: 'Trips',
             ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Hicons.profile_1,
-                //color: context.colorScheme.onBackground,
+            NavigationDestination(
+              icon: HeroIcon(
+                HeroIcons.globeEuropeAfrica,
+                style: HeroIconStyle.outline,
+                size: 24,
               ),
-              label: 'Profile',
+              label: 'Settings',
             ),
           ],
         );
