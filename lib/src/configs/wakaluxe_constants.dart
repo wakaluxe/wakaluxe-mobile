@@ -18,6 +18,10 @@ class Constants {
 
   static const String baseUrl = 'https://wakaluxe.herokuapp.com/api/v1';
 
+  static const String onBoard1 = 'assets/illustrations/onboard1.svg';
+  static const String onBoard2 = 'assets/illustrations/onboard2.svg';
+  static const String onBoard3 = 'assets/illustrations/onboard3.svg';
+
   static const String profile = 'assets/images/profile.png';
   static const String driver = 'assets/images/driver.png';
   static const String chat = 'assets/images/chat.png';

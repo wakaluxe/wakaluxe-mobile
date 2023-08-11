@@ -71,10 +71,10 @@ List<Map<String, dynamic>> getDriverData() {
         'recommended': random.nextInt(100),
         'time': '${random.nextInt(10)}',
         'imageLinks': [
-          'https://placeimg.com/640/480/any',
-          'https://placeimg.com/640/480/animals',
-          'https://placeimg.com/640/480/nature',
-          'https://placeimg.com/640/480/tech',
+          'https://via.placeimg.com/640/480/any',
+          'https://via.placeimg.com/640/480/animals',
+          'https://via.placeimg.com/640/480/nature',
+          'https://via.placeimg.com/640/480/tech',
         ],
       },
     );
