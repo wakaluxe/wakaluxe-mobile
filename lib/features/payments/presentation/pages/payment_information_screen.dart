@@ -2,7 +2,6 @@
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wakaluxe/features/payments/presentation/cubit/payment_cubit.dart';
@@ -42,58 +41,60 @@ class _PaymentInformationScreenState extends State<PaymentInformationScreen> {
       appBar: AppBar(
         leading: WakaluxBackhButton(),
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: 50.h,
-          horizontal: 20.w,
-        ),
-        child: Form(
-          key: _formKey,
-          child: BlocListener<PaymentCubit, PaymentsState>(
-            listener: (context, state) {
-              _handleConfirmation();
-            },
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  'Payment Details',
-                  style: textTheme.title,
-                ),
-                34.h.vGap,
-                Text(
-                  'Customer number',
-                  style: textTheme.body2,
-                ),
-                10.h.vGap,
-                PaymentFieldWidget(
-                  controller: _accountNumberController,
-                  hint: 'Enter your phone number',
-                  validator: phoneNumberValidator,
-                  formatters: [phoneFormatter],
-                ),
-                30.h.vGap,
-                Text('Taxi fare(XAF)', style: textTheme.body2),
-                10.h.vGap,
-                PaymentFieldWidget(
-                  hint: '500',
-                  controller: _amountController,
-                  validator: requireValidator,
-                ),
-                111.h.vGap,
-                GestureDetector(
-                  onTap: _handleConfirmation,
-                  child: WakaluxeButton(
-                      text: 'Pay',
-                      action: () {
-                            context.read<PaymentCubit>().paymentProcessing();
-
-                        context.read<PaymentCubit>().addPaymentInformation(
-                            amount: _amountController.text,
-                            number: _accountNumberController.text);
-                      }),
-                ),
-              ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            vertical: 50.h,
+            horizontal: 20.w,
+          ),
+          child: Form(
+            key: _formKey,
+            child: BlocListener<PaymentCubit, PaymentsState>(
+              listener: (context, state) {
+                _handleConfirmation();
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    'Payment Details',
+                    style: textTheme.title,
+                  ),
+                  34.h.vGap,
+                  Text(
+                    'Customer number',
+                    style: textTheme.body2,
+                  ),
+                  10.h.vGap,
+                  PaymentFieldWidget(
+                    controller: _accountNumberController,
+                    hint: 'Enter your phone number',
+                    validator: phoneNumberValidator,
+                    formatters: [phoneFormatter],
+                  ),
+                  30.h.vGap,
+                  Text('Taxi fare(XAF)', style: textTheme.body2),
+                  10.h.vGap,
+                  PaymentFieldWidget(
+                    hint: '500',
+                    controller: _amountController,
+                    validator: requireValidator,
+                  ),
+                  111.h.vGap,
+                  GestureDetector(
+                    onTap: _handleConfirmation,
+                    child: WakaluxeButton(
+                        text: 'Pay',
+                        action: () {
+                              context.read<PaymentCubit>().paymentProcessing();
+      
+                          context.read<PaymentCubit>().addPaymentInformation(
+                              amount: _amountController.text,
+                              number: _accountNumberController.text);
+                        }),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:wakaluxe/features/payments/presentation/pages/payment_methods_screen.dart';
 
+import 'package:wakaluxe/features/payments/presentation/pages/payment_methods_screen.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
@@ -30,7 +30,7 @@ class _Home2ScreenState extends State<Home2Screen> {
 
   @override
   void initState() {
-        context.read<AuthBloc>().add(OnAppStartEvent());
+    context.read<AuthBloc>().add(OnAppStartEvent());
     super.initState();
   }
 
@@ -77,14 +77,12 @@ class _Home2ScreenState extends State<Home2Screen> {
                             t: t,
                             title: 'Chat',
                             icon: Constants.messageIcon,
-                            onTap: () =>
-                                context.router.pushNamed('/messages')),
+                            onTap: () => context.router.pushNamed('/messages')),
                         HomeBox(
                             t: t,
                             title: 'Settings',
                             icon: Constants.settingIcon,
-                            onTap: () =>
-                                context.router.pushNamed('/settings')),
+                            onTap: () => context.router.pushNamed('/settings')),
                         BlocConsumer<AuthBloc, AuthState>(
                           listener: (context, state) {
                             // TODO: implement listener
@@ -127,8 +125,8 @@ class _Home2ScreenState extends State<Home2Screen> {
                             t: t,
                             title: 'Payment',
                             icon: Constants.subscriptionIcon,
-                            onTap: () =>
-                                context.router.pushNamed(PaymentMethodsScreen.path)),
+                            onTap: () => context.router
+                                .pushNamed(PaymentMethodsScreen.path)),
                         HomeBox(
                             t: t,
                             title: 'My Trips',
@@ -145,12 +143,13 @@ class _Home2ScreenState extends State<Home2Screen> {
               Row(
                 children: <Widget>[
                   HomeCard(
+                    image: Constants.onBoard2,
                     title: 'Book a Taxi',
                     t: t,
                     onTap: () => context.router.pushNamed('/home-map'),
                   ),
                   10.w.hGap,
-                  HomeCard(title: 'Rent a Car', t: t),
+                  HomeCard(title: 'Rent a Car', t: t, image: Constants.onBoard1,),
                 ],
               ),
             ],
@@ -165,11 +164,13 @@ class HomeCard extends StatelessWidget {
     required this.t,
     this.onTap,
     required this.title,
+    required this.image,
   }) : super(key: key);
 
   final TextTheme t;
   final void Function()? onTap;
   final String title;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -184,7 +185,10 @@ class HomeCard extends StatelessWidget {
         ),
         child: Column(
           children: <Widget>[
-            SvgPicture.asset(Constants.bookAsset),
+            SvgPicture.asset(image,
+            height: 100,
+            width: 100,
+            ),
             12.h.vGap,
             Text(
               title,

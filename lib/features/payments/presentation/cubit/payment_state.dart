@@ -33,18 +33,18 @@ class PaymentsState extends Equatable {
 class PaymentsInitialState extends PaymentsState {}
 
 class PaymentUpdatePaymentTypeState extends PaymentsState {
-  PaymentUpdatePaymentTypeState({required super.type});
+  const PaymentUpdatePaymentTypeState({required super.type});
 }
 
 class AddPaymentInformationState extends PaymentsState {
-  AddPaymentInformationState(
-      {required super.amount, required super.accountNumber});
+  const AddPaymentInformationState(
+      {required super.amount, required super.accountNumber,});
 }
 
 class PaymentProcessingState extends PaymentsState {
-  PaymentProcessingState({required super.processingValue});
+  const PaymentProcessingState({required super.processingValue});
 }
 
 class PaymentProcessedState extends PaymentsState {
-  PaymentProcessedState():super(processingValue: 0);
+  const PaymentProcessedState():super(processingValue: 0);
 }
