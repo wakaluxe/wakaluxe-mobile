@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 
-import '../trip_cubit/cubit/trip_cubit.dart';
+import 'package:wakaluxe/src/features/Profile/presentation/trip_cubit/cubit/trip_cubit.dart';
 
 class DateWidget extends StatefulWidget {
   const DateWidget({
@@ -38,7 +38,7 @@ class _DateWidgetState extends State<DateWidget> {
     final theme = Theme.of(context).textTheme;
     return SizedBox(
       height: 100.h,
-      child: TableCalendar(
+      child: TableCalendar<DateTime>(
         firstDay: DateTime.now().subtract(const Duration(days: 30)),
         lastDay: DateTime.now(),
         focusedDay: _focusedDay,

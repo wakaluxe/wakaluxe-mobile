@@ -9,6 +9,7 @@ import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/Profile/presentation/widgets/empty_notification_content.dart';
+import 'package:wakaluxe/src/generated/assets.dart';
 
 @RoutePage()
 class Notification extends StatefulWidget {
@@ -60,49 +61,60 @@ class _NotificationState extends State<Notification> {
           : SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: 20.0.w,
+                  horizontal: 0.0.w,
                   vertical: 30.h,
                 ),
                 child: Column(
                   children: [
                     // const SizedBox(height: 20),
-                    ListView.builder(
+                    ListView.separated(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
+                      separatorBuilder: (context, index) => const Divider(),
                       itemCount: notifications.length,
                       itemBuilder: (context, index) {
                         final notification = notifications[index];
-                        return
-                            /* Row(
-                          children: <Widget>[
-                            isManage
-                              ? Checkbox(value: false, onChanged: (val) {})
-                              : CircleAvatar(
-                                  radius: 5.r,
-                                  backgroundColor: context.colorScheme.primary,
-                                ),
-
-                          ],
-                        ); */
-                            ListTile(
+                        return ListTile(
+                          horizontalTitleGap: 4,
                           leading: isManage
                               ? Checkbox(value: false, onChanged: (val) {})
                               : CircleAvatar(
-                                  radius: 5.r,
+                                  radius: 24.r,
                                   backgroundColor: context.colorScheme.primary,
+                                  child: Center(
+                                    child: Image.asset(
+                                      Assets.assetsIconsLaucnher,
+                                      height: 28.h,
+                                      width: 28.w,
+                                    ),
+                                  ),
                                 ),
                           title: Text(
                             notification['name'] as String,
-                            style: theme.titleMedium,
+                            style: theme.titleMedium!.copyWith(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
-                          subtitle: Text(
-                            notification['content'] as String,
-                            style: theme.bodyLarge,
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                notification['content'] as String,
+                                style:
+                                    theme.bodyLarge!.copyWith(fontSize: 14.sp),
+                              ),
+                              Text(
+                                notification['time'] as String,
+                                style: theme.titleMedium!.copyWith(
+                                  fontSize: 12.sp,
+                                  color: context.colorScheme.onBackground
+                                      .withOpacity(.35),
+                                ),
+                              ),
+                            ],
                           ),
-                          trailing: Text(
-                            notification['time'] as String,
-                            style: theme.bodyMedium,
-                          ),
+                          //  trailing:
                         );
                       },
                     ),
@@ -175,7 +187,8 @@ class NotificationButton extends StatelessWidget {
 List<Map<String, dynamic>> notifications = [
   {
     'name': 'Message from John',
-    'content': 'Hey, are you free to meet up tomorrow?',
+    'content':
+        'Hey, are you free to meet up tomorrow? Like I want to seriously meet you',
     'time': '3 hours ago',
     'isRead': true
   },

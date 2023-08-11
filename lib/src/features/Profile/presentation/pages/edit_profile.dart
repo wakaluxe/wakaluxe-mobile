@@ -3,9 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:wakaluxe/src/common/Utils/helpers.dart';
-import 'package:wakaluxe/src/common/Utils/validator.dart';
 
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/common/widgets/wakalux_input_field.dart';
@@ -44,10 +42,10 @@ class _EditProfileState extends State<EditProfile> {
     final t = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
-        leading: WakaluxBackhButton(),
+        leading: const WakaluxBackhButton(),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20),
         child: Form(
           key: _formKey,
           child: Column(
@@ -59,7 +57,7 @@ class _EditProfileState extends State<EditProfile> {
                   CircleAvatar(
                     radius: 70.r,
                     backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                    backgroundImage: AssetImage(Constants.profile),
+                    backgroundImage: const AssetImage(Constants.profile),
                   ),
                   GestureDetector(
                     onTap: _handleProfilePicChange,
@@ -172,19 +170,19 @@ class _EditProfileState extends State<EditProfile> {
 
   void _handleProfilePicChange() {}
 
-  void _showDialog() {
-    showDialog(
+  Future<void> _showDialog() async {
+    await showDialog<void>(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('OTP Code'),
-        content: Text('Enter the OTP code sent to your phone number'),
+        title: const Text('OTP Code'),
+        content: const Text('Enter the OTP code sent to your phone number'),
         actionsAlignment: MainAxisAlignment.center,
         actions: <Widget>[
           TextButton(
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: Text('Verify'),
+            child: const Text('Verify'),
           ),
         ],
       ),

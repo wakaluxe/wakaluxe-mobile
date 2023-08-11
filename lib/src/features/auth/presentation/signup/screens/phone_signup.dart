@@ -73,7 +73,7 @@ class _WakaluxePhoneSignUpState extends State<WakaluxePhoneSignUp> {
               formatter: [phoneFormatter],
             ),
             17.vGap,
-              WakaluxInputField(
+            WakaluxInputField(
               text: text,
               hint: 'Pin',
               controller: pinController,
@@ -81,7 +81,7 @@ class _WakaluxePhoneSignUpState extends State<WakaluxePhoneSignUp> {
               obscured: true,
               formatter: [pinFormatter],
             ),
-    const Spacer(),
+            const Spacer(),
             Center(
               child: WakaluxeButton(
                 text: 'Continue',
@@ -92,9 +92,5 @@ class _WakaluxePhoneSignUpState extends State<WakaluxePhoneSignUp> {
         ),
       ),
     );
-  }
-
-  _handleSignUp(){
-
   }
 }

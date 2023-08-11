@@ -141,7 +141,7 @@ class WakaluxeBottomSheets {
   // buttonsheet for payment options
 
   static Future<void> showPaymentBottomSheet(BuildContext context) async {
-    await showModalBottomSheet(
+    await showModalBottomSheet<void>(
       context: context,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
@@ -234,7 +234,7 @@ class WakaluxeBottomSheets {
   }
 
   static Future<void> showConfirmDialog(BuildContext context) async {
-    await showDialog(
+    await showDialog<void>(
       context: context,
       builder: (context) {
         return AlertDialog(
@@ -300,7 +300,7 @@ class WakaluxeBottomSheets {
     BuildContext context,
     VoidCallback action,
   ) async {
-    await showModalBottomSheet(
+    await showModalBottomSheet<void>(
       context: context,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
@@ -408,7 +408,7 @@ class WakaluxeBottomSheets {
   }
 
   static Future<void> showDiretionSheet(BuildContext context) async {
-    await showModalBottomSheet(
+    await showModalBottomSheet<void>(
       context: context,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(

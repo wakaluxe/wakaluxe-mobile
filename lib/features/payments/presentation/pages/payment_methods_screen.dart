@@ -3,7 +3,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:wakaluxe/features/payments/presentation/cubit/payment_cubit.dart';
 import 'package:wakaluxe/features/payments/presentation/pages/payment_information_screen.dart';
 import 'package:wakaluxe/features/payments/presentation/widgets/payment_card_widget.dart';
@@ -17,7 +16,7 @@ import 'package:wakaluxe/src/extensions/num.dart';
 
 @RoutePage()
 class PaymentMethodsScreen extends StatefulWidget {
-  const PaymentMethodsScreen({Key? key}) : super(key: key);
+  const PaymentMethodsScreen({super.key});
   static String path = '/payment-methods';
 
   @override
@@ -88,8 +87,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
                   const Spacer(),
                   WakaluxeButton(
                     text: 'Confirm',
-                    action: () =>
-                       _handleConfirmation(state.type),
+                    action: () => _handleConfirmation(state.type),
                   )
                 ],
               );
@@ -106,9 +104,10 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
         'Please select a payment method',
         duration: const Duration(seconds: 2),
       );
-    } else{
+    } else {
       context.router.pushNamed(PaymentInformationScreen.name);
-  }}
+    }
+  }
 
   void _handlePaymentUpdate(PaymentMethodsType type) {
     context.read<PaymentCubit>().updatePaymentMethod(type);

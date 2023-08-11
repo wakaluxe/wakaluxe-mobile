@@ -106,8 +106,8 @@ class _WakaluxeCreatePinState extends State<WakaluxeCreatePin> {
     );
   }
 
-  _openDialog(BuildContext context) {
-    showDialog(
+  void _openDialog(BuildContext context) {
+    showDialog<void>(
       context: context,
       builder: (context) => AlertDialog(
         title: Text(

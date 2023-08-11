@@ -8,10 +8,11 @@ final locator = GetIt.instance;
 
 Future<void> registerServices() async {
   //check if user logged in or not
-  locator.registerLazySingleton<HiveClient>(HiveClient.new);
-  locator.registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);
-  locator.registerLazySingleton<FirebaseAuthRepository>(
-    FirebaseAuthRepository.new,
-  );
-  locator.registerLazySingleton<LocalUSerData>(LocalUSerData.new);
+  locator
+    ..registerLazySingleton<HiveClient>(HiveClient.new)
+    ..registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance)
+    ..registerLazySingleton<FirebaseAuthRepository>(
+      FirebaseAuthRepository.new,
+    )
+    ..registerLazySingleton<LocalUSerData>(LocalUSerData.new);
 }
