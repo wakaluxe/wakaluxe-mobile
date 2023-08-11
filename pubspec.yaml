@@ -52,6 +52,8 @@ dependencies:
   slang_flutter: ^3.22.0
   table_calendar: ^3.0.9
   url_launcher: ^6.1.10
+  uuid: ^3.0.7
+  heroicons: ^0.9.0
   
 
 dev_dependencies:

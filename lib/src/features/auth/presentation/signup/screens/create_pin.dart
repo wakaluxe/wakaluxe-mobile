@@ -96,7 +96,7 @@ class _WakaluxeCreatePinState extends State<WakaluxeCreatePin> {
                 const Spacer(),
                 WakaluxeButton(
                   text: 'Confirm',
-                  action: () => _openDialog(context),
+                  action: () async => _openDialog(context),
                 )
               ],
             ),
@@ -106,8 +106,8 @@ class _WakaluxeCreatePinState extends State<WakaluxeCreatePin> {
     );
   }
 
-  _openDialog(BuildContext context) {
-    showDialog(
+  Future<void> _openDialog(BuildContext context) async {
+    await showDialog<void>(
       context: context,
       builder: (context) => AlertDialog(
         title: Text(

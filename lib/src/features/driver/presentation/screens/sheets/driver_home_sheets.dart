@@ -7,7 +7,7 @@ import 'package:wakaluxe/src/features/driver/domain/cubit/driver_home_sheet/driv
 
 class WakaluxeDriverButtomSheets {
   static Future<void> showPickUpPointSheet(BuildContext context) async {
-    await showModalBottomSheet(
+    await showModalBottomSheet<void>(
       context: context,
       isDismissible: false,
       shape: const RoundedRectangleBorder(
@@ -37,7 +37,7 @@ class WakaluxeDriverButtomSheets {
   }
 
   static Future<void> showDriverDetailsSheet(BuildContext context) async {
-    await showModalBottomSheet(
+    await showModalBottomSheet<void>(
       context: context,
       isDismissible: false,
       shape: const RoundedRectangleBorder(
@@ -129,7 +129,7 @@ class WakaluxeDriverButtomSheets {
   }
 
   static Future<void> showTerminatedSheet(BuildContext context) async {
-    await showModalBottomSheet(
+    await showModalBottomSheet<void>(
       context: context,
       isDismissible: false,
       shape: const RoundedRectangleBorder(

@@ -4,8 +4,8 @@ import 'package:hive/hive.dart';
 class OnBoardingGuard extends AutoRouteGuard {
   @override
   void onNavigation(NavigationResolver resolver, StackRouter router) {
-    final box = Hive.box('first_run');
-    final isFirstRun = box.get('is_first_run', defaultValue: true) as bool;
+    final box = Hive.box<bool>('first_run');
+    final isFirstRun = box.get('is_first_run', defaultValue: true)!;
     if (isFirstRun) {
       box.put('is_first_run', false);
       resolver.next();

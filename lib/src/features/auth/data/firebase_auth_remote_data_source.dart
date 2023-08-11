@@ -34,10 +34,10 @@ class FirebaseAuthRepository {
 
   Future<void> veryPhoneNumber({
     required String phoneNumber,
-    required Function(PhoneAuthCredential) verificationCompleted,
-    required Function(FirebaseAuthException) verificationFailed,
-    required Function(String, int?) codeSent,
-    required Function(String) codeAutoRetrievalTimeout,
+    required void Function(PhoneAuthCredential) verificationCompleted,
+    required void Function(FirebaseAuthException) verificationFailed,
+    required void Function(String, int?) codeSent,
+    required void Function(String) codeAutoRetrievalTimeout,
   }) async {
     try {
       await _auth.verifyPhoneNumber(
@@ -48,7 +48,7 @@ class FirebaseAuthRepository {
         codeAutoRetrievalTimeout: codeAutoRetrievalTimeout,
       );
     } catch (e) {
-      throw LogInWithPhoneException();
+      throw const LogInWithPhoneException();
     }
   }
 
@@ -76,7 +76,8 @@ class FirebaseAuthRepository {
   }
 
   Future<Either<SignInWithCredentialException, UserEntity>> signWithcredential(
-      AuthCredential credential) async {
+    AuthCredential credential,
+  ) async {
     try {
       final response = await _auth.signInWithCredential(credential);
       final user = response.user;
@@ -111,9 +112,10 @@ class FirebaseAuthRepository {
 extension on User {
   UserEntity get toUser {
     return UserEntity(
-        id: uid,
-        fullName: displayName,
-        profilePicture: photoURL,
-        phoneNumber: phoneNumber);
+      id: uid,
+      fullName: displayName,
+      profilePicture: photoURL,
+      phoneNumber: phoneNumber,
+    );
   }
 }

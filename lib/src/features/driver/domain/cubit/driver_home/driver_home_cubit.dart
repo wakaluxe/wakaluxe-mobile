@@ -34,7 +34,7 @@ class DriverHomeCubit extends Cubit<DriverHomeState> {
       ),
     );
 
-    await Future.delayed(const Duration(seconds: 2));
+    await Future<void>.delayed(const Duration(seconds: 2));
     emit(
       state.copyWith(
         userArrived: !state.userArrived,
@@ -56,7 +56,7 @@ class DriverHomeCubit extends Cubit<DriverHomeState> {
         startRide: !state.startRide,
       ),
     );
-    await Future.delayed(const Duration(seconds: 2));
+    await Future<void>.delayed(const Duration(seconds: 2));
     emit(
       state.copyWith(
         completedTrip: !state.completedTrip,
