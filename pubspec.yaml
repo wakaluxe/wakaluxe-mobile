@@ -41,7 +41,7 @@ dependencies:
   intl: ^0.18.0
   introduction_screen: ^3.1.8
   logger: ^1.4.0
-  
+
   lottie: ^2.5.0
   mapbox_search: ^3.2.0
   mask_text_input_formatter: ^2.4.0
@@ -52,7 +52,8 @@ dependencies:
   slang_flutter: ^3.22.0
   table_calendar: ^3.0.9
   url_launcher: ^6.1.10
-  
+  retrofit: ^4.0.1
+  connectivity_plus: ^4.0.2
 
 dev_dependencies:
   auto_route_generator: ^6.2.0
@@ -63,7 +64,7 @@ dev_dependencies:
     sdk: flutter
   mocktail: ^0.3.0
   very_good_analysis: ^4.0.0
-
+  retrofit_generator: ^7.0.8
 
 flutter:
   uses-material-design: true
@@ -82,12 +83,11 @@ flutter:
     - assets/icons/hicon/bold/
     - .env
 
-
   fonts:
     - family: WakaluxIcons
       fonts:
         - asset: fonts/WakaluxIcons.ttf
-          
+
 flutter_assets:
   assets_path: assets/
   output_path: lib/src/generated/

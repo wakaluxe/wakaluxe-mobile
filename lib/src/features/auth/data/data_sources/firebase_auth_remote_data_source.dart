@@ -6,14 +6,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:wakaluxe/src/common/Utils/logger.dart';
 import 'package:wakaluxe/src/dependencies_container.dart';
-import 'package:wakaluxe/src/features/auth/data/local_auser_data.dart';
+import 'package:wakaluxe/src/features/auth/data/data_sources/local_auser_data.dart';
 import 'package:wakaluxe/src/features/auth/domain/entities/user_entity.dart';
 import 'package:wakaluxe/src/features/auth/domain/exceptions/logout_exception.dart';
 import 'package:wakaluxe/src/features/auth/domain/exceptions/phone_login_exceptions.dart';
 import 'package:wakaluxe/src/features/auth/domain/exceptions/sign_anonymously_exception.dart';
 import 'package:wakaluxe/src/features/auth/domain/exceptions/sign_in_with_credential.dart';
 
-class FirebaseAuthRepository {
+class FirebaseAuthRepository  {
   final LocalUSerData _localUSerData = locator<LocalUSerData>();
   final FirebaseAuth _auth = locator<FirebaseAuth>();
 

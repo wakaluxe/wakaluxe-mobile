@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:wakaluxe/src/common/Utils/logger.dart';
 import 'package:wakaluxe/src/dependencies_container.dart';
-import 'package:wakaluxe/src/features/auth/data/local_auser_data.dart';
+import 'package:wakaluxe/src/features/auth/data/data_sources/local_auser_data.dart';
 
 class AuthGuard extends AutoRouteGuard {
   @override

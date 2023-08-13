@@ -5,7 +5,7 @@ import 'package:wakaluxe/bootstrap.dart';
 import 'package:wakaluxe/features/payments/presentation/cubit/payment_cubit.dart';
 import 'package:wakaluxe/src/dependencies_container.dart';
 import 'package:wakaluxe/src/features/Profile/presentation/trip_cubit/cubit/trip_cubit.dart';
-import 'package:wakaluxe/src/features/auth/data/firebase_auth_remote_data_source.dart';
+import 'package:wakaluxe/src/features/auth/data/data_sources/firebase_auth_remote_data_source.dart';
 import 'package:wakaluxe/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc/home_bloc.dart';
 import 'package:wakaluxe/src/features/onboarding/language/cubit/language_cubit.dart';

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:wakaluxe/src/features/auth/data/firebase_auth_remote_data_source.dart';
+import 'package:wakaluxe/src/features/auth/data/data_sources/firebase_auth_remote_data_source.dart';
 import 'package:wakaluxe/src/features/auth/domain/entities/user_entity.dart';
 import 'dart:convert';
 

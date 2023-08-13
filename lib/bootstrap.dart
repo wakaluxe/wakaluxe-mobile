@@ -14,7 +14,7 @@ import 'package:wakaluxe/app/common/widgets/wakaluxe_blocs.dart';
 import 'package:wakaluxe/app_observer.dart';
 import 'package:wakaluxe/firebase_options.dart';
 import 'package:wakaluxe/src/dependencies_container.dart';
-import 'package:wakaluxe/src/features/auth/data/local_auser_data.dart';
+import 'package:wakaluxe/src/features/auth/data/data_sources/local_auser_data.dart';
 
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   FlutterError.onError = (details) {

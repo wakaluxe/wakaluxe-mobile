@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:wakaluxe/src/common/Utils/logger.dart';
-import 'package:wakaluxe/src/features/auth/data/firebase_auth_remote_data_source.dart';
+import 'package:wakaluxe/src/features/auth/data/data_sources/firebase_auth_remote_data_source.dart';
 import 'package:wakaluxe/src/features/auth/domain/exceptions/sign_in_with_credential.dart';
 
 import '../../domain/entities/user_entity.dart';
