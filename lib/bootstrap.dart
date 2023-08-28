@@ -10,7 +10,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:wakaluxe/app/common/widgets/wakaluxe_blocs.dart';
 import 'package:wakaluxe/app_observer.dart';
 import 'package:wakaluxe/firebase_options.dart';
 import 'package:wakaluxe/src/dependencies_container.dart';
@@ -30,6 +29,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   }
   await registerServices();
   Bloc.observer = const AppBlocObserver();
+
   final storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
         ? HydratedStorage.webStorageDirectory
@@ -44,7 +44,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark,
-      systemNavigationBarColor: Colors.transparent,
+      systemNavigationBarColor: Color.fromARGB(246, 0, 0, 0),
       systemNavigationBarIconBrightness: Brightness.dark,
     ),
   );
@@ -53,8 +53,6 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   await locator<LocalUSerData>().initialize();
   // await dotenv.load();
   runApp(
-    WakaluxeBlocs(
-      child: await builder(),
-    ),
+    await builder(),
   );
 }

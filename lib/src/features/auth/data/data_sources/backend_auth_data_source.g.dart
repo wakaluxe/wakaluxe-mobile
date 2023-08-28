@@ -13,7 +13,7 @@ class _BackendAuthDataSource implements BackendAuthDataSource {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'api.wakalux.com';
+    baseUrl ??= 'https://api.wakaluxe.com';
   }
 
   final Dio _dio;
@@ -27,7 +27,7 @@ class _BackendAuthDataSource implements BackendAuthDataSource {
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Token': idToken};
+    final _headers = <String, dynamic>{r'Authorization': idToken};
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body);

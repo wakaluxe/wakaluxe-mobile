@@ -27,7 +27,7 @@ class WakaluxeSignUp extends StatefulWidget {
 }
 
 class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
-  TextEditingController controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   String _trimedPhoneNumber = '';
   @override
@@ -37,7 +37,7 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
 
   @override
   void dispose() {
-    controller.dispose();
+    _controller.dispose();
 
     super.dispose();
   }
@@ -55,9 +55,12 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
           context.router.pushNamed('/home');
         }
         if (state is PhoneAuthCodeSentSuccess) {
-          context.router.push(Verification(
+          context.router.push(
+            Verification(
               phoneNumber: _trimedPhoneNumber,
-              verificationd: state.verificationId));
+              verificationd: state.verificationId,
+            ),
+          );
         }
         // Show error message if any error occurs while verifying phone number and otp code
         if (state is PhoneAuthError) {
@@ -88,7 +91,7 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
                 WakaluxInputField(
                   text: text,
                   hint: '+237 699 99 99 99',
-                  controller: controller,
+                  controller: _controller,
                   formatter: [phoneFormatter],
                   icon: Constants.hashtagIcon,
                   validator: phoneNumberValidator,
@@ -169,7 +172,9 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
                       );
                     }
                     return GestureDetector(
-                      onTap: _verifyPhoneNumber,
+                      onTap: state is PhoneAuthLoading
+                          ? null
+                          : _verifyPhoneNumber,
                       child: WakaluxeButton(
                         text: 'SIGN UP',
                         textColor: context.colorScheme.scrim,
@@ -186,7 +191,7 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
   }
 
   void _verifyPhoneNumber() {
-    _trimedPhoneNumber = controller.text.trim();
+    _trimedPhoneNumber = _controller.text.trim();
     logInfo(_trimedPhoneNumber);
     if (_formKey.currentState!.validate()) {
       context.read<AuthBloc>().add(

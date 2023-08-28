@@ -13,7 +13,7 @@ class Constants {
       'AIzaSyCrJaRKpo96CK8D7LDPSGl_mVvmSQ7CpKc';
   static const String iosGoogleMapKey =
       'AIzaSyBZOIpGjTHWn8vNwGtfRBlSzYj1KOCY06Q';
-  static const String baseUrl = 'api.wakalux.com';
+  static const String baseUrl = 'https://api.wakaluxe.com';
   static const double borderRadius = 14;
   static const double buttonHeight = 52;
 

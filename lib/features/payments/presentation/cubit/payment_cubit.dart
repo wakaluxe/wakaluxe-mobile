@@ -18,8 +18,14 @@ class PaymentCubit extends Cubit<PaymentsState> {
     emit(AddPaymentInformationState(amount: amount, accountNumber: number));
   }
 
-  void paymentProcessing() {
-    Timer.periodic(const Duration(seconds: 3), (timer) {
+  Future<void> paymentProcessing() async {
+    emit(
+      PaymentProcessingState(processingValue: state.processingValue + 0.2),
+    );
+    await Future.delayed(const Duration(seconds: 3));
+    emit(const PaymentProcessedState());
+
+    /* Timer.periodic(const Duration(seconds: 3), (timer) {
       if (state.processingValue == 1) {
         timer.cancel();
         emit(const PaymentProcessedState());
@@ -28,6 +34,6 @@ class PaymentCubit extends Cubit<PaymentsState> {
           PaymentProcessingState(processingValue: state.processingValue + 0.2),
         );
       }
-    });
+    }); */
   }
 }

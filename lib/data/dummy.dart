@@ -64,14 +64,14 @@ List<Map<String, dynamic>> getDriverData() {
     driversData.add(
       {
         'driverName': 'Driver ${i + 1}',
-        'driverImage': 'https://placeimg.com/640/480/any',
+        'driverImage': 'https://i.pravatar.cc/640',
         'distance': '${random.nextDouble()}',
         'price': '${random.nextInt(1000)}',
         'rating': random.nextDouble() * 5,
         'recommended': random.nextInt(100),
         'time': '${random.nextInt(10)}',
         'imageLinks': [
-          'https://via.placeimg.com/640/480/any',
+          'https://i.pravatar.cc/640/any',
           'https://via.placeimg.com/640/480/animals',
           'https://via.placeimg.com/640/480/nature',
           'https://via.placeimg.com/640/480/tech',

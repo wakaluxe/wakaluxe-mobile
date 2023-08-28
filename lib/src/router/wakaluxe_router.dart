@@ -18,8 +18,8 @@ class WakaluxAppRouter extends $WakaluxAppRouter {
             OnBoardingGuard(),
           ],
         ),
-       // AutoRoute(page: Home.page, path: '/home', guards: [AuthGuard()]),
-        AutoRoute(page: HomeMap.page, path: '/home-map', ),
+        // AutoRoute(page: Home.page, path: '/home', guards: [AuthGuard()]),
+        AutoRoute(page: HomeMap.page, path: '/home-map',guards:[AuthGuard()]),
         AutoRoute(page: Login.page, path: '/login'),
         AutoRoute(page: Verification.page, path: '/verification'),
         AutoRoute(page: SignUp.page, path: '/sign-up'),
@@ -87,7 +87,7 @@ class WakaluxAppRouter extends $WakaluxAppRouter {
         AutoRoute(
           page: MyProfile.page,
           path: '/my-profile',
-          guards: [AuthGuard()]
+          guards: [AuthGuard()],
         ),
         AutoRoute(
           page: Notification.page,
@@ -118,8 +118,10 @@ class WakaluxAppRouter extends $WakaluxAppRouter {
           page: Language.page,
           path: '/language',
         ),
-        AutoRoute(page: PaymentInformationRoute.page, path: '/payment-information'),
+        AutoRoute(
+            page: PaymentInformationRoute.page, path: '/payment-information'),
         AutoRoute(page: PaymentMethodsRoute.page, path: '/payment-methods'),
-        AutoRoute(page: PaymentProcessingRoute.page, path: '/payment-processing')
+        AutoRoute(
+            page: PaymentProcessingRoute.page, path: '/payment-processing')
       ];
 }

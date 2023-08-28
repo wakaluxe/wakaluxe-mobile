@@ -17,7 +17,7 @@ class ShowBookingDetailsWidget extends StatelessWidget {
       right: 0,
       child: WakaluxCard(
         child: WakaluxeCancleRide(
-          driverImage: 'http://via.placeimg.com/640/480/nature',
+          driverImage: 'https://i.pravatar.cc/480',
           driverName: 'Ayuko Peters',
           dropOffLocation: 'Avenue des banques',
           paymentAmount: '500',

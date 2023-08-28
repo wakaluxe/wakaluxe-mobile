@@ -14,75 +14,80 @@ import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/prese
 )
 class WakaluxeSubscriptions extends StatelessWidget {
   const WakaluxeSubscriptions({super.key});
+  static String path = '/subscriptions';
 
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
-    return Scaffold(
-      appBar: AppBar(
-        leading: const SizedBox(),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: GestureDetector(
-              child: Text(
-                'Skip',
-                style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 24.sp,
-                  color: context.colorScheme.onSurfaceVariant,
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        appBar: AppBar(
+          leading: const SizedBox(),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: GestureDetector(
+                onTap: () => context.router.pushNamed(WakaluxeSubscriptions.path),
+                child: Text(
+                  'Skip',
+                  style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 24.sp,
+                    color: context.colorScheme.onSurfaceVariant,
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
-      ),
-      body: PaddedBody(
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Subscription Plan',
-                style: text.headline,
-              ),
-              15.vGap,
-              Text(
-                'Select a subscription plan which is best suited for you.',
-                style: text.body1,
-              ),
-              20.vGap,
-              SubscriptionsCard(
-                text: text,
-                plan: 'Business',
-                features: const [
-                  'Higher Priority than No plan',
-                  'Plan pickups',
-                ],
-              ),
-              25.vGap,
-              GestureDetector(
-                child: SubscriptionsCard(
+          ],
+        ),
+        body: PaddedBody(
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Subscription Plan',
+                  style: text.headline,
+                ),
+                15.vGap,
+                Text(
+                  'Select a subscription plan which is best suited for you.',
+                  style: text.body1,
+                ),
+                20.vGap,
+                SubscriptionsCard(
                   text: text,
-                  plan: 'Family',
-                  isSelected: true,
+                  plan: 'Business',
                   features: const [
                     'Higher Priority than No plan',
                     'Plan pickups',
                   ],
                 ),
-              ),
-              25.vGap,
-              SubscriptionsCard(
-                text: text,
-                plan: 'Personal',
-                features: const [
-                  'Pay your taxi fare',
-                  'Normal Priority',
-                  'Pay your taxi fare'
-                ],
-              ),
-            ],
+                25.vGap,
+                GestureDetector(
+                  child: SubscriptionsCard(
+                    text: text,
+                    plan: 'Family',
+                    isSelected: true,
+                    features: const [
+                      'Higher Priority than No plan',
+                      'Plan pickups',
+                    ],
+                  ),
+                ),
+                25.vGap,
+                SubscriptionsCard(
+                  text: text,
+                  plan: 'Personal',
+                  features: const [
+                    'Pay your taxi fare',
+                    'Normal Priority',
+                    'Pay your taxi fare'
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

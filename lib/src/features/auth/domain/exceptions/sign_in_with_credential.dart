@@ -14,7 +14,7 @@ class SignInWithCredentialException implements Exception {
         return const SignInWithCredentialException(
           'This user has been disabled. Please contact support for help.',
         );
-     
+      
       default:
         return const SignInWithCredentialException();
     }

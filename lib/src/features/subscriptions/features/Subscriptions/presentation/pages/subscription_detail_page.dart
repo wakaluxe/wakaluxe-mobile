@@ -8,6 +8,8 @@ import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/widgets/padded_body.dart';
 import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/widgets/subscriptions_amount.dart';
 
+import '../../../../../customer/presentation/home/screens/home_map.dart';
+
 @RoutePage(
   name: 'SubscriptionDetail',
 )
@@ -99,7 +101,7 @@ class WakaluxeSubscriptionDetail extends StatelessWidget {
               ),
               const Spacer(),
               WakaluxeButton(
-                action: () => context.router.pushNamed('/home'),
+                action: () => context.router.pushNamed(HomeMap.path),
                 text: 'Subscribe',
               ),
             ],

@@ -5,7 +5,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_mapbox_navigation/flutter_mapbox_navigation.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
 //import 'package:map_location_picker/map_location_picker.dart';
@@ -28,10 +27,14 @@ import 'package:wakaluxe/src/features/customer/presentation/home/widgets/select_
 import 'package:wakaluxe/src/features/customer/presentation/home/widgets/showing_booking_detail_widget.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/widgets/taxi_fetching.dart';
 
+import 'package:wakaluxe/src/features/customer/data/data_sources/mapbox_services.dart';
+
 // List<Map<String, dynamic>> data = []
 @RoutePage(name: 'HomeMap')
 class HomeMap extends StatefulWidget {
   const HomeMap({super.key});
+
+  static String path = '/home-map';
 
   @override
   _HomeMapState createState() => _HomeMapState();
@@ -43,7 +46,7 @@ class _HomeMapState extends State<HomeMap> {
   //Prediction? initialValue;
 
   // final TextEditingController _controller = TextEditingController();
-  LatLng _center = const LatLng(45.521563, -122.677433);
+  final LatLng _center = const LatLng(45.521563, -122.677433);
 
   late GoogleMapController mapController;
 
@@ -51,76 +54,29 @@ class _HomeMapState extends State<HomeMap> {
     mapController = controller;
   }
 
-  final _origin = WayPoint(
-    name: 'Way Point 1',
-    latitude: 38.9111117447887,
-    longitude: -77.04012393951416,
-    isSilent: true,
-  );
+  WayPoint? _origin;
 
-  final _destination = WayPoint(
-    name: 'Way Point 5',
-    latitude: 38.90894949285854,
-    longitude: -77.03651905059814,
-    isSilent: false,
-  );
+  WayPoint? _destination;
 
   double? _distanceRemaining, _durationRemaining;
   MapBoxNavigationViewController? _controller;
   late MapBoxOptions _navigationOption;
-  Future<void> _onEmbeddedRouteEvent(e) async {
-    _distanceRemaining = await MapBoxNavigation.instance.getDistanceRemaining();
-    _durationRemaining = await MapBoxNavigation.instance.getDurationRemaining();
-
-    switch (e.eventType) {
-      case MapBoxEvent.progress_change:
-        final progressEvent = e.data as RouteProgressEvent;
-        if (progressEvent.currentStepInstruction != null) {}
-        break;
-      case MapBoxEvent.route_building:
-      case MapBoxEvent.route_built:
-        break;
-      case MapBoxEvent.route_build_failed:
-        break;
-      case MapBoxEvent.navigation_running:
-        break;
-      case MapBoxEvent.on_arrival:
-        await Future.delayed(const Duration(seconds: 3));
-        await _controller?.finishNavigation();
-        logInfo('on_arrival');
-
-        break;
-      case MapBoxEvent.navigation_finished:
-        await _controller?.finishNavigation();
-        logInfo('on_finished');
-
-        break;
-
-      case MapBoxEvent.navigation_cancelled:
-        setState(() {
-          Navigator.pop(context);
-        });
-        break;
-      default:
-        break;
-    }
-    setState(() {});
-  }
 
   @override
   void initState() {
-    initPosition();
     super.initState();
     initialize();
   }
 
-  Future<void> initPosition() async {
+  /*  Future<void> initPosition() async {
     final location = await Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.low,
     );
     logInfo('location: $location');
+    setState(() {
     _center = LatLng(location.latitude, location.longitude);
-  }
+    });
+  } */
 
   final List<WayPoint> _waypoints = [];
 
@@ -148,9 +104,11 @@ class _HomeMapState extends State<HomeMap> {
     );
 
     await MapBoxNavigation.instance
-        .registerRouteEventListener(_onEmbeddedRouteEvent);
+        .registerRouteEventListener(onEmbeddedRouteEvent);
     MapBoxNavigation.instance.setDefaultOptions(_navigationOption);
   }
+
+  Map<String, double>? _initialLocation;
 
   @override
   Widget build(BuildContext context) {
@@ -175,16 +133,9 @@ class _HomeMapState extends State<HomeMap> {
           }
 
           final starter = WayPoint(
-            name: 'lol',
-            latitude: _center.latitude,
-            longitude: _center.longitude,
-            isSilent: false,
-          );
-
-          final ender = WayPoint(
-            name: 'arrival',
-            latitude: _center.latitude + 0.001,
-            longitude: -_center.longitude + 0.001,
+            name: 'departing point',
+            latitude: _initialLocation!['latitude'],
+            longitude: _initialLocation!['longitude'],
             isSilent: false,
           );
 
@@ -206,13 +157,27 @@ class _HomeMapState extends State<HomeMap> {
           }
           return Stack(
             children: [
-              GoogleMap(
-                myLocationEnabled: true,
-                onMapCreated: _onMapCreated,
-                initialCameraPosition: CameraPosition(
-                  target: _center,
-                  zoom: 11,
-                ),
+              BlocBuilder<HomeBloc, HomeState>(
+                builder: (context, state) {
+                  //     if (state.myCoordinate.latitude != 0) {
+                  _initialLocation = {
+                    'latitude': 3.8848841,
+                    'longitude': 11.5449282,
+                  };
+                  //     }
+
+                  return GoogleMap(
+                    myLocationEnabled: true,
+                    onMapCreated: _onMapCreated,
+                    initialCameraPosition: CameraPosition(
+                      target: LatLng(
+                        _initialLocation!['latitude']!,
+                        _initialLocation!['longitude']!,
+                      ),
+                      zoom: 16,
+                    ),
+                  );
+                },
               ),
               SafeArea(
                 child: Stack(
@@ -290,7 +255,7 @@ class _HomeMapState extends State<HomeMap> {
                                 onTap: () {
                                   Scaffold.of(context).openEndDrawer();
                                 },
-                                imageUrl: 'http://via.placeimg.com/640/480/any',
+                                imageUrl: 'https://i.pravatar.cc/480',
                               ),
                             ],
                           ),
@@ -403,7 +368,7 @@ class _HomeMapState extends State<HomeMap> {
   WayPoint? _destined;
 
   Future<void> _handleDestinationSelection() async {
-    _waypoints.add(_origin);
+    // _waypoints.add(_origin);
     await Navigator.push(
       context,
       MaterialPageRoute(
@@ -419,7 +384,7 @@ class _HomeMapState extends State<HomeMap> {
               longitude: result.geometry!.location.lng,
               isSilent: false,
             );
-            _waypoints.add(_destination);
+            //      _waypoints.add(_destination);
             context.read<HomeBloc>().add(
                   SelectLocationEvent(
                     lat: result.geometry!.location.lat,

@@ -16,6 +16,7 @@ class HomeState {
     required this.lat,
     required this.lng,
     required this.loadingDrivers,
+    required this.myCoordinate,
   });
   final int selectedIndex;
   final int selectedPaymentType;
@@ -30,6 +31,7 @@ class HomeState {
   final double lat;
   final double lng;
   final bool loadingDrivers;
+  final LocationEntity myCoordinate;
 
   HomeState copyWith({
     int? selectedIndex,
@@ -45,6 +47,7 @@ class HomeState {
     double? lat,
     double? lng,
     bool? loadingDrivers,
+    LocationEntity? myCoordinate,
   }) {
     return HomeState(
       selectedIndex: selectedIndex ?? this.selectedIndex,
@@ -61,6 +64,7 @@ class HomeState {
       lat: lat ?? this.lat,
       lng: lng ?? this.lng,
       loadingDrivers: loadingDrivers ?? this.loadingDrivers,
+      myCoordinate: myCoordinate ?? this.myCoordinate,
     );
   }
 }
@@ -78,9 +82,10 @@ class HomeInitial extends HomeState {
           onTrip: false,
           getDirections: false,
           payfare: false,
-          lat: 0.0,
-          lng: 0.0,
+          lat: 0,
+          lng: 0,
           loadingDrivers: false,
+          myCoordinate: LocationEntity(latitude: 0, longitude: 0),
         );
 }
 
@@ -99,6 +104,7 @@ class SelectRideState extends HomeState {
     required super.lat,
     required super.lng,
     required super.loadingDrivers,
+    required super.myCoordinate,
   });
 }
 
@@ -117,6 +123,7 @@ class SelectPaymentTypeState extends HomeState {
     required super.lat,
     required super.lng,
     required super.loadingDrivers,
+    required super.myCoordinate,
   });
 }
 
@@ -135,6 +142,7 @@ class SelectPaymentMethodState extends HomeState {
     required super.lat,
     required super.lng,
     required super.loadingDrivers,
+    required super.myCoordinate,
   });
 }
 
@@ -153,6 +161,7 @@ class SelectDriverState extends HomeState {
     required super.lat,
     required super.lng,
     required super.loadingDrivers,
+    required super.myCoordinate,
   });
 }
 
@@ -171,6 +180,7 @@ class ShowDriverState extends HomeState {
     required super.lat,
     required super.lng,
     required super.loadingDrivers,
+    required super.myCoordinate,
   });
 }
 
@@ -189,6 +199,7 @@ class ShowBookingDetailsState extends HomeState {
     required super.lat,
     required super.lng,
     required super.loadingDrivers,
+    required super.myCoordinate,
   });
 }
 
@@ -207,6 +218,7 @@ class SelectReviewState extends HomeState {
     required super.lat,
     required super.lng,
     required super.loadingDrivers,
+    required super.myCoordinate,
   });
 }
 
@@ -222,6 +234,26 @@ class ShowLocationPickerState extends HomeState {
     required super.onTrip,
     required super.getDirections,
     required super.payfare,
+    required super.lat,
+    required super.lng,
+    required super.loadingDrivers,
+    required super.myCoordinate,
+  });
+}
+
+class HomeInitialErrorState extends HomeState {
+  HomeInitialErrorState({
+    required super.selectedIndex,
+    required super.selectedPaymentType,
+    required super.selectedPaymentMethod,
+    required super.selectDriver,
+    required super.showDrivers,
+    required super.showBookingDetails,
+    required super.selectedReview,
+    required super.onTrip,
+    required super.getDirections,
+    required super.payfare,
+    required super.myCoordinate,
     required super.lat,
     required super.lng,
     required super.loadingDrivers,

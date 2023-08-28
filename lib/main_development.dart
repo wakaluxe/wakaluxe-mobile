@@ -5,7 +5,7 @@ import 'package:wakaluxe/bootstrap.dart';
 import 'package:wakaluxe/features/payments/presentation/cubit/payment_cubit.dart';
 import 'package:wakaluxe/src/dependencies_container.dart';
 import 'package:wakaluxe/src/features/Profile/presentation/trip_cubit/cubit/trip_cubit.dart';
-import 'package:wakaluxe/src/features/auth/data/data_sources/firebase_auth_remote_data_source.dart';
+import 'package:wakaluxe/src/features/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:wakaluxe/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc/home_bloc.dart';
 import 'package:wakaluxe/src/features/onboarding/language/cubit/language_cubit.dart';
@@ -16,18 +16,19 @@ void main() {
     () => MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => AppBloc(context.read<FirebaseAuthRepository>()),
+          create: (context) =>
+              AppBloc(context.read<AuthRepositorymplementation>()),
         ),
         BlocProvider<ThemeCubit>(
           create: (context) => ThemeCubit(),
         ),
         BlocProvider<HomeBloc>(
-          create: (context) => HomeBloc(),
+          create: (context) => locator(),
         ),
         BlocProvider(create: (context) => TripCubit()),
         BlocProvider(create: (context) => LanguageCubit()),
-        BlocProvider(
-          create: (context) => AuthBloc(locator<FirebaseAuthRepository>()),
+        BlocProvider<AuthBloc>(
+          create: (context) => locator(),
         ),
         BlocProvider(create: (context) => PaymentCubit())
       ],

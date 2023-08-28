@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-
 import 'package:wakaluxe/features/payments/presentation/pages/payment_methods_screen.dart';
+import 'package:wakaluxe/src/common/Utils/alerts.dart';
+import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc/home_bloc.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/widgets/home_box.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/widgets/home_card.dart';
 import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart';
-
-import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 
 @RoutePage(name: 'Home_2')
 class Home2Screen extends StatefulWidget {
@@ -32,6 +32,7 @@ class _Home2ScreenState extends State<Home2Screen> {
   @override
   void initState() {
     context.read<AuthBloc>().add(OnAppStartEvent());
+    context.read<HomeBloc>().add(HomeInitialEvent());
     super.initState();
   }
 
@@ -61,91 +62,96 @@ class _Home2ScreenState extends State<Home2Screen> {
             40.h.vGap,
             SizedBox(
               height: 230.h,
-              child: Expanded(
-                child: GridView.count(
-                  crossAxisCount: 4,
-                  shrinkWrap: true,
-                  crossAxisSpacing: 10.w,
-                  mainAxisSpacing: 10.h,
-                  children: [
-                    HomeBox(
-                      t: t,
-                      title: 'My Profile',
-                      icon: Constants.profileIcon,
-                      onTap: () => context.router.pushNamed('/my-Profile'),
-                    ),
-                    HomeBox(
-                      t: t,
-                      title: 'Chat',
-                      icon: Constants.messageIcon,
-                      onTap: () => context.router.pushNamed('/messages'),
-                    ),
-                    HomeBox(
-                      t: t,
-                      title: 'Settings',
-                      icon: Constants.settingIcon,
-                      onTap: () => context.router.pushNamed('/settings'),
-                    ),
-                    BlocConsumer<AuthBloc, AuthState>(
-                      listener: (context, state) {
-                        if (state is AuthLogOutError) {
-                          context.showSnackBar(
-                            state.error,
-                            color: context.colorScheme.error,
-                          );
-                          if (state is AuthLogOutSuccess) {
-                            context.router.pushAndPopUntil(
-                              const SignUp(),
-                              predicate: (route) => false,
-                            );
-                          }
-                        }
-                      },
-                      builder: (context, state) {
-                        if (state is AuthLogOutInit) {
-                          return HomeBox(
-                            t: t,
-                            onTap: () {},
-                            title: 'Please wait...',
-                            icon: Constants.logoutIcon,
-                            //onTap: _handleLogOutRequest,
+              child: GridView.count(
+                crossAxisCount: 4,
+                shrinkWrap: true,
+                crossAxisSpacing: 10.w,
+                mainAxisSpacing: 10.h,
+                children: [
+                  HomeBox(
+                    t: t,
+                    title: 'My Profile',
+                    icon: Constants.profileIcon,
+                    onTap: () => context.router.pushNamed('/my-Profile'),
+                  ),
+                  HomeBox(
+                    t: t,
+                    title: 'Chat',
+                    icon: Constants.messageIcon,
+                    onTap: () => context.router.pushNamed('/messages'),
+                  ),
+                  HomeBox(
+                    t: t,
+                    title: 'Settings',
+                    icon: Constants.settingIcon,
+                    onTap: () => context.router.pushNamed('/settings'),
+                  ),
+                  BlocConsumer<AuthBloc, AuthState>(
+                    listener: (context, state) {
+                      if (state is AuthLogOutError) {
+                        context.showSnackBar(
+                          state.error,
+                          color: context.colorScheme.error,
+                        );
+                        if (state is AuthLogOutSuccess) {
+                          context.router.pushAndPopUntil(
+                            const SignUp(),
+                            predicate: (route) => false,
                           );
                         }
+                      }
+                    },
+                    builder: (context, state) {
+                      if (state is AuthLogOutInit) {
                         return HomeBox(
+                          t: t,
+                          onTap: () {},
+                          title: 'Please wait...',
+                          icon: Constants.logoutIcon,
+                          //onTap: _handleLogOutRequest,
+                        );
+                      }
+                      return BlocListener<AuthBloc, AuthState>(
+                        listener: (context, state) {
+                          if (state is AuthLogOutSuccess) {
+                            successToast(context, 'Logged out successfully!');
+                          }
+                        },
+                        child: HomeBox(
                           t: t,
                           title: 'Log Out',
                           icon: Constants.logoutIcon,
                           onTap: _handleLogOutRequest,
-                        );
-                      },
-                    ),
-                    HomeBox(
-                      t: t,
-                      title: 'Subscriptions',
-                      icon: Constants.walletIcon,
-                      onTap: () => context.router.pushNamed('/subscriptions'),
-                    ),
-                    HomeBox(
-                      t: t,
-                      title: 'Payment',
-                      icon: Constants.subscriptionIcon,
-                      onTap: () =>
-                          context.router.pushNamed(PaymentMethodsScreen.path),
-                    ),
-                    HomeBox(
-                      t: t,
-                      title: 'My Trips',
-                      icon: Constants.locationIcon,
-                      onTap: () => context.router.pushNamed('/my-trip'),
-                    ),
-                    HomeBox(
-                      t: t,
-                      title: 'Support',
-                      icon: Constants.headphoneIcon,
-                      onTap: () => context.router.pushNamed('/settings'),
-                    ),
-                  ],
-                ),
+                        ),
+                      );
+                    },
+                  ),
+                  HomeBox(
+                    t: t,
+                    title: 'Subscriptions',
+                    icon: Constants.walletIcon,
+                    onTap: () => context.router.pushNamed('/subscriptions'),
+                  ),
+                  HomeBox(
+                    t: t,
+                    title: 'Payment',
+                    icon: Constants.subscriptionIcon,
+                    onTap: () =>
+                        context.router.pushNamed(PaymentMethodsScreen.path),
+                  ),
+                  HomeBox(
+                    t: t,
+                    title: 'My Trips',
+                    icon: Constants.locationIcon,
+                    onTap: () => context.router.pushNamed('/my-trip'),
+                  ),
+                  HomeBox(
+                    t: t,
+                    title: 'Support',
+                    icon: Constants.headphoneIcon,
+                    onTap: () => context.router.pushNamed('/settings'),
+                  ),
+                ],
               ),
             ),
             Row(
