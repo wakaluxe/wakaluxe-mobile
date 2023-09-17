@@ -108,7 +108,7 @@ class WakaluxeBookingDetails extends StatelessWidget {
                     ),
                     5.vGap,
                     Text(
-                      '$time Km',
+                      '$time m',
                       style: context.bodySm,
                     ),
                   ],
