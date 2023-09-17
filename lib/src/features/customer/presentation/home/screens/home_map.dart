@@ -19,6 +19,7 @@ import 'package:wakaluxe/src/common/widgets/wakaluxe_driver_card.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
+import 'package:wakaluxe/src/features/customer/data/data_sources/mapbox_services.dart';
 import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc/home_bloc.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/screens/wakaluxe_home_sheets.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/widgets/on_trip_widget.dart';
@@ -26,8 +27,6 @@ import 'package:wakaluxe/src/features/customer/presentation/home/widgets/pay_far
 import 'package:wakaluxe/src/features/customer/presentation/home/widgets/select_driver_widget.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/widgets/showing_booking_detail_widget.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/widgets/taxi_fetching.dart';
-
-import 'package:wakaluxe/src/features/customer/data/data_sources/mapbox_services.dart';
 
 // List<Map<String, dynamic>> data = []
 @RoutePage(name: 'HomeMap')
@@ -50,16 +49,15 @@ class _HomeMapState extends State<HomeMap> {
 
   late GoogleMapController mapController;
 
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-  }
+  void _onMapCreated(GoogleMapController controller) =>
+      mapController = controller;
 
-  WayPoint? _origin;
+  /*  WayPoint? _origin;
 
   WayPoint? _destination;
 
-  double? _distanceRemaining, _durationRemaining;
-  MapBoxNavigationViewController? _controller;
+  double? _distanceRemaining, _durationRemaining; 
+  MapBoxNavigationViewController? _controller; */
   late MapBoxOptions _navigationOption;
 
   @override

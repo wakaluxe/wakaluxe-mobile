@@ -116,6 +116,9 @@ class _Home2ScreenState extends State<Home2Screen> {
                           if (state is AuthLogOutSuccess) {
                             successToast(context, 'Logged out successfully!');
                           }
+                          if (state is AuthLogOutError) {
+                            errorToast(context, state.error);
+                          }
                         },
                         child: HomeBox(
                           t: t,

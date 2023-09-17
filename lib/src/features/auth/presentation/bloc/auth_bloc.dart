@@ -13,23 +13,23 @@ part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc(this._authRepository) : super(AuthInitial()) {
-      on<OnAppStartEvent>(_onAppStart);
-      on<SendOtpToPhoneEvent>(_onSendOtp);
-      on<VerifySentOtpEvent>(_onVerifyOtp);
-      on<OnPhoneOtpSent>(
-        (event, emit) async=> emit(
-          PhoneAuthCodeSentSuccess(verificationId: event.verificationId),
-        ),
-      );
-      on<OnPhoneAuthErrorEvent>(
-        (event, emit) async=> emit(PhoneAuthError(error: event.error)),
-      );
-      on<OnPhoneAuthVerificationCompleteEvent>(_loginWithCredential);
-      on<OnLogOutRequestEvent>(_onLogOut);
+    on<OnAppStartEvent>(_onAppStart);
+    on<SendOtpToPhoneEvent>(_onSendOtp);
+    on<VerifySentOtpEvent>(_onVerifyOtp);
+    on<OnPhoneOtpSent>(
+      (event, emit) async => emit(
+        PhoneAuthCodeSentSuccess(verificationId: event.verificationId),
+      ),
+    );
+    on<OnPhoneAuthErrorEvent>(
+      (event, emit) async => emit(PhoneAuthError(error: event.error)),
+    );
+    on<OnPhoneAuthVerificationCompleteEvent>(_loginWithCredential);
+    on<OnLogOutRequestEvent>(_onLogOut);
   }
   final AuthRepositorymplementation _authRepository;
 
-  FutureOr<void> _onSendOtp(
+  Future<void> _onSendOtp(
     SendOtpToPhoneEvent event,
     Emitter<AuthState> emit,
   ) async {
@@ -65,7 +65,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  FutureOr<void> _onVerifyOtp(
+  Future<void> _onVerifyOtp(
     VerifySentOtpEvent event,
     Emitter<AuthState> emit,
   ) async {
@@ -82,7 +82,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  FutureOr<void> _loginWithCredential(
+  Future<void> _loginWithCredential(
     OnPhoneAuthVerificationCompleteEvent event,
     Emitter<AuthState> emit,
   ) async {
@@ -120,6 +120,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(AuthAppStartInit());
     try {
       logInfo('what up app started successfully');
+      final token = await _authRepository.getIdToken;
+      logInfo('the token is: $token');
       emit(AuthAppStartSuccess());
     } catch (e) {
       logError(e.toString());

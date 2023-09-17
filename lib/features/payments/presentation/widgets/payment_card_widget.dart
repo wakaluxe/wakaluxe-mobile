@@ -35,7 +35,7 @@ class PaymentCardWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color: isSelected
               ? context.colorScheme.primary
-              : context.colorScheme.onSurfaceVariant,
+              : context.colorScheme.outline,
           borderRadius: BorderRadius.circular(8.r),
         ),
         child: Row(

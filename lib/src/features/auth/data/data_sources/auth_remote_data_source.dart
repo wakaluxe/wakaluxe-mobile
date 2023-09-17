@@ -69,7 +69,9 @@ class AuthRepositorymplementation {
 //     return user;
 //   });
 // }
-
+  Future<String> get getIdToken async{
+    return await _auth.currentUser?.getIdToken() ?? '';
+  }
   Future<Either<SignAnonymouslyException, UserCredential>>
       signInAnonymously() async {
     try {
