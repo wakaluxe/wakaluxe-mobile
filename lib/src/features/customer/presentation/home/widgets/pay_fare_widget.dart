@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_mapbox_navigation/flutter_mapbox_navigation.dart';
+import 'package:wakaluxe/src/common/Utils/logger.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc/home_bloc.dart';
@@ -26,19 +27,23 @@ class PayFareWidget extends StatelessWidget {
         child: WakaluxeButton(
           text: 'Pay fare',
           action: () async {
-            print('pay fare: $_waypoints ');
+            logInfo('pay fare: $_waypoints ');
 
             context.showSnackBar(
               'Will still to move to payment screen',
             );
-            await Future.delayed(const Duration(seconds: 2));
-            context.read<HomeBloc>().add(
-                  HomeInitialEvent(),
+            await Future<void>.delayed(const Duration(seconds: 2))
+                .then(
+                  (value) => context.read<HomeBloc>().add(
+                        HomeInitialEvent(),
+                      ),
+                )
+                .then(
+                  (value) => context.router.pushAndPopUntil(
+                    const PaymentMethodsRoute(),
+                    predicate: (_) => false,
+                  ),
                 );
-            await context.router.pushAndPopUntil(
-              const PaymentMethodsRoute(),
-              predicate: (_) => false,
-            );
           },
           color: context.colorScheme.primary,
           // textColor: context.colorScheme.onTertoniary,

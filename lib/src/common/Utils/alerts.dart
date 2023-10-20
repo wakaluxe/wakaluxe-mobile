@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:m_toast/m_toast.dart';
-import 'package:wakaluxe/src/dependencies_container.dart';
 
-final toast = locator<ShowMToast>();
-
-dynamic errorToast(BuildContext context, String mssg) => toast.errorToast(
-      context,
+dynamic errorToast(BuildContext context, String mssg) =>
+    ShowMToast(context).errorToast(
       message: mssg,
       alignment: Alignment.center,
     );
-dynamic successToast(BuildContext context, String mssg) => toast.successToast(
-      context,
+dynamic successToast(BuildContext context, String mssg) =>
+    ShowMToast(context).successToast(
       message: mssg,
       alignment: Alignment.center,
     );

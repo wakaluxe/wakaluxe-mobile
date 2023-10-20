@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
-import 'package:m_toast/m_toast.dart';
 import 'package:wakaluxe/src/common/Utils/cache_client.dart';
 import 'package:wakaluxe/src/common/resources/network_connectivity.dart';
 import 'package:wakaluxe/src/features/auth/data/data_sources/auth_remote_data_source.dart';
@@ -16,28 +15,26 @@ import 'package:wakaluxe/src/features/customer/domain/usecases/get_current_locat
 final locator = GetIt.instance;
 
 Future<void> registerServices() async {
-  locator..registerSingleton<Dio>(Dio())
-
-  ..registerLazySingleton<HiveClient>(HiveClient.new)
-  ..registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance)
-  ..registerLazySingleton<AuthRepositorymplementation>(
-    AuthRepositorymplementation.new,
-  )
-  ..registerLazySingleton<LocalUSerData>(LocalUSerData.new)
-  ..registerSingleton<BackendAuthDataSource>(
-    BackendAuthDataSource(locator()),
-  )
-  ..registerLazySingleton<NetworkConnectivity>(
-    NetworkConnectivity.new,
-  )
-
-  ..registerSingleton<ShowMToast>(ShowMToast())
-  ..registerSingleton<TripRepository>(
-    TripRepositoryImplementation(),
-  )
-  ..registerSingleton<GetCurrentLocationUsecase>(
-    GetCurrentLocationUsecase(repository: locator()),
-  )
-  ..registerFactory<HomeBloc>(() => HomeBloc(locator()))
-  ..registerFactory<AuthBloc>(() => AuthBloc(locator()));
+  locator
+    ..registerSingleton<Dio>(Dio())
+    ..registerLazySingleton<HiveClient>(HiveClient.new)
+    ..registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance)
+    ..registerLazySingleton<AuthRepositorymplementation>(
+      AuthRepositorymplementation.new,
+    )
+    ..registerLazySingleton<LocalUSerData>(LocalUSerData.new)
+    ..registerSingleton<BackendAuthDataSource>(
+      BackendAuthDataSource(locator()),
+    )
+    ..registerLazySingleton<NetworkConnectivity>(
+      NetworkConnectivity.new,
+    )
+    ..registerSingleton<TripRepository>(
+      TripRepositoryImplementation(),
+    )
+    ..registerSingleton<GetCurrentLocationUsecase>(
+      GetCurrentLocationUsecase(repository: locator()),
+    )
+    ..registerFactory<HomeBloc>(() => HomeBloc(locator()))
+    ..registerFactory<AuthBloc>(() => AuthBloc(locator()));
 }

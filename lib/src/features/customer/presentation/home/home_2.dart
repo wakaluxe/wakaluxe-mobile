@@ -72,7 +72,7 @@ class _Home2ScreenState extends State<Home2Screen> {
                     t: t,
                     title: 'My Profile',
                     icon: Constants.profileIcon,
-                    onTap: () => context.router.pushNamed('/my-Profile'),
+                    onTap: () => context.router.push(const MyProfile()),
                   ),
                   HomeBox(
                     t: t,
