@@ -121,8 +121,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     try {
       logInfo('what up app started successfully');
       final token = await _authRepository.getIdToken;
-      logInfo('the token is: $token');
-      emit(AuthAppStartSuccess());
+      final user =  _authRepository.currentUser;
+      logInfo('the token is: $token and user is ${user.toJson()}');
+      emit(AuthAppStartSuccess(
+        user: user
+      ));
     } catch (e) {
       logError(e.toString());
       emit(AuthAppStartError(error: e.toString()));

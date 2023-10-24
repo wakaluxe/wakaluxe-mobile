@@ -1,6 +1,6 @@
  import 'package:flutter_mapbox_navigation/flutter_mapbox_navigation.dart';
 
-import '../../../../common/Utils/logger.dart';
+import 'package:wakaluxe/src/common/Utils/logger.dart';
 
 Future<void> onEmbeddedRouteEvent(RouteEvent e) async {
 

@@ -7,11 +7,8 @@ import 'package:wakaluxe/src/extensions/num.dart';
 
 class ProfileBoxWidget extends StatelessWidget {
   const ProfileBoxWidget({
-    Key? key,
-    required this.t,
-    required this.title,
-    required this.value,
-  }) : super(key: key);
+    required this.t, required this.title, required this.value, super.key,
+  });
 
   final TextTheme t;
   final String title;
@@ -27,7 +24,7 @@ class ProfileBoxWidget extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           color: context.theme.primaryColor,
-          width: 1.5.w
+          width: 1.5.w,
         ),
         color: context.theme.primaryColor.withOpacity(0.48),
       ),
@@ -44,6 +41,6 @@ class ProfileBoxWidget extends StatelessWidget {
           )
         ],
       ),
-    ));
+    ),);
   }
 }

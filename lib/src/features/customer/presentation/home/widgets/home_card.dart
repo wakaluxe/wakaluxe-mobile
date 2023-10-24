@@ -7,11 +7,8 @@ import 'package:wakaluxe/src/extensions/num.dart';
 
 class HomeCard extends StatelessWidget {
   const HomeCard({
-    super.key,
-    required this.t,
+    required this.t, required this.title, required this.image, super.key,
     this.onTap,
-    required this.title,
-    required this.image,
   });
 
   final TextTheme t;

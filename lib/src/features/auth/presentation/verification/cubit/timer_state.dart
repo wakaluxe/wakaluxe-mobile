@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 
 abstract class TimerState extends Equatable {
-  final int? elapsed;
   const TimerState(this.elapsed);
+  final int? elapsed;
 }
 
 class TimerInitial extends TimerState {
@@ -14,7 +14,7 @@ class TimerInitial extends TimerState {
 }
 
 class TimerInProgress extends TimerState {
-  const TimerInProgress(int? elapsed) : super(elapsed);
+  const TimerInProgress(super.elapsed);
 
   @override
   // TODO: implement props

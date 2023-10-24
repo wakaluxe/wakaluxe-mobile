@@ -1,11 +1,10 @@
 import 'dart:async';
+import 'dart:convert';
 
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:wakaluxe/src/features/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:wakaluxe/src/features/auth/domain/entities/user_entity.dart';
-import 'dart:convert';
 
 part 'app_event.dart';
 part 'app_state.dart';

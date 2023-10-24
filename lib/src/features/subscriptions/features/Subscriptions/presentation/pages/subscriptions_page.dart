@@ -8,7 +8,6 @@ import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/widgets/padded_body.dart';
-import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart';
 
 @RoutePage(
   name: 'Subscriptions',

@@ -4,14 +4,11 @@ import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 
 class ProfileButton extends StatelessWidget {
+  const ProfileButton({
+    required this.title, required this.onTap, required this.t, super.key,
+  });
   final String title;
   final void Function() onTap;
-  const ProfileButton({
-    Key? key,
-    required this.title,
-    required this.onTap,
-    required this.t,
-  }) : super(key: key);
 
   final TextTheme t;
 

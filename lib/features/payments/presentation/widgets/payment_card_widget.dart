@@ -9,13 +9,8 @@ import 'package:wakaluxe/src/extensions/num.dart';
 
 class PaymentCardWidget extends StatelessWidget {
   const PaymentCardWidget(
-      {Key? key,
-      required this.textTheme,
-      required this.title,
-      this.icon,
-      required this.isSelected,
-      required this.onTap})
-      : super(key: key);
+      {required this.textTheme, required this.title, required this.isSelected, required this.onTap, super.key,
+      this.icon,});
 
   final TextTheme textTheme;
   final String title;

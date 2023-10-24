@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:wakaluxe/src/router/auth_guard.dart';
-import 'package:wakaluxe/src/router/onboarding_guard.dart';
+import 'package:wakaluxe/src/router/guards/authenticated_guard.dart';
+import 'package:wakaluxe/src/router/guards/onboarding_guard.dart';
+import 'package:wakaluxe/src/router/guards/unauthenticated_guard.dart';
 import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart';
 
 @AutoRouterConfig()
@@ -19,13 +20,21 @@ class WakaluxAppRouter extends $WakaluxAppRouter {
           ],
         ),
         // AutoRoute(page: Home.page, path: '/home', guards: [AuthGuard()]),
-        AutoRoute(page: HomeMap.page, path: '/home-map',guards:[AuthGuard()]),
+        AutoRoute(
+          page: HomeMap.page,
+          path: '/home-map',
+          guards: [AuthenticatedGuard()],
+        ),
         AutoRoute(page: Login.page, path: '/login'),
-        AutoRoute(page: Verification.page, path: '/verification'),
-        AutoRoute(page: SignUp.page, path: '/sign-up'),
+        AutoRoute(
+          page: Verification.page,
+          path: '/verification',
+          guards: [UnAuthenticatedGuard()],
+        ),
+        AutoRoute(page: SignUp.page, path: '/sign-up', guards: [UnAuthenticatedGuard()]),
         // AutoRoute(page: PhoneNumber.page, path: '/phone-number'),
-        AutoRoute(page: PhoneSignUp.page, path: '/phone-sign-up'),
-        AutoRoute(page: WakaluxeCreatePin.page, path: '/create-pin'),
+        AutoRoute(page: PhoneSignUp.page, path: '/phone-sign-up',  guards: [UnAuthenticatedGuard()]),
+        AutoRoute(page: WakaluxeCreatePin.page, path: '/create-pin',  guards: [UnAuthenticatedGuard()]),
         AutoRoute(page: EnterFullName.page, path: '/enter-full-name'),
 
         AutoRoute(page: Subscriptions.page, path: '/subscriptions'),
@@ -87,7 +96,7 @@ class WakaluxAppRouter extends $WakaluxAppRouter {
         AutoRoute(
           page: MyProfile.page,
           path: '/my-profile',
-          guards: [AuthGuard()],
+          guards: [AuthenticatedGuard()],
         ),
         AutoRoute(
           page: Notification.page,
@@ -119,9 +128,13 @@ class WakaluxAppRouter extends $WakaluxAppRouter {
           path: '/language',
         ),
         AutoRoute(
-            page: PaymentInformationRoute.page, path: '/payment-information'),
+          page: PaymentInformationRoute.page,
+          path: '/payment-information',
+        ),
         AutoRoute(page: PaymentMethodsRoute.page, path: '/payment-methods'),
         AutoRoute(
-            page: PaymentProcessingRoute.page, path: '/payment-processing')
+          page: PaymentProcessingRoute.page,
+          path: '/payment-processing',
+        )
       ];
 }

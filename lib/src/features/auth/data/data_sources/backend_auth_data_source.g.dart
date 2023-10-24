@@ -33,7 +33,7 @@ class _BackendAuthDataSource implements BackendAuthDataSource {
     _data.addAll(body);
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<UserEntity>>(Options(
-      method: 'POST',
+      method: 'PO§ST',
       headers: _headers,
       extra: _extra,
     )

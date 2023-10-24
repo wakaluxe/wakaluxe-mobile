@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:wakaluxe/features/payments/presentation/pages/payment_methods_screen.dart';
 import 'package:wakaluxe/src/common/Utils/alerts.dart';
+import 'package:wakaluxe/src/common/Utils/logger.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
@@ -102,6 +103,16 @@ class _Home2ScreenState extends State<Home2Screen> {
                       }
                     },
                     builder: (context, state) {
+                      if ( state.user.hasToken == false) {
+                        return HomeBox(
+                          t: t,
+                          title: 'Log In',
+                          icon: Constants.logoutIcon,
+                          onTap: () => 
+                          logDebug('user ${state.user.toJson()}'),
+                     //     context.router.pushNamed('/phone-sign-up'),
+                        );
+                      }
                       if (state is AuthLogOutInit) {
                         return HomeBox(
                           t: t,

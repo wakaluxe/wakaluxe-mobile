@@ -3,7 +3,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
-import 'package:wakaluxe/src/common/Utils/alerts.dart';
 
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
@@ -15,7 +14,6 @@ import 'package:wakaluxe/src/features/auth/presentation/verification/cubit/timer
 import 'package:wakaluxe/src/features/auth/presentation/widgets/app_barred_scaffold.dart';
 import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/pages/subscriptions_page.dart';
 
-import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart';
 
 @RoutePage(name: 'Verification')
 class WakaluxeVerification extends StatefulWidget {

@@ -3,8 +3,6 @@ import 'package:retrofit/retrofit.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/features/auth/domain/entities/user_entity.dart';
 
-import '../../../../common/Utils/logger.dart';
-
 part 'backend_auth_data_source.g.dart';
 
 @RestApi(baseUrl: Constants.baseUrl)

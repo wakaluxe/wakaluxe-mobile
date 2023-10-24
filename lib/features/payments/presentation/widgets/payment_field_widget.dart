@@ -5,12 +5,10 @@ import 'package:wakaluxe/src/extensions/build_context.dart';
 
 class PaymentFieldWidget extends StatelessWidget {
   const PaymentFieldWidget({
-    Key? key,
-    required this.hint,
-    required this.controller,
+    required this.hint, required this.controller, super.key,
     this.validator,
     this.formatters,
-  }) : super(key: key);
+  });
 
   final String hint;
   final TextEditingController controller;

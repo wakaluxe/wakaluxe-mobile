@@ -183,7 +183,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     try {
       final location = await _locationUsecase();
       logInfo(
-          'HomeInitialEvent: longitude ${location.longitude} latitude: ${location.latitude}');
+          'HomeInitialEvent: longitude ${location.longitude} latitude: ${location.latitude}',);
       emit(
         HomeInitial().copyWith(myCoordinate: location),
       );

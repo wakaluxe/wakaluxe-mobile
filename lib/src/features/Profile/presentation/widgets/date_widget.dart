@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 
-import '../trip_cubit/cubit/trip_cubit.dart';
+import 'package:wakaluxe/src/features/Profile/presentation/trip_cubit/cubit/trip_cubit.dart';
 
 class DateWidget extends StatefulWidget {
   const DateWidget({

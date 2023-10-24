@@ -61,7 +61,11 @@ class AuthLogOutError extends AuthState {
 
 class AuthAppStartInit extends AuthState {}
 
-class AuthAppStartSuccess extends AuthState {}
+class AuthAppStartSuccess extends AuthState {
+  const AuthAppStartSuccess({
+    super.user,
+  });
+}
 
 class AuthAppStartError extends AuthState {
   final String error;

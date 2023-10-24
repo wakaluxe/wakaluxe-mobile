@@ -9,7 +9,7 @@ class SignUpUsecase implements UseCase<DataState<UserEntity>, void> {
     this._authRepository,
   ) : super();
 
-  BackendAuthDataSource _authRepository ;
+  final BackendAuthDataSource _authRepository ;
   
   @override
   Future<DataState<UserEntity>> call({void params}) {

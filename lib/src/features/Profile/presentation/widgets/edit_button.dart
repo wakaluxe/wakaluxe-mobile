@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 
 class WakaluxEditButton extends StatelessWidget {
   const WakaluxEditButton({
-    Key? key,
-    required this.t,
-    required this.text,
-    required this.onTap,
-  }) : super(key: key);
+    required this.t, required this.text, required this.onTap, super.key,
+  });
 
   final TextTheme t;
   final String text;

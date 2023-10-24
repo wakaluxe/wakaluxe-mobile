@@ -16,7 +16,7 @@ import 'package:wakaluxe/src/extensions/num.dart';
 
 @RoutePage()
 class PaymentInformationScreen extends StatefulWidget {
-  const PaymentInformationScreen({Key? key}) : super(key: key);
+  const PaymentInformationScreen({super.key});
   static String name = '/payment-information';
   @override
   State<PaymentInformationScreen> createState() =>
@@ -39,7 +39,7 @@ class _PaymentInformationScreenState extends State<PaymentInformationScreen> {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
-        leading: WakaluxBackhButton(),
+        leading: const WakaluxBackhButton(),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -90,8 +90,8 @@ class _PaymentInformationScreenState extends State<PaymentInformationScreen> {
       
                           context.read<PaymentCubit>().addPaymentInformation(
                               amount: _amountController.text,
-                              number: _accountNumberController.text);
-                        }),
+                              number: _accountNumberController.text,);
+                        },),
                   ),
                 ],
               ),

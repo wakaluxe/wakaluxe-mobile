@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class TaxiFetching extends StatelessWidget {
-const TaxiFetching({ Key? key }) : super(key: key);
+const TaxiFetching({ super.key });
 
   @override
   Widget build(BuildContext context){

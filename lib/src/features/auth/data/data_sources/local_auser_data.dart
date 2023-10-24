@@ -6,7 +6,7 @@ import 'package:wakaluxe/src/dependencies_container.dart';
 import 'package:wakaluxe/src/features/auth/domain/entities/user_entity.dart';
 
 class LocalUSerData {
-  LocalUSerData() {}
+  LocalUSerData();
   final HiveClient _cacheClient = locator<HiveClient>();
 
   Future<void> initialize() async {

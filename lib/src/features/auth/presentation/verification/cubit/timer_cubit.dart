@@ -9,7 +9,7 @@ class TimerCubit extends Cubit<TimerState> {
   Timer? _timer;
   void onTick(Timer timer) {
     if (state is TimerInProgress) {
-      TimerInProgress wip = state as TimerInProgress;
+      final wip = state as TimerInProgress;
       if (wip.elapsed! < 110) {
         emit(TimerInProgress(wip.elapsed! + 1));
       } else {

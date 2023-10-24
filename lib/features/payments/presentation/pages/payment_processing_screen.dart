@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wakaluxe/features/payments/presentation/cubit/payment_cubit.dart';
 import 'package:wakaluxe/features/payments/presentation/widgets/payment_processing_loader.dart';
-import 'package:wakaluxe/src/common/Utils/alerts.dart';
 import 'package:wakaluxe/src/common/Utils/logger.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
