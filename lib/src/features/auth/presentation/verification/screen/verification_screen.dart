@@ -8,12 +8,12 @@ import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
+import 'package:wakaluxe/src/features/auth/domain/entities/auth_source_route.dart';
 import 'package:wakaluxe/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:wakaluxe/src/features/auth/presentation/verification/cubit/timer_cubit.dart';
 import 'package:wakaluxe/src/features/auth/presentation/verification/cubit/timer_state.dart';
 import 'package:wakaluxe/src/features/auth/presentation/widgets/app_barred_scaffold.dart';
 import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/pages/subscriptions_page.dart';
-
 
 @RoutePage(name: 'Verification')
 class WakaluxeVerification extends StatefulWidget {
@@ -21,9 +21,11 @@ class WakaluxeVerification extends StatefulWidget {
     required this.phoneNumber,
     required this.verificationd,
     super.key,
+    this.route = AuthSourceRoute.unknown,
   });
   final String phoneNumber;
   final String verificationd;
+  final AuthSourceRoute route;
 
   @override
   State<WakaluxeVerification> createState() => _WakaluxeVerificationState();
@@ -54,14 +56,13 @@ class _WakaluxeVerificationState extends State<WakaluxeVerification> {
                   content: Text('Time out'),
                 ),
               );
-             context.router.pop();
+              context.router.pop();
             }
             if (state is PhoneAuthError) {
               context.router.pop();
             }
             if (state is PhoneAuthVerified) {
-              context.router
-                  .pushNamed(WakaluxeSubscriptions.path);
+              context.router.pushNamed(WakaluxeSubscriptions.path);
             }
           },
           child: SingleChildScrollView(

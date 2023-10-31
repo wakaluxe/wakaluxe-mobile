@@ -16,6 +16,8 @@ import 'package:wakaluxe/features/payments/presentation/pages/payment_methods_sc
     as _i2;
 import 'package:wakaluxe/features/payments/presentation/pages/payment_processing_screen.dart'
     as _i3;
+import 'package:wakaluxe/src/features/auth/domain/entities/auth_source_route.dart'
+    as _i46;
 import 'package:wakaluxe/src/features/auth/presentation/login/screens/login.dart'
     as _i4;
 import 'package:wakaluxe/src/features/auth/presentation/phone_number/screen/phone_number_screen.dart'
@@ -150,9 +152,14 @@ abstract class $WakaluxAppRouter extends _i44.RootStackRouter {
       );
     },
     SignUp.name: (routeData) {
+      final args =
+          routeData.argsAs<SignUpArgs>(orElse: () => const SignUpArgs());
       return _i44.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i9.WakaluxeSignUp(),
+        child: _i9.WakaluxeSignUp(
+          key: args.key,
+          route: args.route,
+        ),
       );
     },
     Verification.name: (routeData) {
@@ -163,6 +170,7 @@ abstract class $WakaluxAppRouter extends _i44.RootStackRouter {
           phoneNumber: args.phoneNumber,
           verificationd: args.verificationd,
           key: args.key,
+          route: args.route,
         ),
       );
     },
@@ -522,16 +530,39 @@ class PhoneSignUp extends _i44.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i9.WakaluxeSignUp]
-class SignUp extends _i44.PageRouteInfo<void> {
-  const SignUp({List<_i44.PageRouteInfo>? children})
-      : super(
+class SignUp extends _i44.PageRouteInfo<SignUpArgs> {
+  SignUp({
+    _i45.Key? key,
+    _i46.AuthSourceRoute route = _i46.AuthSourceRoute.unknown,
+    List<_i44.PageRouteInfo>? children,
+  }) : super(
           SignUp.name,
+          args: SignUpArgs(
+            key: key,
+            route: route,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'SignUp';
 
-  static const _i44.PageInfo<void> page = _i44.PageInfo<void>(name);
+  static const _i44.PageInfo<SignUpArgs> page = _i44.PageInfo<SignUpArgs>(name);
+}
+
+class SignUpArgs {
+  const SignUpArgs({
+    this.key,
+    this.route = _i46.AuthSourceRoute.unknown,
+  });
+
+  final _i45.Key? key;
+
+  final _i46.AuthSourceRoute route;
+
+  @override
+  String toString() {
+    return 'SignUpArgs{key: $key, route: $route}';
+  }
 }
 
 /// generated route for
@@ -541,6 +572,7 @@ class Verification extends _i44.PageRouteInfo<VerificationArgs> {
     required String phoneNumber,
     required String verificationd,
     _i45.Key? key,
+    _i46.AuthSourceRoute route = _i46.AuthSourceRoute.unknown,
     List<_i44.PageRouteInfo>? children,
   }) : super(
           Verification.name,
@@ -548,6 +580,7 @@ class Verification extends _i44.PageRouteInfo<VerificationArgs> {
             phoneNumber: phoneNumber,
             verificationd: verificationd,
             key: key,
+            route: route,
           ),
           initialChildren: children,
         );
@@ -563,6 +596,7 @@ class VerificationArgs {
     required this.phoneNumber,
     required this.verificationd,
     this.key,
+    this.route = _i46.AuthSourceRoute.unknown,
   });
 
   final String phoneNumber;
@@ -571,9 +605,11 @@ class VerificationArgs {
 
   final _i45.Key? key;
 
+  final _i46.AuthSourceRoute route;
+
   @override
   String toString() {
-    return 'VerificationArgs{phoneNumber: $phoneNumber, verificationd: $verificationd, key: $key}';
+    return 'VerificationArgs{phoneNumber: $phoneNumber, verificationd: $verificationd, key: $key, route: $route}';
   }
 }
 

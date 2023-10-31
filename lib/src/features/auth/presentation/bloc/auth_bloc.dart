@@ -5,6 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:wakaluxe/src/common/Utils/logger.dart';
 import 'package:wakaluxe/src/features/auth/data/data_sources/auth_remote_data_source.dart';
+import 'package:wakaluxe/src/features/auth/domain/entities/auth_source_route.dart';
 
 import 'package:wakaluxe/src/features/auth/domain/entities/user_entity.dart';
 

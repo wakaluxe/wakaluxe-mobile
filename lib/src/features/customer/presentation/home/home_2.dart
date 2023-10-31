@@ -6,11 +6,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:wakaluxe/features/payments/presentation/pages/payment_methods_screen.dart';
 import 'package:wakaluxe/src/common/Utils/alerts.dart';
-import 'package:wakaluxe/src/common/Utils/logger.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
+import 'package:wakaluxe/src/features/auth/domain/entities/auth_source_route.dart';
 import 'package:wakaluxe/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc/home_bloc.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/widgets/home_box.dart';
@@ -73,7 +73,9 @@ class _Home2ScreenState extends State<Home2Screen> {
                     t: t,
                     title: 'My Profile',
                     icon: Constants.profileIcon,
-                    onTap: () => context.router.push(const MyProfile()),
+                    onTap: () {
+                      context.router.push(const MyProfile());
+                    },
                   ),
                   HomeBox(
                     t: t,
@@ -96,21 +98,23 @@ class _Home2ScreenState extends State<Home2Screen> {
                         );
                         if (state is AuthLogOutSuccess) {
                           context.router.pushAndPopUntil(
-                            const SignUp(),
+                            SignUp(
+                              route: AuthSourceRoute.home,
+                            ),
                             predicate: (route) => false,
                           );
                         }
                       }
                     },
                     builder: (context, state) {
-                      if ( state.user.hasToken == false) {
+                      if (state.user.hasId == false) {
                         return HomeBox(
                           t: t,
                           title: 'Log In',
                           icon: Constants.logoutIcon,
-                          onTap: () => 
-                          logDebug('user ${state.user.toJson()}'),
-                     //     context.router.pushNamed('/phone-sign-up'),
+                          onTap: () =>
+                              //  logDebug('user ${state.user.toJson()}'),
+                              context.router.pushNamed('/sign-up'),
                         );
                       }
                       if (state is AuthLogOutInit) {
@@ -189,4 +193,6 @@ class _Home2ScreenState extends State<Home2Screen> {
       ),
     );
   }
+
+
 }

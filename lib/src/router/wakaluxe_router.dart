@@ -31,7 +31,7 @@ class WakaluxAppRouter extends $WakaluxAppRouter {
           path: '/verification',
           guards: [UnAuthenticatedGuard()],
         ),
-        AutoRoute(page: SignUp.page, path: '/sign-up', guards: [UnAuthenticatedGuard()]),
+        AutoRoute(page: SignUp.page, path: '/sign-up', guards: [UnAuthenticatedGuard()], ),
         // AutoRoute(page: PhoneNumber.page, path: '/phone-number'),
         AutoRoute(page: PhoneSignUp.page, path: '/phone-sign-up',  guards: [UnAuthenticatedGuard()]),
         AutoRoute(page: WakaluxeCreatePin.page, path: '/create-pin',  guards: [UnAuthenticatedGuard()]),
