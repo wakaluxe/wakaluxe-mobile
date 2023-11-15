@@ -119,11 +119,6 @@ class _HomeState extends State<Home> {
                                             Icons.person,
                                             color: context.colorScheme.primary,
                                           ),
-                                          trainling: Icon(
-                                            Icons.close,
-                                            color: context
-                                                .colorScheme.onBackground,
-                                          ),
                                           message: 'Location Coordimates',
                                           onTap: () {
                                             debugPrint('Testing out');
@@ -157,10 +152,6 @@ class _HomeState extends State<Home> {
                                       leading: Icon(
                                         WakaluxIcons.location,
                                         color: context.colorScheme.error,
-                                      ),
-                                      trainling: Icon(
-                                        Icons.close,
-                                        color: context.colorScheme.onBackground,
                                       ),
                                       message: 'Destination Coordimates',
                                       onTap: () {

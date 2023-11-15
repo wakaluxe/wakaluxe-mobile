@@ -25,6 +25,5 @@ class TripsState extends Equatable {
   }
 
   @override
-  List<Object> get props => [ trips, message, status];
+  List<Object> get props => [trips, message, status];
 }
-

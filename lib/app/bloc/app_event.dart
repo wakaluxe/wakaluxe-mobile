@@ -6,6 +6,7 @@ abstract class AppEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
 class AppLogoutRequested extends AppEvent {}
 
 class AppUserChanged extends AppEvent {
@@ -16,4 +17,3 @@ class AppUserChanged extends AppEvent {
   @override
   List<Object> get props => [user];
 }
-

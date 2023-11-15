@@ -62,10 +62,10 @@ class PayFareEvent extends HomeEvent {
 }
 
 class SelectLocationEvent extends HomeEvent {
-final   double lat;
- final double lng;
+  final LatLng source;
+  final LatLng destination;
   SelectLocationEvent({
-    required this.lat,
-    required this.lng,
+    required this.source,
+    required this.destination,
   });
 }

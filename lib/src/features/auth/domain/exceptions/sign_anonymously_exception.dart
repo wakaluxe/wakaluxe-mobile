@@ -2,6 +2,6 @@
 class SignAnonymouslyException implements Exception {
   final String message;
   SignAnonymouslyException({
-     this.message = 'Unknown error occurred.',
+    this.message = 'Unknown error occurred.',
   });
 }

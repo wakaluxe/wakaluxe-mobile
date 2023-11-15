@@ -27,7 +27,7 @@ class LocalUSerData {
     return user;
   }
 
-  Future<void> deleteUser() async{
+  Future<void> deleteUser() async {
     await _cacheClient.clearBox();
   }
 

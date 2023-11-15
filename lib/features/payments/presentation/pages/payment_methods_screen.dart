@@ -87,8 +87,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
                   const Spacer(),
                   WakaluxeButton(
                     text: 'Confirm',
-                    action: () =>
-                       _handleConfirmation(state.type),
+                    action: () => _handleConfirmation(state.type),
                   )
                 ],
               );
@@ -105,9 +104,10 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
         'Please select a payment method',
         duration: const Duration(seconds: 2),
       );
-    } else{
+    } else {
       context.router.pushNamed(PaymentInformationScreen.name);
-  }}
+    }
+  }
 
   void _handlePaymentUpdate(PaymentMethodsType type) {
     context.read<PaymentCubit>().updatePaymentMethod(type);

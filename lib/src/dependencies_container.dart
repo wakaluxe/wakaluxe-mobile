@@ -7,9 +7,12 @@ import 'package:wakaluxe/src/features/auth/data/data_sources/auth_remote_data_so
 import 'package:wakaluxe/src/features/auth/data/data_sources/backend_auth_data_source.dart';
 import 'package:wakaluxe/src/features/auth/data/data_sources/local_auser_data.dart';
 import 'package:wakaluxe/src/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:wakaluxe/src/features/booking/presentation/cubit/booking_cubit.dart';
+import 'package:wakaluxe/src/features/customer/data/data_sources/tour_backend_data_source.dart';
 import 'package:wakaluxe/src/features/customer/data/trip_repository_implemantation.dart';
 import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc/home_bloc.dart';
 import 'package:wakaluxe/src/features/customer/domain/trip_repository.dart';
+import 'package:wakaluxe/src/features/customer/domain/usecases/create_tour_usecase.dart';
 import 'package:wakaluxe/src/features/customer/domain/usecases/get_current_location_usecase.dart';
 
 final locator = GetIt.instance;
@@ -26,15 +29,24 @@ Future<void> registerServices() async {
     ..registerSingleton<BackendAuthDataSource>(
       BackendAuthDataSource(locator()),
     )
+    ..registerLazySingleton<TourBackendDataSource>(
+      () => TourBackendDataSource(locator()),
+    )
     ..registerLazySingleton<NetworkConnectivity>(
       NetworkConnectivity.new,
     )
     ..registerSingleton<TripRepository>(
-      TripRepositoryImplementation(),
+      TripRepositoryImplementation(
+        backendDataSource: locator(),
+        authData: locator(),
+      ),
     )
     ..registerSingleton<GetCurrentLocationUsecase>(
       GetCurrentLocationUsecase(repository: locator()),
     )
-    ..registerFactory<HomeBloc>(() => HomeBloc(locator()))
-    ..registerFactory<AuthBloc>(() => AuthBloc(locator()));
+    ..registerLazySingleton<CreateTourUsecase>(
+        () => CreateTourUsecase(repository: locator()))
+    ..registerFactory<HomeBloc>(() => HomeBloc(locator(), locator()))
+    ..registerFactory<AuthBloc>(() => AuthBloc(locator()))
+    ..registerLazySingleton<BookingCubit>(() => BookingCubit(locator()));
 }

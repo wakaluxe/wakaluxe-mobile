@@ -5,7 +5,10 @@ import 'package:wakaluxe/src/extensions/build_context.dart';
 
 class WakaluxEditButton extends StatelessWidget {
   const WakaluxEditButton({
-    required this.t, required this.text, required this.onTap, super.key,
+    required this.t,
+    required this.text,
+    required this.onTap,
+    super.key,
   });
 
   final TextTheme t;

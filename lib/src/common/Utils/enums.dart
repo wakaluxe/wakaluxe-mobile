@@ -1,9 +1,1 @@
-enum PaymentMethodsType{
-  MTNMOMO, 
-  ORANGEMONEY, 
-  VISACARD, 
-  CASH
-  , UNDEFINE
-}
-
-
+enum PaymentMethodsType { MTNMOMO, ORANGEMONEY, VISACARD, CASH, UNDEFINE }

@@ -1,9 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:wakaluxe/src/common/Utils/logger.dart';
+import 'package:wakaluxe/src/features/customer/data/models/api_tour_model.dart';
+import 'package:wakaluxe/src/features/customer/data/models/create_tour_res_model/create_tour_res_model.dart';
 
 import 'package:wakaluxe/src/features/customer/domain/entities/location_entity.dart';
+import 'package:wakaluxe/src/features/customer/domain/usecases/create_tour_usecase.dart';
 import 'package:wakaluxe/src/features/customer/domain/usecases/get_current_location_usecase.dart';
 
 part 'home_event.dart';
@@ -12,6 +16,8 @@ part 'home_state.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc(
     this._locationUsecase,
+    this._createTourUsecase,
+    // this._travelTimeUsecase,
   ) : super(HomeInitial()) {
     on<HomeInitialEvent>(_onAuthInitEvent);
     on<SelectedRideEvent>((event, emit) {
@@ -31,6 +37,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           loadingDrivers: state.loadingDrivers,
           lng: state.lng,
           myCoordinate: state.myCoordinate,
+          showDestionPicker: state.showDestionPicker,
+          tourData: state.tourData,
+          destination: state.destination,
+          source: state.source,
         ),
       );
     });
@@ -51,6 +61,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           lng: state.lng,
           loadingDrivers: state.loadingDrivers,
           myCoordinate: state.myCoordinate,
+          showDestionPicker: state.showDestionPicker,
+          tourData: state.tourData,
+          destination: state.destination,
+          source: state.source,
         ),
       );
     });
@@ -71,6 +85,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           lat: state.lat,
           lng: state.lng,
           myCoordinate: state.myCoordinate,
+          showDestionPicker: state.showDestionPicker,
+          tourData: state.tourData,
+          destination: state.destination,
+          source: state.source,
         ),
       );
     });
@@ -91,12 +109,16 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           lat: state.lat,
           lng: state.lng,
           myCoordinate: state.myCoordinate,
+          showDestionPicker: state.showDestionPicker,
+          tourData: state.tourData,
+          destination: state.destination,
+          source: state.source,
         ),
       );
     });
 
     on<ShowDriversEvent>((event, emit) {
-      // Future.delayed(const Duration(seconds: 4), () {
+      // Future.delayed(const tourData(seconds: 4), () {
       emit(
         ShowDriverState(
           selectedIndex: state.selectedIndex,
@@ -113,6 +135,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           lat: state.lat,
           lng: state.lng,
           myCoordinate: state.myCoordinate,
+          showDestionPicker: state.showDestionPicker,
+          tourData: state.tourData,
+          destination: state.destination,
+          source: state.source,
         ),
       );
       //   });
@@ -142,6 +168,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           lat: state.lat,
           lng: state.lng,
           myCoordinate: state.myCoordinate,
+          showDestionPicker: state.showDestionPicker,
+          tourData: state.tourData,
+          destination: state.destination,
+          source: state.source,
         ),
       );
     });
@@ -165,14 +195,41 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       );
     });
 
-    on<SelectLocationEvent>((event, emit) {
-      emit(
-        HomeInitial().copyWith(
-          lat: event.lat,
-          lng: event.lng,
-          loadingDrivers: true,
-        ),
-      );
+    on<SelectLocationEvent>((event, emit) async {
+      try {
+        emit(
+          HomeInitial().copyWith(
+            source: LocationEntity.fromLatLng(event.source),
+            destination: LocationEntity.fromLatLng(event.destination),
+            loadingDrivers: true,
+            showDestionPicker: false,
+          ),
+          /*      _travelTimeUsecase(
+            destination: LocationEntity.fromLatLng(event.destination),
+            source: LocationEntity.fromLatLng(event.source)), */
+        );
+        final data = await _createTourUsecase(
+          params: CreateTourParams(
+            source: LocationEntity.fromLatLng(event.source),
+            destination: LocationEntity.fromLatLng(event.destination),
+          ),
+        );
+
+        emit(
+          HomeInitial().copyWith(
+            source: LocationEntity.fromLatLng(event.source),
+            destination: LocationEntity.fromLatLng(event.destination),
+            loadingDrivers: true,
+            showDestionPicker: false,
+            tourData: data,
+          ),
+        );
+      } catch (e) {
+        logError(e.toString());
+        emit(
+          HomeInitial(),
+        );
+      }
     });
   }
 
@@ -183,7 +240,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     try {
       final location = await _locationUsecase();
       logInfo(
-          'HomeInitialEvent: longitude ${location.longitude} latitude: ${location.latitude}',);
+        'HomeInitialEvent: longitude ${location.longitude} latitude: ${location.latitude}',
+      );
       emit(
         HomeInitial().copyWith(myCoordinate: location),
       );
@@ -193,4 +251,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   final GetCurrentLocationUsecase _locationUsecase;
+  final CreateTourUsecase _createTourUsecase;
+//  final GetTravelTimeUseCase _travelTimeUsecase;
 }

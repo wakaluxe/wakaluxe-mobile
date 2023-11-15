@@ -32,7 +32,7 @@ class AppState extends Equatable {
 
   factory AppState.fromMap(Map<String, dynamic> map) {
     return AppState._(
-      status: AppStatusX.fromMap(map['status']  as String),
+      status: AppStatusX.fromMap(map['status'] as String),
       user: UserEntity.fromMap(map['user'] as Map<String, dynamic>),
     );
   }

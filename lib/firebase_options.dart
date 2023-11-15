@@ -70,8 +70,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '297590824503',
     projectId: 'wakaluxe-mobile',
     storageBucket: 'wakaluxe-mobile.appspot.com',
-    androidClientId: '297590824503-2f0paft677kibqvso1p0q80u0ncui5li.apps.googleusercontent.com',
-    iosClientId: '297590824503-4fe7slhfu2ihaj4prhh07k8qi7nq5ugb.apps.googleusercontent.com',
+    androidClientId:
+        '297590824503-2f0paft677kibqvso1p0q80u0ncui5li.apps.googleusercontent.com',
+    iosClientId:
+        '297590824503-4fe7slhfu2ihaj4prhh07k8qi7nq5ugb.apps.googleusercontent.com',
     iosBundleId: 'com.apps.ictu.wakaluxe',
   );
 }

@@ -6,7 +6,7 @@ class PaymentsState extends Equatable {
     this.type = PaymentMethodsType.UNDEFINE,
     this.amount = '0',
     this.accountNumber = '',
-     this.processingValue = 0.0,
+    this.processingValue = 0.0,
   });
   final PaymentMethodsType type;
   final String amount;
@@ -37,8 +37,10 @@ class PaymentUpdatePaymentTypeState extends PaymentsState {
 }
 
 class AddPaymentInformationState extends PaymentsState {
-  const AddPaymentInformationState(
-      {required super.amount, required super.accountNumber,});
+  const AddPaymentInformationState({
+    required super.amount,
+    required super.accountNumber,
+  });
 }
 
 class PaymentProcessingState extends PaymentsState {
@@ -46,5 +48,5 @@ class PaymentProcessingState extends PaymentsState {
 }
 
 class PaymentProcessedState extends PaymentsState {
-  const PaymentProcessedState():super(processingValue: 0);
+  const PaymentProcessedState() : super(processingValue: 0);
 }

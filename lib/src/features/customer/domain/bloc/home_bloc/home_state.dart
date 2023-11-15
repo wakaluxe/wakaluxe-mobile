@@ -17,6 +17,10 @@ class HomeState {
     required this.lng,
     required this.loadingDrivers,
     required this.myCoordinate,
+    required this.showDestionPicker,
+    required this.tourData,
+    required this.destination,
+    required this.source,
   });
   final int selectedIndex;
   final int selectedPaymentType;
@@ -32,6 +36,10 @@ class HomeState {
   final double lng;
   final bool loadingDrivers;
   final LocationEntity myCoordinate;
+  final bool showDestionPicker;
+  final CreateTourResModel tourData;
+  final LocationEntity source;
+  final LocationEntity destination;
 
   HomeState copyWith({
     int? selectedIndex,
@@ -48,6 +56,10 @@ class HomeState {
     double? lng,
     bool? loadingDrivers,
     LocationEntity? myCoordinate,
+    bool? showDestionPicker,
+    CreateTourResModel? tourData,
+    LocationEntity? destination,
+    LocationEntity? source,
   }) {
     return HomeState(
       selectedIndex: selectedIndex ?? this.selectedIndex,
@@ -65,6 +77,10 @@ class HomeState {
       lng: lng ?? this.lng,
       loadingDrivers: loadingDrivers ?? this.loadingDrivers,
       myCoordinate: myCoordinate ?? this.myCoordinate,
+      showDestionPicker: showDestionPicker ?? this.showDestionPicker,
+      tourData: tourData ?? this.tourData,
+      destination: destination ?? this.destination,
+      source: source ?? this.source,
     );
   }
 }
@@ -86,6 +102,10 @@ class HomeInitial extends HomeState {
           lng: 0,
           loadingDrivers: false,
           myCoordinate: LocationEntity(latitude: 0, longitude: 0),
+          showDestionPicker: true,
+          tourData: CreateTourResModel.empty(),
+          destination: LocationEntity(latitude: 0, longitude: 0),
+          source: LocationEntity(latitude: 0, longitude: 0),
         );
 }
 
@@ -105,6 +125,10 @@ class SelectRideState extends HomeState {
     required super.lng,
     required super.loadingDrivers,
     required super.myCoordinate,
+    required super.showDestionPicker,
+    required super.tourData,
+    required super.destination,
+    required super.source,
   });
 }
 
@@ -124,6 +148,10 @@ class SelectPaymentTypeState extends HomeState {
     required super.lng,
     required super.loadingDrivers,
     required super.myCoordinate,
+    required super.showDestionPicker,
+    required super.tourData,
+    required super.destination,
+    required super.source,
   });
 }
 
@@ -143,6 +171,10 @@ class SelectPaymentMethodState extends HomeState {
     required super.lng,
     required super.loadingDrivers,
     required super.myCoordinate,
+    required super.showDestionPicker,
+    required super.tourData,
+    required super.destination,
+    required super.source,
   });
 }
 
@@ -162,6 +194,10 @@ class SelectDriverState extends HomeState {
     required super.lng,
     required super.loadingDrivers,
     required super.myCoordinate,
+    required super.showDestionPicker,
+    required super.tourData,
+    required super.destination,
+    required super.source,
   });
 }
 
@@ -181,6 +217,10 @@ class ShowDriverState extends HomeState {
     required super.lng,
     required super.loadingDrivers,
     required super.myCoordinate,
+    required super.showDestionPicker,
+    required super.tourData,
+    required super.destination,
+    required super.source,
   });
 }
 
@@ -200,6 +240,10 @@ class ShowBookingDetailsState extends HomeState {
     required super.lng,
     required super.loadingDrivers,
     required super.myCoordinate,
+    required super.showDestionPicker,
+    required super.tourData,
+    required super.destination,
+    required super.source,
   });
 }
 
@@ -219,6 +263,10 @@ class SelectReviewState extends HomeState {
     required super.lng,
     required super.loadingDrivers,
     required super.myCoordinate,
+    required super.showDestionPicker,
+    required super.tourData,
+    required super.destination,
+    required super.source,
   });
 }
 
@@ -238,6 +286,10 @@ class ShowLocationPickerState extends HomeState {
     required super.lng,
     required super.loadingDrivers,
     required super.myCoordinate,
+    required super.showDestionPicker,
+    required super.tourData,
+    required super.destination,
+    required super.source,
   });
 }
 
@@ -257,5 +309,9 @@ class HomeInitialErrorState extends HomeState {
     required super.lat,
     required super.lng,
     required super.loadingDrivers,
+    required super.showDestionPicker,
+    required super.tourData,
+    required super.destination,
+    required super.source,
   });
 }

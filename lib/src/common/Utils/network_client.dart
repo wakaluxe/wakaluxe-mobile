@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 
 class NetworkClient {
-
   NetworkClient({String baseUrl = Constants.baseUrl})
       : _dio = Dio(BaseOptions(baseUrl: baseUrl));
   final Dio _dio;
@@ -11,8 +10,10 @@ class NetworkClient {
     _dio.options.headers['Authorization'] = 'Bearer $authToken';
   }
 
-  Future<Response> get(String path,
-      {Map<String, dynamic>? queryParameters,}) async {
+  Future<Response> get(
+    String path, {
+    Map<String, dynamic>? queryParameters,
+  }) async {
     try {
       final response = await _dio.get(path, queryParameters: queryParameters);
       return response;
@@ -22,9 +23,11 @@ class NetworkClient {
     }
   }
 
-  Future<Response> post(String path,
-      {Map<String, dynamic>? data,
-      Map<String, dynamic>? queryParameters,}) async {
+  Future<Response> post(
+    String path, {
+    Map<String, dynamic>? data,
+    Map<String, dynamic>? queryParameters,
+  }) async {
     try {
       final response =
           await _dio.post(path, data: data, queryParameters: queryParameters);

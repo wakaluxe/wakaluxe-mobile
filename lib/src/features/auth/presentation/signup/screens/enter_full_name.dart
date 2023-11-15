@@ -8,8 +8,7 @@ import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/widgets/padded_body.dart';
 
-@RoutePage(
-)
+@RoutePage()
 class EnterFullName extends StatefulWidget {
   const EnterFullName({super.key});
 
@@ -21,21 +20,29 @@ class _EnterFullNameState extends State<EnterFullName> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    return  Scaffold(
+    return Scaffold(
       body: PaddedBody(
         body: Column(
           children: <Widget>[
-            Text('Enter your name', style: textTheme.headline,),
+            Text(
+              'Enter your name',
+              style: textTheme.headline,
+            ),
             13.h.vGap,
-            Text('Please enter your full names below', style: textTheme.body1,),
+            Text(
+              'Please enter your full names below',
+              style: textTheme.body1,
+            ),
             WakaluxInputField(
               text: textTheme,
               hint: 'Full Name',
               icon: Constants.textIcon,
-            
             ),
             const Spacer(),
-            WakaluxeButton(text: 'Confirm', action:() => context.router.pushNamed('/home'),),
+            WakaluxeButton(
+              text: 'Confirm',
+              action: () => context.router.pushNamed('/home'),
+            ),
           ],
         ),
       ),

@@ -31,10 +31,22 @@ class WakaluxAppRouter extends $WakaluxAppRouter {
           path: '/verification',
           guards: [UnAuthenticatedGuard()],
         ),
-        AutoRoute(page: SignUp.page, path: '/sign-up', guards: [UnAuthenticatedGuard()], ),
+        AutoRoute(
+          page: SignUp.page,
+          path: '/sign-up',
+          guards: [UnAuthenticatedGuard()],
+        ),
         // AutoRoute(page: PhoneNumber.page, path: '/phone-number'),
-        AutoRoute(page: PhoneSignUp.page, path: '/phone-sign-up',  guards: [UnAuthenticatedGuard()]),
-        AutoRoute(page: WakaluxeCreatePin.page, path: '/create-pin',  guards: [UnAuthenticatedGuard()]),
+        AutoRoute(
+          page: PhoneSignUp.page,
+          path: '/phone-sign-up',
+          guards: [UnAuthenticatedGuard()],
+        ),
+        AutoRoute(
+          page: WakaluxeCreatePin.page,
+          path: '/create-pin',
+          guards: [UnAuthenticatedGuard()],
+        ),
         AutoRoute(page: EnterFullName.page, path: '/enter-full-name'),
 
         AutoRoute(page: Subscriptions.page, path: '/subscriptions'),
@@ -55,23 +67,38 @@ class WakaluxAppRouter extends $WakaluxAppRouter {
           page: Home_2.page,
           path: '/home-2',
         ),
+
+        /*   AutoRoute(
+          page: WakaluxMapView.page,
+          path: '/map_view',
+        ),
+       */
+
         AutoRoute(
           page: Rating.page,
           path: '/rating',
         ),
+
         AutoRoute(
           page: RentACar.page,
           path: '/rent-a-car',
         ),
+
         AutoRoute(
           page: AvailableCar.page,
           path: '/available-cars',
         ),
+
         AutoRoute(
           page: ViewCar.page,
           path: '/view-car',
         ),
-        AutoRoute(page: MyGarage.page, path: '/my_garage'),
+
+        AutoRoute(
+          page: MyGarage.page,
+          path: '/my_garage',
+        ),
+
         AutoRoute(page: ViewInGarage.page, path: '/view_in_garage/:carId'),
         AutoRoute(page: StatusReport.page, path: '/status_report/:carId'),
         AutoRoute(

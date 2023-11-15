@@ -13,7 +13,7 @@ class _BackendAuthDataSource implements BackendAuthDataSource {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://api.wakaluxe.com';
+    baseUrl ??= 'https://wakaluxebackend-production.up.railway.app';
   }
 
   final Dio _dio;
@@ -33,7 +33,7 @@ class _BackendAuthDataSource implements BackendAuthDataSource {
     _data.addAll(body);
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<UserEntity>>(Options(
-      method: 'PO§ST',
+      method: 'POST',
       headers: _headers,
       extra: _extra,
     )

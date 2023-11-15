@@ -68,9 +68,10 @@ class AuthRepositorymplementation {
 //     return user;
 //   });
 // }
-  Future<String> get getIdToken async{
+  Future<String> get getIdToken async {
     return await _auth.currentUser?.getIdToken() ?? '';
   }
+
   Future<Either<SignAnonymouslyException, UserCredential>>
       signInAnonymously() async {
     try {
@@ -97,8 +98,8 @@ class AuthRepositorymplementation {
       };
       final idToken = await user?.getIdToken();
       logDebug('the id token in sign with cred $idToken');
-        _localUSerData.saveUser(jsonEncode(entity));
-        return Right(entity!);
+      _localUSerData.saveUser(jsonEncode(entity));
+      return Right(entity!);
       /* final httpResponse = await _backend.signUp(body, idToken!);
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         logInfo('the http response is: ${httpResponse.data}');
@@ -113,7 +114,6 @@ class AuthRepositorymplementation {
       return Left(SignInWithCredentialException.fromCode(e.code));
     } on DioException catch (e) {
       logError(e.error.toString());
-      
 
       return Left(SignInWithCredentialException(e.message ?? 'unknown error'));
     } catch (e) {

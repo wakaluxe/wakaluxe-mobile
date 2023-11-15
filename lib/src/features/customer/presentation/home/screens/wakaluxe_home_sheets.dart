@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+//import 'package:map_location_picker/map_location_picker.dart';
 import 'package:wakaluxe/src/common/common.dart';
+import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc/home_bloc.dart';
@@ -228,6 +230,55 @@ class WakaluxeBottomSheets {
               },
             )
           ],
+        ),
+      ),
+    );
+  }
+
+  static Future<void> showDestinationPicker(BuildContext context) async {
+    await showModalBottomSheet<void>(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(25),
+        ),
+      ),
+      isScrollControlled: true,
+      isDismissible: false,
+      builder: (context) => Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 8,
+          horizontal: 8,
+        ),
+        child: BlocBuilder<HomeBloc, HomeState>(
+          builder: (context, state) => const Column(
+            children: [
+              /*     SizedBox(
+                width: MediaQuery.of(context).size.width * 0.75,
+                height: MediaQuery.of(context).size.height * 0.35,
+                child: PlacesAutocomplete(
+                  apiKey: Constants.androidGoogleMapKey,
+                  borderRadius: BorderRadius.circular(5),
+                   // Provide a non-nullable BorderRadius value
+                  searchHintText: 'Search for a place',
+                  mounted: false,
+                  onSuggestionSelected: (value) {
+                    /*  setState(() {
+                          autocompletePlace =
+                              value.structuredFormatting?.mainText ?? "";
+                          initialValue = value;
+                        }); */
+                  },
+                  onGetDetailsByPlaceId: (value) {
+                    /*  setState(() {
+                          address = value?.result.formattedAddress ?? "";
+                        }); */
+                  },
+                ),
+              ),
+           */
+            ],
+          ),
         ),
       ),
     );

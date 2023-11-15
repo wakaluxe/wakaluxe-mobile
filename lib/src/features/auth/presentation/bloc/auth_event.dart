@@ -8,7 +8,6 @@ abstract class AuthEvent extends Equatable {
 }
 
 class SendOtpToPhoneEvent extends AuthEvent {
-
   const SendOtpToPhoneEvent({required this.phoneNumber});
   final String phoneNumber;
 
@@ -17,9 +16,10 @@ class SendOtpToPhoneEvent extends AuthEvent {
 }
 
 class VerifySentOtpEvent extends AuthEvent {
-
-  const VerifySentOtpEvent(
-      {required this.otpCode, required this.verificationId,});
+  const VerifySentOtpEvent({
+    required this.otpCode,
+    required this.verificationId,
+  });
   final String otpCode;
   final String verificationId;
 
@@ -56,6 +56,4 @@ class OnPhoneAuthVerificationCompleteEvent extends AuthEvent {
 
 class OnLogOutRequestEvent extends AuthEvent {}
 
-class OnAppStartEvent extends AuthEvent {
-}
-
+class OnAppStartEvent extends AuthEvent {}

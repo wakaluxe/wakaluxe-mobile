@@ -38,7 +38,7 @@ class _PaymentProcessingScreenState extends State<PaymentProcessingScreen> {
           listener: (context, state) {
             if (state is PaymentProcessedState) {
               logInfo('Payment processed');
-           
+
               context.router.push(const Rating());
             }
           },

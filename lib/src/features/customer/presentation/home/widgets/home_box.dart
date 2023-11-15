@@ -7,7 +7,11 @@ import 'package:wakaluxe/src/extensions/num.dart';
 
 class HomeBox extends StatelessWidget {
   const HomeBox({
-    required this.t, required this.title, required this.icon, required this.onTap, super.key,
+    required this.t,
+    required this.title,
+    required this.icon,
+    required this.onTap,
+    super.key,
   });
 
   final TextTheme t;

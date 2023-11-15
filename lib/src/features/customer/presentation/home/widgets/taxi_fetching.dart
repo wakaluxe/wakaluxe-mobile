@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class TaxiFetching extends StatelessWidget {
-const TaxiFetching({ super.key });
+  const TaxiFetching({super.key});
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: Column(

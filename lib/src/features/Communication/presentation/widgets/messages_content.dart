@@ -17,10 +17,9 @@ class MessagesContent extends StatelessWidget {
       child: Expanded(
         child: ListView.separated(
           itemCount: 4,
-          
           separatorBuilder: (context, index) => 24.vGap,
           itemBuilder: (context, index) => ListTile(
-          onTap: () => context.router.pushNamed('/message/1'),
+            onTap: () => context.router.pushNamed('/message/1'),
             leading: Hero(
               tag: 'chat',
               child: CircleAvatar(

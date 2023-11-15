@@ -11,11 +11,17 @@ class Constants {
       'sk.eyJ1IjoiY2hlbjIzNyIsImEiOiJjbGs0MzZ5MWEwMHkxM3FudHNibTkxNmlwIn0.KjL_GfTjwo6ZmZ6ly3RNIA';
   static const String androidGoogleMapKey =
       'AIzaSyCrJaRKpo96CK8D7LDPSGl_mVvmSQ7CpKc';
+  static const String googleApiKey = 'AIzaSyBZOIpGjTHWn8vNwGtfRBlSzYj1KOCY06Q';
   static const String iosGoogleMapKey =
       'AIzaSyBZOIpGjTHWn8vNwGtfRBlSzYj1KOCY06Q';
-  static const String baseUrl = 'https://api.wakaluxe.com';
+  static const String baseUrl =
+      'https://wakaluxebackend-production.up.railway.app';
   static const double borderRadius = 14;
   static const double buttonHeight = 52;
+
+  static const double baseFare = 1000;
+  static const double costPerKm = 250;
+  static const double costPerMinute = 250;
 
   //static const String baseUrl = 'https://wakaluxe.herokuapp.com/api/v1';
 

@@ -10,7 +10,9 @@ import 'package:wakaluxe/src/extensions/build_context.dart';
 
 class WakaluxInputField extends StatefulWidget {
   const WakaluxInputField({
-    required this.text, required this.hint, super.key,
+    required this.text,
+    required this.hint,
+    super.key,
     this.controller,
     this.icon,
     this.suffix,

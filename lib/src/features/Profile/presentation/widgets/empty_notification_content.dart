@@ -11,7 +11,6 @@ class EmptyNotificationContent extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-        
           Image.asset(Constants.searchData),
         ],
       ),

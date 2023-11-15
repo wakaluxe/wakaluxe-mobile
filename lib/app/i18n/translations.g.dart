@@ -25,20 +25,29 @@ const AppLocale _baseLocale = AppLocale.en;
 /// - Locale locale = AppLocale.en.flutterLocale // get flutter locale from enum
 /// - if (LocaleSettings.currentLocale == AppLocale.en) // locale check
 enum AppLocale with BaseAppLocale<AppLocale, TranslationsEn> {
-	en(languageCode: 'en', build: TranslationsEn.build),
-	de(languageCode: 'de', build: TranslationsDe.build),
-	fr(languageCode: 'fr', build: TranslationsFr.build),
-	zh(languageCode: 'zh', build: TranslationsZh.build);
+  en(languageCode: 'en', build: TranslationsEn.build),
+  de(languageCode: 'de', build: TranslationsDe.build),
+  fr(languageCode: 'fr', build: TranslationsFr.build),
+  zh(languageCode: 'zh', build: TranslationsZh.build);
 
-	const AppLocale({required this.languageCode, this.scriptCode, this.countryCode, required this.build}); // ignore: unused_element
+  const AppLocale(
+      {required this.languageCode,
+      this.scriptCode,
+      this.countryCode,
+      required this.build}); // ignore: unused_element
 
-	@override final String languageCode;
-	@override final String? scriptCode;
-	@override final String? countryCode;
-	@override final TranslationBuilder<AppLocale, TranslationsEn> build;
+  @override
+  final String languageCode;
+  @override
+  final String? scriptCode;
+  @override
+  final String? countryCode;
+  @override
+  final TranslationBuilder<AppLocale, TranslationsEn> build;
 
-	/// Gets current instance managed by [LocaleSettings].
-	TranslationsEn get translations => LocaleSettings.instance.translationMap[this]!;
+  /// Gets current instance managed by [LocaleSettings].
+  TranslationsEn get translations =>
+      LocaleSettings.instance.translationMap[this]!;
 }
 
 /// Method A: Simple
@@ -66,16 +75,21 @@ TranslationsEn get Loc => LocaleSettings.instance.currentTranslations;
 /// final Loc = Translations.of(context); // Get Loc variable.
 /// String a = Loc.someKey.anotherKey; // Use Loc variable.
 class Translations {
-	Translations._(); // no constructor
+  Translations._(); // no constructor
 
-	static TranslationsEn of(BuildContext context) => InheritedLocaleData.of<AppLocale, TranslationsEn>(context).translations;
+  static TranslationsEn of(BuildContext context) =>
+      InheritedLocaleData.of<AppLocale, TranslationsEn>(context).translations;
 }
 
 /// The provider for method B
-class TranslationProvider extends BaseTranslationProvider<AppLocale, TranslationsEn> {
-	TranslationProvider({required super.child}) : super(settings: LocaleSettings.instance);
+class TranslationProvider
+    extends BaseTranslationProvider<AppLocale, TranslationsEn> {
+  TranslationProvider({required super.child})
+      : super(settings: LocaleSettings.instance);
 
-	static InheritedLocaleData<AppLocale, TranslationsEn> of(BuildContext context) => InheritedLocaleData.of<AppLocale, TranslationsEn>(context);
+  static InheritedLocaleData<AppLocale, TranslationsEn> of(
+          BuildContext context) =>
+      InheritedLocaleData.of<AppLocale, TranslationsEn>(context);
 }
 
 /// Method B shorthand via [BuildContext] extension method.
@@ -84,158 +98,208 @@ class TranslationProvider extends BaseTranslationProvider<AppLocale, Translation
 /// Usage (e.g. in a widget's build method):
 /// context.Loc.someKey.anotherKey
 extension BuildContextTranslationsExtension on BuildContext {
-	TranslationsEn get Loc => TranslationProvider.of(this).translations;
+  TranslationsEn get Loc => TranslationProvider.of(this).translations;
 }
 
 /// Manages all translation instances and the current locale
-class LocaleSettings extends BaseFlutterLocaleSettings<AppLocale, TranslationsEn> {
-	LocaleSettings._() : super(utils: AppLocaleUtils.instance);
+class LocaleSettings
+    extends BaseFlutterLocaleSettings<AppLocale, TranslationsEn> {
+  LocaleSettings._() : super(utils: AppLocaleUtils.instance);
 
-	static final instance = LocaleSettings._();
+  static final instance = LocaleSettings._();
 
-	// static aliases (checkout base methods for documentation)
-	static AppLocale get currentLocale => instance.currentLocale;
-	static Stream<AppLocale> getLocaleStream() => instance.getLocaleStream();
-	static AppLocale setLocale(AppLocale locale, {bool? listenToDeviceLocale = false}) => instance.setLocale(locale, listenToDeviceLocale: listenToDeviceLocale);
-	static AppLocale setLocaleRaw(String rawLocale, {bool? listenToDeviceLocale = false}) => instance.setLocaleRaw(rawLocale, listenToDeviceLocale: listenToDeviceLocale);
-	static AppLocale useDeviceLocale() => instance.useDeviceLocale();
-	@Deprecated('Use [AppLocaleUtils.supportedLocales]') static List<Locale> get supportedLocales => instance.supportedLocales;
-	@Deprecated('Use [AppLocaleUtils.supportedLocalesRaw]') static List<String> get supportedLocalesRaw => instance.supportedLocalesRaw;
-	static void setPluralResolver({String? language, AppLocale? locale, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver}) => instance.setPluralResolver(
-		language: language,
-		locale: locale,
-		cardinalResolver: cardinalResolver,
-		ordinalResolver: ordinalResolver,
-	);
+  // static aliases (checkout base methods for documentation)
+  static AppLocale get currentLocale => instance.currentLocale;
+  static Stream<AppLocale> getLocaleStream() => instance.getLocaleStream();
+  static AppLocale setLocale(AppLocale locale,
+          {bool? listenToDeviceLocale = false}) =>
+      instance.setLocale(locale, listenToDeviceLocale: listenToDeviceLocale);
+  static AppLocale setLocaleRaw(String rawLocale,
+          {bool? listenToDeviceLocale = false}) =>
+      instance.setLocaleRaw(rawLocale,
+          listenToDeviceLocale: listenToDeviceLocale);
+  static AppLocale useDeviceLocale() => instance.useDeviceLocale();
+  @Deprecated('Use [AppLocaleUtils.supportedLocales]')
+  static List<Locale> get supportedLocales => instance.supportedLocales;
+  @Deprecated('Use [AppLocaleUtils.supportedLocalesRaw]')
+  static List<String> get supportedLocalesRaw => instance.supportedLocalesRaw;
+  static void setPluralResolver(
+          {String? language,
+          AppLocale? locale,
+          PluralResolver? cardinalResolver,
+          PluralResolver? ordinalResolver}) =>
+      instance.setPluralResolver(
+        language: language,
+        locale: locale,
+        cardinalResolver: cardinalResolver,
+        ordinalResolver: ordinalResolver,
+      );
 }
 
 /// Provides utility functions without any side effects.
 class AppLocaleUtils extends BaseAppLocaleUtils<AppLocale, TranslationsEn> {
-	AppLocaleUtils._() : super(baseLocale: _baseLocale, locales: AppLocale.values);
+  AppLocaleUtils._()
+      : super(baseLocale: _baseLocale, locales: AppLocale.values);
 
-	static final instance = AppLocaleUtils._();
+  static final instance = AppLocaleUtils._();
 
-	// static aliases (checkout base methods for documentation)
-	static AppLocale parse(String rawLocale) => instance.parse(rawLocale);
-	static AppLocale parseLocaleParts({required String languageCode, String? scriptCode, String? countryCode}) => instance.parseLocaleParts(languageCode: languageCode, scriptCode: scriptCode, countryCode: countryCode);
-	static AppLocale findDeviceLocale() => instance.findDeviceLocale();
-	static List<Locale> get supportedLocales => instance.supportedLocales;
-	static List<String> get supportedLocalesRaw => instance.supportedLocalesRaw;
+  // static aliases (checkout base methods for documentation)
+  static AppLocale parse(String rawLocale) => instance.parse(rawLocale);
+  static AppLocale parseLocaleParts(
+          {required String languageCode,
+          String? scriptCode,
+          String? countryCode}) =>
+      instance.parseLocaleParts(
+          languageCode: languageCode,
+          scriptCode: scriptCode,
+          countryCode: countryCode);
+  static AppLocale findDeviceLocale() => instance.findDeviceLocale();
+  static List<Locale> get supportedLocales => instance.supportedLocales;
+  static List<String> get supportedLocalesRaw => instance.supportedLocalesRaw;
 }
 
 // context enums
 
 enum GenderContext {
-	male,
-	female,
+  male,
+  female,
 }
 
 // interfaces generated as mixins
 
 mixin PageData2 {
-	String get title;
-	String? get content => null;
+  String get title;
+  String? get content => null;
 
-	@override
-	bool operator ==(Object other) => other is PageData2 && title == other.title && content == other.content;
+  @override
+  bool operator ==(Object other) =>
+      other is PageData2 && title == other.title && content == other.content;
 
-	@override
-	int get hashCode => title.hashCode * content.hashCode;
+  @override
+  int get hashCode => title.hashCode * content.hashCode;
 }
 
 // translations
 
 // Path: <root>
 class TranslationsEn implements BaseTranslations<AppLocale, TranslationsEn> {
+  /// You can call this constructor and build your own translation instance of this locale.
+  /// Constructing via the enum [AppLocale.build] is preferred.
+  TranslationsEn.build(
+      {Map<String, Node>? overrides,
+      PluralResolver? cardinalResolver,
+      PluralResolver? ordinalResolver})
+      : assert(overrides == null,
+            'Set "translation_overrides: true" in order to enable this feature.'),
+        $meta = TranslationMetadata(
+          locale: AppLocale.en,
+          overrides: overrides ?? {},
+          cardinalResolver: cardinalResolver,
+          ordinalResolver: ordinalResolver,
+        );
 
-	/// You can call this constructor and build your own translation instance of this locale.
-	/// Constructing via the enum [AppLocale.build] is preferred.
-	TranslationsEn.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
-		: assert(overrides == null, 'Set "translation_overrides: true" in order to enable this feature.'),
-		  $meta = TranslationMetadata(
-		    locale: AppLocale.en,
-		    overrides: overrides ?? {},
-		    cardinalResolver: cardinalResolver,
-		    ordinalResolver: ordinalResolver,
-		  );
+  /// Metadata for the translations of <en>.
+  @override
+  final TranslationMetadata<AppLocale, TranslationsEn> $meta;
 
-	/// Metadata for the translations of <en>.
-	@override final TranslationMetadata<AppLocale, TranslationsEn> $meta;
+  late final TranslationsEn _root = this; // ignore: unused_field
 
-	late final TranslationsEn _root = this; // ignore: unused_field
-
-	// Translations
-	String get app_name => 'Wakaluxe';
+  // Translations
+  String get app_name => 'Wakaluxe';
 }
 
 // Path: <root>
 class TranslationsDe extends TranslationsEn {
+  /// You can call this constructor and build your own translation instance of this locale.
+  /// Constructing via the enum [AppLocale.build] is preferred.
+  TranslationsDe.build(
+      {Map<String, Node>? overrides,
+      PluralResolver? cardinalResolver,
+      PluralResolver? ordinalResolver})
+      : assert(overrides == null,
+            'Set "translation_overrides: true" in order to enable this feature.'),
+        $meta = TranslationMetadata(
+          locale: AppLocale.de,
+          overrides: overrides ?? {},
+          cardinalResolver: cardinalResolver,
+          ordinalResolver: ordinalResolver,
+        ),
+        super.build(
+            cardinalResolver: cardinalResolver,
+            ordinalResolver: ordinalResolver);
 
-	/// You can call this constructor and build your own translation instance of this locale.
-	/// Constructing via the enum [AppLocale.build] is preferred.
-	TranslationsDe.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
-		: assert(overrides == null, 'Set "translation_overrides: true" in order to enable this feature.'),
-		  $meta = TranslationMetadata(
-		    locale: AppLocale.de,
-		    overrides: overrides ?? {},
-		    cardinalResolver: cardinalResolver,
-		    ordinalResolver: ordinalResolver,
-		  ),
-		  super.build(cardinalResolver: cardinalResolver, ordinalResolver: ordinalResolver);
+  /// Metadata for the translations of <de>.
+  @override
+  final TranslationMetadata<AppLocale, TranslationsEn> $meta;
 
-	/// Metadata for the translations of <de>.
-	@override final TranslationMetadata<AppLocale, TranslationsEn> $meta;
+  @override
+  late final TranslationsDe _root = this; // ignore: unused_field
 
-	@override late final TranslationsDe _root = this; // ignore: unused_field
-
-	// Translations
-	@override String get app_name => 'WakaluxeDE';
+  // Translations
+  @override
+  String get app_name => 'WakaluxeDE';
 }
 
 // Path: <root>
 class TranslationsFr extends TranslationsEn {
+  /// You can call this constructor and build your own translation instance of this locale.
+  /// Constructing via the enum [AppLocale.build] is preferred.
+  TranslationsFr.build(
+      {Map<String, Node>? overrides,
+      PluralResolver? cardinalResolver,
+      PluralResolver? ordinalResolver})
+      : assert(overrides == null,
+            'Set "translation_overrides: true" in order to enable this feature.'),
+        $meta = TranslationMetadata(
+          locale: AppLocale.fr,
+          overrides: overrides ?? {},
+          cardinalResolver: cardinalResolver,
+          ordinalResolver: ordinalResolver,
+        ),
+        super.build(
+            cardinalResolver: cardinalResolver,
+            ordinalResolver: ordinalResolver);
 
-	/// You can call this constructor and build your own translation instance of this locale.
-	/// Constructing via the enum [AppLocale.build] is preferred.
-	TranslationsFr.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
-		: assert(overrides == null, 'Set "translation_overrides: true" in order to enable this feature.'),
-		  $meta = TranslationMetadata(
-		    locale: AppLocale.fr,
-		    overrides: overrides ?? {},
-		    cardinalResolver: cardinalResolver,
-		    ordinalResolver: ordinalResolver,
-		  ),
-		  super.build(cardinalResolver: cardinalResolver, ordinalResolver: ordinalResolver);
+  /// Metadata for the translations of <fr>.
+  @override
+  final TranslationMetadata<AppLocale, TranslationsEn> $meta;
 
-	/// Metadata for the translations of <fr>.
-	@override final TranslationMetadata<AppLocale, TranslationsEn> $meta;
+  @override
+  late final TranslationsFr _root = this; // ignore: unused_field
 
-	@override late final TranslationsFr _root = this; // ignore: unused_field
-
-	// Translations
-	@override String get app_name => 'WakaluxeFR';
+  // Translations
+  @override
+  String get app_name => 'WakaluxeFR';
 }
 
 // Path: <root>
 class TranslationsZh extends TranslationsEn {
+  /// You can call this constructor and build your own translation instance of this locale.
+  /// Constructing via the enum [AppLocale.build] is preferred.
+  TranslationsZh.build(
+      {Map<String, Node>? overrides,
+      PluralResolver? cardinalResolver,
+      PluralResolver? ordinalResolver})
+      : assert(overrides == null,
+            'Set "translation_overrides: true" in order to enable this feature.'),
+        $meta = TranslationMetadata(
+          locale: AppLocale.zh,
+          overrides: overrides ?? {},
+          cardinalResolver: cardinalResolver,
+          ordinalResolver: ordinalResolver,
+        ),
+        super.build(
+            cardinalResolver: cardinalResolver,
+            ordinalResolver: ordinalResolver);
 
-	/// You can call this constructor and build your own translation instance of this locale.
-	/// Constructing via the enum [AppLocale.build] is preferred.
-	TranslationsZh.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
-		: assert(overrides == null, 'Set "translation_overrides: true" in order to enable this feature.'),
-		  $meta = TranslationMetadata(
-		    locale: AppLocale.zh,
-		    overrides: overrides ?? {},
-		    cardinalResolver: cardinalResolver,
-		    ordinalResolver: ordinalResolver,
-		  ),
-		  super.build(cardinalResolver: cardinalResolver, ordinalResolver: ordinalResolver);
+  /// Metadata for the translations of <zh>.
+  @override
+  final TranslationMetadata<AppLocale, TranslationsEn> $meta;
 
-	/// Metadata for the translations of <zh>.
-	@override final TranslationMetadata<AppLocale, TranslationsEn> $meta;
+  @override
+  late final TranslationsZh _root = this; // ignore: unused_field
 
-	@override late final TranslationsZh _root = this; // ignore: unused_field
-
-	// Translations
-	@override String get app_name => 'WakaluxeZH';
+  // Translations
+  @override
+  String get app_name => 'WakaluxeZH';
 }

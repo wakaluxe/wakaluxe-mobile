@@ -10,10 +10,7 @@ class DriverReviewScreen extends StatelessWidget {
         padding: EdgeInsets.symmetric(
           horizontal: 8,
         ),
-        child: Column(
-          
-          
-        ),
+        child: Column(),
       ),
     );
   }
