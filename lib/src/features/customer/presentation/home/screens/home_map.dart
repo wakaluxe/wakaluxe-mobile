@@ -6,7 +6,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
 /* import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
@@ -28,13 +27,11 @@ import 'package:wakaluxe/src/extensions/num.dart';
 //import 'package:wakaluxe/src/features/customer/data/data_sources/mapbox_services.dart';
 import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc/home_bloc.dart';
 import 'package:wakaluxe/src/features/customer/domain/entities/location_entity.dart';
-import 'package:wakaluxe/src/features/customer/presentation/home/screens/wakaluxe_home_sheets.dart';
-import 'package:wakaluxe/src/features/customer/presentation/home/widgets/on_trip_widget.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/widgets/pay_fare_widget.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/widgets/select_driver_widget.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/widgets/showing_booking_detail_widget.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/widgets/taxi_fetching.dart';
-import 'package:wakaluxe/src/features/customer/presentation/home/widgets/travel_duration_widget.dart';
+import 'package:wakaluxe/src/features/customer/presentation/home/widgets/trip_state_widget.dart';
 
 // List<Map<String, dynamic>> data = []
 @RoutePage(name: 'HomeMap')
@@ -53,7 +50,7 @@ class _HomeMapState extends State<HomeMap> {
   late final Completer<GoogleMapController> _mapController = Completer();
 
   LatLng? _source;
-  //= const LatLng(3.8857, 11.5454);
+  final fakeDestination = const LatLng(3.8860, 11.5454);
   LatLng? _destination;
   // = const LatLng(3.892268, 11.547712);
   Loc.LocationData? _currentPosition;
@@ -136,22 +133,29 @@ class _HomeMapState extends State<HomeMap> {
     _currentPosition = locationData;
     logInfo('location data: $_currentPosition ');
     setState(() {});
-    final controller = _mapController.future.then((controller) {
-      return location.onLocationChanged.listen((event) {
-        _currentPosition = event;
-        controller.animateCamera(
-          CameraUpdate.newCameraPosition(
-            CameraPosition(
-              target: LatLng(
-                event.latitude!,
-                event.longitude!,
-              ),
-              zoom: 14.4746,
+    final controller = await _mapController.future;
+    await location.changeSettings(
+      interval: 100,
+    );
+    location.onLocationChanged.listen((event) {
+      _currentPosition = event;
+      context.read<HomeBloc>().add(
+            UpdateUserCoordindateEvent(
+              LatLng(locationData.latitude!, locationData.longitude!),
             ),
+          );
+      controller.animateCamera(
+        CameraUpdate.newCameraPosition(
+          CameraPosition(
+            target: LatLng(
+              event.latitude!,
+              event.longitude!,
+            ),
+            zoom: 18.4746,
           ),
-        );
-        setState(() {});
-      });
+        ),
+      );
+      setState(() {});
     });
   }
 
@@ -167,7 +171,9 @@ class _HomeMapState extends State<HomeMap> {
       backgroundColor: context.colorScheme.background,
       floatingActionButton: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) => FloatingActionButton(
-          onPressed: () => _handleDestinationSelection(
+          backgroundColor: context.colorScheme.primary,
+          shape: const CircleBorder(),
+          onPressed: () => _handleDestinationSelectionWithoutPlacePicker(
             state.myCoordinate,
           ),
           child: const Icon(Icons.navigation_outlined),
@@ -183,14 +189,28 @@ class _HomeMapState extends State<HomeMap> {
               'Click, Payment bottom will show in 10s',
             );
           }
-          if (state.loadingDrivers) {
-            Future.delayed(const Duration(seconds: 4), () {
+          /*  if (state.loadingDrivers) {
+            Future.delayed(const Duration(seconds: 1), () {
               context.read<HomeBloc>().add(
                     ShowDriversEvent(showDrivers: true, loadingDrivers: false),
                   );
             });
+          } */
+          if (state.showDrivers) {
+            _mapController.future.then((controller) {
+              controller.animateCamera(
+                CameraUpdate.newCameraPosition(
+                  CameraPosition(
+                    target: LatLng(
+                      _destination!.latitude,
+                      _destination!.longitude,
+                    ),
+                    zoom: 18.4746,
+                  ),
+                ),
+              );
+            });
           }
-
           if (state.getDirections) {
             _getPolyPoints();
           }
@@ -202,6 +222,19 @@ class _HomeMapState extends State<HomeMap> {
         builder: (context, state) {
           final data = getDriverData();
           if (state.loadingDrivers) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  //TaxiFetching(),
+                  const CircularProgressIndicator(),
+                  20.vGap,
+                  const Text('Fetching drivers...'),
+                ],
+              ),
+            );
+          }
+          if (state.selectDriver) {
             return const TaxiFetching();
           }
           return Stack(
@@ -241,7 +274,7 @@ class _HomeMapState extends State<HomeMap> {
                                   ),
                               },
                               markers: {
-                                Marker(
+                                 Marker(
                                   //    icon: _currentIcon,
                                   markerId: const MarkerId('current location'),
                                   position: LatLng(
@@ -290,7 +323,9 @@ class _HomeMapState extends State<HomeMap> {
                     ),
                     if (state.selectDriver) const SelectDriverWidget(),
                     if (state.showBookingDetails)
-                      const ShowBookingDetailsWidget(),
+                      ShowBookingDetailsWidget(
+                        tourId: state.tourData.data!.datum!.id!,
+                      ),
                     /* if (state.tourData.data!.datum!.duration !> 0)
                       Positioned(
                         top: 20,
@@ -298,8 +333,9 @@ class _HomeMapState extends State<HomeMap> {
                           travelTime: state.tourData.data!.datum!.duration! ,
                         ),
                       ), */
-                    if (state.onTrip) const OnTripWidget(),
-                    if (state.getDirections)
+
+                    if (state.onTrip) ...[const NavigationInfoWidget()],
+                    /* if (state.getDirections)
                       Positioned(
                         bottom: 20,
                         left: 0,
@@ -315,7 +351,7 @@ class _HomeMapState extends State<HomeMap> {
                             textColor: context.colorScheme.onTertiary,
                           ),
                         ),
-                      ),
+                      ), */
                     //TODO: GOOGLE MAP NAV START
                     if (state.showDestionPicker)
                       Padding(
@@ -353,25 +389,24 @@ class _HomeMapState extends State<HomeMap> {
                         child: Align(
                           alignment: Alignment.bottomCenter,
                           child: SizedBox(
-                            height: context.height * 0.40,
                             child: WakaluxCard(
                               child: WakaluxeBookingDetails(
                                 action: () {
                                   context.read<HomeBloc>().add(
-                                        HomeInitialEvent(),
+                                        SelectedRideEvent(),
                                       ); // show dialof to confirm ride
-                                  WakaluxeBottomSheets.showConfirmDialog(
+                                  /* WakaluxeBottomSheets.showConfirmDialog(
                                     context,
-                                  );
+                                  ); */
                                 },
                                 driverImage:
                                     data.first['driverImage'] as String,
                                 driverName: data.first['driverName'] as String,
                                 rating: 4.0,
                                 recommended: 30,
-                                distance: 'state.tourData.distanceText',
-                                price: state.tourData.data!.datum!.price.toString(),
-                                time: state.tourData.data!.datum!.duration.toString(),
+                                distance: state.tourData.distanceText!,
+                                price: '${state.tourData.data!.datum!.price!}',
+                                time: state.tourData.durationText!,
                                 imageLiknks: images,
                               ),
                             ),
@@ -386,6 +421,34 @@ class _HomeMapState extends State<HomeMap> {
         },
       ),
     );
+  }
+
+  Future<void> _handleDestinationSelectionWithoutPlacePicker(
+    LocationEntity location,
+  ) async {
+    _destination = LatLng(
+      fakeDestination.latitude,
+      fakeDestination.longitude,
+    );
+    _source = LatLng(
+      location.latitude,
+      location.longitude,
+    );
+    await _getPolyPoints();
+    _setCustomMarkerIcon();
+    //      _waypoints.add(_destination);
+    context.read<HomeBloc>().add(
+          SelectLocationEvent(
+            destination: LatLng(
+              fakeDestination.latitude,
+              fakeDestination.longitude,
+            ),
+            source: LatLng(
+              _currentPosition!.latitude!,
+              _currentPosition!.longitude!,
+            ),
+          ),
+        );
   }
 
   Future<void> _handleDestinationSelection(LocationEntity location) async {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_image_stack/flutter_image_stack.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
@@ -32,6 +32,7 @@ class WakaluxeBookingDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(
@@ -44,33 +45,6 @@ class WakaluxeBookingDetails extends StatelessWidget {
           ),
         ),
         3.vGap,
-        Divider(
-          color: context.colorScheme.onBackground,
-          // .withOpacity(0.6),
-          thickness: 0.4,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 15,
-          ),
-          child: Row(
-            children: [
-              FlutterImageStack(
-                imageList: imageLiknks,
-                totalCount: 4,
-                itemRadius: 40,
-                showTotalCount: false,
-              ),
-              10.hGap,
-              Text('$recommended Recommended'),
-            ],
-          ),
-        ),
-        Divider(
-          color: context.colorScheme.onBackground,
-          // .withOpacity(0.6),
-          thickness: 0.4,
-        ),
         3.vGap,
         Padding(
           padding: const EdgeInsets.symmetric(
@@ -140,11 +114,15 @@ class WakaluxeBookingDetails extends StatelessWidget {
           child: TextButton(
             onPressed: action,
             style: TextButton.styleFrom(
+              fixedSize: Size(
+                0.8.sw,
+                50,
+              ),
               backgroundColor: context.colorScheme.tertiary,
             ),
             child: Text(
               'Confirm',
-              style: Theme.of(context).textTheme.button1,
+              style: Theme.of(context).textTheme.button1.copyWith(color: context.colorScheme.onSecondary),
             ),
             /*    color: ,
             textColor: context.colorScheme.onTertiary, */

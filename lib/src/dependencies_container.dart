@@ -12,6 +12,8 @@ import 'package:wakaluxe/src/features/customer/data/data_sources/tour_backend_da
 import 'package:wakaluxe/src/features/customer/data/trip_repository_implemantation.dart';
 import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc/home_bloc.dart';
 import 'package:wakaluxe/src/features/customer/domain/trip_repository.dart';
+import 'package:wakaluxe/src/features/customer/domain/usecases/cancel_tour_usecase.dart';
+import 'package:wakaluxe/src/features/customer/domain/usecases/complete_tour_usecase.dart';
 import 'package:wakaluxe/src/features/customer/domain/usecases/create_tour_usecase.dart';
 import 'package:wakaluxe/src/features/customer/domain/usecases/get_current_location_usecase.dart';
 
@@ -45,8 +47,16 @@ Future<void> registerServices() async {
       GetCurrentLocationUsecase(repository: locator()),
     )
     ..registerLazySingleton<CreateTourUsecase>(
-        () => CreateTourUsecase(repository: locator()))
-    ..registerFactory<HomeBloc>(() => HomeBloc(locator(), locator()))
+      () => CreateTourUsecase(repository: locator()),
+    )
+    ..registerLazySingleton<CompleteTourUsecase>(
+      () => CompleteTourUsecase(repository: locator()),
+    )
+    ..registerLazySingleton<CancelTourUsecase>(
+      () => CancelTourUsecase(repository: locator()),
+    )
+    ..registerFactory<HomeBloc>(
+        () => HomeBloc(locator(), locator(), locator(), locator()))
     ..registerFactory<AuthBloc>(() => AuthBloc(locator()))
     ..registerLazySingleton<BookingCubit>(() => BookingCubit(locator()));
 }

@@ -18,7 +18,7 @@ class Datum {
   String? id;
   String? slug;
   int? v;
-  int? durationWeeks;
+  double? durationWeeks;
 
   Datum({
     this.name,
@@ -65,7 +65,7 @@ class Datum {
         id: data['_id'] as String?,
         slug: data['slug'] as String?,
         v: data['__v'] as int?,
-        durationWeeks: data['durationWeeks'] as int?,
+        durationWeeks: data['durationWeeks'] as double?,
       );
 
   Map<String, dynamic> toMap() => {
@@ -114,7 +114,7 @@ class Datum {
     String? id,
     String? slug,
     int? v,
-    int? durationWeeks,
+    double? durationWeeks,
   }) {
     return Datum(
       name: name ?? this.name,

@@ -52,7 +52,7 @@ dependencies:
   pinput: ^2.2.31
   slang_flutter: ^3.22.0
   table_calendar: ^3.0.9
-  url_launcher: ^6.1.10
+  url_launcher: ^6.1.14
   retrofit: ^4.0.1
   connectivity_plus: ^4.0.2
   m_toast: ^0.2.2

@@ -3,7 +3,13 @@ import 'dart:convert';
 import 'package:wakaluxe/src/features/customer/data/models/create_tour_res_model/data.dart';
 
 class CreateTourResModel {
-  CreateTourResModel({this.status, this.data});
+  CreateTourResModel({
+    this.status,
+    this.data,
+    this.durationText,
+    this.distanceText,
+    this.distanceValue
+  });
 
   factory CreateTourResModel.fromMap(Map<String, dynamic> data) {
     return CreateTourResModel(
@@ -15,10 +21,7 @@ class CreateTourResModel {
   }
 
   factory CreateTourResModel.empty() {
-    return CreateTourResModel(
-      status: null,
-      data: null,
-    );
+    return CreateTourResModel();
   }
 
   /// `dart:convert`
@@ -26,10 +29,14 @@ class CreateTourResModel {
   /// Parses the string and returns the resulting Json object as [CreateTourResModel].
   factory CreateTourResModel.fromJson(String data) {
     return CreateTourResModel.fromMap(
-        json.decode(data) as Map<String, dynamic>);
+      json.decode(data) as Map<String, dynamic>,
+    );
   }
   String? status;
   Data? data;
+  String? durationText;
+  String? distanceText;
+  int? distanceValue;
 
   @override
   String toString() => 'CreateTourResModel(status: $status, data: $data)';
@@ -47,10 +54,16 @@ class CreateTourResModel {
   CreateTourResModel copyWith({
     String? status,
     Data? data,
+    String? durationText,
+    String? distanceText,
+    int? distanceValue
   }) {
     return CreateTourResModel(
       status: status ?? this.status,
       data: data ?? this.data,
+      durationText: durationText ?? this.durationText,
+      distanceText: distanceText ?? this.distanceText,
+      distanceValue: distanceValue ?? this.distanceValue
     );
   }
 }

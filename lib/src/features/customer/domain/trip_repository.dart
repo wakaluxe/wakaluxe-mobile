@@ -7,4 +7,7 @@ abstract class TripRepository {
     required LocationEntity source,
     required LocationEntity destination,
   });
+  Future<void> cancelTour({required String tourId});
+  Future<void> markTourAsComplete({required String tourId});
+  Future<void> callDriver({required String driverPhoneNumber});
 }

@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'package:dio/dio.dart';
 import 'package:wakaluxe/src/common/Utils/logger.dart';
 import 'package:wakaluxe/src/features/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:wakaluxe/src/features/customer/data/data_sources/get_current_location.dart';
@@ -30,6 +31,17 @@ class TripRepositoryImplementation implements TripRepository {
   }
 
   @override
+  Future<void> callDriver({required String driverPhoneNumber}) async {
+    try {
+      final phoneNumber = driverPhoneNumber.replaceAll(' ', '');
+    await callDriverService(driverPhoneNumber);
+    } catch (e) {
+      logError('the error in call driver $e');
+      throw Exception('Error calling driver: $e');
+    }
+  }
+
+  @override
   Future<CreateTourResModel> createTour({
     required LocationEntity source,
     required LocationEntity destination,
@@ -54,19 +66,66 @@ class TripRepositoryImplementation implements TripRepository {
             destination.latitude,
           ],
         ),
-        name: idToken,
-        price:  fullModel.price!.toInt(),
+        name: 'Trip to ${destination.latitude}',
+        price: fullModel.price!.toInt(),
         duration: fullModel.durationValue,
       );
       logInfo('the body in create tour $body');
       final result =
-          await backendDataSource.createTour('Bearer $idToken', body).catchError((e) {
-        logError('the error in create tour $e');
-      });
+          await backendDataSource.createTour('Bearer $idToken', body);
       logInfo('createTour: $result');
-      return result;
+      return result.copyWith(
+        durationText: data.durationText,
+        distanceText: data.distanceText,
+        distanceValue: data.distanceValue,
+      );
+    } on DioException catch (e) {
+      logError(
+        'the error in create tour  ${e.response} and stack trace ${e.stackTrace}',
+      );
+      throw Exception(
+        'Error getting trip api data: ${e.message} and stack trace ${e.stackTrace}',
+      );
     } catch (e) {
       logError('the error in create tour $e');
+      throw Exception('Error getting trip api data: $e');
+    }
+  }
+
+  @override
+  Future<void> cancelTour({required String tourId}) async {
+    // TODO: implement cancelTour
+    try {
+      final idToken = await authData.getIdToken;
+      await backendDataSource.cancelTour('Bearer $idToken', tourId);
+    } on DioException catch (e) {
+      logError(
+        'the error in cancel tour  ${e.message} and stack trace ${e.stackTrace}',
+      );
+      throw Exception(
+        'Error getting trip api data: ${e.message} ',
+      );
+    } catch (e) {
+      logError('the error in cancel tour $e');
+      throw Exception('Error getting trip api data: $e');
+    }
+  }
+
+  @override
+  Future<void> markTourAsComplete({required String tourId}) async {
+    // TODO: implement markTourAsComplete
+    try {
+      final idToken = await authData.getIdToken;
+      await backendDataSource.markTourAsComplete('Bearer $idToken', tourId);
+    } on DioException catch (e) {
+      logError(
+        'the error in marking tour as complete ${e.message} and stack trace ${e.stackTrace}',
+      );
+      throw Exception(
+        'Error getting trip api data: ${e.message} ',
+      );
+    } catch (e) {
+      logError('the error in cancel tour $e');
       throw Exception('Error getting trip api data: $e');
     }
   }

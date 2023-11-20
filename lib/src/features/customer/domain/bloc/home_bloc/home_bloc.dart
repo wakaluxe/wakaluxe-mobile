@@ -1,12 +1,17 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:wakaluxe/src/common/Utils/logger.dart';
-import 'package:wakaluxe/src/features/customer/data/models/api_tour_model.dart';
+import 'package:wakaluxe/src/features/customer/data/data_sources/get_tour_data.dart';
+import 'package:wakaluxe/src/features/customer/data/data_sources/services/is_user_near_destination.dart';
 import 'package:wakaluxe/src/features/customer/data/models/create_tour_res_model/create_tour_res_model.dart';
 
 import 'package:wakaluxe/src/features/customer/domain/entities/location_entity.dart';
+import 'package:wakaluxe/src/features/customer/domain/usecases/cancel_tour_usecase.dart';
+import 'package:wakaluxe/src/features/customer/domain/usecases/complete_tour_usecase.dart';
 import 'package:wakaluxe/src/features/customer/domain/usecases/create_tour_usecase.dart';
 import 'package:wakaluxe/src/features/customer/domain/usecases/get_current_location_usecase.dart';
 
@@ -14,33 +19,21 @@ part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
+  int _counter = 0;
+
   HomeBloc(
     this._locationUsecase,
     this._createTourUsecase,
+    this._completeTourUsecase,
+    this._cancelTourUsecase,
     // this._travelTimeUsecase,
   ) : super(HomeInitial()) {
     on<HomeInitialEvent>(_onAuthInitEvent);
     on<SelectedRideEvent>((event, emit) {
       emit(
-        SelectRideState(
-          selectedIndex: event.selectedIndex,
-          selectedPaymentType: state.selectedPaymentType,
-          selectedPaymentMethod: state.selectedPaymentMethod,
-          selectDriver: state.selectDriver,
-          showDrivers: state.showDrivers,
-          showBookingDetails: state.showBookingDetails,
-          selectedReview: state.selectedReview,
-          onTrip: state.onTrip,
-          getDirections: state.getDirections,
-          payfare: state.payfare,
-          lat: state.lat,
-          loadingDrivers: state.loadingDrivers,
-          lng: state.lng,
-          myCoordinate: state.myCoordinate,
-          showDestionPicker: state.showDestionPicker,
-          tourData: state.tourData,
-          destination: state.destination,
-          source: state.source,
+        state.copyWith(
+          selectDriver: true,
+          showDrivers: false,
         ),
       );
     });
@@ -177,12 +170,52 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     });
     on<OnTripEvent>((event, emit) async {
       emit(
-        HomeInitial().copyWith(
+        state.copyWith(
           onTrip: true,
+          showDestionPicker: false,
+          selectDriver: false,
         ), // delay the operation by 5 seconds
       );
-      await Future.delayed(const Duration(seconds: 5));
-      emit(
+
+      // await Future.delayed(const Duration(seconds: 5));
+      Timer.periodic(const Duration(seconds: 5), (timer) async {
+        final isNear = isUserNearDestination(
+          state.tourData.distanceValue!,
+        );
+        logInfo('isNear: $isNear');
+        if (isNear || !state.onTrip) {
+          _counter = 0;
+
+          timer.cancel();
+          emit(
+            state.copyWith(
+              onTrip: false,
+              payfare: true,
+            ),
+          );
+        } else {
+          //   if (_counter % 30 == 0) {
+          final data = await getTraveldData(
+            start: state.myCoordinate.toLatLng(),
+            end: state.destination.toLatLng(),
+          );
+          logInfo('duration: $data');
+          emit(
+            state.copyWith(
+              onTrip: true,
+              tourData: state.tourData.copyWith(
+                durationText: data.durationText,
+                distanceText: data.distanceText,
+                distanceValue: data.distanceValue,
+              ),
+            ),
+          );
+          //  }
+        }
+        _counter += 5;
+        logInfo('counter: $_counter');
+      });
+      /*   emit(
         HomeInitial().copyWith(
           getDirections: true,
         ),
@@ -192,13 +225,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         HomeInitial().copyWith(
           payfare: true,
         ),
-      );
+      ); */
     });
-
+    on<UpdateUserCoordindateEvent>(_onUpateUserCoordinateEvent);
     on<SelectLocationEvent>((event, emit) async {
       try {
         emit(
-          HomeInitial().copyWith(
+          state.copyWith(
             source: LocationEntity.fromLatLng(event.source),
             destination: LocationEntity.fromLatLng(event.destination),
             loadingDrivers: true,
@@ -216,12 +249,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         );
 
         emit(
-          HomeInitial().copyWith(
+          state.copyWith(
             source: LocationEntity.fromLatLng(event.source),
             destination: LocationEntity.fromLatLng(event.destination),
-            loadingDrivers: true,
+            loadingDrivers: false,
             showDestionPicker: false,
             tourData: data,
+            showDrivers: true,
+            selectDriver: false,
           ),
         );
       } catch (e) {
@@ -231,6 +266,53 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         );
       }
     });
+    on<CancelTripEvent>(_onCancelTripEvent);
+  }
+
+  Future<void> _onCancelTripEvent(
+    CancelTripEvent event,
+    Emitter<HomeState> emit,
+  ) async {
+    try {
+      await _cancelTourUsecase(
+        params: CancelTourParams(
+          tourId: event.tourId,
+        ),
+      );
+
+      emit(
+        HomeInitial(),
+      );
+    } catch (e) {
+      logError(e.toString());
+      emit(
+        HomeInitial(),
+      );
+    }
+  }
+
+  Future<void> _onCompleteTripEvent(
+    CompleteTripEvent event,
+    Emitter<HomeState> emit,
+  ) async {
+    try {
+      await _completeTourUsecase(
+        params: CompleteTourParams(
+          tourId: event.tourId,
+        ),
+      );
+
+      emit(
+        state.copyWith(
+          payfare: true,
+        ),
+      );
+    } catch (e) {
+      logError(e.toString());
+      emit(
+        HomeInitial(),
+      );
+    }
   }
 
   Future<void> _onAuthInitEvent(
@@ -252,5 +334,18 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   final GetCurrentLocationUsecase _locationUsecase;
   final CreateTourUsecase _createTourUsecase;
+  final CompleteTourUsecase _completeTourUsecase;
+  final CancelTourUsecase _cancelTourUsecase;
+  final 
+  
 //  final GetTravelTimeUseCase _travelTimeUsecase;
+
+  FutureOr<void> _onUpateUserCoordinateEvent(
+      UpdateUserCoordindateEvent event, Emitter<HomeState> emit) {
+    emit(
+      state.copyWith(
+        myCoordinate: LocationEntity.fromLatLng(event.coordinate),
+      ),
+    );
+  }
 }

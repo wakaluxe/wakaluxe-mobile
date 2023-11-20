@@ -6,9 +6,10 @@ import 'package:wakaluxe/src/features/customer/presentation/home/screens/wakalux
 
 class ShowBookingDetailsWidget extends StatelessWidget {
   const ShowBookingDetailsWidget({
+    required this.tourId,
     super.key,
   });
-
+  final String tourId;
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -27,7 +28,9 @@ class ShowBookingDetailsWidget extends StatelessWidget {
           timeLeft: 5,
           action: () {
             context.read<HomeBloc>().add(
-                  HomeInitialEvent(),
+                  CancelTripEvent(
+                    tourId,
+                  ),
                 );
             WakaluxeBottomSheets.showRemarkSheet(
               context,

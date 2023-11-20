@@ -13,7 +13,7 @@ class Data {
   factory Data.fromMap(Map<String, dynamic> data) => Data(
         datum: data['data'] == null
             ? null
-            : Datum.fromMap(data['datum'] as Map<String, dynamic>),
+            : Datum.fromMap(data['data'] as Map<String, dynamic>),
       );
 
   Map<String, dynamic> toMap() => {

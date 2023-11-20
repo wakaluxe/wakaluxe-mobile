@@ -45,4 +45,7 @@ class EndLocation {
 
   @override
   int get hashCode => coordinates.hashCode;
+
+  @override
+  String toString() => 'EndLocation(coordinates: $coordinates)';
 }

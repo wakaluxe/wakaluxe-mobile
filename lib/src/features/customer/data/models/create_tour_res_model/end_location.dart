@@ -1,23 +1,12 @@
 import 'dart:convert';
 
 class EndLocation {
-  List<double>? coordinates;
-  String? type;
-
   EndLocation({this.coordinates, this.type});
 
-  @override
-  String toString() => 'EndLocation(coordinates: $coordinates, type: $type)';
-
   factory EndLocation.fromMap(Map<String, dynamic> data) => EndLocation(
-        coordinates: data['coordinates'] as List<double>?,
+        coordinates: List<double>.from(data['coordinates'] as List),
         type: data['type'] as String?,
       );
-
-  Map<String, dynamic> toMap() => {
-        'coordinates': coordinates,
-        'type': type,
-      };
 
   /// `dart:convert`
   ///
@@ -25,6 +14,16 @@ class EndLocation {
   factory EndLocation.fromJson(String data) {
     return EndLocation.fromMap(json.decode(data) as Map<String, dynamic>);
   }
+  List<double>? coordinates;
+  String? type;
+
+  @override
+  String toString() => 'EndLocation(coordinates: $coordinates, type: $type)';
+
+  Map<String, dynamic> toMap() => {
+        'coordinates': coordinates,
+        'type': type,
+      };
 
   /// `dart:convert`
   ///

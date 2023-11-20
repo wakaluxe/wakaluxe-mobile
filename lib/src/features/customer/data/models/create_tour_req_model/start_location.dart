@@ -45,4 +45,7 @@ class StartLocation {
 
   @override
   int get hashCode => coordinates.hashCode;
+
+  @override
+  String toString() => 'StartLocation(coordinates: $coordinates)';
 }

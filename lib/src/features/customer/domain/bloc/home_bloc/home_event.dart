@@ -7,8 +7,7 @@ abstract class HomeEvent {}
 class HomeInitialEvent extends HomeEvent {}
 
 class SelectedRideEvent extends HomeEvent {
-  SelectedRideEvent({required this.selectedIndex});
-  final int selectedIndex;
+  SelectedRideEvent();
 }
 
 class SelectPaymentTypeEvent extends HomeEvent {
@@ -68,4 +67,29 @@ class SelectLocationEvent extends HomeEvent {
     required this.source,
     required this.destination,
   });
+}
+
+class CancelTripEvent extends HomeEvent {
+  final String tourId;
+  CancelTripEvent(
+    this.tourId,
+  );
+}
+class CallDriverEvent extends HomeEvent {
+  final String phoneNumber;
+  CancelTripEvent(
+    this.phoneNumber,
+  );
+}
+
+class CompleteTripEvent extends HomeEvent {
+  final String tourId;
+  CompleteTripEvent(
+    this.tourId,
+  );
+}
+
+class UpdateUserCoordindateEvent extends HomeEvent{
+  final LatLng coordinate;
+  UpdateUserCoordindateEvent(this.coordinate);
 }
