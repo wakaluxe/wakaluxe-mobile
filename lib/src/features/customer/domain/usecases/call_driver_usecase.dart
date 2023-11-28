@@ -11,7 +11,7 @@ class CallDriverUsecase extends UseCase<void, CallDriverParams> {
     required CallDriverParams? params,
   }) async {
     return repository.callDriver(
-      tourId: params!.phoneNumber,
+      driverPhoneNumber: params!.phoneNumber,
     );
   }
 }

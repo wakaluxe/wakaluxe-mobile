@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:wakaluxe/src/common/Utils/cache_client.dart';
 import 'package:wakaluxe/src/common/resources/network_connectivity.dart';
 import 'package:wakaluxe/src/features/auth/data/data_sources/auth_remote_data_source.dart';
@@ -12,6 +13,7 @@ import 'package:wakaluxe/src/features/customer/data/data_sources/tour_backend_da
 import 'package:wakaluxe/src/features/customer/data/trip_repository_implemantation.dart';
 import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc/home_bloc.dart';
 import 'package:wakaluxe/src/features/customer/domain/trip_repository.dart';
+import 'package:wakaluxe/src/features/customer/domain/usecases/call_driver_usecase.dart';
 import 'package:wakaluxe/src/features/customer/domain/usecases/cancel_tour_usecase.dart';
 import 'package:wakaluxe/src/features/customer/domain/usecases/complete_tour_usecase.dart';
 import 'package:wakaluxe/src/features/customer/domain/usecases/create_tour_usecase.dart';
@@ -55,8 +57,18 @@ Future<void> registerServices() async {
     ..registerLazySingleton<CancelTourUsecase>(
       () => CancelTourUsecase(repository: locator()),
     )
+    ..registerLazySingleton<CallDriverUsecase>(
+      () => CallDriverUsecase(repository: locator()),
+    )
     ..registerFactory<HomeBloc>(
-        () => HomeBloc(locator(), locator(), locator(), locator()))
+      () => HomeBloc(locator(), locator(), locator(), locator(), locator()),
+    )
     ..registerFactory<AuthBloc>(() => AuthBloc(locator()))
-    ..registerLazySingleton<BookingCubit>(() => BookingCubit(locator()));
+    ..registerLazySingleton<BookingCubit>(() => BookingCubit(locator()))
+    ..registerLazySingleton<StreamChatClient>(
+      () => StreamChatClient(
+        'vq59whjehqv3',
+        logLevel: Level.INFO,
+      ),
+    );
 }

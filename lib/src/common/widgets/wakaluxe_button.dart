@@ -22,7 +22,7 @@ class WakaluxeButton extends StatelessWidget {
   });
   final IconData? icon;
   final String text;
-  final VoidCallback? action;
+  final void Function()? action;
   final Color? color;
   final double width;
   final Color? textColor;

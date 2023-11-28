@@ -3,9 +3,10 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart' as chat;
 import 'package:wakaluxe/src/common/Utils/logger.dart';
+import 'package:wakaluxe/src/dependencies_container.dart';
 import 'package:wakaluxe/src/features/auth/data/data_sources/auth_remote_data_source.dart';
-import 'package:wakaluxe/src/features/auth/domain/entities/auth_source_route.dart';
 
 import 'package:wakaluxe/src/features/auth/domain/entities/user_entity.dart';
 
@@ -123,6 +124,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       logInfo('what up app started successfully');
       final token = await _authRepository.getIdToken;
       final user = _authRepository.currentUser;
+      final client = locator<chat.StreamChatClient>();
+      await client.connectUser(
+        chat.User(
+          id: user.id,
+        ),
+client.devToken(user.id).rawValue,       );
+
       logInfo('the token is: $token and user is ${user.toJson()}');
       emit(AuthAppStartSuccess(user: user));
     } catch (e) {

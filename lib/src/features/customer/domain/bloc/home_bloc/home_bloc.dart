@@ -10,6 +10,7 @@ import 'package:wakaluxe/src/features/customer/data/data_sources/services/is_use
 import 'package:wakaluxe/src/features/customer/data/models/create_tour_res_model/create_tour_res_model.dart';
 
 import 'package:wakaluxe/src/features/customer/domain/entities/location_entity.dart';
+import 'package:wakaluxe/src/features/customer/domain/usecases/call_driver_usecase.dart';
 import 'package:wakaluxe/src/features/customer/domain/usecases/cancel_tour_usecase.dart';
 import 'package:wakaluxe/src/features/customer/domain/usecases/complete_tour_usecase.dart';
 import 'package:wakaluxe/src/features/customer/domain/usecases/create_tour_usecase.dart';
@@ -26,6 +27,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     this._createTourUsecase,
     this._completeTourUsecase,
     this._cancelTourUsecase,
+    this._callDriverUsecase,
     // this._travelTimeUsecase,
   ) : super(HomeInitial()) {
     on<HomeInitialEvent>(_onAuthInitEvent);
@@ -267,6 +269,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       }
     });
     on<CancelTripEvent>(_onCancelTripEvent);
+    on<CallDriverEvent>(_onCallDriver);
+    on<CompleteTripEvent>(_onCompleteTripEvent);
   }
 
   Future<void> _onCancelTripEvent(
@@ -295,6 +299,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     CompleteTripEvent event,
     Emitter<HomeState> emit,
   ) async {
+    emit(
+      state.copyWith(
+        onTrip: false,
+      ),
+    );
+    
     try {
       await _completeTourUsecase(
         params: CompleteTourParams(
@@ -336,16 +346,30 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final CreateTourUsecase _createTourUsecase;
   final CompleteTourUsecase _completeTourUsecase;
   final CancelTourUsecase _cancelTourUsecase;
-  final 
-  
+  final CallDriverUsecase _callDriverUsecase;
+
 //  final GetTravelTimeUseCase _travelTimeUsecase;
 
   FutureOr<void> _onUpateUserCoordinateEvent(
-      UpdateUserCoordindateEvent event, Emitter<HomeState> emit) {
+    UpdateUserCoordindateEvent event,
+    Emitter<HomeState> emit,
+  ) {
     emit(
       state.copyWith(
         myCoordinate: LocationEntity.fromLatLng(event.coordinate),
       ),
     );
+  }
+
+  FutureOr<void> _onCallDriver(CallDriverEvent event, Emitter<HomeState> emit) {
+    try {
+      _callDriverUsecase(
+        params: CallDriverParams(
+          phoneNumber: event.phoneNumber,
+        ),
+      );
+    } catch (e) {
+      logError(e.toString());
+    }
   }
 }

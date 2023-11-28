@@ -6,6 +6,7 @@ import 'package:wakaluxe/src/features/auth/data/data_sources/auth_remote_data_so
 import 'package:wakaluxe/src/features/customer/data/data_sources/get_current_location.dart';
 import 'package:wakaluxe/src/features/customer/data/data_sources/get_tour_data.dart';
 import 'package:wakaluxe/src/features/customer/data/data_sources/get_tour_price.dart';
+import 'package:wakaluxe/src/features/customer/data/data_sources/services/call_driver_service.dart';
 import 'package:wakaluxe/src/features/customer/data/data_sources/tour_backend_data_source.dart';
 import 'package:wakaluxe/src/features/customer/data/models/create_tour_req_model/create_tour_req_model.dart';
 import 'package:wakaluxe/src/features/customer/data/models/create_tour_req_model/end_location.dart';
@@ -34,7 +35,7 @@ class TripRepositoryImplementation implements TripRepository {
   Future<void> callDriver({required String driverPhoneNumber}) async {
     try {
       final phoneNumber = driverPhoneNumber.replaceAll(' ', '');
-    await callDriverService(driverPhoneNumber);
+      await callDriverService(phoneNumber );
     } catch (e) {
       logError('the error in call driver $e');
       throw Exception('Error calling driver: $e');
@@ -66,7 +67,7 @@ class TripRepositoryImplementation implements TripRepository {
             destination.latitude,
           ],
         ),
-        name: 'Trip to ${destination.latitude}',
+        name: 'Trip to ${destination.latitude} ${destination.longitude}',
         price: fullModel.price!.toInt(),
         duration: fullModel.durationValue,
       );
@@ -116,6 +117,7 @@ class TripRepositoryImplementation implements TripRepository {
     // TODO: implement markTourAsComplete
     try {
       final idToken = await authData.getIdToken;
+      logInfo('the idToken in mark tour as complete $idToken');
       await backendDataSource.markTourAsComplete('Bearer $idToken', tourId);
     } on DioException catch (e) {
       logError(

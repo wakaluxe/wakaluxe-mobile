@@ -182,7 +182,7 @@ class _HomeMapState extends State<HomeMap> {
       body: BlocConsumer<HomeBloc, HomeState>(
         listener: (context, state) {
           if (state.onTrip) {
-            context.showSnackBar('Will be able to get directions in 5s');
+            //  context.showSnackBar('Will be able to get directions in 5s');
           }
           if (state.getDirections) {
             context.showSnackBar(
@@ -260,9 +260,11 @@ class _HomeMapState extends State<HomeMap> {
                           ? const Center(child: CircularProgressIndicator())
                           : GoogleMap(
                               zoomControlsEnabled: false,
-                              myLocationEnabled: true,
                               mapToolbarEnabled: false,
+                              zoomGesturesEnabled: false,
+                              scrollGesturesEnabled: false,
                               compassEnabled: false,
+                              
                               myLocationButtonEnabled: false,
                               polylines: {
                                 if (_polylineCoordinates.isNotEmpty)
@@ -274,13 +276,14 @@ class _HomeMapState extends State<HomeMap> {
                                   ),
                               },
                               markers: {
-                                 Marker(
+                                Marker(
                                   //    icon: _currentIcon,
                                   markerId: const MarkerId('current location'),
                                   position: LatLng(
                                     _currentPosition!.latitude!,
                                     _currentPosition!.longitude!,
                                   ),
+                                  
                                 ),
                                 if (_source != null &&
                                     _destination != null) ...{
@@ -294,7 +297,7 @@ class _HomeMapState extends State<HomeMap> {
                                     markerId:
                                         const MarkerId('destination location'),
                                     position: _destination!,
-                                  )
+                                  ),
                                 },
                               },
                               onMapCreated: _onMapCreated,

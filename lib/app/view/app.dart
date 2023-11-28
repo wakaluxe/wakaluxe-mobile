@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:wakaluxe/l10n/l10n.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
+import 'package:wakaluxe/src/dependencies_container.dart';
 import 'package:wakaluxe/src/features/onboarding/thememode/cubit/theme_cubit.dart';
 import 'package:wakaluxe/src/router/wakaluxe_router.dart';
 
@@ -34,11 +36,18 @@ class _WakaluxeState extends State<Wakaluxe> {
             return MaterialApp.router(
               themeMode: state == false ? ThemeMode.light : ThemeMode.dark,
               theme: theme.toThemeData(Brightness.light),
+              builder: (context, child) {
+                return StreamChat(
+                  client: locator<StreamChatClient>(),
+                  child: child,
+                );
+              },
               darkTheme: theme.toThemeData(
                 Brightness.dark,
               ),
               // routeInformationParser: router.defaultRouteParser(),
               // routerDelegate: router.delegate(),
+
               debugShowCheckedModeBanner: false,
               routerConfig: router.config(),
               supportedLocales: AppLocalizations.supportedLocales,

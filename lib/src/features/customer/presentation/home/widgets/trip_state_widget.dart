@@ -5,18 +5,23 @@ import 'package:wakaluxe/src/common/widgets/wakaluxe_button.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc/home_bloc.dart';
 
-class NavigationInfoWidget extends StatelessWidget {
+class NavigationInfoWidget extends StatefulWidget {
   const NavigationInfoWidget({
     super.key,
   });
 
+  @override
+  State<NavigationInfoWidget> createState() => _NavigationInfoWidgetState();
+}
+
+class _NavigationInfoWidgetState extends State<NavigationInfoWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.bottomCenter,
       child: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) => Padding(
-          padding: const EdgeInsets.only(bottom: 16.0),
+          padding: const EdgeInsets.only(bottom: 16),
           child: Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
@@ -50,16 +55,9 @@ class NavigationInfoWidget extends StatelessWidget {
                 ),
                 4.vGap,
                 WakaluxeButton(
-                  action: () {
-                    // Implement your cancel action here
-                    context.read<HomeBloc>().add(
-                          CompleteTripEvent(
-                            state.tourData.data!.datum!.id!,
-                          
-                          ),
-                        );
-                    
-                  },
+                  action: () =>
+                      // Implement your cancel action here
+                      _handleComplete(state.tourData.data!.datum!.id!),
                   text: 'Complete tour',
                   color: Colors.red,
                   textColor: Colors.white,
@@ -70,5 +68,13 @@ class NavigationInfoWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  _handleComplete(String tourId) {
+    context.read<HomeBloc>().add(
+          CompleteTripEvent(
+            tourId,
+          ),
+        );
   }
 }

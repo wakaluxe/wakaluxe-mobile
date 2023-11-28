@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:math' show asin, cos, pi, sqrt;
 
 import 'package:wakaluxe/src/common/Utils/logger.dart';
@@ -11,6 +10,7 @@ bool isUserNearDestination(
       'user location: ${userLocation.latitude}, ${userLocation.longitude} and destination location: ${destinationLocation.latitude}, ${destinationLocation.longitude}');
   final distance = calculateDistance(userLocation, destinationLocation);
   logInfo('distance: $distance'); */
+  logInfo('distance: $distance');
   return distance <= 50;
 }
 

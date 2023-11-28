@@ -10,7 +10,9 @@ part of 'tour_backend_data_source.dart';
 
 class _TourBackendDataSource implements TourBackendDataSource {
   _TourBackendDataSource(
-    this._dio,) {
+    this._dio, {
+    this.baseUrl,
+  }) {
     baseUrl ??= 'https://wakaluxebackend-production.up.railway.app';
   }
 
@@ -25,7 +27,7 @@ class _TourBackendDataSource implements TourBackendDataSource {
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{'Authorization': idToken};
+    final _headers = <String, dynamic>{r'Authorization': idToken};
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toMap());
@@ -45,7 +47,7 @@ class _TourBackendDataSource implements TourBackendDataSource {
                 baseUrl: _combineBaseUrls(
               _dio.options.baseUrl,
               baseUrl,
-            ),),),);
+            ))));
     final value = CreateTourResModel.fromMap(_result.data!);
     return value;
   }
@@ -57,9 +59,9 @@ class _TourBackendDataSource implements TourBackendDataSource {
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{'Authorization': idToken};
+    final _headers = <String, dynamic>{r'Authorization': idToken};
     _headers.removeWhere((k, v) => v == null);
-    const Map<String, dynamic>? _data = null;
+    final Map<String, dynamic>? _data = null;
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'PATCH',
       headers: _headers,
@@ -67,14 +69,15 @@ class _TourBackendDataSource implements TourBackendDataSource {
     )
         .compose(
           _dio.options,
-          'api/v1/tours/completed/${tourId}',
+          '/api/v1/tours/completed/${tourId}',
           queryParameters: queryParameters,
+          data: _data,
         )
         .copyWith(
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ),),),);
+        ))));
   }
 
   @override
@@ -84,9 +87,9 @@ class _TourBackendDataSource implements TourBackendDataSource {
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{'Authorization': idToken};
+    final _headers = <String, dynamic>{r'Authorization': idToken};
     _headers.removeWhere((k, v) => v == null);
-    const Map<String, dynamic>? _data = null;
+    final Map<String, dynamic>? _data = null;
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'PATCH',
       headers: _headers,
@@ -94,14 +97,15 @@ class _TourBackendDataSource implements TourBackendDataSource {
     )
         .compose(
           _dio.options,
-          'api/v1/tours/cancelled/${tourId}',
+          '/api/v1/tours/cancelled/${tourId}',
           queryParameters: queryParameters,
+          data: _data,
         )
         .copyWith(
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ),),),);
+        ))));
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

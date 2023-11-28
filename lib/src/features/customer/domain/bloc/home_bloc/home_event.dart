@@ -77,7 +77,7 @@ class CancelTripEvent extends HomeEvent {
 }
 class CallDriverEvent extends HomeEvent {
   final String phoneNumber;
-  CancelTripEvent(
+  CallDriverEvent(
     this.phoneNumber,
   );
 }

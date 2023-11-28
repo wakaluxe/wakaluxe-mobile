@@ -19,6 +19,7 @@ class WakaluxAppRouter extends $WakaluxAppRouter {
             OnBoardingGuard(),
           ],
         ),
+        AutoRoute(page: TripMessageView.page, path: '/trip-message'),
         // AutoRoute(page: Home.page, path: '/home', guards: [AuthGuard()]),
         AutoRoute(
           page: HomeMap.page,

@@ -77,12 +77,17 @@ class _TaxiFetchingState extends State<TaxiFetching> {
                 ),
               ),
               5.hGap,
-              CircleAvatar(
-                radius: 30,
-                backgroundColor: context.colorScheme.primaryContainer,
-                child: Icon(
-                  WakaluxIcons.phone,
-                  color: context.colorScheme.onBackground,
+              GestureDetector(
+                onTap: () => context.read<HomeBloc>().add(
+                      CallDriverEvent('690596606'),
+                    ),
+                child: CircleAvatar(
+                  radius: 30,
+                  backgroundColor: context.colorScheme.primaryContainer,
+                  child: Icon(
+                    WakaluxIcons.phone,
+                    color: context.colorScheme.onBackground,
+                  ),
                 ),
               ),
             ],
