@@ -129,7 +129,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         chat.User(
           id: user.id,
         ),
-client.devToken(user.id).rawValue,       );
+        client.devToken(user.id).rawValue,
+      );
 
       logInfo('the token is: $token and user is ${user.toJson()}');
       emit(AuthAppStartSuccess(user: user));

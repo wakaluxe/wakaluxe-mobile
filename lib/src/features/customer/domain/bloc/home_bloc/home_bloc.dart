@@ -20,7 +20,8 @@ part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  int _counter = 0;
+  int _tripCounter = 0;
+  int _driverCounter = 60;
 
   HomeBloc(
     this._locationUsecase,
@@ -186,7 +187,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         );
         logInfo('isNear: $isNear');
         if (isNear || !state.onTrip) {
-          _counter = 0;
+          _tripCounter = 0;
 
           timer.cancel();
           emit(
@@ -214,8 +215,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           );
           //  }
         }
-        _counter += 5;
-        logInfo('counter: $_counter');
+        _tripCounter += 5;
+        logInfo('counter: $_tripCounter');
       });
       /*   emit(
         HomeInitial().copyWith(
@@ -243,10 +244,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             destination: LocationEntity.fromLatLng(event.destination),
             source: LocationEntity.fromLatLng(event.source)), */
         );
+
         final data = await _createTourUsecase(
           params: CreateTourParams(
             source: LocationEntity.fromLatLng(event.source),
             destination: LocationEntity.fromLatLng(event.destination),
+            destinationAddress: event.destinationAddress,
           ),
         );
 
@@ -304,25 +307,25 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         onTrip: false,
       ),
     );
-    
-    try {
-      await _completeTourUsecase(
+
+    // try {
+/*       await _completeTourUsecase(
         params: CompleteTourParams(
           tourId: event.tourId,
         ),
       );
-
-      emit(
-        state.copyWith(
-          payfare: true,
-        ),
-      );
-    } catch (e) {
+ */
+    emit(
+      HomeInitial().copyWith(
+        payfare: true,
+      ),
+    );
+    /*  } catch (e) {
       logError(e.toString());
       emit(
         HomeInitial(),
       );
-    }
+    } */
   }
 
   Future<void> _onAuthInitEvent(

@@ -3,24 +3,26 @@ import 'dart:convert';
 import 'package:collection/collection.dart';
 
 class EndLocation {
-  final List<double>? coordinates;
-
-  const EndLocation({this.coordinates});
+  const EndLocation({this.coordinates, this.address});
 
   factory EndLocation.fromMap(Map<String, dynamic> data) => EndLocation(
         coordinates: data['coordinates'] as List<double>?,
+        address: data['address'] as String?,
       );
-
-  Map<String, dynamic> toMap() => {
-        'coordinates': coordinates,
-      };
 
   /// `dart:convert`
   ///
   /// Parses the string and returns the resulting Json object as [EndLocation].
   factory EndLocation.fromJson(String data) {
-    return EndLocation.fromMap(json.decode(data) as Map<String, dynamic>);
+    return EndLocation.fromMap(json.decode(data) as Map<String, dynamic>, );
   }
+  final List<double>? coordinates;
+  final String? address;
+
+  Map<String, dynamic> toMap() => {
+        'coordinates': coordinates,
+        'address': address ?? 'unnamed address',
+      };
 
   /// `dart:convert`
   ///

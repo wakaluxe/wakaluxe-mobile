@@ -108,6 +108,39 @@ class _TourBackendDataSource implements TourBackendDataSource {
         ))));
   }
 
+  @override
+  Future<GetTripsResModel> getTours(String idToken) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': idToken};
+    _headers.removeWhere((k, v) => v == null);
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+      _setStreamType<GetTripsResModel>(
+        Options(
+          method: 'GET',
+          headers: _headers,
+          extra: _extra,
+        )
+            .compose(
+              _dio.options,
+              '/api/v1/tours?status=handled',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+              baseUrl: _combineBaseUrls(
+                _dio.options.baseUrl,
+                baseUrl,
+              ),
+            ),
+      ),
+    );
+    logInfo('the result in get tours ${_result.data}');
+    final value = GetTripsResModel.fromMap(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

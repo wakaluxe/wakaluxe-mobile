@@ -4,16 +4,16 @@ enum TripStatus { initial, loading, loaded, error }
 
 class TripsState extends Equatable {
   const TripsState({
-    this.trips = const [],
+    this.trips,
     this.message = '',
     this.status = TripStatus.initial,
   });
-  final List<TripEntity> trips;
+  final GetTripsResModel? trips;
   final String message;
   final TripStatus status;
 
   TripsState copyWith({
-    List<TripEntity>? trips,
+    GetTripsResModel? trips,
     String? message,
     TripStatus? status,
   }) {
@@ -25,5 +25,5 @@ class TripsState extends Equatable {
   }
 
   @override
-  List<Object> get props => [trips, message, status];
+  List<Object?> get props => [trips, message, status];
 }

@@ -1,35 +1,73 @@
 {
-    "status": "success",
-    "data": {
-      "data": {
-        "name": "test 1234567890",
-        "duration": 7,
-        "ratingsAverage": 4.5,
-        "ratingsQuantity": 0,
-        "price": 497,
-        "createdAt": "2023-11-13T11:05:25.530Z",
-        "user": "654e39627c522153674ede1f",
+  "status": "success",
+  "results": 21,
+  "data": {
+    "data": [
+      {
         "startLocation": {
           "coordinates": [
-            3.8542697064935636,
-            11.529968208240408
+            11.5431,
+            3.8835374
           ],
           "type": "Point"
         },
         "endLocation": {
           "coordinates": [
-            -115.570154,
-            51.178456
+            11.5387463,
+            3.8841552
           ],
           "type": "Point"
         },
+        "_id": "6566685a9bed13d9248c6aa6",
+        "name": "Trip to 3.8841552 11.5387463",
+        "duration": 134,
+        "ratingsAverage": 4.5,
+        "ratingsQuantity": 0,
+        "price": 1696,
+        "user": {
+          "_id": "654e39627c522153674ede1f",
+          "phoneNumber": "+237690909096"
+        },
+        "status": "completed",
+        "paymentStatus": "payed",
+        "slug": "trip-to-3.8841552-11.5387463",
+        "completedOn": "2023-11-28T22:41:23.888Z",
+        "durationWeeks": 19.142857142857142,
+        "id": "6566685a9bed13d9248c6aa6"
+      },
+      {
+        "startLocation": {
+          "coordinates": [
+            11.5431,
+            3.8835374
+          ],
+          "type": "Point"
+        },
+        "endLocation": {
+          "coordinates": [
+            11.5521026,
+            3.8991173
+          ],
+          "type": "Point"
+        },
+        "_id": "65666db99bed13d9248c6ab6",
+        "name": "Trip to 3.8991173 11.5521026",
+        "duration": 566,
+        "ratingsAverage": 4.5,
+        "ratingsQuantity": 0,
+        "price": 3988,
+        "user": {
+          "_id": "654e39627c522153674ede1f",
+          "phoneNumber": "+237690909096"
+        },
         "status": "unhandled",
         "paymentStatus": "unpaid",
-        "_id": "6553b9991bf5c4ffa6efec43",
-        "slug": "test-1234567890",
-        "__v": 0,
-        "durationWeeks": 1,
-        "id": "6553b9991bf5c4ffa6efec43"
+        "slug": "trip-to-3.8991173-11.5521026",
+        "durationWeeks": 80.85714285714286,
+        "id": "65666db99bed13d9248c6ab6"
       }
-    }
+      
+      
+    ]
   }
+}

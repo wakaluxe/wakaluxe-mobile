@@ -12,6 +12,7 @@ import 'package:wakaluxe/src/features/customer/data/models/create_tour_req_model
 import 'package:wakaluxe/src/features/customer/data/models/create_tour_req_model/end_location.dart';
 import 'package:wakaluxe/src/features/customer/data/models/create_tour_req_model/start_location.dart';
 import 'package:wakaluxe/src/features/customer/data/models/create_tour_res_model/create_tour_res_model.dart';
+import 'package:wakaluxe/src/features/customer/data/models/get_trips_res_model/get_trips_res_model.dart';
 import 'package:wakaluxe/src/features/customer/domain/entities/location_entity.dart';
 import 'package:wakaluxe/src/features/customer/domain/trip_repository.dart';
 
@@ -35,7 +36,7 @@ class TripRepositoryImplementation implements TripRepository {
   Future<void> callDriver({required String driverPhoneNumber}) async {
     try {
       final phoneNumber = driverPhoneNumber.replaceAll(' ', '');
-      await callDriverService(phoneNumber );
+      await callDriverService(phoneNumber);
     } catch (e) {
       logError('the error in call driver $e');
       throw Exception('Error calling driver: $e');
@@ -46,6 +47,7 @@ class TripRepositoryImplementation implements TripRepository {
   Future<CreateTourResModel> createTour({
     required LocationEntity source,
     required LocationEntity destination,
+    required String destinationAddress,
   }) async {
     try {
       final data = await getTraveldData(
@@ -57,6 +59,7 @@ class TripRepositoryImplementation implements TripRepository {
       logInfo('the idToken in create tour $idToken');
       final fullModel = getTourPrice(data);
       logInfo('the fullModel in create tour $fullModel');
+      final random = DateTime.now().millisecondsSinceEpoch ~/ 1000;
       final body = CreateTourReqModel(
         startLocation: StartLocation(
           coordinates: [source.longitude, source.latitude],
@@ -66,8 +69,9 @@ class TripRepositoryImplementation implements TripRepository {
             destination.longitude,
             destination.latitude,
           ],
+          address: data.destinationAddress,
         ),
-        name: 'Trip to ${destination.latitude} ${destination.longitude}',
+        name: '${destination.latitude} ${destination.longitude} $random',
         price: fullModel.price!.toInt(),
         duration: fullModel.durationValue,
       );
@@ -128,6 +132,24 @@ class TripRepositoryImplementation implements TripRepository {
       );
     } catch (e) {
       logError('the error in cancel tour $e');
+      throw Exception('Error getting trip api data: $e');
+    }
+  }
+
+  @override
+  Future<GetTripsResModel> getTrips() {
+    try {
+      final idToken = authData.getIdToken;
+      return backendDataSource.getTours('Bearer $idToken');
+    } on DioException catch (e) {
+      logError(
+        'the error in get tour  ${e.message} and stack trace ${e.stackTrace}',
+      );
+      throw Exception(
+        'Error getting trip api data: ${e.message} ',
+      );
+    } catch (e) {
+      logError('The error in get tour $e');
       throw Exception('Error getting trip api data: $e');
     }
   }

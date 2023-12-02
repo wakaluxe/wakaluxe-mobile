@@ -19,7 +19,7 @@ class WakaluxeTripDetails extends StatelessWidget {
 
   final String pickUpLocation;
   final String dropOffLocation;
-  final TripState tripState;
+  final String tripState;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class WakaluxeTripDetails extends StatelessWidget {
                   style: context.bodySm,
                 ),
               ],
-            )
+            ),
           ],
         ),
         Padding(
@@ -84,12 +84,12 @@ class WakaluxeTripDetails extends StatelessWidget {
                 vertical: 5.h,
               ),
               decoration: BoxDecoration(
-                color: tripState.color(context).withOpacity(0.4),
+                color: Colors.red.withOpacity(0.4),
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Text(
-                tripState.name,
-                style: theme.subtitle.copyWith(color: tripState.color(context)),
+                tripState,
+                style: theme.subtitle.copyWith(color: Colors.red),
               ),
             ),
           ],

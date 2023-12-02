@@ -63,9 +63,11 @@ class PayFareEvent extends HomeEvent {
 class SelectLocationEvent extends HomeEvent {
   final LatLng source;
   final LatLng destination;
+  final String destinationAddress;
   SelectLocationEvent({
     required this.source,
     required this.destination,
+    required this.destinationAddress,
   });
 }
 
@@ -75,6 +77,7 @@ class CancelTripEvent extends HomeEvent {
     this.tourId,
   );
 }
+
 class CallDriverEvent extends HomeEvent {
   final String phoneNumber;
   CallDriverEvent(
@@ -89,7 +92,7 @@ class CompleteTripEvent extends HomeEvent {
   );
 }
 
-class UpdateUserCoordindateEvent extends HomeEvent{
+class UpdateUserCoordindateEvent extends HomeEvent {
   final LatLng coordinate;
   UpdateUserCoordindateEvent(this.coordinate);
 }

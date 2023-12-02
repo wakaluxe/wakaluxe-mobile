@@ -8,7 +8,7 @@ class CallDriverUsecase extends UseCase<void, CallDriverParams> {
   final TripRepository repository;
   @override
   Future<void> call({
-    required CallDriverParams? params,
+     CallDriverParams? params,
   }) async {
     return repository.callDriver(
       driverPhoneNumber: params!.phoneNumber,

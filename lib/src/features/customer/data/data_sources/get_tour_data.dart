@@ -18,6 +18,8 @@ Future<CreateTourApiResModel> getTraveldData({
     distanceValue: values['routes'][0]['legs'][0]['distance']['value'] as int,
     distanceText: values['routes'][0]['legs'][0]['distance']['text'] as String,
     durationText: values['routes'][0]['legs'][0]['duration']['text'] as String,
+    destinationAddress:
+        values['routes'][0]['legs'][0]['end_address'] as String,
   );
   return model;
 }

@@ -2,12 +2,14 @@ import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:wakaluxe/src/common/Utils/wakalux_icons_icons.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/dependencies_container.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
+import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc/home_bloc.dart';
 import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart';
 
 class WakaluxeDriver extends StatelessWidget {
@@ -15,12 +17,14 @@ class WakaluxeDriver extends StatelessWidget {
     required this.driverImage,
     required this.driverName,
     required this.rating,
+    required this.phoneNumber,
     super.key,
   });
 
   final String driverImage;
   final String driverName;
   final num? rating;
+  final String phoneNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +75,7 @@ class WakaluxeDriver extends StatelessWidget {
             5.hGap,
             GestureDetector(
               //TODO: implement call driver
-              onTap: () => _handleMessageDriver,
+              onTap: () => _handleCallDriver(context, phoneNumber),
 
               child: CircleAvatar(
                 radius: 25,
@@ -88,13 +92,20 @@ class WakaluxeDriver extends StatelessWidget {
     );
   }
 
-  Future<void> _handleMessageDriver(BuildContext context)async {
+  Future<void> _handleMessageDriver(BuildContext context) async {
     final random = Random();
     final client = locator<StreamChatClient>();
-    final channel = client.channel('messaging', id: 'driver-${random.nextInt(100)}');
-   await channel.watch();
+    final channel = client.channel('messaging', id: 'driver-${1}');
+    await channel.watch();
     await context.router.push(
       TripMessageView(channel: channel),
     );
+  }
+
+  Future<void> _handleCallDriver(
+    BuildContext context,
+    String phoneNumber,
+  ) async {
+    context.read<HomeBloc>().add(CallDriverEvent(phoneNumber));
   }
 }

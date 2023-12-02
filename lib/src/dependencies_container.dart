@@ -18,6 +18,7 @@ import 'package:wakaluxe/src/features/customer/domain/usecases/cancel_tour_useca
 import 'package:wakaluxe/src/features/customer/domain/usecases/complete_tour_usecase.dart';
 import 'package:wakaluxe/src/features/customer/domain/usecases/create_tour_usecase.dart';
 import 'package:wakaluxe/src/features/customer/domain/usecases/get_current_location_usecase.dart';
+import 'package:wakaluxe/src/features/customer/domain/usecases/get_trips_usecase.dart';
 
 final locator = GetIt.instance;
 
@@ -59,6 +60,9 @@ Future<void> registerServices() async {
     )
     ..registerLazySingleton<CallDriverUsecase>(
       () => CallDriverUsecase(repository: locator()),
+    )
+    ..registerLazySingleton<GetTripsUsecase>(
+      () => GetTripsUsecase(locator()),
     )
     ..registerFactory<HomeBloc>(
       () => HomeBloc(locator(), locator(), locator(), locator(), locator()),

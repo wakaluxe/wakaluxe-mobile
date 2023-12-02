@@ -7,11 +7,13 @@ class CreateTourApiResModel {
   final String durationText;
   final String distanceText;
   final double? price;
+  final String? destinationAddress;
   CreateTourApiResModel({
     required this.durationValue,
     required this.distanceValue,
     required this.distanceText,
     required this.durationText,
+    required this.destinationAddress,
     this.price,
   });
 
@@ -20,6 +22,8 @@ class CreateTourApiResModel {
       'duration': durationValue,
       'distance': distanceValue,
       'price': price,
+      'destinationAddress': destinationAddress,
+
     };
   }
 
@@ -30,6 +34,7 @@ class CreateTourApiResModel {
       price: map['price'] != null ? map['price'] as double : null,
       durationText: map['durationText'] as String,
       distanceText: map['distanceText'] as String,
+      destinationAddress: map['destinationAddress'] as String,
     );
   }
 
@@ -39,6 +44,7 @@ class CreateTourApiResModel {
       distanceValue: 0,
       price: 0,
       distanceText: '',
+      destinationAddress: 'unnamed address',
       durationText: '',
     );
   }
@@ -55,6 +61,7 @@ class CreateTourApiResModel {
     double? price,
     String? durationText,
     String? distanceText,
+    String? destinationAddress,
   }) {
     return CreateTourApiResModel(
       durationValue: duration ?? durationValue,
@@ -62,11 +69,12 @@ class CreateTourApiResModel {
       price: price ?? this.price,
       durationText: durationText ?? this.durationText,
       distanceText: distanceText ?? this.distanceText,
+      destinationAddress: destinationAddress ?? this.destinationAddress,
     );
   }
 
   @override
   String toString() {
-    return 'CreateTourApiResModel(durationValue: $durationValue, distanceValue: $distanceValue, durationText: $durationText, distanceText: $distanceText, price: $price)';
+    return 'CreateTourApiResModel(durationValue: $durationValue, distanceValue: $distanceValue, durationText: $durationText, distanceText: $distanceText, price: $price, destinationAddress: $destinationAddress)';
   }
 }

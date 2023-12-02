@@ -21,6 +21,7 @@ class HomeState {
     required this.tourData,
     required this.destination,
     required this.source,
+    this.error = '',
   });
   final int selectedIndex;
   final int selectedPaymentType;
@@ -40,6 +41,7 @@ class HomeState {
   final CreateTourResModel tourData;
   final LocationEntity source;
   final LocationEntity destination;
+  final String error;
 
   HomeState copyWith({
     int? selectedIndex,
@@ -60,6 +62,7 @@ class HomeState {
     CreateTourResModel? tourData,
     LocationEntity? destination,
     LocationEntity? source,
+    String? error,
   }) {
     return HomeState(
       selectedIndex: selectedIndex ?? this.selectedIndex,
@@ -81,6 +84,7 @@ class HomeState {
       tourData: tourData ?? this.tourData,
       destination: destination ?? this.destination,
       source: source ?? this.source,
+      error: error ?? this.error, 
     );
   }
 }
@@ -106,6 +110,7 @@ class HomeInitial extends HomeState {
           tourData: CreateTourResModel.empty(),
           destination: LocationEntity(latitude: 0, longitude: 0),
           source: LocationEntity(latitude: 0, longitude: 0),
+          
         );
 }
 

@@ -12,7 +12,7 @@ class StartLocation {
   }
 
   factory StartLocation.fromMap(Map<String, dynamic> data) => StartLocation(
-        coordinates: List<double>.from(data['coordinates'] as List),
+        coordinates: data['coordinates'] as List<double>?,
         type: data['type'] as String?,
       );
 

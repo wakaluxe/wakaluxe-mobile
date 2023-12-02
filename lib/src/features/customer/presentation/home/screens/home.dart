@@ -222,6 +222,7 @@ class _HomeState extends State<Home> {
                                   final driver = data[index];
                                   return WakaluxCard(
                                     child: WakaluxeBookingDetails(
+                                      phoneNumber: '237 6 77 77 77 77',
                                       action: () {
                                         context.read<HomeBloc>().add(
                                               HomeInitialEvent(),

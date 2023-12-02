@@ -8,7 +8,7 @@ class CompleteTourUsecase extends UseCase<void, CompleteTourParams> {
   final TripRepository repository;
   @override
   Future<void> call({
-    required CompleteTourParams? params,
+     CompleteTourParams? params,
   }) async {
     return repository.markTourAsComplete(
       tourId: params!.tourId,

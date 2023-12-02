@@ -189,6 +189,10 @@ class _HomeMapState extends State<HomeMap> {
               'Click, Payment bottom will show in 10s',
             );
           }
+          if (state.showDrivers) {
+            _getPolyPoints();
+            _setCustomMarkerIcon();
+          }
           /*  if (state.loadingDrivers) {
             Future.delayed(const Duration(seconds: 1), () {
               context.read<HomeBloc>().add(
@@ -262,9 +266,7 @@ class _HomeMapState extends State<HomeMap> {
                               zoomControlsEnabled: false,
                               mapToolbarEnabled: false,
                               zoomGesturesEnabled: false,
-                              scrollGesturesEnabled: false,
                               compassEnabled: false,
-                              
                               myLocationButtonEnabled: false,
                               polylines: {
                                 if (_polylineCoordinates.isNotEmpty)
@@ -283,7 +285,6 @@ class _HomeMapState extends State<HomeMap> {
                                     _currentPosition!.latitude!,
                                     _currentPosition!.longitude!,
                                   ),
-                                  
                                 ),
                                 if (_source != null &&
                                     _destination != null) ...{
@@ -402,6 +403,8 @@ class _HomeMapState extends State<HomeMap> {
                                     context,
                                   ); */
                                 },
+                                //TODO: implement get phone number from driver response
+                                phoneNumber: '690596606',
                                 driverImage:
                                     data.first['driverImage'] as String,
                                 driverName: data.first['driverName'] as String,
@@ -445,7 +448,9 @@ class _HomeMapState extends State<HomeMap> {
             destination: LatLng(
               fakeDestination.latitude,
               fakeDestination.longitude,
+
             ),
+            destinationAddress: 'Buea',
             source: LatLng(
               _currentPosition!.latitude!,
               _currentPosition!.longitude!,
@@ -478,19 +483,20 @@ class _HomeMapState extends State<HomeMap> {
               location.latitude,
               location.longitude,
             );
-            _getPolyPoints();
-            _setCustomMarkerIcon();
+
             //      _waypoints.add(_destination);
             context.read<HomeBloc>().add(
                   SelectLocationEvent(
                     destination: LatLng(
                       result.geometry!.location.lat,
                       result.geometry!.location.lng,
+
                     ),
                     source: LatLng(
                       _currentPosition!.latitude!,
                       _currentPosition!.longitude!,
                     ),
+                    destinationAddress: result.formattedAddress!
                   ),
                 );
             Navigator.of(context).pop();

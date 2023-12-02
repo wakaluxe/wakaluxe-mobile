@@ -26,7 +26,7 @@ void main() {
         BlocProvider<HomeBloc>(
           create: (context) => locator(),
         ),
-        BlocProvider(create: (context) => TripCubit()),
+        BlocProvider(create: (context) => TripCubit(locator())),
         BlocProvider(create: (context) => LanguageCubit()),
         BlocProvider<BookingCubit>(create: (context) => locator()),
         BlocProvider<AuthBloc>(

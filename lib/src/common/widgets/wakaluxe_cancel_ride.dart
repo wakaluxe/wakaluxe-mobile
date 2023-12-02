@@ -60,6 +60,7 @@ class WakaluxeCancleRide extends StatelessWidget {
             driverImage: driverImage,
             driverName: driverName,
             rating: rating,
+            phoneNumber: '0123456789',
           ),
           10.vGap,
           Divider(

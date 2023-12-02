@@ -172,21 +172,11 @@ class _Home2ScreenState extends State<Home2Screen> {
                 ],
               ),
             ),
-            Row(
-              children: <Widget>[
-                HomeCard(
-                  image: Constants.onBoard2,
-                  title: 'Book a Taxi',
-                  t: t,
-                  onTap: () => context.router.pushNamed('/home-map'),
-                ),
-                10.w.hGap,
-                HomeCard(
-                  title: 'Rent a Car',
-                  t: t,
-                  image: Constants.onBoard1,
-                ),
-              ],
+            HomeCard(
+              image: Constants.onBoard2,
+              title: 'Book a Taxi',
+              t: t,
+              onTap: () => context.router.pushNamed('/home-map'),
             ),
           ],
         ),

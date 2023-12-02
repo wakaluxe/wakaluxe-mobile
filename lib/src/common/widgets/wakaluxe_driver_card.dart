@@ -16,6 +16,7 @@ class WakaluxeBookingDetails extends StatelessWidget {
     required this.time,
     required this.price,
     required this.action,
+    required this.phoneNumber,
     super.key,
   });
 
@@ -28,6 +29,7 @@ class WakaluxeBookingDetails extends StatelessWidget {
   final String time;
   final String price;
   final VoidCallback action;
+  final String phoneNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +43,7 @@ class WakaluxeBookingDetails extends StatelessWidget {
           child: WakaluxeDriver(
             driverImage: driverImage,
             driverName: driverName,
+            phoneNumber: phoneNumber,
             rating: rating,
           ),
         ),
@@ -122,7 +125,10 @@ class WakaluxeBookingDetails extends StatelessWidget {
             ),
             child: Text(
               'Confirm',
-              style: Theme.of(context).textTheme.button1.copyWith(color: context.colorScheme.onSecondary),
+              style: Theme.of(context)
+                  .textTheme
+                  .button1
+                  .copyWith(color: context.colorScheme.onSecondary),
             ),
             /*    color: ,
             textColor: context.colorScheme.onTertiary, */

@@ -63,16 +63,22 @@ class _MyTripState extends State<MyTrip> {
                     child: Text('Error'),
                   );
                 }
-                final trips = state.trips;
+                final trips = state.trips!.data!.data;
+
                 return Expanded(
                   child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: trips.length,
+                    itemCount: trips!.length,
                     itemBuilder: (context, index) {
                       final trip = trips[index];
-                      return Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Container(
+                      return const Padding(
+                        padding: EdgeInsets.all(20),
+                        child: RideInfoBox(
+                          rideLocation: 'trip.endLocation.',
+                          rideTime: 'duration',
+                          rideName: 'trip.name',
+                        ),
+                        /*         Container(
                           padding: EdgeInsets.symmetric(
                             horizontal: 16.w,
                             vertical: 8.h,
@@ -93,17 +99,18 @@ class _MyTripState extends State<MyTrip> {
                             ],
                           ),
                           child: WakaluxeTripDetails(
-                            pickUpLocation: trip.pickUp,
-                            dropOffLocation: trip.destination,
-                            tripState: trip.state,
+                            pickUpLocation: '${trip.startLocation!.coordinates}',
+                            dropOffLocation: '${trip.endLocation!.coordinates}',
+                            tripState: trip.status!,
                           ),
                         ),
+                 */
                       );
                     },
                   ),
                 );
               },
-            )
+            ),
           ],
         ),
       ),
@@ -121,5 +128,62 @@ class _MyTripState extends State<MyTrip> {
         context.read<TripCubit>().fetchMyTripsByDate(page: 1, date: value);
       }
     });
+  }
+}
+
+class RideInfoBox extends StatelessWidget {
+  const RideInfoBox({
+    required this.rideName,
+    required this.rideTime,
+    required this.rideLocation,
+    super.key,
+  });
+  final String rideName;
+  final String rideTime;
+  final String rideLocation;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: 16.w,
+          vertical: 8.h,
+        ),
+        decoration: BoxDecoration(
+          color: context.colorScheme.surface,
+          borderRadius: BorderRadius.circular(16.r),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: const Offset(
+                0,
+                3,
+              ),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              rideName,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              rideTime,
+              style: const TextStyle(fontSize: 16),
+            ),
+            Text(
+              rideLocation,
+              style: const TextStyle(fontSize: 16),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
