@@ -12,7 +12,7 @@ class SignUpUsecase implements UseCase<DataState<UserEntity>, void> {
   final BackendAuthDataSource _authRepository;
 
   @override
-  Future<DataState<UserEntity>> call({void params}) {
+  Future<DataState<UserEntity>> call(void params) {
     // TODO: implement call
     //return  _authRepository.signUp();
     throw UnimplementedError();

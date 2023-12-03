@@ -60,6 +60,8 @@ dependencies:
   flutter_polyline_points: ^1.0.0
   location: ^5.0.3
   stream_chat_flutter: ^6.11.0
+  image_picker: ^1.0.4
+  firebase_storage: ^11.5.3
   #map_location_picker: ^1.2.0
 
 dev_dependencies:

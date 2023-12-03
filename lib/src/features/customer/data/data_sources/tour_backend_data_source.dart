@@ -34,4 +34,11 @@ abstract class TourBackendDataSource {
   Future<GetTripsResModel> getTours(
     @Header('Authorization') String idToken,
   );
+
+  @POST('/api/v1/tours/{tourId}/reviews')
+  Future<void> reviewTrip(
+    @Header('Authorization') String idToken,
+    @Path('tourId') String tourId,
+    @Body() Map<String, dynamic> body,
+  );
 }

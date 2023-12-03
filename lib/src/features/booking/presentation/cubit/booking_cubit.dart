@@ -22,7 +22,7 @@ class BookingCubit extends Cubit<BookingState> {
   Future<void> onAppStart() async {
     emit(BookingOnAppStart());
     try {
-      final location = await _locationUsecase();
+      final location = await _locationUsecase(null);
 
       emit(
         BookingOnAppStartSuccess(

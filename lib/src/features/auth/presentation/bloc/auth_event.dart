@@ -57,3 +57,7 @@ class OnPhoneAuthVerificationCompleteEvent extends AuthEvent {
 class OnLogOutRequestEvent extends AuthEvent {}
 
 class OnAppStartEvent extends AuthEvent {}
+
+class ChangeProfileImageEvent extends AuthEvent {}
+
+class GetUserEvent extends AuthEvent {}

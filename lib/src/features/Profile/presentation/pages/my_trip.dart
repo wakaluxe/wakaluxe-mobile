@@ -71,12 +71,13 @@ class _MyTripState extends State<MyTrip> {
                     itemCount: trips!.length,
                     itemBuilder: (context, index) {
                       final trip = trips[index];
-                      return const Padding(
-                        padding: EdgeInsets.all(20),
+                      return Padding(
+                        padding: const EdgeInsets.all(20),
                         child: RideInfoBox(
                           rideLocation: 'trip.endLocation.',
-                          rideTime: 'duration',
-                          rideName: 'trip.name',
+                          rideTime: '${trip.duration!}' ' mins',
+                          rideName: '${trip.name}',
+                          price: '${trip.price!}',
                         ),
                         /*         Container(
                           padding: EdgeInsets.symmetric(
@@ -136,11 +137,14 @@ class RideInfoBox extends StatelessWidget {
     required this.rideName,
     required this.rideTime,
     required this.rideLocation,
+    required this.price,
     super.key,
   });
   final String rideName;
   final String rideTime;
   final String rideLocation;
+
+  final String price;
 
   @override
   Widget build(BuildContext context) {
@@ -166,20 +170,49 @@ class RideInfoBox extends StatelessWidget {
             ),
           ],
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Row(
           children: [
-            Text(
-              rideName,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: 200.w,
+                  child: Text(
+                    rideName,
+                    style: const TextStyle(
+                      overflow: TextOverflow.ellipsis,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                  
+                    ),
+                  ),
+                ),
+                Text(
+                  rideTime,
+                  style: const TextStyle(fontSize: 16),
+                ),
+                Text(
+                  rideLocation,
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ],
             ),
-            Text(
-              rideTime,
-              style: const TextStyle(fontSize: 16),
-            ),
-            Text(
-              rideLocation,
-              style: const TextStyle(fontSize: 16),
+            const Spacer(),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  '$price CFA',
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const Text(
+                  'Price',
+                  style: TextStyle(fontSize: 16),
+                ),
+              ],
             ),
           ],
         ),

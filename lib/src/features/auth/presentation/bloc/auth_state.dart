@@ -75,3 +75,44 @@ class AuthAppStartError extends AuthState {
   @override
   List<Object> get props => [error];
 }
+
+class AuthChangeProfileImageInit extends AuthState {}
+
+class AuthChangeProfileImageSuccess extends AuthState {
+  final String imageUrl;
+  const AuthChangeProfileImageSuccess({
+    required this.imageUrl,
+  });
+  @override
+  List<Object> get props => [imageUrl];
+}
+
+class AuthChangeProfileImageError extends AuthState {
+  final String error;
+  const AuthChangeProfileImageError({
+    required this.error,
+  });
+  @override
+  List<Object> get props => [error];
+}
+
+class AuthGetUserInit extends AuthState {}
+
+class AuthGetUserSuccess extends AuthState {
+  @override
+  final UserEntity user;
+  const AuthGetUserSuccess({
+    required this.user,
+  });
+  @override
+  List<Object> get props => [user];
+}
+
+class AuthGetUserError extends AuthState {
+  final String error;
+  const AuthGetUserError({
+    required this.error,
+  });
+  @override
+  List<Object> get props => [error];
+}

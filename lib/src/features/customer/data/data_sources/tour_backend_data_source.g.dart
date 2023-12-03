@@ -115,13 +115,12 @@ class _TourBackendDataSource implements TourBackendDataSource {
     final _headers = <String, dynamic>{r'Authorization': idToken};
     _headers.removeWhere((k, v) => v == null);
     final Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-      _setStreamType<GetTripsResModel>(
-        Options(
-          method: 'GET',
-          headers: _headers,
-          extra: _extra,
-        )
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<GetTripsResModel>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
             .compose(
               _dio.options,
               '/api/v1/tours?status=handled',
@@ -129,16 +128,43 @@ class _TourBackendDataSource implements TourBackendDataSource {
               data: _data,
             )
             .copyWith(
-              baseUrl: _combineBaseUrls(
-                _dio.options.baseUrl,
-                baseUrl,
-              ),
-            ),
-      ),
-    );
-    logInfo('the result in get tours ${_result.data}');
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+            logDebug(_result.data.toString());
     final value = GetTripsResModel.fromMap(_result.data!);
     return value;
+  }
+
+  @override
+  Future<void> reviewTrip(
+    String idToken,
+    String tourId,
+    Map<String, dynamic> body,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': idToken};
+    _headers.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    _data.addAll(body);
+    await _dio.fetch<void>(_setStreamType<void>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/v1/tours/${tourId}/reviews',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

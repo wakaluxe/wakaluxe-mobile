@@ -246,7 +246,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         );
 
         final data = await _createTourUsecase(
-          params: CreateTourParams(
+           CreateTourParams(
             source: LocationEntity.fromLatLng(event.source),
             destination: LocationEntity.fromLatLng(event.destination),
             destinationAddress: event.destinationAddress,
@@ -282,7 +282,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ) async {
     try {
       await _cancelTourUsecase(
-        params: CancelTourParams(
+         CancelTourParams(
           tourId: event.tourId,
         ),
       );
@@ -333,7 +333,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     Emitter<HomeState> emit,
   ) async {
     try {
-      final location = await _locationUsecase();
+      final location = await _locationUsecase(null);
       logInfo(
         'HomeInitialEvent: longitude ${location.longitude} latitude: ${location.latitude}',
       );
@@ -367,7 +367,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   FutureOr<void> _onCallDriver(CallDriverEvent event, Emitter<HomeState> emit) {
     try {
       _callDriverUsecase(
-        params: CallDriverParams(
+        CallDriverParams(
           phoneNumber: event.phoneNumber,
         ),
       );

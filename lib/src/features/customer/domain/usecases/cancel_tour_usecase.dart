@@ -7,11 +7,11 @@ class CancelTourUsecase extends UseCase<void, CancelTourParams> {
   });
   final TripRepository repository;
   @override
-  Future<void> call({
-     CancelTourParams? params,
-  }) async {
+  Future<void> call(
+     CancelTourParams params,
+  ) async {
     return repository.cancelTour(
-      tourId: params!.tourId,
+      tourId: params.tourId,
     );
   }
 }

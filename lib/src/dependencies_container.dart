@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get_it/get_it.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:wakaluxe/src/common/Utils/cache_client.dart';
 import 'package:wakaluxe/src/common/resources/network_connectivity.dart';
@@ -27,6 +29,7 @@ Future<void> registerServices() async {
     ..registerSingleton<Dio>(Dio())
     ..registerLazySingleton<HiveClient>(HiveClient.new)
     ..registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance)
+    ..registerLazySingleton<FirebaseStorage>(() => FirebaseStorage.instance)
     ..registerLazySingleton<AuthRepositorymplementation>(
       AuthRepositorymplementation.new,
     )
@@ -74,5 +77,6 @@ Future<void> registerServices() async {
         'vq59whjehqv3',
         logLevel: Level.INFO,
       ),
-    );
+    )
+    ..registerLazySingleton<ImagePicker>(ImagePicker.new);
 }

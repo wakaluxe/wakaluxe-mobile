@@ -64,7 +64,7 @@ class _EditProfileState extends State<EditProfile> {
                     child: Container(
                       child: SvgPicture.asset(Constants.editIcon),
                     ),
-                  )
+                  ),
                 ],
               ),
               40.h.vGap,
@@ -154,7 +154,7 @@ class _EditProfileState extends State<EditProfile> {
                 textColor: context.colorScheme.onSecondary,
                 action: _handleSubmit,
                 color: context.colorScheme.secondary,
-              )
+              ),
             ],
           ),
         ),

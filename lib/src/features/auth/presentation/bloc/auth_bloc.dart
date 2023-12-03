@@ -18,6 +18,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<OnAppStartEvent>(_onAppStart);
     on<SendOtpToPhoneEvent>(_onSendOtp);
     on<VerifySentOtpEvent>(_onVerifyOtp);
+    on<ChangeProfileImageEvent>(_changeProfileImage);
+    on<GetUserEvent>(_onGetUser);
     on<OnPhoneOtpSent>(
       (event, emit) async => emit(
         PhoneAuthCodeSentSuccess(verificationId: event.verificationId),
@@ -118,6 +120,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
+  Future<void> _onGetUser(
+    GetUserEvent event,
+    Emitter<AuthState> emit,
+  ) async {
+    try {
+      emit(AuthGetUserInit());
+      final user = _authRepository.currentUser;
+      emit(AuthGetUserSuccess(user: user));
+    } catch (e) {
+      emit(AuthGetUserError(error: e.toString()));
+    }
+  }
+
   Future<void> _onAppStart(AuthEvent event, Emitter<AuthState> emit) async {
     emit(AuthAppStartInit());
     try {
@@ -137,6 +152,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     } catch (e) {
       logError(e.toString());
       emit(AuthAppStartError(error: e.toString()));
+    }
+  }
+
+  FutureOr<void> _changeProfileImage(
+    ChangeProfileImageEvent event,
+    Emitter<AuthState> emit,
+  ) async {
+    try {
+      emit(AuthChangeProfileImageInit());
+      await _authRepository.changeUserProfileImage();
+      emit(AuthAppStartSuccess(user: _authRepository.currentUser));
+    } catch (e) {
+      emit(AuthChangeProfileImageError(error: e.toString()));
     }
   }
 }

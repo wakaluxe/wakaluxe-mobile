@@ -13,4 +13,9 @@ abstract class TripRepository {
   Future<void> markTourAsComplete({required String tourId});
   Future<void> callDriver({required String driverPhoneNumber});
   Future<GetTripsResModel> getTrips();
+  Future<void> reviewTrip({
+    required String review,
+    required double rating,
+    required String tourId,
+  });
 }

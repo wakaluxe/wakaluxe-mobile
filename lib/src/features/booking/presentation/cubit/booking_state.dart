@@ -43,7 +43,7 @@ abstract class BookingState extends Equatable {
         mapController,
         sourceIcon,
         destinationIcon,
-        hasDirection
+        hasDirection,
       ];
 }
 

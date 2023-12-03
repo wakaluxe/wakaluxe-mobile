@@ -17,7 +17,7 @@ class TripCubit extends Cubit<TripsState> {
   Future<void> fetchMyTrips({required int page, DateTime? date}) async {
     emit(state.copyWith(status: TripStatus.loading));
     try {
-      await getTripsUsecase().then((value) {
+      await getTripsUsecase(null).then((value) {
         emit(
           state.copyWith(
             trips: value,

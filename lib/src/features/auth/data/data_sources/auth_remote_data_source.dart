@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'package:wakaluxe/src/common/Utils/logger.dart';
 import 'package:wakaluxe/src/common/resources/exceptions.dart';
@@ -23,6 +25,42 @@ class AuthRepositorymplementation {
   final BackendAuthDataSource _backend = locator<BackendAuthDataSource>();
   final NetworkConnectivity _networkConnectivity =
       locator<NetworkConnectivity>();
+  final FirebaseStorage _storage = locator<FirebaseStorage>();
+
+  Future<void> changeUserProfileImage() async {
+    try {
+      logInfo('the user is changing the profile image 1');
+      final picker = locator<ImagePicker>();
+      logInfo('the user is changing the profile image 2');
+      final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+      logInfo('the user is changing the profile image 3');
+      if (pickedFile != null) {
+        final file = await pickedFile.readAsBytes();
+logInfo('the user is changing the profile image 4');
+        final snapshot = await _storage
+            .ref('profileImages/${_auth.currentUser!.uid}')
+            .putData(file);
+            logInfo('the user is changing the profile image 5');
+        final downloardUrl = await snapshot.ref.getDownloadURL();
+        logInfo('the user is changing the profile image 6');
+        await _auth.currentUser!.updatePhotoURL(downloardUrl);
+        logInfo('the user is changing the profile image 7');
+        final user = _auth.currentUser!.toUser;
+        logInfo('the user is changing the profile image 8');
+        _localUSerData.saveUser(jsonEncode(user));
+        logInfo('the user is changing the profile image 9');
+      } else {
+        logError('no image selected');
+        throw Exception('no image selected');
+      }
+    } on FirebaseException catch (e) {
+      logError(e.toString());
+      throw Exception(e.message ?? 'error changing profile image');
+    } catch (e) {
+      logError(e.toString());
+      throw Exception('error changing profile image');
+    }
+  }
 
   Stream<UserEntity> get user {
     return _auth.authStateChanges().map((firebaseUser) {

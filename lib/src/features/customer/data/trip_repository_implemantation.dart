@@ -153,4 +153,13 @@ class TripRepositoryImplementation implements TripRepository {
       throw Exception('Error getting trip api data: $e');
     }
   }
+
+  @override
+  Future<void> reviewTrip(
+      {required String review,
+      required double rating,
+      required String tourId}) {
+    // TODO: implement reviewTrip
+    throw UnimplementedError();
+  }
 }

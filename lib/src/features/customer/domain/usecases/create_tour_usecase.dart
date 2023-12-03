@@ -9,11 +9,11 @@ class CreateTourUsecase extends UseCase<CreateTourResModel, CreateTourParams> {
   });
   final TripRepository repository;
   @override
-  Future<CreateTourResModel> call({
-     CreateTourParams? params,
-  }) async {
+  Future<CreateTourResModel> call(
+     CreateTourParams params,
+  ) async {
     return repository.createTour(
-      source: params!.source,
+      source: params.source,
       destination: params.destination,
       destinationAddress: params.destinationAddress,
     );

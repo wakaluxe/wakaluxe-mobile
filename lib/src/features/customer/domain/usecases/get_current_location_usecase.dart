@@ -9,7 +9,7 @@ class GetCurrentLocationUsecase extends UseCase<LocationEntity, void> {
     required this.repository,
   });
   @override
-  Future<LocationEntity> call({void params}) async {
+  Future<LocationEntity> call(void params) async {
     // TODO: implement call
     return await repository.getMyLocation();
   }

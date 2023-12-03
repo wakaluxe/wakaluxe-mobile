@@ -7,9 +7,9 @@ class GetTripsUsecase extends UseCase<GetTripsResModel, void> {
   final TripRepository repository;
 
   @override
-  Future<GetTripsResModel> call({
+  Future<GetTripsResModel> call(
      void params,
-  }) async {
+  ) async {
     return await repository.getTrips();
   }
 }
