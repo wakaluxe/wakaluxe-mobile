@@ -6,6 +6,7 @@ import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
+import 'package:wakaluxe/src/features/Communication/presentation/widgets/chat_view.dart';
 import 'package:wakaluxe/src/features/Communication/presentation/widgets/messages_content.dart';
 import 'package:wakaluxe/src/features/Communication/presentation/widgets/wakalux_badge.dart';
 
@@ -30,7 +31,7 @@ class _MessagesState extends State<Messages>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
-    return Scaffold(
+    return const ChatView(); /* Scaffold(
       appBar: AppBar(
         leading: const WakaluxBackButton(),
         title: Text(
@@ -87,5 +88,6 @@ class _MessagesState extends State<Messages>
         ),
       ),
     );
+   */
   }
 }

@@ -26,7 +26,11 @@ final locator = GetIt.instance;
 
 Future<void> registerServices() async {
   locator
-    ..registerSingleton<Dio>(Dio())
+    ..registerSingleton<Dio>(Dio()
+  /*     ..options.connectTimeout = const Duration(seconds: 5)
+      ..options.receiveTimeout = const Duration(seconds: 5)
+      ..options.sendTimeout = const Duration(seconds: 5) */
+      )
     ..registerLazySingleton<HiveClient>(HiveClient.new)
     ..registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance)
     ..registerLazySingleton<FirebaseStorage>(() => FirebaseStorage.instance)
