@@ -99,7 +99,7 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
                   icon: Constants.hashtagIcon,
                   validator: phoneNumberValidator,
                 ),
-                45.vGap,
+              /*   45.vGap,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -119,7 +119,7 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
                       ),
                     ),
                   ],
-                ),
+                ), */
                 60.vGap,
                 BlocBuilder<AuthBloc, AuthState>(
                   builder: (context, state) {
@@ -133,7 +133,7 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
                       onTap:
                           state is PhoneAuthLoading ? null : _verifyPhoneNumber,
                       child: WakaluxeButton(
-                        text: 'SIGN UP',
+                        text: 'Connect',
                         textColor: context.colorScheme.scrim,
                       ),
                     );

@@ -204,9 +204,16 @@ class AuthRepositorymplementation {
     }
   }
 
-  Future<Either<UpdateProfileException, UserEntity>> updateUserPhoneNumber(
-    String newPhoneNumber,
-  ) async {
+  Future<Either<UpdateProfileException, UserEntity>> updateUserPhoneNumber({
+    required String newPhoneNumber,
+    required void Function(String, int?) codeSent,
+    required void Function(FirebaseAuthException) verificationFailed,
+    required void Function(String) codeAutoRetrievalTimeout,
+    required void Function(PhoneAuthCredential) verificationCompleted
+
+
+
+  }) async {
     try {
       final completer = Completer<PhoneAuthCredential>();
 
@@ -221,10 +228,10 @@ class AuthRepositorymplementation {
         },
         codeSent: (String verificationId, int? resendToken) async {
           // Wait for the user to enter the SMS code
-          final smsCode = await _smsCodeInput();
+          //   final smsCode = await _smsCodeInput();
           final credential = PhoneAuthProvider.credential(
             verificationId: verificationId,
-            smsCode: smsCode,
+            smsCode: '', // smsCode,
           );
           completer.complete(credential);
         },
@@ -246,37 +253,6 @@ class AuthRepositorymplementation {
       logError(e.toString());
       return Left(UpdateProfileException());
     }
-  }
-
-  Future<String> _smsCodeInput() {
-    Future<String> smsCodeInput() async {
-      final smsCodeController = TextEditingController();
-      await showAdaptiveDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: const Text('Enter SMS Code'),
-            content: TextField(
-              controller: smsCodeController,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
-                labelText: 'SMS Code',
-              ),
-            ),
-            actions: <Widget>[
-              TextButton(
-                child: const Text('Submit'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-      return smsCodeController.text;
-    }
-    // Implement this method to get the SMS code from the user
   }
 }
 

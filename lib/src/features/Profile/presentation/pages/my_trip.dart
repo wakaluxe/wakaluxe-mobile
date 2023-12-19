@@ -72,7 +72,7 @@ class _MyTripState extends State<MyTrip> {
                     itemBuilder: (context, index) {
                       final trip = trips[index];
                       return Padding(
-                        padding: const EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(10),
                         child: RideInfoBox(
                           rideLocation: 'trip.endLocation.',
                           rideTime: '${trip.duration!}' ' mins',

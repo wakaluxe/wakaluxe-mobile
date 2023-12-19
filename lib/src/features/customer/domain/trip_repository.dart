@@ -18,6 +18,7 @@ abstract class TripRepository {
     required double rating,
     required String tourId,
   });
-
+  
+  
   
 }

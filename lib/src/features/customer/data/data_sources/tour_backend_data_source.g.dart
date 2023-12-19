@@ -132,7 +132,6 @@ class _TourBackendDataSource implements TourBackendDataSource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-            logDebug(_result.data.toString());
     final value = GetTripsResModel.fromMap(_result.data!);
     return value;
   }
