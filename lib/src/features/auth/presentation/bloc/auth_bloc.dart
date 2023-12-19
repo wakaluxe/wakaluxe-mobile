@@ -20,6 +20,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<VerifySentOtpEvent>(_onVerifyOtp);
     on<ChangeProfileImageEvent>(_changeProfileImage);
     on<GetUserEvent>(_onGetUser);
+    on<UpdateUserNameEvent>(_onUpdateUserName);
     on<OnPhoneOtpSent>(
       (event, emit) async => emit(
         PhoneAuthCodeSentSuccess(verificationId: event.verificationId),
@@ -126,7 +127,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     try {
       emit(AuthGetUserInit());
-      final user = _authRepository.currentUser;
+      final user = await _authRepository.currentUser;
       emit(AuthGetUserSuccess(user: user));
     } catch (e) {
       emit(AuthGetUserError(error: e.toString()));
@@ -138,7 +139,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     try {
       logInfo('what up app started successfully');
       final token = await _authRepository.getIdToken;
-      final user = _authRepository.currentUser;
+      final user = await _authRepository.currentUser;
       final client = locator<chat.StreamChatClient>();
       await client.connectUser(
         chat.User(
@@ -162,9 +163,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     try {
       emit(AuthChangeProfileImageInit());
       await _authRepository.changeUserProfileImage();
-      emit(AuthAppStartSuccess(user: _authRepository.currentUser));
+      emit(const AuthChangeProfileImageSuccess());
     } catch (e) {
       emit(AuthChangeProfileImageError(error: e.toString()));
     }
   }
+
+  FutureOr<void> _onUpdateUserName(
+    UpdateUserNameEvent event,
+    Emitter<AuthState> emit,
+  ) async {
+    emit(AuthChangeUserNameInit());
+    final result = await _authRepository.updateUserName(event.name);
+    result.fold(
+      (l) => emit(AuthChangeUserNameError(error: l.message)),
+      (r) => emit(AuthChangeUserNameSuccess(user: r)),
+    );
+  } 
 }

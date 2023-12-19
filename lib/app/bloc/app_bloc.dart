@@ -1,4 +1,4 @@
-import 'dart:async';
+/* import 'dart:async';
 import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
@@ -10,13 +10,7 @@ part 'app_event.dart';
 part 'app_state.dart';
 
 class AppBloc extends HydratedBloc<AppEvent, AppState> {
-  AppBloc(AuthRepositorymplementation repo)
-      : _repo = repo,
-        super(
-          repo.currentUser.hasToken
-              ? AppState.authenticated(repo.currentUser)
-              : const AppState.unauthenticated(),
-        ) {
+  AppBloc(AuthRepositorymplementation repo) {
     on<AppEvent>((event, emit) {
       // TODO: implement event handler
       on<AppUserChanged>(_onUserChanged);
@@ -54,3 +48,4 @@ class AppBloc extends HydratedBloc<AppEvent, AppState> {
   @override
   Map<String, AppState> toJson(AppState state) => {'value': state};
 }
+ */

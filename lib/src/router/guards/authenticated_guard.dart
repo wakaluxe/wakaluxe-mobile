@@ -6,6 +6,7 @@ class AuthenticatedGuard extends AutoRouteGuard {
   @override
   void onNavigation(NavigationResolver resolver, StackRouter router) {
     final hasId = locator<LocalUSerData>().getUser()?.hasId;
+    
 
     if (hasId == false || hasId == null) {
       router.pushNamed('/sign-up');

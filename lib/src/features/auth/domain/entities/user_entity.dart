@@ -30,6 +30,7 @@ class UserEntity {
       id: map['id'] as String,
       fullName: map['fullName'] as String?,
       phoneNumber: map['phoneNumber'] as String?,
+      profilePicture: map['profilePicture'] as String?,
     );
   }
 

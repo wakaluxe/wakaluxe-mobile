@@ -81,7 +81,7 @@ class AuthChangeProfileImageInit extends AuthState {}
 class AuthChangeProfileImageSuccess extends AuthState {
   final String imageUrl;
   const AuthChangeProfileImageSuccess({
-    required this.imageUrl,
+     this.imageUrl= '',
   });
   @override
   List<Object> get props => [imageUrl];
@@ -100,9 +100,8 @@ class AuthGetUserInit extends AuthState {}
 
 class AuthGetUserSuccess extends AuthState {
   @override
-  final UserEntity user;
   const AuthGetUserSuccess({
-    required this.user,
+    super.user,
   });
   @override
   List<Object> get props => [user];
@@ -111,6 +110,24 @@ class AuthGetUserSuccess extends AuthState {
 class AuthGetUserError extends AuthState {
   final String error;
   const AuthGetUserError({
+    required this.error,
+  });
+  @override
+  List<Object> get props => [error];
+}
+
+class AuthChangeUserNameInit extends AuthState{
+}
+
+class AuthChangeUserNameSuccess extends AuthState{
+  const AuthChangeUserNameSuccess({
+    super.user,
+  });
+}
+
+class AuthChangeUserNameError extends AuthState{
+  final String error;
+  const AuthChangeUserNameError({
     required this.error,
   });
   @override

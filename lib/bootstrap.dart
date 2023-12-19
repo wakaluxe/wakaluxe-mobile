@@ -53,6 +53,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   );
   await Hive.initFlutter();
   await Hive.openBox<bool>('first_run');
+  await Hive.openBox<String>('post_auth_navigation');
   await locator<LocalUSerData>().initialize();
   // await dotenv.load();
   runApp(

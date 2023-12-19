@@ -19,10 +19,6 @@ import 'package:wakaluxe/src/features/auth/presentation/bloc/auth_bloc.dart';
 class MyProfile extends StatelessWidget {
   const MyProfile({super.key});
 
-  void _handleChangeProfileImage(BuildContext context) {
-    context.read<AuthBloc>().add(ChangeProfileImageEvent());
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,44 +29,32 @@ class MyProfile extends StatelessWidget {
           'Welcome!',
         ),
       ),
-      body: BlocConsumer<AuthBloc, AuthState>(
-        listener: (context, state) {
-          if (state is AuthChangeProfileImageSuccess) {
-            context.showSnackBar(
-              'Profile Image Changed Successfully',
-            );
-            context.read<AuthBloc>().add(GetUserEvent());
-          }
-          if (state is AuthChangeProfileImageError) {
-            context.showSnackBar(
-              'Profile Image Changed Failed',
-            );
-            context.read<AuthBloc>().add(GetUserEvent());
-          }
-        },
+      body: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) => SizedBox(
           width: context.width,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.0.w),
             child: Column(
               children: <Widget>[
-                GestureDetector(
-                  onTap: () => _handleChangeProfileImage(context),
-                  child: state is AuthChangeProfileImageInit
-                      ? const Center(
-                          child: CircularProgressIndicator.adaptive(),
-                        )
-                      : Hero(
-                          tag: 'profile',
-                          child: CircleAvatar(
-                            radius: 100.w,
-                            backgroundColor:
-                                Theme.of(context).scaffoldBackgroundColor,
-                            backgroundImage:
-                                const AssetImage(Constants.profile),
-                          ),
-                        ),
-                ),
+                if (state is AuthChangeProfileImageInit ||
+                    state is AuthGetUserInit)
+                  const Center(
+                    child: CircularProgressIndicator.adaptive(),
+                  )
+                else
+                  Hero(
+                    tag: 'profile',
+                    child: CircleAvatar(
+                      radius: 100.w,
+                      backgroundColor:
+                          Theme.of(context).scaffoldBackgroundColor,
+                      backgroundImage: (state.user.profilePicture != null
+                          ? NetworkImage(state.user.profilePicture!)
+                          : const AssetImage(
+                              Constants.profile,
+                            )) as ImageProvider,
+                    ),
+                  ),
                 10.h.vGap,
                 Text(
                   state.user.fullName ?? "What's your name?",

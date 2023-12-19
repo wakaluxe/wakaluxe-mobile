@@ -1,4 +1,5 @@
 // days of the week formatter from datetime
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
@@ -54,3 +55,22 @@ final otpFormatter = MaskTextInputFormatter(
   mask: '######',
   filter: {'#': RegExp('[0-9]')},
 );
+
+Future<void> postNavigationAuthedRouteName(
+  String routeName,
+) async {
+  var finalRoute = routeName;
+  if (routeName == '/sign-up') {
+    finalRoute = '/home-2';
+  }
+  final box = await Hive.openBox<String>('post_auth_navigation');
+  await box.put('current', finalRoute);
+  await box.close();
+}
+
+Future<String> getNavigationAuthedRouteName() async {
+  final box = await Hive.openBox<String>('post_auth_navigation');
+  final value = box.get('current')!;
+  await box.close();
+  return value;
+}

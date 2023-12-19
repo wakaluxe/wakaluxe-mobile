@@ -1,10 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:wakaluxe/src/common/Utils/logger.dart';
@@ -35,12 +38,12 @@ class AuthRepositorymplementation {
       final pickedFile = await picker.pickImage(source: ImageSource.gallery);
       logInfo('the user is changing the profile image 3');
       if (pickedFile != null) {
-        final file = await pickedFile.readAsBytes();
-logInfo('the user is changing the profile image 4');
-        final snapshot = await _storage
-            .ref('profileImages/${_auth.currentUser!.uid}')
-            .putData(file);
-            logInfo('the user is changing the profile image 5');
+        final file = File(pickedFile.path);
+        logInfo('the user is changing the profile image 4');
+        final ref = _storage.ref('profileImages/${_auth.currentUser!.uid}');
+        logDebug('the ref is: $ref');
+        final snapshot = await ref.putFile(file);
+        logInfo('the user is changing the profile image 5');
         final downloardUrl = await snapshot.ref.getDownloadURL();
         logInfo('the user is changing the profile image 6');
         await _auth.currentUser!.updatePhotoURL(downloardUrl);
@@ -71,7 +74,15 @@ logInfo('the user is changing the profile image 4');
     });
   }
 
-  UserEntity get currentUser {
+  Future<UserEntity> get currentUser async {
+    if (await _networkConnectivity.isConnected()) {
+      final user = _auth.currentUser;
+      if (user != null) {
+        final entity = user.toUser;
+        _localUSerData.saveUser(jsonEncode(entity));
+        return entity;
+      }
+    }
     return _localUSerData.getUser() ?? UserEntity.empty;
   }
 
@@ -173,6 +184,99 @@ logInfo('the user is changing the profile image 4');
       logError(e.toString());
       return Left(LogOutException());
     }
+  }
+
+  Future<Either<UpdateProfileException, UserEntity>> updateUserName(
+    String newUserName,
+  ) async {
+    try {
+      final user = _auth.currentUser;
+      await user!.updateDisplayName(newUserName);
+      final entity = user.toUser;
+      _localUSerData.saveUser(jsonEncode(entity));
+      return Right(entity);
+    } on FirebaseAuthException catch (e) {
+      logError(e.toString());
+      return Left(UpdateProfileException.fromCode(e.code));
+    } catch (e) {
+      logError(e.toString());
+      return Left(UpdateProfileException());
+    }
+  }
+
+  Future<Either<UpdateProfileException, UserEntity>> updateUserPhoneNumber(
+    String newPhoneNumber,
+  ) async {
+    try {
+      final completer = Completer<PhoneAuthCredential>();
+
+      await _auth.verifyPhoneNumber(
+        phoneNumber: newPhoneNumber,
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          completer.complete(credential);
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          logError(e.toString());
+          completer.completeError(UpdateProfileException.fromCode(e.code));
+        },
+        codeSent: (String verificationId, int? resendToken) async {
+          // Wait for the user to enter the SMS code
+          final smsCode = await _smsCodeInput();
+          final credential = PhoneAuthProvider.credential(
+            verificationId: verificationId,
+            smsCode: smsCode,
+          );
+          completer.complete(credential);
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {
+          completer.completeError(UpdateProfileException(message: 'Time out'));
+        },
+      );
+
+      final credential = await completer.future;
+      final user = _auth.currentUser;
+      await user!.updatePhoneNumber(credential);
+      final entity = user.toUser;
+      _localUSerData.saveUser(jsonEncode(entity));
+      return Right(entity);
+    } on FirebaseAuthException catch (e) {
+      logError(e.toString());
+      return Left(UpdateProfileException.fromCode(e.code));
+    } catch (e) {
+      logError(e.toString());
+      return Left(UpdateProfileException());
+    }
+  }
+
+  Future<String> _smsCodeInput() {
+    Future<String> smsCodeInput() async {
+      final smsCodeController = TextEditingController();
+      await showAdaptiveDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('Enter SMS Code'),
+            content: TextField(
+              controller: smsCodeController,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                labelText: 'SMS Code',
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Submit'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+      return smsCodeController.text;
+    }
+    // Implement this method to get the SMS code from the user
   }
 }
 

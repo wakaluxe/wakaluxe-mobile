@@ -1,4 +1,4 @@
-part of 'app_bloc.dart';
+/* part of 'app_bloc.dart';
 
 abstract class AppEvent extends Equatable {
   const AppEvent();
@@ -17,3 +17,4 @@ class AppUserChanged extends AppEvent {
   @override
   List<Object> get props => [user];
 }
+ */

@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
+import 'package:wakaluxe/src/common/Utils/helpers.dart';
 
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
@@ -40,6 +41,12 @@ class _WakaluxeVerificationState extends State<WakaluxeVerification> {
     super.dispose();
   }
 
+  _handleNavigation() {
+    getNavigationAuthedRouteName().then(
+      (value) => context.router.pushNamed(value),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
@@ -62,7 +69,7 @@ class _WakaluxeVerificationState extends State<WakaluxeVerification> {
               context.router.pop();
             }
             if (state is PhoneAuthVerified) {
-              context.router.pushNamed(WakaluxeSubscriptions.path);
+              _handleNavigation();
             }
           },
           child: SingleChildScrollView(

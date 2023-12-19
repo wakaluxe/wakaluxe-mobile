@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
-import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
-import 'package:wakaluxe/src/extensions/build_context.dart';
 
 class ChatView extends StatefulWidget {
   const ChatView({super.key});
@@ -26,15 +24,6 @@ class _ChatViewState extends State<ChatView> {
     _listController.dispose();
     super.dispose();
   }
-
-  final List<Map<String, String>> messages = [
-    {'sender': 'user', 'text': 'Hi there!'},
-    {'sender': 'receiver', 'text': 'Hello.'},
-    {'sender': 'receiver', 'text': 'How are you doing?'},
-    {'sender': 'user', 'text': 'I am good, thanks. How about you?'},
-    {'sender': 'receiver', 'text': 'I am doing great!'},
-    {'sender': 'receiver', 'text': 'That sounds awesome!'},
-  ];
 
   @override
   Widget build(BuildContext context) {

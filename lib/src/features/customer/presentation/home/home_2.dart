@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:wakaluxe/features/payments/presentation/pages/payment_methods_screen.dart';
 import 'package:wakaluxe/src/common/Utils/alerts.dart';
+import 'package:wakaluxe/src/common/Utils/helpers.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
@@ -40,16 +41,17 @@ class _Home2ScreenState extends State<Home2Screen> {
   @override
   Widget build(BuildContext context) {
     final t = Theme.of(context).textTheme;
+
     return Scaffold(
       appBar: AppBar(
         leading: const SizedBox(),
         actions: [
           GestureDetector(
             onTap: () {
-              context.router.pushNamed('/notifications');
+              _handleNavigation('/notifications');
             },
             child: SvgPicture.asset(Constants.notificationIcon),
-          )
+          ),
         ],
       ),
       body: Padding(
@@ -74,20 +76,20 @@ class _Home2ScreenState extends State<Home2Screen> {
                     title: 'My Profile',
                     icon: Constants.profileIcon,
                     onTap: () {
-                      context.router.push(const MyProfile());
+                      _handleNavigation('/my-profile');
                     },
                   ),
                   HomeBox(
                     t: t,
                     title: 'Chat',
                     icon: Constants.messageIcon,
-                    onTap: () => context.router.pushNamed('/messages'),
+                    onTap: () => _handleNavigation('/messages'),
                   ),
                   HomeBox(
                     t: t,
                     title: 'Settings',
                     icon: Constants.settingIcon,
-                    onTap: () => context.router.pushNamed('/settings'),
+                    onTap: () => _handleNavigation('/settings'),
                   ),
                   BlocConsumer<AuthBloc, AuthState>(
                     listener: (context, state) {
@@ -114,7 +116,7 @@ class _Home2ScreenState extends State<Home2Screen> {
                           icon: Constants.logoutIcon,
                           onTap: () =>
                               //  logDebug('user ${state.user.toJson()}'),
-                              context.router.pushNamed('/sign-up'),
+                              _handleNavigation('/sign-up'),
                         );
                       }
                       if (state is AuthLogOutInit) {
@@ -148,26 +150,25 @@ class _Home2ScreenState extends State<Home2Screen> {
                     t: t,
                     title: 'Subscriptions',
                     icon: Constants.walletIcon,
-                    onTap: () => context.router.pushNamed('/subscriptions'),
+                    onTap: () => _handleNavigation('/subscriptions'),
                   ),
                   HomeBox(
                     t: t,
                     title: 'Payment',
                     icon: Constants.subscriptionIcon,
-                    onTap: () =>
-                        context.router.pushNamed(PaymentMethodsScreen.path),
+                    onTap: () => _handleNavigation(PaymentMethodsScreen.path),
                   ),
                   HomeBox(
                     t: t,
                     title: 'My Trips',
                     icon: Constants.locationIcon,
-                    onTap: () => context.router.pushNamed('/my-trip'),
+                    onTap: () => _handleNavigation('/my-trip'),
                   ),
                   HomeBox(
                     t: t,
                     title: 'Support',
                     icon: Constants.headphoneIcon,
-                    onTap: () => context.router.pushNamed('/settings'),
+                    onTap: () => _handleNavigation('/settings'),
                   ),
                 ],
               ),
@@ -176,11 +177,16 @@ class _Home2ScreenState extends State<Home2Screen> {
               image: Constants.onBoard2,
               title: 'Book a Taxi',
               t: t,
-              onTap: () => context.router.pushNamed('/home-map'),
+              onTap: () => _handleNavigation('/home-map'),
             ),
           ],
         ),
       ),
     );
+  }
+
+  void _handleNavigation(String routeName) {
+    postNavigationAuthedRouteName(routeName)
+        .then((value) => context.router.pushNamed(routeName));
   }
 }

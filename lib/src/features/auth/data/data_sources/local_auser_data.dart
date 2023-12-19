@@ -19,10 +19,10 @@ class LocalUSerData {
 
   UserEntity? getUser() {
     final data = _cacheClient.getItem('user');
-    logInfo('data: $data');
+    logInfo('get data: $data');
     if (data == null) return null;
     final serializeData = json.decode(data as String);
-    logInfo('serializeData: $serializeData');
+    logInfo('get serializeData: $serializeData');
     final user = UserEntity.fromJson(serializeData as String);
     return user;
   }

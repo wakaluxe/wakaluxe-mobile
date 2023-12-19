@@ -16,10 +16,10 @@ void main() {
   bootstrap(
     () => MultiBlocProvider(
       providers: [
-        BlocProvider(
+        /* BlocProvider(
           create: (context) =>
               AppBloc(context.read<AuthRepositorymplementation>()),
-        ),
+        ), */
         BlocProvider<ThemeCubit>(
           create: (context) => ThemeCubit(),
         ),
@@ -32,7 +32,7 @@ void main() {
         BlocProvider<AuthBloc>(
           create: (context) => locator(),
         ),
-        BlocProvider(create: (context) => PaymentCubit())
+        BlocProvider(create: (context) => PaymentCubit()),
       ],
       child: const Wakaluxe(),
     ),

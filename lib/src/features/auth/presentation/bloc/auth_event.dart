@@ -61,3 +61,8 @@ class OnAppStartEvent extends AuthEvent {}
 class ChangeProfileImageEvent extends AuthEvent {}
 
 class GetUserEvent extends AuthEvent {}
+
+class UpdateUserNameEvent extends AuthEvent {
+  const UpdateUserNameEvent({required this.name});
+  final String name;
+}

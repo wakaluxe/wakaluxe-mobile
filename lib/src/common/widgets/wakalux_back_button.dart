@@ -12,7 +12,7 @@ class WakaluxBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.router.pop(),
+      onTap: () => context.router.replaceNamed('/home-2'),
       child: Transform.scale(
         scale: 0.5,
         child: SvgPicture.asset(Constants.backBoldIcon),
