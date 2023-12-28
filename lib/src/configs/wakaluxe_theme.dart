@@ -221,11 +221,11 @@ extension FigmaStyles on TextTheme {
   TextStyle get body1 => GoogleFonts.poppins(
         fontSize: 16.sp,
         fontWeight: FontWeight.w400,
-        color: Palette.secondaryTextColor,
+        color: Palette.black,
       );
   TextStyle get body2 => GoogleFonts.poppins(
-        fontSize: 14.sp,
-        fontWeight: FontWeight.w500,
+        fontSize: 10.sp,
+        fontWeight: FontWeight.w400,
         color: Palette.primaryTextColor.withOpacity(0.87),
       );
   TextStyle get body3 => GoogleFonts.poppins(

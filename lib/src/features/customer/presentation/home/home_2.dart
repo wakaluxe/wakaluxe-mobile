@@ -73,7 +73,7 @@ class _Home2ScreenState extends State<Home2Screen> {
                 children: [
                   HomeBox(
                     t: t,
-                    title: 'My Profile',
+                    title: 'Profile',
                     icon: Constants.profileIcon,
                     onTap: () {
                       _handleNavigation('/my-profile');
@@ -148,7 +148,7 @@ class _Home2ScreenState extends State<Home2Screen> {
                   ),
                   HomeBox(
                     t: t,
-                    title: 'Subscriptions',
+                    title: 'Subscription',
                     icon: Constants.walletIcon,
                     onTap: () => _handleNavigation('/subscriptions'),
                   ),

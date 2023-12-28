@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:wakaluxe/src/common/widgets/wakalux_back_button.dart';
+import 'package:wakaluxe/src/configs/palette.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
@@ -36,6 +37,7 @@ class MyProfile extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 10.0.w),
             child: Column(
               children: <Widget>[
+                30.h.vGap,
                 if (state is AuthChangeProfileImageInit ||
                     state is AuthGetUserInit)
                   const Center(
@@ -67,7 +69,7 @@ class MyProfile extends StatelessWidget {
                 ),
                 4.h.vGap,
                 4.h.vGap,
-                Text('Subscription Plan', style: context.theme.textTheme.body1),
+                Text('No Subscription Plan', style: context.theme.textTheme.body1.copyWith(fontWeight: FontWeight.w500, color:Palette.black )),
                 35.h.vGap,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -94,13 +96,13 @@ class MyProfile extends StatelessWidget {
                       ProfileBoxWidget(
                         t: context.theme.textTheme,
                         title: 'Ride Token',
-                        value: '70',
+                        value: '34',
                       ),
                       20.w.hGap,
                       ProfileBoxWidget(
                         t: context.theme.textTheme,
                         title: 'Rides Cancelled',
-                        value: '10',
+                        value: '0',
                       ),
                     ],
                   ),

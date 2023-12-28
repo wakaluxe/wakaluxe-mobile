@@ -66,6 +66,30 @@ class _HomeMapState extends State<HomeMap> {
   //const LatLng(45.521563, -122.677433);
 
   late GoogleMapController mapController;
+  Set<Marker> _markers = {};
+
+  Set<Marker> generateNearbyMarkers(double latitude, double longitude) {
+    Set<Marker> markers = {};
+BitmapDescriptor.fromAssetImage(
+          const ImageConfiguration(size: Size(16, 16)),
+          'assets/icons/car.png',
+      ).then((icon) {
+         for (int i = 0; i < 10; i++) {
+      double offset =
+          i / 1000; // This will create a small offset for each marker
+      Marker marker = Marker(
+        markerId: MarkerId('marker$i'),
+        icon: icon,
+        position: LatLng(latitude + offset, longitude + offset),
+      );
+      markers.add(marker);
+    }
+      });
+      
+   
+
+    return markers;
+  }
 
   void _onMapCreated(GoogleMapController controller) =>
       _mapController.complete(controller);
@@ -155,6 +179,7 @@ class _HomeMapState extends State<HomeMap> {
           ),
         ),
       );
+      _markers = generateNearbyMarkers(event.latitude!, event.longitude!);
       setState(() {});
     });
   }
@@ -265,7 +290,7 @@ class _HomeMapState extends State<HomeMap> {
                           : GoogleMap(
                               zoomControlsEnabled: false,
                               mapToolbarEnabled: false,
-                              zoomGesturesEnabled: false,
+                              zoomGesturesEnabled: true,
                               compassEnabled: false,
                               myLocationButtonEnabled: false,
                               polylines: {
@@ -278,6 +303,7 @@ class _HomeMapState extends State<HomeMap> {
                                   ),
                               },
                               markers: {
+                                ..._markers,
                                 Marker(
                                   //    icon: _currentIcon,
                                   markerId: const MarkerId('current location'),

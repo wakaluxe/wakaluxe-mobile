@@ -78,6 +78,7 @@ class Constants {
   static const String visibleIcon = 'assets/icons/hicon/linear/Show.svg';
   static const String notVisibleIcon = 'assets/icons/hicon/linear/Hide.svg';
   static const String hashtagIcon = 'assets/icons/hicon/linear/Hashtag.svg';
+  static const String taxiIcon = 'assets/icons/taxi.png';
 }
 
 enum TripState {

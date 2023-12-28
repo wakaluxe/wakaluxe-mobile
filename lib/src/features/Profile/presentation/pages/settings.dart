@@ -30,21 +30,46 @@ class Settings extends StatelessWidget {
               onTap: () {
                 context.router.pushNamed('/language');
               },
-              child: Text('Language', style: theme.body1),
+              child: SettingTile(title: 'Language', theme: theme),
             ),
             SizedBox(height: 20.h),
-            Text('Turn Location on/off', style: theme.body1),
+            SettingTile(
+              theme: theme,
+              title: 'Turn Location on/off',
+            ),
             SizedBox(height: 20.h),
             GestureDetector(
               onTap: () {
                 context.router.pushNamed('/security');
               },
-              child: Text('Security', style: theme.body1),
+              child: SettingTile(title: 'Security', theme: theme),
             ),
             SizedBox(height: 20.h),
-            Text('Terms & Privacy', style: theme.body1),
+            SettingTile(title: 'Terms & Privacy', theme: theme),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class SettingTile extends StatelessWidget {
+  const SettingTile({
+    super.key,
+    required this.theme,
+    required this.title,
+  });
+
+  final TextTheme theme;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(title, style: theme.body1),
+      trailing: Icon(
+        Icons.arrow_forward_ios_outlined,
+        size: 16.sp,
       ),
     );
   }
