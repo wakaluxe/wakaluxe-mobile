@@ -1,25 +1,9 @@
 import 'dart:convert';
 
-import 'end_location.dart';
-import 'start_location.dart';
+import 'package:wakaluxe/src/features/customer/data/models/create_tour_res_model/end_location.dart';
+import 'package:wakaluxe/src/features/customer/data/models/create_tour_res_model/start_location.dart';
 
 class Datum {
-  String? name;
-  int? duration;
-  double? ratingsAverage;
-  int? ratingsQuantity;
-  int? price;
-  DateTime? createdAt;
-  String? user;
-  StartLocation? startLocation;
-  EndLocation? endLocation;
-  String? status;
-  String? paymentStatus;
-  String? id;
-  String? slug;
-  int? v;
-  double? durationWeeks;
-
   Datum({
     this.name,
     this.duration,
@@ -38,11 +22,6 @@ class Datum {
     this.durationWeeks,
   });
 
-  @override
-  String toString() {
-    return 'Datum(name: $name, duration: $duration, ratingsAverage: $ratingsAverage, ratingsQuantity: $ratingsQuantity, price: $price, createdAt: $createdAt, user: $user, startLocation: $startLocation, endLocation: $endLocation, status: $status, paymentStatus: $paymentStatus, id: $id, slug: $slug, v: $v, durationWeeks: $durationWeeks, id: $id)';
-  }
-
   factory Datum.fromMap(Map<String, dynamic> data) => Datum(
         name: data['name'] as String?,
         duration: data['duration'] as int?,
@@ -56,7 +35,8 @@ class Datum {
         startLocation: data['startLocation'] == null
             ? null
             : StartLocation.fromMap(
-                data['startLocation'] as Map<String, dynamic>),
+                data['startLocation'] as Map<String, dynamic>,
+              ),
         endLocation: data['endLocation'] == null
             ? null
             : EndLocation.fromMap(data['endLocation'] as Map<String, dynamic>),
@@ -67,6 +47,33 @@ class Datum {
         v: data['__v'] as int?,
         durationWeeks: data['durationWeeks'] as double?,
       );
+
+  /// `dart:convert`
+  ///
+  /// Parses the string and returns the resulting Json object as [Datum].
+  factory Datum.fromJson(String data) {
+    return Datum.fromMap(json.decode(data) as Map<String, dynamic>);
+  }
+  String? name;
+  int? duration;
+  double? ratingsAverage;
+  int? ratingsQuantity;
+  int? price;
+  DateTime? createdAt;
+  String? user;
+  StartLocation? startLocation;
+  EndLocation? endLocation;
+  String? status;
+  String? paymentStatus;
+  String? id;
+  String? slug;
+  int? v;
+  double? durationWeeks;
+
+  @override
+  String toString() {
+    return 'Datum(name: $name, duration: $duration, ratingsAverage: $ratingsAverage, ratingsQuantity: $ratingsQuantity, price: $price, createdAt: $createdAt, user: $user, startLocation: $startLocation, endLocation: $endLocation, status: $status, paymentStatus: $paymentStatus, id: $id, slug: $slug, v: $v, durationWeeks: $durationWeeks, id: $id)';
+  }
 
   Map<String, dynamic> toMap() => {
         'name': name,
@@ -86,13 +93,6 @@ class Datum {
         'durationWeeks': durationWeeks,
         'id': id,
       };
-
-  /// `dart:convert`
-  ///
-  /// Parses the string and returns the resulting Json object as [Datum].
-  factory Datum.fromJson(String data) {
-    return Datum.fromMap(json.decode(data) as Map<String, dynamic>);
-  }
 
   /// `dart:convert`
   ///

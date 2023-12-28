@@ -15,13 +15,14 @@ import 'package:wakaluxe/src/features/customer/domain/usecases/cancel_tour_useca
 import 'package:wakaluxe/src/features/customer/domain/usecases/complete_tour_usecase.dart';
 import 'package:wakaluxe/src/features/customer/domain/usecases/create_tour_usecase.dart';
 import 'package:wakaluxe/src/features/customer/domain/usecases/get_current_location_usecase.dart';
+import 'package:wakaluxe/src/features/customer/domain/usecases/start_navigation_usecase.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   int _tripCounter = 0;
-  int _driverCounter = 60;
+  final int _driverCounter = 60;
 
   HomeBloc(
     this._locationUsecase,
@@ -29,6 +30,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     this._completeTourUsecase,
     this._cancelTourUsecase,
     this._callDriverUsecase,
+    this._startNavigationUsecase,
     // this._travelTimeUsecase,
   ) : super(HomeInitial()) {
     on<HomeInitialEvent>(_onAuthInitEvent);
@@ -179,6 +181,29 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           selectDriver: false,
         ), // delay the operation by 5 seconds
       );
+      logDebug('inside the on trip event');
+      await _startNavigationUsecase(
+        StartNavigationParams(
+          source: state.myCoordinate,
+          destination: state.destination,
+          onArrival: () {
+            emit(
+              state.copyWith(
+                onTrip: false,
+                payfare: true,
+              ),
+            );
+          },
+          onCancel: () {
+            emit(
+              state.copyWith(
+                onTrip: false,
+                payfare: true,
+              ),
+            );
+          },
+        ),
+      );
 
       // await Future.delayed(const Duration(seconds: 5));
       Timer.periodic(const Duration(seconds: 5), (timer) async {
@@ -244,9 +269,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             destination: LocationEntity.fromLatLng(event.destination),
             source: LocationEntity.fromLatLng(event.source)), */
         );
-
+        logDebug('selection location event');
         final data = await _createTourUsecase(
-           CreateTourParams(
+          CreateTourParams(
             source: LocationEntity.fromLatLng(event.source),
             destination: LocationEntity.fromLatLng(event.destination),
             destinationAddress: event.destinationAddress,
@@ -282,7 +307,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ) async {
     try {
       await _cancelTourUsecase(
-         CancelTourParams(
+        CancelTourParams(
           tourId: event.tourId,
         ),
       );
@@ -350,6 +375,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final CompleteTourUsecase _completeTourUsecase;
   final CancelTourUsecase _cancelTourUsecase;
   final CallDriverUsecase _callDriverUsecase;
+  final StartNavigationUsecase _startNavigationUsecase;
 
 //  final GetTravelTimeUseCase _travelTimeUsecase;
 

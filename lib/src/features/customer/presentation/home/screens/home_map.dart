@@ -372,7 +372,8 @@ class _HomeMapState extends State<HomeMap> {
                                 color: context.colorScheme.error,
                               ),
                               message: 'Where are you going?',
-                              onTap: () => _handleDestinationSelection(
+                              onTap: () =>
+                                  _handleDestinationSelectionWithoutPlacePicker(
                                 state.myCoordinate,
                               ),
                             ),
@@ -440,15 +441,15 @@ class _HomeMapState extends State<HomeMap> {
       location.latitude,
       location.longitude,
     );
-    await _getPolyPoints();
-    _setCustomMarkerIcon();
+    /*  await _getPolyPoints();
+    _setCustomMarkerIcon(); */
+    logInfo('the destination in ui is $_destination');
     //      _waypoints.add(_destination);
     context.read<HomeBloc>().add(
           SelectLocationEvent(
             destination: LatLng(
               fakeDestination.latitude,
               fakeDestination.longitude,
-
             ),
             destinationAddress: 'Buea',
             source: LatLng(
@@ -462,7 +463,36 @@ class _HomeMapState extends State<HomeMap> {
   Future<void> _handleDestinationSelection(LocationEntity location) async {
     // _waypoints.add(_origin);
     // await WakaluxeBottomSheets.showDestinationPicker(context);
-    await Navigator.push(
+
+//create an alternative with mock location data for test
+    _destination = LatLng(
+      fakeDestination.latitude,
+      fakeDestination.longitude,
+    );
+    _source = LatLng(
+      location.latitude,
+      location.longitude,
+    );
+    await _getPolyPoints();
+    _setCustomMarkerIcon();
+    //      _waypoints.add(_destination);
+    context.read<HomeBloc>().add(
+          SelectLocationEvent(
+            destination: LatLng(
+              fakeDestination.latitude,
+              fakeDestination.longitude,
+            ),
+            destinationAddress: 'Buea',
+            source: LatLng(
+              _currentPosition!.latitude!,
+              _currentPosition!.longitude!,
+            ),
+          ),
+        );
+
+//! PLACE PICKER wait for test
+    /*   await Navigator.push(
+longitude 11.5146752 latitude: 3.8731776
       context,
       MaterialPageRoute(
         builder: (context) => PlacePicker(
@@ -505,6 +535,7 @@ class _HomeMapState extends State<HomeMap> {
         ),
       ),
     );
+   */
   }
 
   void _setCustomMarkerIcon() {

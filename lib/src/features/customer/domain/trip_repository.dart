@@ -18,7 +18,11 @@ abstract class TripRepository {
     required double rating,
     required String tourId,
   });
-  
-  
-  
+
+  Future<void> startNavigation(
+    LocationEntity source,
+    LocationEntity destination,
+    void Function() onArrival,
+    void Function() onCancel,
+  );
 }

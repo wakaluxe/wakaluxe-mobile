@@ -21,6 +21,7 @@ import 'package:wakaluxe/src/features/customer/domain/usecases/complete_tour_use
 import 'package:wakaluxe/src/features/customer/domain/usecases/create_tour_usecase.dart';
 import 'package:wakaluxe/src/features/customer/domain/usecases/get_current_location_usecase.dart';
 import 'package:wakaluxe/src/features/customer/domain/usecases/get_trips_usecase.dart';
+import 'package:wakaluxe/src/features/customer/domain/usecases/start_navigation_usecase.dart';
 
 final locator = GetIt.instance;
 
@@ -71,8 +72,13 @@ Future<void> registerServices() async {
     ..registerLazySingleton<GetTripsUsecase>(
       () => GetTripsUsecase(locator()),
     )
+    
+    ..registerLazySingleton<StartNavigationUsecase>(
+      () => StartNavigationUsecase(locator()),
+    )
+
     ..registerFactory<HomeBloc>(
-      () => HomeBloc(locator(), locator(), locator(), locator(), locator()),
+      () => HomeBloc(locator(), locator(), locator(), locator(), locator(), locator()),
     )
     ..registerFactory<AuthBloc>(() => AuthBloc(locator()))
     ..registerLazySingleton<BookingCubit>(() => BookingCubit(locator()))
