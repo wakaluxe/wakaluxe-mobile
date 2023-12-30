@@ -36,7 +36,8 @@ class Security extends StatelessWidget {
                 ],
               ),
               28.vGap,
-              GestureDetector(
+              //? SADLY NOT NEEDED 
+        /*       GestureDetector(
                 onTap: () => context.router.pushNamed('/forgot-password'),
                 child: Row(
                   children: [
@@ -51,7 +52,7 @@ class Security extends StatelessWidget {
                     )
                   ],
                 ),
-              )
+              ) */
             ],
           ),
         ),

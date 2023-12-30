@@ -3,6 +3,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wakaluxe/src/common/Utils/alerts.dart';
+import 'package:wakaluxe/src/common/common.dart';
 
 import 'package:wakaluxe/src/common/widgets/wakalux_back_button.dart';
 import 'package:wakaluxe/src/configs/palette.dart';
@@ -30,7 +32,16 @@ class MyProfile extends StatelessWidget {
           'Welcome!',
         ),
       ),
-      body: BlocBuilder<AuthBloc, AuthState>(
+      body: BlocConsumer<AuthBloc, AuthState>(
+        listener: (context, state) {
+          if (state is AuthLogOutSuccess) {
+            successToast(context, 'Logged Out Successfully');
+            context.router.pop();
+          }
+          if (state is AuthLogOutError) {
+            errorToast(context, state.error);
+          }
+        },
         builder: (context, state) => SizedBox(
           width: context.width,
           child: Padding(
@@ -69,7 +80,13 @@ class MyProfile extends StatelessWidget {
                 ),
                 4.h.vGap,
                 4.h.vGap,
-                Text('No Subscription Plan', style: context.theme.textTheme.body1.copyWith(fontWeight: FontWeight.w500, color:Palette.black )),
+                Text(
+                  'No Subscription Plan',
+                  style: context.theme.textTheme.body1.copyWith(
+                    fontWeight: FontWeight.w500,
+                    color: Palette.black,
+                  ),
+                ),
                 35.h.vGap,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -88,30 +105,31 @@ class MyProfile extends StatelessWidget {
                     ),
                   ],
                 ),
-                34.h.vGap,
-                SizedBox(
-                  height: 120.h,
-                  child: Row(
-                    children: <Widget>[
-                      ProfileBoxWidget(
-                        t: context.theme.textTheme,
-                        title: 'Ride Token',
-                        value: '34',
-                      ),
-                      20.w.hGap,
-                      ProfileBoxWidget(
-                        t: context.theme.textTheme,
-                        title: 'Rides Cancelled',
-                        value: '0',
-                      ),
-                    ],
-                  ),
+                const Spacer(),
+                WakaluxeButton(
+                  text: 'Edit Profile',
+                  action: () => context.router.pushNamed(EditProfile.routeName),
                 ),
+                20.h.vGap,
+                if (state is AuthLogOutInit)
+                  WakaluxeButton(
+                    text: 'See you soon!',
+                    color: context.colorScheme.error.withOpacity(0.5),
+                  )
+                else
+                  WakaluxeButton(
+                    text: 'Log Out',
+                    color: context.colorScheme.error,
+                  ),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  _handleLogOut(BuildContext context) {
+    context.read<AuthBloc>().add(OnLogOutRequestEvent());
   }
 }

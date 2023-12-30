@@ -152,12 +152,14 @@ class _Home2ScreenState extends State<Home2Screen> {
                     icon: Constants.walletIcon,
                     onTap: () => _handleNavigation('/subscriptions'),
                   ),
-                  HomeBox(
+
+                  //? Not needed 
+                   HomeBox(
                     t: t,
-                    title: 'Payment',
+                    title: 'My Wallet',
                     icon: Constants.subscriptionIcon,
                     onTap: () => _handleNavigation(PaymentMethodsScreen.path),
-                  ),
+                  ), 
                   HomeBox(
                     t: t,
                     title: 'My Trips',

@@ -83,7 +83,7 @@ class WakaluxeSubscriptions extends StatelessWidget {
                   features: const [
                     'Pay your taxi fare',
                     'Normal Priority',
-                    'Pay your taxi fare'
+                    'Pay your taxi fare',
                   ],
                 ),
               ],
@@ -160,7 +160,7 @@ class SubscriptionsCard extends StatelessWidget {
                         text: 'Price/',
                         style: text.title,
                       ),
-                      TextSpan(text: 'month', style: text.label)
+                      TextSpan(text: 'month', style: text.label),
                     ],
                   ),
                   style: text.title,
@@ -183,7 +183,7 @@ class SubscriptionsCard extends StatelessWidget {
                     ),
                   )
                   .toList(),
-            )
+            ),
           ],
         ),
       ),

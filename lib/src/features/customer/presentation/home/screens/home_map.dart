@@ -69,26 +69,23 @@ class _HomeMapState extends State<HomeMap> {
   Set<Marker> _markers = {};
 
   Set<Marker> generateNearbyMarkers(double latitude, double longitude) {
-    Set<Marker> markers = {};
-BitmapDescriptor.fromAssetImage(
-          const ImageConfiguration(size: Size(16, 16)),
-          'assets/icons/car.png',
-      ).then((icon) {
-         for (int i = 0; i < 10; i++) {
-      double offset =
-          i / 1000; // This will create a small offset for each marker
-      Marker marker = Marker(
-        markerId: MarkerId('marker$i'),
-        icon: icon,
-        position: LatLng(latitude + offset, longitude + offset),
-      );
-      markers.add(marker);
-    }
-      });
-      
-   
+    BitmapDescriptor.fromAssetImage(
+      const ImageConfiguration(size: Size(48, 48)),
+      Constants.taxiIcon,
+    ).then((icon) {
+      for (var i = 0; i < 10; i++) {
+        final offset =
+            i / 1000; // This will create a small offset for each marker
+        final marker = Marker(
+          markerId: MarkerId('marker$i'),
+          icon: icon,
+          position: LatLng(latitude + offset, longitude + offset),
+        );
+        _markers.add(marker);
+      }
+    });
 
-    return markers;
+    return _markers;
   }
 
   void _onMapCreated(GoogleMapController controller) =>
@@ -190,9 +187,61 @@ BitmapDescriptor.fromAssetImage(
     super.initState();
   }
 
+  final ValueNotifier<bool> _isFullScreen = ValueNotifier<bool>(false);
+   ScrollController _scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomSheet: NotificationListener<DraggableScrollableNotification>(
+        onNotification: (notification) {
+          if (notification.extent == 1.0) {
+            // The bottom sheet is full screen
+            _isFullScreen.value = true;
+          } else {
+            _isFullScreen.value = false;
+          }
+          return false;
+        },
+        child: GestureDetector(
+          onVerticalDragEnd: (details) {
+            if (_isFullScreen.value) {
+              // Scroll the bottom sheet to the initial position
+              _scrollController.animateTo(
+                0.0,
+                duration: Duration(milliseconds: 300),
+                curve: Curves.easeOut,
+              );
+            }
+          },
+          child: DraggableScrollableSheet(
+            initialChildSize: 0.25, // 1/4 of screen
+            builder: (BuildContext context, ScrollController scrollController) {
+              _scrollController = scrollController;
+              return ValueListenableBuilder<bool>(
+                valueListenable: _isFullScreen,
+                builder: (BuildContext context, bool isFullScreen, Widget? child) {
+                  if (isFullScreen) {
+                    // Display something else when the bottom sheet is full screen
+                    return Center(child: Text('Bottom sheet is full screen'));
+                  } else {
+                    // Display the original content when the bottom sheet is not full screen
+                    return Container(
+                      child: ListView.builder(
+                        controller: scrollController,
+                        itemCount: 25,
+                        itemBuilder: (BuildContext context, int index) {
+                          return ListTile(title: Text('Item $index'));
+                        },
+                      ),
+                    );
+                  }
+                },
+              );
+            },
+          ),
+        ),
+      ),
       backgroundColor: context.colorScheme.background,
       floatingActionButton: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) => FloatingActionButton(
@@ -290,7 +339,6 @@ BitmapDescriptor.fromAssetImage(
                           : GoogleMap(
                               zoomControlsEnabled: false,
                               mapToolbarEnabled: false,
-                              zoomGesturesEnabled: true,
                               compassEnabled: false,
                               myLocationButtonEnabled: false,
                               polylines: {
@@ -392,15 +440,52 @@ BitmapDescriptor.fromAssetImage(
                         child: Align(
                           alignment: Alignment.bottomCenter,
                           child: SizedBox(
-                            child: WakaluxeLocationWidget(
-                              leading: Icon(
-                                WakaluxIcons.search_1,
-                                color: context.colorScheme.error,
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.75,
+                              height: MediaQuery.of(context).size.height * 0.35,
+                              child:
+
+                                  /*   PlacePicker(
+                                apiKey: Platform.isAndroid
+                                    ? Constants.androidGoogleMapKey
+                                    : Constants.androidGoogleMapKey,
+                                hintText: 'Find a place ...',
+                                searchingText: 'Please wait ...',
+                                selectText: 'Select place',
+                                //    initialPosition: HomePage.kInitialPosition,
+                                useCurrentLocation: true,
+                                selectInitialPosition: true,
+                                initialPosition: LatLng(
+                                  _currentPosition!.latitude!,
+                                  _currentPosition!.longitude!,
+                                ),
+                                usePlaceDetailSearch: true,
+                                zoomControlsEnabled: true,
+                                //   ignoreLocationPermissionErrors: true,
+                                onPlacePicked: (PickResult result) {
+                                  setState(() {
+                                    //      selectedPlace = result;
+                                    //    _showPlacePickerInContainer = false;
+                                  });
+                                },
+                                onTapBack: () {
+                                  setState(() {
+                                    //       _showPlacePickerInContainer = false;
+                                  });
+                                },
                               ),
-                              message: 'Where are you going?',
-                              onTap: () =>
-                                  _handleDestinationSelectionWithoutPlacePicker(
-                                state.myCoordinate,
+                            ),
+                             */
+                                  WakaluxeLocationWidget(
+                                leading: Icon(
+                                  WakaluxIcons.search_1,
+                                  color: context.colorScheme.error,
+                                ),
+                                message: 'Where are you going?',
+                                onTap: () =>
+                                    _handleDestinationSelectionWithoutPlacePicker(
+                                  state.myCoordinate,
+                                ),
                               ),
                             ),
                           ),
