@@ -1,39 +1,39 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first, avoid_print, inference_failure_on_instance_creation, use_build_context_synchronously
 import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
-/* import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
- */
-import 'package:location/location.dart' as Loc;
-//import 'package:map_location_picker/map_location_picker.dart';
-//import 'package:map_location_picker/map_location_picker.dart';
-//import 'package:google_maps_flutter/google_maps_flutter.dart';
-//import 'package:map_location_picker/map_location_picker.dart';
 
+import 'dart:ui' as ui;
+import 'package:flutter/services.dart';
+import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
+import 'package:google_places_autocomplete_text_field/google_places_autocomplete_text_field.dart';
+
+import 'package:location/location.dart' as Loc;
 import 'package:wakaluxe/data/dummy.dart';
+import 'package:wakaluxe/l10n/l10n.dart';
 import 'package:wakaluxe/src/common/Utils/logger.dart';
-import 'package:wakaluxe/src/common/Utils/wakalux_icons_icons.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/common/widgets/wakaluxe_driver_card.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
-//import 'package:wakaluxe/src/features/customer/data/data_sources/mapbox_services.dart';
 import 'package:wakaluxe/src/features/customer/domain/bloc/home_bloc/home_bloc.dart';
 import 'package:wakaluxe/src/features/customer/domain/entities/location_entity.dart';
+import 'package:wakaluxe/src/features/customer/presentation/home/widgets/driver_fetching_loading_widget.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/widgets/pay_fare_widget.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/widgets/select_driver_widget.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/widgets/showing_booking_detail_widget.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/widgets/taxi_fetching.dart';
 import 'package:wakaluxe/src/features/customer/presentation/home/widgets/trip_state_widget.dart';
 
-// List<Map<String, dynamic>> data = []
 @RoutePage(name: 'HomeMap')
 class HomeMap extends StatefulWidget {
   const HomeMap({super.key});
@@ -57,20 +57,91 @@ class _HomeMapState extends State<HomeMap> {
 
   List<LatLng> _polylineCoordinates = [];
   BitmapDescriptor _sourceIcon = BitmapDescriptor.defaultMarker;
-  BitmapDescriptor _destinationIcon = BitmapDescriptor.defaultMarker;
-  BitmapDescriptor _currentIcon = BitmapDescriptor.defaultMarker;
+
   //Prediction? initialValue;
 
-  // final TextEditingController _controller = TextEditingController();
   LatLng? _center;
   //const LatLng(45.521563, -122.677433);
 
   late GoogleMapController mapController;
   Set<Marker> _markers = {};
+  Future<BitmapDescriptor> getMarkerIcon(String imagePath) async {
+    final ref = FirebaseStorage.instance.ref().child(imagePath);
+    final url = await ref.getDownloadURL();
+
+    final completer = Completer<ui.Image>();
+    final stream = NetworkImage(url).resolve(ImageConfiguration.empty);
+    final listener = ImageStreamListener((ImageInfo info, bool _) {
+      completer.complete(info.image);
+    });
+    stream.addListener(listener);
+    final image = await completer.future;
+    stream.removeListener(listener);
+
+    final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+    final pngBytes = byteData!.buffer.asUint8List();
+
+    return BitmapDescriptor.fromBytes(pngBytes);
+  }
+
+  Future<void> _showBookingRideDetailBottomSheet() async {
+    showBottomSheet(
+      context: context,
+      builder: (context) => Container(
+        padding: EdgeInsets.all(8.w),
+        height: 0.8.sh,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20.r),
+          color: context.colorScheme.surface,
+        ),
+        child: Column(
+          children: [
+            Container(
+              decoration: const BoxDecoration(
+                boxShadow: [],
+              ),
+              padding: const EdgeInsets.all(8),
+              child: Column(
+                children: [
+                  WakaluxPlaceWidget(
+                    controller: _startLocationPlacePickerController,
+                    placeHolder: 'Current Location',
+                    initialPostion: _currentPosition == null
+                        ? const LatLng(3.8731776, 11.5146752)
+                        : LatLng(
+                            _currentPosition!.latitude!,
+                            _currentPosition!.longitude!,
+                          ),
+                  ),
+                  SizedBox(
+                    width: 0.8.sw,
+                    child: const Divider(),
+                  ),
+                  WakaluxPlaceWidget(
+                    controller: _endLocationPlacePickerController,
+                    placeHolder: 'where are you going to ?',
+                    initialPostion: _currentPosition == null
+                        ? const LatLng(3.8731776, 11.5146752)
+                        : LatLng(
+                            _currentPosition!.latitude!,
+                            _currentPosition!.longitude!,
+                          ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  final _startLocationPlacePickerController = TextEditingController();
+  final _endLocationPlacePickerController = TextEditingController();
 
   Set<Marker> generateNearbyMarkers(double latitude, double longitude) {
     BitmapDescriptor.fromAssetImage(
-      const ImageConfiguration(size: Size(48, 48)),
+      const ImageConfiguration(size: Size(16, 16)),
       Constants.taxiIcon,
     ).then((icon) {
       for (var i = 0; i < 10; i++) {
@@ -187,61 +258,9 @@ class _HomeMapState extends State<HomeMap> {
     super.initState();
   }
 
-  final ValueNotifier<bool> _isFullScreen = ValueNotifier<bool>(false);
-   ScrollController _scrollController = ScrollController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomSheet: NotificationListener<DraggableScrollableNotification>(
-        onNotification: (notification) {
-          if (notification.extent == 1.0) {
-            // The bottom sheet is full screen
-            _isFullScreen.value = true;
-          } else {
-            _isFullScreen.value = false;
-          }
-          return false;
-        },
-        child: GestureDetector(
-          onVerticalDragEnd: (details) {
-            if (_isFullScreen.value) {
-              // Scroll the bottom sheet to the initial position
-              _scrollController.animateTo(
-                0.0,
-                duration: Duration(milliseconds: 300),
-                curve: Curves.easeOut,
-              );
-            }
-          },
-          child: DraggableScrollableSheet(
-            initialChildSize: 0.25, // 1/4 of screen
-            builder: (BuildContext context, ScrollController scrollController) {
-              _scrollController = scrollController;
-              return ValueListenableBuilder<bool>(
-                valueListenable: _isFullScreen,
-                builder: (BuildContext context, bool isFullScreen, Widget? child) {
-                  if (isFullScreen) {
-                    // Display something else when the bottom sheet is full screen
-                    return Center(child: Text('Bottom sheet is full screen'));
-                  } else {
-                    // Display the original content when the bottom sheet is not full screen
-                    return Container(
-                      child: ListView.builder(
-                        controller: scrollController,
-                        itemCount: 25,
-                        itemBuilder: (BuildContext context, int index) {
-                          return ListTile(title: Text('Item $index'));
-                        },
-                      ),
-                    );
-                  }
-                },
-              );
-            },
-          ),
-        ),
-      ),
       backgroundColor: context.colorScheme.background,
       floatingActionButton: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) => FloatingActionButton(
@@ -250,8 +269,106 @@ class _HomeMapState extends State<HomeMap> {
           onPressed: () => _handleDestinationSelectionWithoutPlacePicker(
             state.myCoordinate,
           ),
-          child: const Icon(Icons.navigation_outlined),
+          child: const Icon(
+            Icons.navigation_outlined,
+          ),
         ),
+      ),
+      bottomSheet: BottomSheet(
+        onClosing: () {},
+        builder: (BuildContext context) {
+          return Container(
+            padding: const EdgeInsets.all(16),
+            height: 0.3.sh,
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: context.colorScheme.surface,
+                    borderRadius: BorderRadius.circular(50.r),
+                  ),
+                  child: TextField(
+                    readOnly: true,
+                    decoration: InputDecoration(
+                      labelText: AppLocalizations.of(context).whereAreYouGoing,
+                      suffixIcon: const Icon(
+                        Icons.search,
+                      ),
+                      border: OutlineInputBorder(
+                        gapPadding: 1,
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(50.r),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                /*    const SizedBox(height: 16),
+                const TextField(
+                  decoration: InputDecoration(
+                    labelText: 'Destination',
+                    border: OutlineInputBorder(),
+                  ),
+                ), */
+                const SizedBox(height: 16),
+                Expanded(
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 8,
+                      mainAxisSpacing: 8,
+                    ),
+                    itemCount: 5, // Replace with the number of past rides
+                    itemBuilder: (BuildContext context, int index) {
+                      return DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: context.colorScheme.surface,
+                          borderRadius: BorderRadius.circular(10.r),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                '${AppLocalizations.of(context).destination} $index',
+                                style: context.theme.textTheme.bodyMedium,
+                              ),
+                              1.vGap,
+                              Text(
+                                '1$index m',
+                                style: context.theme.textTheme.bodySmall,
+                              ),
+                              Align(
+                                alignment: Alignment.bottomRight,
+                                child: Image.asset(
+                                  Constants.taxiIcon,
+                                  fit: BoxFit.fill,
+                                  width: 40.w,
+                                  height: 40.h,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
       ),
       body: BlocConsumer<HomeBloc, HomeState>(
         listener: (context, state) {
@@ -300,17 +417,7 @@ class _HomeMapState extends State<HomeMap> {
         builder: (context, state) {
           final data = getDriverData();
           if (state.loadingDrivers) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  //TaxiFetching(),
-                  const CircularProgressIndicator(),
-                  20.vGap,
-                  const Text('Fetching drivers...'),
-                ],
-              ),
-            );
+            return const DriverFetchingLoadingWidget();
           }
           if (state.selectDriver) {
             return const TaxiFetching();
@@ -432,7 +539,7 @@ class _HomeMapState extends State<HomeMap> {
                       ), */
                     //TODO: GOOGLE MAP NAV START
                     if (state.showDestionPicker)
-                      Padding(
+                      /* Padding(
                         padding: const EdgeInsets.symmetric(
                           vertical: 16,
                           horizontal: 32,
@@ -440,58 +547,42 @@ class _HomeMapState extends State<HomeMap> {
                         child: Align(
                           alignment: Alignment.bottomCenter,
                           child: SizedBox(
-                            child: SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.75,
-                              height: MediaQuery.of(context).size.height * 0.35,
-                              child:
-
-                                  /*   PlacePicker(
-                                apiKey: Platform.isAndroid
-                                    ? Constants.androidGoogleMapKey
-                                    : Constants.androidGoogleMapKey,
-                                hintText: 'Find a place ...',
-                                searchingText: 'Please wait ...',
-                                selectText: 'Select place',
-                                //    initialPosition: HomePage.kInitialPosition,
-                                useCurrentLocation: true,
-                                selectInitialPosition: true,
-                                initialPosition: LatLng(
-                                  _currentPosition!.latitude!,
-                                  _currentPosition!.longitude!,
-                                ),
-                                usePlaceDetailSearch: true,
-                                zoomControlsEnabled: true,
-                                //   ignoreLocationPermissionErrors: true,
-                                onPlacePicked: (PickResult result) {
-                                  setState(() {
-                                    //      selectedPlace = result;
-                                    //    _showPlacePickerInContainer = false;
-                                  });
-                                },
-                                onTapBack: () {
-                                  setState(() {
-                                    //       _showPlacePickerInContainer = false;
-                                  });
-                                },
+                            width: MediaQuery.of(context).size.width * 0.75,
+                            height: MediaQuery.of(context).size.height * 0.35,
+                            child: PlacePicker(
+                              apiKey: Platform.isAndroid
+                                  ? Constants.androidGoogleMapKey
+                                  : Constants.androidGoogleMapKey,
+                              hintText: 'Find a place ...',
+                              searchingText: 'Please wait ...',
+                              selectText: 'Select place',
+                              //    initialPosition: HomePage.kInitialPosition,
+                              useCurrentLocation: true,
+                              selectInitialPosition: true,
+                              initialPosition: LatLng(
+                                _currentPosition!.latitude!,
+                                _currentPosition!.longitude!,
                               ),
-                            ),
-                             */
-                                  WakaluxeLocationWidget(
-                                leading: Icon(
-                                  WakaluxIcons.search_1,
-                                  color: context.colorScheme.error,
-                                ),
-                                message: 'Where are you going?',
-                                onTap: () =>
-                                    _handleDestinationSelectionWithoutPlacePicker(
-                                  state.myCoordinate,
-                                ),
-                              ),
+                              usePlaceDetailSearch: true,
+                              zoomControlsEnabled: true,
+                              //   ignoreLocationPermissionErrors: true,
+                              onPlacePicked: (PickResult result) {
+                                setState(() {
+                                  //      selectedPlace = result;
+                                  //    _showPlacePickerInContainer = false;
+                                });
+                              },
+                              onTapBack: () {
+                                setState(() {
+                                  //       _showPlacePickerInContainer = false;
+                                });
+                              },
                             ),
                           ),
                         ),
                       ),
-                    if (state.payfare) const PayFareWidget(waypoints: []),
+ */
+                      if (state.payfare) const PayFareWidget(waypoints: []),
 
                     if (state.showDrivers)
                       /* Container(
@@ -540,6 +631,8 @@ class _HomeMapState extends State<HomeMap> {
       ),
     );
   }
+
+//final TextEditingController _controller = TextEditingController();
 
   Future<void> _handleDestinationSelectionWithoutPlacePicker(
     LocationEntity location,
@@ -650,14 +743,7 @@ longitude 11.5146752 latitude: 3.8731776
   }
 
   void _setCustomMarkerIcon() {
-    BitmapDescriptor.fromAssetImage(
-      const ImageConfiguration(devicePixelRatio: 2.5),
-      'assets/icons/destination.png',
-    ).then((value) => _destinationIcon = value);
-    BitmapDescriptor.fromAssetImage(
-      const ImageConfiguration(devicePixelRatio: 2.5),
-      'assets/icons/current.png',
-    ).then((value) => _currentIcon = value);
+    /*  */
     BitmapDescriptor.fromAssetImage(
       const ImageConfiguration(size: Size(16, 16)),
       'assets/icons/source.png',
@@ -667,5 +753,93 @@ longitude 11.5146752 latitude: 3.8731776
   @override
   void dispose() {
     super.dispose();
+  }
+}
+
+class WakaluxPlaceWidget extends StatefulWidget {
+  const WakaluxPlaceWidget({
+    required this.controller,
+    required this.placeHolder,
+    required this.initialPostion,
+    super.key,
+  });
+
+  final TextEditingController controller;
+  final String placeHolder;
+  final LatLng initialPostion;
+
+  @override
+  State<WakaluxPlaceWidget> createState() => _WakaluxPlaceWidgetState();
+}
+
+class _WakaluxPlaceWidgetState extends State<WakaluxPlaceWidget> {
+  @override
+  void dispose() {
+    widget.controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        SvgPicture.asset(Constants.markerIcon),
+        2.hGap,
+        GooglePlacesAutoCompleteTextFormField(
+          initialValue: widget.placeHolder,
+          textEditingController: widget.controller,
+          googleAPIKey: Platform.isAndroid
+              ? Constants.androidGoogleMapKey
+              : Constants.iosGoogleMapKey,
+          proxyURL:
+              'https://your-proxy.com/', // only needed if you build for the web
+          debounceTime: 400, // defaults to 600 ms,
+          countries: const [
+            'en',
+          ], // optional, by default the list is empty (no restrictions)
+          getPlaceDetailWithLatLng: (prediction) {
+            // this method will return latlng with place detail
+            print('placeDetails${prediction.lng}');
+          }, // this callback is called when isLatLngRequired is true
+          itmClick: (prediction) {
+            widget.controller.text = prediction.description!;
+            widget.controller.selection = TextSelection.fromPosition(
+              TextPosition(
+                offset: prediction.description!.length,
+              ),
+            );
+          },
+        ),
+        2.hGap,
+        InkWell(
+          onTap: _handlePlacePicker,
+          child: Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8,
+              vertical: 4,
+            ),
+            decoration: BoxDecoration(
+              color: context.colorScheme.surface,
+              borderRadius: BorderRadius.circular(50.r),
+            ),
+            child: const Text('Map'),
+          ),
+        ),
+      ],
+    );
+  }
+
+  void _handlePlacePicker() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PlacePicker(
+          apiKey: Platform.isAndroid
+              ? Constants.androidGoogleMapKey
+              : Constants.iosGoogleMapKey,
+          initialPosition: widget.initialPostion,
+        ),
+      ),
+    );
   }
 }

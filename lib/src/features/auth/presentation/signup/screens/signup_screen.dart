@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:wakaluxe/l10n/l10n.dart';
 import 'package:wakaluxe/src/common/Utils/helpers.dart';
 import 'package:wakaluxe/src/common/Utils/logger.dart';
 import 'package:wakaluxe/src/common/common.dart';
@@ -82,12 +83,12 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Enter your Phone Number',
+                  AppLocalizations.of(context).enterYourPhoneNumber,
                   style: text.display3,
                 ),
                 10.h.vGap,
                 Text(
-                  'We will send you a verification code',
+                  AppLocalizations.of(context).verificationCodeSent,
                   style: text.body1,
                 ),
                 31.vGap,
@@ -99,7 +100,7 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
                   icon: Constants.hashtagIcon,
                   validator: phoneNumberValidator,
                 ),
-              /*   45.vGap,
+                /*   45.vGap,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -125,7 +126,7 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
                   builder: (context, state) {
                     if (state is PhoneAuthLoading) {
                       return WakaluxeButton(
-                        text: 'Please Wait...',
+                        text: AppLocalizations.of(context).pleaseWait,
                         color: context.colorScheme.outline,
                       );
                     }
@@ -133,7 +134,7 @@ class _WakaluxeSignUpState extends State<WakaluxeSignUp> {
                       onTap:
                           state is PhoneAuthLoading ? null : _verifyPhoneNumber,
                       child: WakaluxeButton(
-                        text: 'Connect',
+                        text: AppLocalizations.of(context).connect,
                         textColor: context.colorScheme.scrim,
                       ),
                     );

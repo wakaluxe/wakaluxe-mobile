@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wakaluxe/l10n/l10n.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
@@ -65,7 +66,7 @@ class WakaluxeBookingDetails extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      'DISTANCE',
+                      AppLocalizations.of(context).distance,
                       style: context.bodySm,
                     ),
                     5.vGap,
@@ -80,7 +81,7 @@ class WakaluxeBookingDetails extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      'TIME',
+                      AppLocalizations.of(context).time,
                       style: context.bodySm,
                     ),
                     5.vGap,
@@ -95,7 +96,7 @@ class WakaluxeBookingDetails extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      'PRICE',
+                      AppLocalizations.of(context).price,
                       style: context.bodySm,
                     ),
                     5.vGap,
@@ -124,7 +125,7 @@ class WakaluxeBookingDetails extends StatelessWidget {
               backgroundColor: context.colorScheme.tertiary,
             ),
             child: Text(
-              'Confirm',
+              AppLocalizations.of(context).confirm,
               style: Theme.of(context)
                   .textTheme
                   .button1

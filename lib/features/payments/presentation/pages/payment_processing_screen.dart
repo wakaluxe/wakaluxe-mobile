@@ -2,10 +2,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wakaluxe/features/payments/data/models/payment_method_type.dart';
 import 'package:wakaluxe/features/payments/presentation/cubit/payment_cubit.dart';
 import 'package:wakaluxe/features/payments/presentation/widgets/payment_processing_loader.dart';
+import 'package:wakaluxe/l10n/l10n.dart';
 import 'package:wakaluxe/src/common/Utils/logger.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
+import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
 import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart';
 
@@ -40,22 +43,34 @@ class _PaymentProcessingScreenState extends State<PaymentProcessingScreen> {
               logInfo('Payment processed');
 
               context.router.push(const Rating());
-            }
+            } /* 
+            if(state is Paymenterror){
+              context.showSnackBar(
+                state.error,
+                duration: const Duration(seconds: 2),
+              ); 
+            }*/
           },
           child: Column(
             children: <Widget>[
               Text(
-                'Processing your payment',
+                AppLocalizations.of(context).processingYourPayment,
                 style: textTheme.body1,
               ),
               17.h.vGap,
               const Loader(),
               170.h.vGap,
-              Text(
-                'Please wait a moment while we process your payment. It might take 5 minutes or more.',
-                style: textTheme.label,
-                textAlign: TextAlign.center,
-              )
+              BlocBuilder<PaymentCubit, PaymentsState>(
+                builder: (context, state) {
+                  return Text(
+                    state.selected.type == PaymentMethodType.CASH
+                        ? AppLocalizations.of(context).cashProcessing
+                        : AppLocalizations.of(context).processingText,
+                    style: textTheme.label,
+                    textAlign: TextAlign.center,
+                  );
+                },
+              ),
             ],
           ),
         ),

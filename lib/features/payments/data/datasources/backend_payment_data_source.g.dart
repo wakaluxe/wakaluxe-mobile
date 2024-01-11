@@ -30,7 +30,7 @@ class _BackendPaymentDataSource implements BackendPaymentDataSource {
     final _headers = <String, dynamic>{r'Authorization': idToken};
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
-    _data.addAll(body.toMap());
+    _data.addAll(body.toJson());
     final _result =
         await _dio.fetch(_setStreamType<HttpResponse<dynamic>>(Options(
       method: 'POST',

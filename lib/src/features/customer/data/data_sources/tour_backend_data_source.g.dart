@@ -30,7 +30,7 @@ class _TourBackendDataSource implements TourBackendDataSource {
     final _headers = <String, dynamic>{r'Authorization': idToken};
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
-    _data.addAll(body.toMap());
+    _data.addAll(body.toJson());
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<CreateTourResModel>(Options(
       method: 'POST',
@@ -48,7 +48,7 @@ class _TourBackendDataSource implements TourBackendDataSource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = CreateTourResModel.fromMap(_result.data!);
+    final value = CreateTourResModel.fromJson(_result.data!);
     return value;
   }
 
@@ -132,7 +132,7 @@ class _TourBackendDataSource implements TourBackendDataSource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = GetTripsResModel.fromMap(_result.data!);
+    final value = GetTripsResModel.fromJson(_result.data!);
     return value;
   }
 

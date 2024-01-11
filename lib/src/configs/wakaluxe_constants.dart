@@ -55,9 +55,9 @@ class Constants {
   static const String sendIcon = 'assets/icons/hicon/linear/send.svg';
   static const String nearbyIcon = 'assets/icons/nearby.svg';
   static const String markerIcon = 'assets/icons/marker.svg';
-  static const String textIcon = '/assets/icons/hicon/linear/text.svg';
+  static const String textIcon = 'assets/icons/hicon/linear/text.svg';
   static const String orangeMoneyIcon = 'assets/icons/orange_money.svg';
-  static const String mtnMoneyIcon = 'assets/icons/mtn_momo.svg';
+  static const String mtnMoneyIcon = 'assets/icons/mtn.svg';
   static const String moreSquareIcon =
       'assets/icons/hicon/linear/more_square.svg';
   static const String masterCardIcon = 'assets/icons/mastercard.svg';
@@ -79,6 +79,9 @@ class Constants {
   static const String notVisibleIcon = 'assets/icons/hicon/linear/Hide.svg';
   static const String hashtagIcon = 'assets/icons/hicon/linear/Hashtag.svg';
   static const String taxiIcon = 'assets/icons/taxi.png';
+  static const String cashIcon = 'assets/icons/cash.svg';
+
+  static const String paymentBoxName = 'PaymentBox';
 }
 
 enum TripState {

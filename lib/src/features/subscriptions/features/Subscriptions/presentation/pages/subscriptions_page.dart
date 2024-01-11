@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wakaluxe/l10n/l10n.dart';
 
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
@@ -19,8 +20,8 @@ class WakaluxeSubscriptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
-    return WillPopScope(
-      onWillPop: () async => false,
+    return PopScope(
+      canPop: false,
       child: Scaffold(
         appBar: AppBar(
           leading: const SizedBox(),
@@ -30,7 +31,7 @@ class WakaluxeSubscriptions extends StatelessWidget {
               child: GestureDetector(
                 onTap: () => context.router.pushNamed('/home-map'),
                 child: Text(
-                  'Skip',
+                  AppLocalizations.of(context).skip,
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w500,
                     fontSize: 24.sp,
@@ -47,21 +48,21 @@ class WakaluxeSubscriptions extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Subscription Plan',
+                  AppLocalizations.of(context).subscriptionPlan,
                   style: text.headline,
                 ),
                 15.vGap,
                 Text(
-                  'Select a subscription plan which is best suited for you.',
+                  AppLocalizations.of(context).selectSubscription,
                   style: text.body1,
                 ),
                 20.vGap,
                 SubscriptionsCard(
                   text: text,
                   plan: 'Business',
-                  features: const [
-                    'Higher Priority than No plan',
-                    'Plan pickups',
+                  features:  [
+                    AppLocalizations.of(context).subscriptionPlanFeature1,
+                    AppLocalizations.of(context).subscriptionPlanFeature2,
                   ],
                 ),
                 25.vGap,
@@ -70,9 +71,9 @@ class WakaluxeSubscriptions extends StatelessWidget {
                     text: text,
                     plan: 'Family',
                     isSelected: true,
-                    features: const [
-                      'Higher Priority than No plan',
-                      'Plan pickups',
+                    features: [
+                      AppLocalizations.of(context).subscriptionPlanFeature1,
+                      AppLocalizations.of(context).subscriptionPlanFeature2,
                     ],
                   ),
                 ),
@@ -80,10 +81,10 @@ class WakaluxeSubscriptions extends StatelessWidget {
                 SubscriptionsCard(
                   text: text,
                   plan: 'Personal',
-                  features: const [
-                    'Pay your taxi fare',
-                    'Normal Priority',
-                    'Pay your taxi fare',
+                  features:  [
+                    AppLocalizations.of(context).subscriptionPlanFeature3,
+                    AppLocalizations.of(context).subscriptionPlanFeature4,
+                    AppLocalizations.of(context).subscriptionPlanFeature3,
                   ],
                 ),
               ],
@@ -157,10 +158,10 @@ class SubscriptionsCard extends StatelessWidget {
                   TextSpan(
                     children: [
                       TextSpan(
-                        text: 'Price/',
+                        text: '${AppLocalizations.of(context).price}/',
                         style: text.title,
                       ),
-                      TextSpan(text: 'month', style: text.label),
+                      TextSpan(text: AppLocalizations.of(context).month, style: text.label),
                     ],
                   ),
                   style: text.title,

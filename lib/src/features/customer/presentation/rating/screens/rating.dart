@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:wakaluxe/l10n/l10n.dart';
 import 'package:wakaluxe/src/common/Utils/alerts.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/common/widgets/wakaluxe_text_area.dart';
@@ -11,6 +12,7 @@ import 'package:wakaluxe/src/router/wakaluxe_router.gr.dart';
 @RoutePage(name: 'Rating')
 class Rating extends StatelessWidget {
   const Rating({super.key});
+  static String path = '/rating';
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class Rating extends StatelessWidget {
               SizedBox(
                 width: context.width * 0.6,
                 child: Text(
-                  'Thank you for choosing my service',
+                  AppLocalizations.of(context).thankYouForChoosingMyService,
                   style: context.titleLgBold,
                   textAlign: TextAlign.center,
                 ),
@@ -50,17 +52,17 @@ class Rating extends StatelessWidget {
               ),
               20.vGap,
               // create text area
-              const SizedBox(
+              SizedBox(
                 child: WakaluxeTextArea(
-                  hintText: 'How was your ride?',
+                  hintText: AppLocalizations.of(context).howWasYourRide,
                 ),
               ),
               const Spacer(),
               WakaluxeButton(
-                text: 'Done',
+                text: AppLocalizations.of(context).done,
                 textColor: context.colorScheme.onTertiary,
                 action: () => _handleRating(context),
-              )
+              ),
             ],
           ),
         ),
@@ -69,7 +71,7 @@ class Rating extends StatelessWidget {
   }
 
   void _handleRating(BuildContext context) {
-    successToast(context, 'Ride completed');
+    successToast(context, AppLocalizations.of(context).rideComplete);
     context.router.pushAndPopUntil(const Home_2(), predicate: (_) => false);
   }
 }

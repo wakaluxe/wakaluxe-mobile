@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:wakaluxe/l10n/l10n.dart';
 import 'package:wakaluxe/src/features/auth/presentation/widgets/app_barred_scaffold.dart';
 import 'package:wakaluxe/src/features/onboarding/welcome/page_view_model.dart';
 
@@ -32,22 +33,22 @@ class Welcome extends StatelessWidget {
         pages: [
           wakaluxPageViewModel(
             text: text,
-            title: 'Request a ride',
-            body: 'Request for a ride and get picked up by a near by driver.',
+            title: AppLocalizations.of(context).welcomeTitle1,
+            body: AppLocalizations.of(context).welcomeBody1,
             image: 'assets/illustrations/onboard1.svg',
           ),
           wakaluxPageViewModel(
             text: text,
-            title: 'Confirm your driver',
+            title: AppLocalizations.of(context).welcomeTitle2,
             body:
-                'Select from a wide network of Community drivers near you and get a rideto destination.',
+                AppLocalizations.of(context).welcomeBody2,
             image: 'assets/illustrations/onboard2.svg',
           ),
           wakaluxPageViewModel(
             text: text,
-            title: 'Track your ride',
+            title: AppLocalizations.of(context).welcomeTitle1,
             body:
-                'Get some progress updates on the selected driver who is to pick you up and also follow up your rides progress to your final destination.',
+                AppLocalizations.of(context).welcomeBody3,
             end: true,
             context: context,
             image: 'assets/illustrations/onboard3.svg',

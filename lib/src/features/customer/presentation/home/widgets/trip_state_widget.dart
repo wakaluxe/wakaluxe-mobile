@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wakaluxe/l10n/l10n.dart';
 
 import 'package:wakaluxe/src/common/widgets/wakaluxe_button.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
@@ -58,7 +59,7 @@ class _NavigationInfoWidgetState extends State<NavigationInfoWidget> {
                   action: () =>
                       // Implement your cancel action here
                       _handleComplete(state.tourData.data!.datum!.id!),
-                  text: 'Complete tour',
+                  text: AppLocalizations.of(context).completeTour,
                   color: Colors.red,
                   textColor: Colors.white,
                 ),

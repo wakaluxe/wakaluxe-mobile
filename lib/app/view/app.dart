@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:wakaluxe/l10n/l10n.dart';
@@ -34,8 +35,17 @@ class _WakaluxeState extends State<Wakaluxe> {
           splitScreenMode: true,
           builder: (context, child) {
             return MaterialApp.router(
+              localizationsDelegates: const [
+                AppLocalizations.delegate, // Add this line
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+
               themeMode: state == false ? ThemeMode.light : ThemeMode.dark,
-              theme: theme.toThemeData(Brightness.light),
+              theme: theme.toThemeData(
+                Brightness.light,
+              ),
               builder: (context, child) {
                 return StreamChat(
                   client: locator<StreamChatClient>(),

@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_mapbox_navigation/flutter_mapbox_navigation.dart';
+import 'package:wakaluxe/features/payments/presentation/pages/trip_payment_method_screen.dart';
+import 'package:wakaluxe/l10n/l10n.dart';
 import 'package:wakaluxe/src/common/Utils/logger.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
@@ -25,12 +27,12 @@ class PayFareWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: WakaluxeButton(
-          text: 'Pay fare',
+          text: AppLocalizations.of(context).payFare,
           action: () async {
             logInfo('pay fare: $_waypoints ');
 
             context.showSnackBar(
-              'Will still to move to payment screen',
+              AppLocalizations.of(context).willStillToMoveToPaymentScreen,
             );
             await Future<void>.delayed(const Duration(seconds: 2))
                 .then(
@@ -39,9 +41,8 @@ class PayFareWidget extends StatelessWidget {
                       ),
                 )
                 .then(
-                  (value) => context.router.pushAndPopUntil(
-                    const PaymentMethodsRoute(),
-                    predicate: (_) => false,
+                  (value) => context.router.pushNamed(
+                    TripPaymentMethodsScreen.path,
                   ),
                 );
           },

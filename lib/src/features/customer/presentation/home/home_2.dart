@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:wakaluxe/features/payments/presentation/pages/payment_methods_screen.dart';
+import 'package:wakaluxe/l10n/l10n.dart';
 import 'package:wakaluxe/src/common/Utils/alerts.dart';
 import 'package:wakaluxe/src/common/Utils/helpers.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
@@ -59,7 +60,7 @@ class _Home2ScreenState extends State<Home2Screen> {
         child: Column(
           children: <Widget>[
             Text(
-              'Hi! Welcome to Wakalux',
+              AppLocalizations.of(context).homeTitle,
               style: t.title,
             ),
             40.h.vGap,
@@ -73,7 +74,7 @@ class _Home2ScreenState extends State<Home2Screen> {
                 children: [
                   HomeBox(
                     t: t,
-                    title: 'Profile',
+                    title: AppLocalizations.of(context).profile,
                     icon: Constants.profileIcon,
                     onTap: () {
                       _handleNavigation('/my-profile');
@@ -81,13 +82,13 @@ class _Home2ScreenState extends State<Home2Screen> {
                   ),
                   HomeBox(
                     t: t,
-                    title: 'Chat',
+                    title:  AppLocalizations.of(context).chat,
                     icon: Constants.messageIcon,
                     onTap: () => _handleNavigation('/messages'),
                   ),
                   HomeBox(
                     t: t,
-                    title: 'Settings',
+                    title:  AppLocalizations.of(context).settings,
                     icon: Constants.settingIcon,
                     onTap: () => _handleNavigation('/settings'),
                   ),
@@ -112,7 +113,7 @@ class _Home2ScreenState extends State<Home2Screen> {
                       if (state.user.hasId == false) {
                         return HomeBox(
                           t: t,
-                          title: 'Log In',
+                          title:  AppLocalizations.of(context).login,
                           icon: Constants.logoutIcon,
                           onTap: () =>
                               //  logDebug('user ${state.user.toJson()}'),
@@ -123,7 +124,7 @@ class _Home2ScreenState extends State<Home2Screen> {
                         return HomeBox(
                           t: t,
                           onTap: () {},
-                          title: 'Please wait...',
+                          title:  AppLocalizations.of(context).pleaseWait,
                           icon: Constants.logoutIcon,
                           //onTap: _handleLogOutRequest,
                         );
@@ -139,7 +140,7 @@ class _Home2ScreenState extends State<Home2Screen> {
                         },
                         child: HomeBox(
                           t: t,
-                          title: 'Log Out',
+                          title:  AppLocalizations.of(context).logOut,
                           icon: Constants.logoutIcon,
                           onTap: _handleLogOutRequest,
                         ),
@@ -148,27 +149,27 @@ class _Home2ScreenState extends State<Home2Screen> {
                   ),
                   HomeBox(
                     t: t,
-                    title: 'Subscription',
+                    title:  AppLocalizations.of(context).subscription,
                     icon: Constants.walletIcon,
                     onTap: () => _handleNavigation('/subscriptions'),
                   ),
 
-                  //? Not needed 
-                   HomeBox(
-                    t: t,
-                    title: 'My Wallet',
-                    icon: Constants.subscriptionIcon,
-                    onTap: () => _handleNavigation(PaymentMethodsScreen.path),
-                  ), 
+                  //? Not needed
                   HomeBox(
                     t: t,
-                    title: 'My Trips',
+                    title:  AppLocalizations.of(context).myWallet,
+                    icon: Constants.subscriptionIcon,
+                    onTap: () => _handleNavigation(PaymentMethodsScreen.path),
+                  ),
+                  HomeBox(
+                    t: t,
+                    title:  AppLocalizations.of(context).myRides,
                     icon: Constants.locationIcon,
                     onTap: () => _handleNavigation('/my-trip'),
                   ),
                   HomeBox(
                     t: t,
-                    title: 'Support',
+                    title:  AppLocalizations.of(context).support,
                     icon: Constants.headphoneIcon,
                     onTap: () => _handleNavigation('/settings'),
                   ),
@@ -177,7 +178,7 @@ class _Home2ScreenState extends State<Home2Screen> {
             ),
             HomeCard(
               image: Constants.onBoard2,
-              title: 'Book a Taxi',
+              title:  AppLocalizations.of(context).bookATaxi,
               t: t,
               onTap: () => _handleNavigation('/home-map'),
             ),

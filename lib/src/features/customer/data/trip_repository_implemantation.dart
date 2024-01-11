@@ -200,6 +200,11 @@ class TripRepositoryImplementation implements TripRepository {
     // TODO: implement startNavigation
 
     try {
+      MapBoxNavigation.instance.setDefaultOptions(
+        MapBoxOptions(
+          simulateRoute: true,
+        ),
+      );
       logInfo('the source in start navigation $source');
       logInfo('the destination in start navigation $destination');
       await MapBoxNavigation.instance.registerRouteEventListener((value) async {

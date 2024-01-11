@@ -17,7 +17,7 @@ abstract class BackendPaymentDataSource {
 
   @POST('api/v1/bookings/completePayment')
   Future<HttpResponse> completePayment(
-    @Header('Authorization') String idToken, 
-    @Body() Map<String, dynamic> body
+    @Header('Authorization') String idToken,
+    @Body() Map<String, dynamic> body,
   );
 }

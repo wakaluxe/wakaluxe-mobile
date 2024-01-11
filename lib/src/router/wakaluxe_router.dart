@@ -160,6 +160,7 @@ class WakaluxAppRouter extends $WakaluxAppRouter {
           path: '/payment-information',
         ),
         AutoRoute(page: PaymentMethodsRoute.page, path: '/payment-methods'),
+        AutoRoute(page: PaymentMethodsRoute.page, path: '/trip-payment-methods'),
         AutoRoute(
           page: PaymentProcessingRoute.page,
           path: '/payment-processing',

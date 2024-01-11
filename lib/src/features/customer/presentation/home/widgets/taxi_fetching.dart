@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
+import 'package:wakaluxe/l10n/l10n.dart';
 import 'package:wakaluxe/src/common/Utils/wakalux_icons_icons.dart';
 import 'package:wakaluxe/src/common/widgets/wakaluxe_button.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
@@ -58,7 +59,7 @@ class _TaxiFetchingState extends State<TaxiFetching> {
           ),
           const SizedBox(height: 20),
           Text(
-            'Your ride will be here in $_counter...',
+            '${AppLocalizations.of(context).yourRideWillbeHereIn} $_counter...',
             style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -94,7 +95,7 @@ class _TaxiFetchingState extends State<TaxiFetching> {
           ),
           20.vGap,
           WakaluxeButton(
-            text: 'Cancel Ride',
+            text: AppLocalizations.of(context).cancelRide,
             action: _handleCancel,
           )
         ],

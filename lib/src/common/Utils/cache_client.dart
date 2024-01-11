@@ -30,6 +30,11 @@ class HiveClient {
     await box.put(_boxName, item);
     //   await box.close();
   }
+  Future<void> addItems(Map<int, String> items) async {
+    final box = getBox();
+    await box.putAll(items);
+    //   await box.close();
+  }
 
   dynamic getItem(String key) {
     final box = getBox();

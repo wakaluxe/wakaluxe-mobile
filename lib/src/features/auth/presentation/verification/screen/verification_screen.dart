@@ -3,9 +3,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
+import 'package:wakaluxe/features/payments/data/models/payment_method_model.dart';
+import 'package:wakaluxe/features/payments/presentation/cubit/payment_cubit.dart';
+import 'package:wakaluxe/l10n/l10n.dart';
 import 'package:wakaluxe/src/common/Utils/helpers.dart';
 
 import 'package:wakaluxe/src/common/common.dart';
+import 'package:wakaluxe/src/configs/helpers.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/build_context.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
@@ -14,7 +18,6 @@ import 'package:wakaluxe/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:wakaluxe/src/features/auth/presentation/verification/cubit/timer_cubit.dart';
 import 'package:wakaluxe/src/features/auth/presentation/verification/cubit/timer_state.dart';
 import 'package:wakaluxe/src/features/auth/presentation/widgets/app_barred_scaffold.dart';
-import 'package:wakaluxe/src/features/subscriptions/features/Subscriptions/presentation/pages/subscriptions_page.dart';
 
 @RoutePage(name: 'Verification')
 class WakaluxeVerification extends StatefulWidget {
@@ -41,7 +44,16 @@ class _WakaluxeVerificationState extends State<WakaluxeVerification> {
     super.dispose();
   }
 
-  _handleNavigation() {
+  _handleConfirmVerification(String phoneNumber) {
+    final type = getPhoneNumberType(phoneNumber);
+    final icon = paymentMethodIcon(type);
+    final method = MobilePaymentMethodModel(
+      id: phoneNumber,
+      name: phoneNumber,
+      icon: icon,
+      type: type,
+    );
+    context.read<PaymentCubit>().addPaymentMethods(method);
     getNavigationAuthedRouteName().then(
       (value) => context.router.pushNamed(value),
     );
@@ -59,8 +71,8 @@ class _WakaluxeVerificationState extends State<WakaluxeVerification> {
           listener: (context, state) {
             if (state is PhoneAuthCodeRetrievalTimeOut) {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Time out'),
+                SnackBar(
+                  content: Text(AppLocalizations.of(context).timeOut),
                 ),
               );
               context.router.pop();
@@ -69,19 +81,19 @@ class _WakaluxeVerificationState extends State<WakaluxeVerification> {
               context.router.pop();
             }
             if (state is PhoneAuthVerified) {
-              _handleNavigation();
+              _handleConfirmVerification(widget.phoneNumber);
             }
           },
           child: SingleChildScrollView(
             child: Column(
               children: [
                 Text(
-                  'OTP Verification',
+                  AppLocalizations.of(context).otpVerification,
                   style: text.display2,
                 ),
                 10.vGap,
                 Text(
-                  'A verification code has been send to ${widget.phoneNumber}',
+                  '${AppLocalizations.of(context).verificationCodeSent} ${widget.phoneNumber}',
                   style: text.body1,
                 ),
                 32.vGap,
@@ -109,7 +121,7 @@ class _WakaluxeVerificationState extends State<WakaluxeVerification> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Didn't receive the code?",
+                      AppLocalizations.of(context).codeNotReceived,
                       style: text.body2,
                     ),
                     8.hGap,
@@ -120,7 +132,7 @@ class _WakaluxeVerificationState extends State<WakaluxeVerification> {
                           return GestureDetector(
                             // onTap: ,
                             child: Text(
-                              'Resend(30s)',
+                              '${AppLocalizations.of(context).resend}(30s)',
                               style: text.body1.copyWith(
                                 color: context.colorScheme.tertiary,
                               ),
@@ -129,7 +141,7 @@ class _WakaluxeVerificationState extends State<WakaluxeVerification> {
                         }
                         if (state is TimerInProgress) {
                           return Text(
-                            'please wait (${state.elapsed}s)',
+                            '${AppLocalizations.of(context).pleaseWait} (${state.elapsed}s)',
                             style: text.body1
                                 .copyWith(color: context.colorScheme.tertiary),
                           );
@@ -144,20 +156,20 @@ class _WakaluxeVerificationState extends State<WakaluxeVerification> {
                   builder: (context, state) {
                     if (state is PhoneAuthLoading) {
                       return WakaluxeButton(
-                        text: 'verifying...',
+                        text: AppLocalizations.of(context).verifying,
                         width: 0.4,
                         color: context.colorScheme.outline,
                       );
                     }
                     if (state is LoginWithCredentialnit) {
                       return WakaluxeButton(
-                        text: 'logging you in...',
+                        text: AppLocalizations.of(context).logging,
                         width: 0.4,
                         color: context.colorScheme.outline,
                       );
                     }
                     return WakaluxeButton(
-                      text: 'Verify',
+                      text: AppLocalizations.of(context).verify,
                       action: _handleVerifyOtp,
                       width: 0.4,
                     );

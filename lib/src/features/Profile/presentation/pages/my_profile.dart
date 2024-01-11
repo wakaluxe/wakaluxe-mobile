@@ -3,9 +3,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wakaluxe/l10n/l10n.dart';
+
 import 'package:wakaluxe/src/common/Utils/alerts.dart';
 import 'package:wakaluxe/src/common/common.dart';
-
 import 'package:wakaluxe/src/common/widgets/wakalux_back_button.dart';
 import 'package:wakaluxe/src/configs/palette.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_constants.dart';
@@ -28,14 +29,15 @@ class MyProfile extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         leading: const WakaluxBackButton(),
-        title: const Text(
-          'Welcome!',
+        title: Text(
+          AppLocalizations.of(context).welcome,
         ),
       ),
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is AuthLogOutSuccess) {
-            successToast(context, 'Logged Out Successfully');
+            successToast(
+                context, AppLocalizations.of(context).authLogOutSuccess);
             context.router.pop();
           }
           if (state is AuthLogOutError) {
@@ -69,26 +71,23 @@ class MyProfile extends StatelessWidget {
                     ),
                   ),
                 10.h.vGap,
-                Text(
-                  state.user.fullName ?? "What's your name?",
-                  style: context.theme.textTheme.title,
+                ProfileTile(
+                  title: state.user.fullName ??
+                      AppLocalizations.of(context).profileNameTitle,
+                  subtitle: AppLocalizations.of(context).name,
                 ),
                 4.h.vGap,
-                Text(
-                  state.user.phoneNumber!,
-                  style: context.theme.textTheme.body1,
+                ProfileTile(
+                  title: state.user.phoneNumber!,
+                  subtitle: AppLocalizations.of(context).phoneNumber,
                 ),
                 4.h.vGap,
-                4.h.vGap,
-                Text(
-                  'No Subscription Plan',
-                  style: context.theme.textTheme.body1.copyWith(
-                    fontWeight: FontWeight.w500,
-                    color: Palette.black,
-                  ),
+                ProfileTile(
+                  title: AppLocalizations.of(context).noSubscription,
+                  subtitle: AppLocalizations.of(context).subscriptionPlan,
                 ),
                 35.h.vGap,
-                Row(
+                /*        Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     ProfileButton(
@@ -105,22 +104,18 @@ class MyProfile extends StatelessWidget {
                     ),
                   ],
                 ),
+          */
                 const Spacer(),
                 WakaluxeButton(
-                  text: 'Edit Profile',
+                  text: AppLocalizations.of(context).editProfile,
                   action: () => context.router.pushNamed(EditProfile.routeName),
                 ),
+                10.h.vGap,
+                WakaluxeButton(
+                  text: AppLocalizations.of(context).changePlan,
+                  action: () => _handleChangePlan(context),
+                ),
                 20.h.vGap,
-                if (state is AuthLogOutInit)
-                  WakaluxeButton(
-                    text: 'See you soon!',
-                    color: context.colorScheme.error.withOpacity(0.5),
-                  )
-                else
-                  WakaluxeButton(
-                    text: 'Log Out',
-                    color: context.colorScheme.error,
-                  ),
               ],
             ),
           ),
@@ -129,7 +124,42 @@ class MyProfile extends StatelessWidget {
     );
   }
 
-  _handleLogOut(BuildContext context) {
-    context.read<AuthBloc>().add(OnLogOutRequestEvent());
+  _handleChangePlan(BuildContext context) {
+    successToast(context, AppLocalizations.of(context).commingSoon);
+  }
+}
+
+class ProfileTile extends StatelessWidget {
+  const ProfileTile({
+    required this.title,
+    required this.subtitle,
+    super.key,
+    this.onTap,
+  });
+
+  final String title;
+  final String subtitle;
+  final void Function()? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(
+        title,
+        style: context.theme.textTheme.title,
+      ),
+      subtitle: Text(
+        subtitle,
+        style: context.theme.textTheme.subtitle3,
+      ),
+      trailing: IconButton(
+        icon: const Icon(
+          Icons.arrow_forward_ios,
+          size: 20,
+        ),
+        onPressed:
+            onTap ?? () => context.router.pushNamed(EditProfile.routeName),
+      ),
+    );
   }
 }

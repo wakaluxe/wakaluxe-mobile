@@ -3,26 +3,36 @@ part of 'payment_cubit.dart';
 
 class PaymentsState extends Equatable {
   const PaymentsState({
-    this.type = PaymentMethodsType.UNDEFINE,
+    this.selected = const MobilePaymentMethodModel(
+      id: '',
+      name: '',
+      icon: '',
+      type: PaymentMethodType.UNDERFINED,
+    ),
     this.amount = '0',
     this.accountNumber = '',
     this.processingValue = 0.0,
+    this.error = '',
+    this.methods = const [],
   });
-  final PaymentMethodsType type;
+  final MobilePaymentMethodModel selected;
   final String amount;
   final String accountNumber;
   final double processingValue;
+  final String error;
+  final List<MobilePaymentMethodModel> methods;
   @override
-  List<Object> get props => [type, amount, accountNumber, processingValue];
+  List<Object> get props =>
+      [selected, amount, accountNumber, processingValue, error, methods];
 
   PaymentsState copyWith({
-    PaymentMethodsType? type,
+    MobilePaymentMethodModel? type,
     String? amount,
     String? accountNumber,
     double? processingValue,
   }) {
     return PaymentsState(
-      type: type ?? this.type,
+      selected: type ?? selected,
       amount: amount ?? this.amount,
       accountNumber: accountNumber ?? this.accountNumber,
       processingValue: processingValue ?? this.processingValue,
@@ -33,7 +43,7 @@ class PaymentsState extends Equatable {
 class PaymentsInitialState extends PaymentsState {}
 
 class PaymentUpdatePaymentTypeState extends PaymentsState {
-  const PaymentUpdatePaymentTypeState({required super.type});
+  const PaymentUpdatePaymentTypeState({required super.selected});
 }
 
 class AddPaymentInformationState extends PaymentsState {
@@ -49,4 +59,34 @@ class PaymentProcessingState extends PaymentsState {
 
 class PaymentProcessedState extends PaymentsState {
   const PaymentProcessedState() : super(processingValue: 0);
+}
+
+class PaymentGetPaymentMethodsInitialState extends PaymentsState {}
+
+class PaymentGetPaymentMethodsSuccessState extends PaymentsState {
+  const PaymentGetPaymentMethodsSuccessState({required this.methods});
+  @override
+  final List<MobilePaymentMethodModel> methods;
+}
+
+class PaymentGetPaymentMethodsErrorState extends PaymentsState {
+  const PaymentGetPaymentMethodsErrorState({required this.error});
+  @override
+  final String error;
+}
+
+class PaymentAddPaymentMethodInitialState extends PaymentsState {}
+
+class PaymentAddPaymentMethodSuccessState extends PaymentsState {}
+
+class PaymentAddPaymentMethodErrorState extends PaymentsState {
+  const PaymentAddPaymentMethodErrorState({super.error});
+}
+
+class PaymentRemovePaymentMethodInitialState extends PaymentsState {}
+
+class PaymentRemovePaymentMethodSuccessState extends PaymentsState {}
+
+class PaymentRemovePaymentMethodErrorState extends PaymentsState {
+  const PaymentRemovePaymentMethodErrorState({super.error});
 }

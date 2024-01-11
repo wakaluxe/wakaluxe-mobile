@@ -48,7 +48,7 @@ class _BackendAuthDataSource implements BackendAuthDataSource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = UserEntity.fromMap(_result.data!);
+    final value = UserEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

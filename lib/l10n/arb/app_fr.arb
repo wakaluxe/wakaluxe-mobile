@@ -1,0 +1,145 @@
+{
+    "@@locale": "fr",
+    "counterAppBarTitle": "Compteur",
+    "@counterAppBarTitle": {
+        "description": "Texte affiché dans la barre d'applications de la page du compteur"
+    },
+    "onBoarding1title": "Demander un trajet",
+    "@onBoarding1title": {
+        "description": "Texte affiché dans la première page de présentation"
+    },
+    "onBoarding1subtitle": "Demandez un trajet et faites-vous récupérer par un chauffeur",
+    "@onBoarding1subtitle": {
+        "description": "Texte affiché dans la première page de présentation"
+    },
+    "onBoarding2title": "Confirmez votre chauffeur",
+    "@onBoarding2title": {
+        "description": "Texte affiché dans la deuxième page de présentation"
+    },
+    "onBoarding2subtitle": "Choisissez parmi un large réseau de chauffeurs de la communauté près de chez vous et obtenez un trajet jusqu'à votre destination.",
+    "@onBoarding2subtitle": {
+        "description": "Texte affiché dans la deuxième page de présentation"
+    },
+    "onBoarding3title": "Suivez votre chauffeur",
+    "@onBoarding3title": {
+        "description": "Texte affiché dans la troisième page de présentation"
+    },
+    "onBoarding3subtitle": "Suivez votre chauffeur en temps réel et soyez averti lorsqu'il arrive.",
+    "@onBoarding3subtitle": {
+        "description": "Texte affiché dans la troisième page de présentation"
+    },
+    "onBoarding3button": "Commencer",
+    "@onBoarding3button": {
+        "description": "Texte affiché dans la troisième page de présentation"
+    },
+    "homeTitle": "Salut ! Bienvenue chez Wakalux",
+    "@homeTitle": {
+        "description": "Texte affiché dans la page d'accueil"
+    },
+    "profile": "Profil",
+    "@profile": {
+        "description": "Texte affiché dans la page d'accueil"
+    },
+    "chat": "Chat",
+    "@chat": {
+        "description": "Texte affiché dans la page d'accueil"
+    },
+    "settings": "Paramètres",
+    "@settings": {
+        "description": "Texte affiché dans la page d'accueil"
+    },
+    "login": "Se connecter",
+    "@login": {
+        "description": "Texte affiché dans la page d'accueil"
+    },
+    
+    "pleaseWait": "Veuillez patienter...",
+    "logOut": "Déconnexion",
+    "subscription": "Abonnement",
+    "myWallet": "Mon Portefeuille",
+    "myRides": "Mes Trajets",
+    "support": "Support",
+    "bookATaxi": "Réserver un Taxi",
+    "welcomeTitle1": "Demander un trajet",
+    "welcomeBody1": "Demandez un trajet et faites-vous récupérer par un chauffeur à proximité.",
+    "welcomeTitle2": "Confirmez votre chauffeur",
+    "welcomeBody2": "Choisissez parmi un large réseau de chauffeurs Wakalux près de chez vous et obtenez un trajet jusqu'à votre destination.",
+    "welcomeTitle3": "Suivez votre chauffeur",
+    "welcomeBody3": "Suivez votre chauffeur en temps réel et soyez averti de son arrivée.",
+    "getStarted": "Commencer",
+    "enterYourPhoneNumber": "Entrez votre numéro de téléphone",
+    "sendAVerificationCode": "Nous vous enverrons un code de vérification",
+    "connect": "Connecter",
+    "timeOut": "Temps écoulé",
+    "otpVerification": "Vérification OTP",
+    "verificationCodeSent": "Un code de vérification a été envoyé à",
+    "codeNotReceived": "Vous n'avez pas reçu le code?",
+    "resend": "Renvoyer",
+    "verifying": "Vérification en cours...",
+    "logging": "Connexion...",
+    "verify": "Vérifier",
+    "timeOut": "Temps écoulé",
+    "welcome": "Bienvenue",
+    "authLogOutSuccess": "Vous avez été déconnecté avec succès",
+    "profileNameTitle": "Quel est votre nom ?",
+    "name": "Nom",
+    "phoneNumber": "Numéro de téléphone",
+    "noSubscription": "Pas encore d'abonnement",
+    "subscriptionPlan": "Plan d'abonnement",
+    "editProfile": "Modifier le profil",
+    "changePlan": "Changer de plan",
+    "commingSoon": "Bientôt disponible",
+    "profileImageUpdated": "Image de profil mise à jour",
+    "profileImageUpdateFailed": "Échec de la mise à jour de l'image de profil",
+    "profileNameUpdated": "Nom de profil mis à jour",
+    "profileNameUpdateFailed": "Échec de la mise à jour du nom de profil",
+    "fullName": "Nom complet",
+    "phoneNumber": "Numéro de téléphone",
+    "otpCode": "Code OTP",
+    "loading": "Chargement...",
+    "apply": "Appliquer",
+    "enterTheOtpSent": "Entrez le code OTP envoyé à votre numéro de téléphone",
+    "skip": "Passer",
+    "selectSubscription": "Sélectionnez un plan d'abonnement qui vous convient le mieux.",
+    "subscriptionPlanFeature1": "Priorité plus élevée qu'aucun plan",
+    "subscriptionPlanFeature1Description": "Chaque fois que vous avez besoin d'un taxi, les taxis vous favoriseront par rapport à ceux sans plans.",
+    "subscriptionPlanFeature2": "Planifier les prises en charge",
+    "subscriptionPlanFeature2Description": "Vous pouvez planifier vos prises en charge à l'avance et avoir un taxi",
+    "subscriptionPlanFeature3": "Payer votre course de taxi",
+    "subscriptionPlanFeature4": "Priorité normale",
+    "month": "Mois",
+    "price": "Prix",
+    "description": "Description",
+    "subscribe": "S'abonner",
+    "currentLocation": "Emplacement actuel",
+    "whereAreYouGoing": "Où allez-vous ?",
+    "destination": "Destination",
+    "fetchingDrivers": "Recherche de chauffeurs",
+    "yourRideWillbeHereIn": "Votre trajet sera là dans",
+    "cancelRide": "Annuler le trajet",
+    "completeTour": "Tour complet",
+    "payFare": "Payer la course",
+    "willStillToMoveToPaymentScreen": "Ira toujours à l'écran de paiement",
+    "distance": "Distance",
+    "time": "Temps",
+    "price": "Prix",
+    "confirm": "Confirmer",
+    "thankYouForChoosingMyService": "Merci d'avoir choisi mon service",
+    "howWasYourRide": "Comment s'est déroulé votre trajet ?",
+    "done": "Terminé",
+    "rideComplete": "Trajet complet",
+    "paymentMethods": "Méthodes de paiement",
+"hereAreYourPaymentMethods": "Voici vos méthodes de paiement",
+"addPaymentMethod": "Ajouter une méthode de paiement",
+"cash": "Espèces",
+"addedPaymentMethod": "Méthode de paiement ajoutée avec succès",
+"paymentMethodRemoved": "Méthode de paiement supprimée avec succès",
+"loadingYourPaymentMethods": "Chargement de vos méthodes de paiement...",
+"deleteCashPaymentMethod": "Vous ne pouvez pas supprimer la méthode de paiement en espèces",
+"addPhoneNumber": "Ajouter le numéro de téléphone",
+"next": "Continuer",
+"selectAPaymentMethod": "Sélectionnez une méthode de paiement",
+"processingYourPayment": "Traitement de votre paiement...",
+"processingText": "Veuillez patienter pendant que nous traitons votre paiement. Cela peut prendre 5 minutes ou plus.",
+"cashProcessing": "Veuillez patienter pendant que le chauffeur confirme votre paiement"
+}

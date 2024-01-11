@@ -222,6 +222,7 @@ class AuthRepositorymplementation {
         verificationCompleted: (PhoneAuthCredential credential) async {
           completer.complete(credential);
         },
+
         verificationFailed: (FirebaseAuthException e) {
           logError(e.toString());
           completer.completeError(UpdateProfileException.fromCode(e.code));
@@ -239,6 +240,8 @@ class AuthRepositorymplementation {
           completer.completeError(UpdateProfileException(message: 'Time out'));
         },
       );
+    
+      
 
       final credential = await completer.future;
       final user = _auth.currentUser;

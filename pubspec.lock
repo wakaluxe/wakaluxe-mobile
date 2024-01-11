@@ -105,6 +105,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.3.2"
+  awesome_place_search:
+    dependency: "direct main"
+    description:
+      name: awesome_place_search
+      sha256: bd9a9856673d28dee0c09d7dc199d50655a7dc43c2ee9fde77250e2fbd5d8886
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.10"
   bloc:
     dependency: "direct main"
     description:
@@ -1037,6 +1045,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.0.20-nullsafety.5"
+  google_places_autocomplete_text_field:
+    dependency: "direct main"
+    description:
+      name: google_places_autocomplete_text_field
+      sha256: "59321851bc4b7f4e26d586e7875e70fbb6d12da44de3f06a3a85985b64e29b73"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.2"
   graphs:
     dependency: transitive
     description:
@@ -1709,6 +1725,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.0"
+  skeletons:
+    dependency: transitive
+    description:
+      name: skeletons
+      sha256: "5b2d08ae7f908ee1f7007ca99f8dcebb4bfc1d3cb2143dec8d112a5be5a45c8f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3"
   sky_engine:
     dependency: transitive
     description: flutter

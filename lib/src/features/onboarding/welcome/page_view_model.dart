@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:wakaluxe/l10n/l10n.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
@@ -34,10 +35,10 @@ PageViewModel wakaluxPageViewModel({
           if (end) ...[
             12.vGap,
             WakaluxeButton(
-              text: 'Get Started',
-              action: () => AutoRouter.of(context!).pushNamed('/home-2'),
+              text: AppLocalizations.of(context!).getStarted,
+              action: () => AutoRouter.of(context).pushNamed('/home-2'),
             ),
-          ]
+          ],
         ],
       ),
     ),

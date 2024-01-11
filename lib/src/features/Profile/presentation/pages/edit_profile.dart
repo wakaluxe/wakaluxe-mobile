@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:wakaluxe/l10n/l10n.dart';
 import 'package:wakaluxe/src/common/Utils/helpers.dart';
 import 'package:wakaluxe/src/common/Utils/logger.dart';
 
@@ -55,6 +56,7 @@ class _EditProfileState extends State<EditProfile> {
   Widget build(BuildContext context) {
     final t = Theme.of(context).textTheme;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: const WakaluxBackhButton(),
       ),
@@ -64,13 +66,13 @@ class _EditProfileState extends State<EditProfile> {
             context.read<AuthBloc>().add(GetUserEvent());
 
             context.showSnackBar(
-              'Profile Image Changed Successfully',
+              AppLocalizations.of(context).profileImageUpdated,
             );
           }
           if (state is AuthChangeProfileImageError) {
             context.read<AuthBloc>().add(GetUserEvent());
             context.showSnackBar(
-              'Profile Image Changed Failed',
+              AppLocalizations.of(context).profileImageUpdateFailed,
             );
           }
           if (state is AuthGetUserSuccess) {
@@ -83,14 +85,14 @@ class _EditProfileState extends State<EditProfile> {
             context.read<AuthBloc>().add(GetUserEvent());
             context
               ..showSnackBar(
-                'Profile Name Changed Successfully',
+                AppLocalizations.of(context).profileNameUpdated,
               )
               ..popRoute();
           }
           if (state is AuthChangeUserNameError) {
             context.read<AuthBloc>().add(GetUserEvent());
             context.showSnackBar(
-              'Profile Name Changed Failed',
+              AppLocalizations.of(context).profileNameUpdateFailed,
             );
           }
         },
@@ -143,7 +145,7 @@ class _EditProfileState extends State<EditProfile> {
                   ),
                 40.h.vGap,
                 Text(
-                  'Full Name',
+                  AppLocalizations.of(context).fullName,
                   style: t.label,
                 ),
                 5.h.vGap,
@@ -155,7 +157,7 @@ class _EditProfileState extends State<EditProfile> {
                 ),
                 20.h.vGap,
                 Text(
-                  'Phone Number',
+                  AppLocalizations.of(context).phoneNumber,
                   style: t.label,
                 ),
                 5.h.vGap,
@@ -177,14 +179,14 @@ class _EditProfileState extends State<EditProfile> {
                     Expanded(
                       child: WakaluxEditButton(
                         t: t,
-                        text: 'OTP Code',
+                        text: AppLocalizations.of(context).otpCode,
                         onTap: () {},
                       ),
                     ),
                   ],
                 ),
                 20.h.vGap,
-            /*    Text('OTP', style: t.label),
+                /*    Text('OTP', style: t.label),
                 5.h.vGap,
                 Row(
                   children: <Widget>[
@@ -227,13 +229,13 @@ class _EditProfileState extends State<EditProfile> {
                 const Spacer(),
                 if (state is AuthChangeUserNameInit)
                   WakaluxeButton(
-                    text: 'Loading...',
+                    text: AppLocalizations.of(context).loading,
                     textColor: context.colorScheme.onSecondary,
                     color: context.colorScheme.secondary,
                   )
                 else
                   WakaluxeButton(
-                    text: 'Apply',
+                    text: AppLocalizations.of(context).apply,
                     textColor: context.colorScheme.onSecondary,
                     action: _handleSubmit,
                     color: context.colorScheme.secondary,
@@ -261,15 +263,15 @@ class _EditProfileState extends State<EditProfile> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('OTP Code'),
-        content: const Text('Enter the OTP code sent to your phone number'),
+        title: Text(AppLocalizations.of(context).otpCode),
+        content: Text(AppLocalizations.of(context).enterTheOtpSent),
         actionsAlignment: MainAxisAlignment.center,
         actions: <Widget>[
           TextButton(
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: const Text('Verify'),
+            child: Text(AppLocalizations.of(context).verify),
           ),
         ],
       ),

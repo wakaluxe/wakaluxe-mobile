@@ -2,6 +2,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wakaluxe/l10n/l10n.dart';
 import 'package:wakaluxe/src/common/common.dart';
 import 'package:wakaluxe/src/configs/wakaluxe_theme.dart';
 import 'package:wakaluxe/src/extensions/num.dart';
@@ -49,7 +50,9 @@ class WakaluxeSubscriptionDetail extends StatelessWidget {
                           text: '${subscription_amount(plan)}/',
                           style: text.title,
                         ),
-                        TextSpan(text: 'month', style: text.body2)
+                        TextSpan(
+                            text: AppLocalizations.of(context).month,
+                            style: text.body2),
                       ],
                     ),
                   ),
@@ -57,16 +60,16 @@ class WakaluxeSubscriptionDetail extends StatelessWidget {
               ),
               30.vGap,
               Text(
-                'Description',
+                AppLocalizations.of(context).description,
                 style: text.subHeading1,
               ),
               Expanded(
                 child: ListView.separated(
-                  itemCount: mockSubscriptions.length,
+                  itemCount: _mockSubscriptions(context).length,
                   separatorBuilder: (BuildContext context, int index) =>
                       20.vGap,
                   itemBuilder: (BuildContext context, int index) {
-                    final item = mockSubscriptions[index];
+                    final item = _mockSubscriptions(context)[index];
                     return Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -92,7 +95,7 @@ class WakaluxeSubscriptionDetail extends StatelessWidget {
                               ),
                             ],
                           ),
-                        )
+                        ),
                       ],
                     );
                   },
@@ -101,7 +104,7 @@ class WakaluxeSubscriptionDetail extends StatelessWidget {
               const Spacer(),
               WakaluxeButton(
                 action: () => context.router.pushNamed(HomeMap.path),
-                text: 'Subscribe',
+                text: AppLocalizations.of(context).subscribe,
               ),
             ],
           ),
@@ -111,14 +114,14 @@ class WakaluxeSubscriptionDetail extends StatelessWidget {
   }
 }
 
-final mockSubscriptions = [
-  {
-    'title': 'Higher Priority than No plan',
-    'content':
-        'Whenever you need a taxi, taxis will favor you over those without plans. '
-  },
-  {
-    'title': 'Plan pickups',
-    'content': 'You can plan your pickups in advance and have a taxi'
-  },
-];
+List<Map<String, String>> _mockSubscriptions(BuildContext context) => [
+      {
+        'title': AppLocalizations.of(context).subscriptionPlanFeature1,
+        'content':
+            AppLocalizations.of(context).subscriptionPlanFeature1Description,
+      },
+      {
+        'title': AppLocalizations.of(context).subscriptionPlanFeature2,
+        'content': AppLocalizations.of(context).subscriptionPlanFeature2Description,
+      },
+    ];
